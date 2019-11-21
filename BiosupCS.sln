@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiosupCS", "BiosupCS.csproj", "{3B9CC6BD-3F8E-49EA-9314-E7E8CEB548AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B9CC6BD-3F8E-49EA-9314-E7E8CEB548AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B9CC6BD-3F8E-49EA-9314-E7E8CEB548AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B9CC6BD-3F8E-49EA-9314-E7E8CEB548AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B9CC6BD-3F8E-49EA-9314-E7E8CEB548AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {248ED4B7-8B97-43D5-94FB-4518E895BA21}
+	EndGlobalSection
+EndGlobal

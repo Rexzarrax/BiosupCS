@@ -1,0 +1,50 @@
+DROP TABLE motherboard_url;
+DROP TABLE motherboard_data;
+DROP TABLE vendor_data;
+DROP TABLE chipset_check;
+DROP SEQUENCE seq_model_id;
+DROP SEQUENCE seq_vendor_id;
+DROP SEQUENCE seq_url_id;
+DROP SEQUENCE seq_chipset_id;
+
+CREATE TABLE vendor_data (
+    vendor_id int NOT NULL,
+    vendor_name varchar(30),
+    vendor_sort varchar(255),
+    vendor_dl_url_base varchar(255),
+    vendor_url_addon varchar(20)
+    Primary Key (vendor_id)
+);
+go
+CREATE TABLE motherboard_data (
+    model_id INT NOT NULL,
+    chipset varchar(20),
+    model_name varchar(255) UNIQUE,
+    vendor_id int,
+    model_page varchar(255), --THis is for the bios downlaod page, not product page per say
+    Primary Key (model_id),
+	FOREIGN KEY (vendor_id) REFERENCES vendor_data(vendor_id)
+);
+go
+CREATE TABLE motherboard_url (
+    url_id int,
+    model_id int,
+    url_str varchar(255) UNIQUE,
+	url_bridge varchar(1) CHECK (url_bridge = 'Y' OR url_bridge='N' OR url_bridge='U'),
+	url_date_collected DATE,
+    PRIMARY KEY (url_id),
+    FOREIGN KEY (model_id) REFERENCES motherboard_data(model_id)
+);
+go
+CREATE TABLE chipset_check(
+	chipset_id int,
+	chipset_name varchar(10) NOT NULL UNIQUE,
+	chipset_vendor varchar(10) CHECK(chipset_vendor = 'AMD' OR chipset_vendor = 'INTEL'),
+	PRIMARY KEY (chipset_id)
+);
+go
+CREATE SEQUENCE seq_model_id NO MAXVALUE INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_chipset_id NO MAXVALUE INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_url_id NO MAXVALUE INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE seq_vendor_id no MAXVALUE INCREMENT BY 1 START WITH 1;
+go
