@@ -21,11 +21,21 @@ namespace BiosupCS
 
         private void BIOSUP_CONFIG_Load(object sender, EventArgs e)
         {
-            str_working_dir = System.AppDomain.CurrentDomain.BaseDirectory;
-            Console.WriteLine("Working Dir: " + str_working_dir + "\n");
-            toolStripStatusLabel_cwd.Text = "Working Directory: "+ str_working_dir;
-            BIOSUP_CONFIG_LOAD_INTRUCTIONS();
+            BIOSUP_SQL Biosup_query = new BIOSUP_SQL("Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
+            str_working_dir = System.AppDomain.CurrentDomain.BaseDirectory;
+            Console.WriteLine("CWD: " + str_working_dir + "\n");
+            toolStripStatusLabel_cwd.Text = "CWD: "+ str_working_dir;
+            BIOSUP_CONFIG_LOAD_INTRUCTIONS();
+            try
+            {
+                textBox_log_config.AppendText(Biosup_query.main().ToString());
+            }
+            catch (Exception e2)
+            {
+                textBox_log_config.AppendText(e2.ToString());
+            }
+            
         }
 
         private void btn_run_Click(object sender, EventArgs e)

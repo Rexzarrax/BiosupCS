@@ -244,6 +244,7 @@
             this.textBox_log_config.Location = new System.Drawing.Point(7, 398);
             this.textBox_log_config.Multiline = true;
             this.textBox_log_config.Name = "textBox_log_config";
+            this.textBox_log_config.ReadOnly = true;
             this.textBox_log_config.Size = new System.Drawing.Size(564, 78);
             this.textBox_log_config.TabIndex = 11;
             // 

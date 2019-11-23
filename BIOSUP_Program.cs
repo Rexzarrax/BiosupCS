@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace BiosupCS
 {
-    static class Program
+    static class BIOSUP_Program
     {
         /// <summary>
         /// The main entry point for the application.

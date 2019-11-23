@@ -61,7 +61,7 @@
     <Compile Include="BIOSUP_RM_FILE.cs" />
     <Compile Include="BIOSUP_SQL.cs" />
     <Compile Include="BIOSUP_UNZIP.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="BIOSUP_Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BIOSUP_GUI.resx">
       <DependentUpon>BIOSUP_GUI.cs</DependentUpon>
