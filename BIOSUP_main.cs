@@ -69,7 +69,7 @@ What i need:
 --offine mode
 ---have default/backup copy of db
 ---host own dl's(intel mainly)
---progress bars for various thing (dl, unzip?)
+--use treeview for future expandablitiy
 */
 
 /*
