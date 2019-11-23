@@ -1,7 +1,7 @@
 using System;
 using System.Data.SqlClient;
 
-namespace BIOSUP
+namespace BiosupCS
 {
     public class BIOSUP_SQL
     {

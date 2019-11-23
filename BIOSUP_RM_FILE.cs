@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace BIOSUP
+namespace BiosupCS
 {
     public class BIOSUP_RM_FILE {
     public static void main(String str_file_path){
