@@ -63,6 +63,7 @@
             this.grpBox_Intructions = new System.Windows.Forms.GroupBox();
             this.textBox_instructions = new System.Windows.Forms.TextBox();
             this.tab_control = new System.Windows.Forms.TabControl();
+            this.tabPage_admin = new System.Windows.Forms.TabPage();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -245,6 +246,7 @@
             this.textBox_log_config.Multiline = true;
             this.textBox_log_config.Name = "textBox_log_config";
             this.textBox_log_config.ReadOnly = true;
+            this.textBox_log_config.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_log_config.Size = new System.Drawing.Size(564, 78);
             this.textBox_log_config.TabIndex = 11;
             // 
@@ -415,11 +417,22 @@
             this.tab_control.Controls.Add(this.tabPage_config);
             this.tab_control.Controls.Add(this.tabPage_Current_Run);
             this.tab_control.Controls.Add(this.tabPage_stats);
+            this.tab_control.Controls.Add(this.tabPage_admin);
             this.tab_control.Location = new System.Drawing.Point(0, -1);
             this.tab_control.Name = "tab_control";
             this.tab_control.SelectedIndex = 0;
             this.tab_control.Size = new System.Drawing.Size(587, 537);
             this.tab_control.TabIndex = 1;
+            // 
+            // tabPage_admin
+            // 
+            this.tabPage_admin.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_admin.Name = "tabPage_admin";
+            this.tabPage_admin.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_admin.Size = new System.Drawing.Size(579, 511);
+            this.tabPage_admin.TabIndex = 3;
+            this.tabPage_admin.Text = "Administrator";
+            this.tabPage_admin.UseVisualStyleBackColor = true;
             // 
             // BIOSUP_GUI
             // 
@@ -499,6 +512,7 @@
         private System.Windows.Forms.TextBox textBox_instructions;
         private System.Windows.Forms.TabControl tab_control;
         private System.Windows.Forms.CheckBox checkBox_all_vendors;
+        private System.Windows.Forms.TabPage tabPage_admin;
     }
 }
 
