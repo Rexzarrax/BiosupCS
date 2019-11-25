@@ -52,7 +52,7 @@
             this.listbox_vendor = new System.Windows.Forms.CheckedListBox();
             this.grpBox_Chipsets = new System.Windows.Forms.GroupBox();
             this.grpBox_chipset_intel = new System.Windows.Forms.GroupBox();
-            this.checkBox_intel_select_all = new System.Windows.Forms.CheckBox();
+            this.checkBox_vendor_select_all = new System.Windows.Forms.CheckBox();
             this.listbox_INTEL_chipset = new System.Windows.Forms.CheckedListBox();
             this.grpBox_chipset_amd = new System.Windows.Forms.GroupBox();
             this.checkBox_AMD_select_all = new System.Windows.Forms.CheckBox();
@@ -64,6 +64,39 @@
             this.textBox_instructions = new System.Windows.Forms.TextBox();
             this.tab_control = new System.Windows.Forms.TabControl();
             this.tabPage_admin = new System.Windows.Forms.TabPage();
+            this.tabControl_admin = new System.Windows.Forms.TabControl();
+            this.tabPage_admin_url = new System.Windows.Forms.TabPage();
+            this.btn_get_model_from_database = new System.Windows.Forms.Button();
+            this.btn_add_url = new System.Windows.Forms.Button();
+            this.comboBox_select_model = new System.Windows.Forms.ComboBox();
+            this.numericUpDown_admin_url_url_to_add = new System.Windows.Forms.NumericUpDown();
+            this.tabPage_admin_model = new System.Windows.Forms.TabPage();
+            this.textBox_model_bios_url = new System.Windows.Forms.TextBox();
+            this.comboBox_select_vendor = new System.Windows.Forms.ComboBox();
+            this.comboBox_select_chipset = new System.Windows.Forms.ComboBox();
+            this.btn_add_model = new System.Windows.Forms.Button();
+            this.tabPage_admin_vendor = new System.Windows.Forms.TabPage();
+            this.comboBox_select_vendor_to_edit = new System.Windows.Forms.ComboBox();
+            this.btn_add_vendor = new System.Windows.Forms.Button();
+            this.tabPage_chipset_add = new System.Windows.Forms.TabPage();
+            this.btn_add_chipset = new System.Windows.Forms.Button();
+            this.groupBox_chipset_select = new System.Windows.Forms.GroupBox();
+            this.groupBox_vendor_select = new System.Windows.Forms.GroupBox();
+            this.groupBox_model_bios_url = new System.Windows.Forms.GroupBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox_model_name = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.groupBox_add_vendor = new System.Windows.Forms.GroupBox();
+            this.groupBox_edit_existing = new System.Windows.Forms.GroupBox();
+            this.btn_save_edits = new System.Windows.Forms.Button();
+            this.btn_vendor_edit_cancel = new System.Windows.Forms.Button();
+            this.groupBox_select_model = new System.Windows.Forms.GroupBox();
+            this.label_no_url_to_add = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.btn_model_filter = new System.Windows.Forms.Button();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -78,6 +111,21 @@
             this.grpBox_chipset_amd.SuspendLayout();
             this.grpBox_Intructions.SuspendLayout();
             this.tab_control.SuspendLayout();
+            this.tabPage_admin.SuspendLayout();
+            this.tabControl_admin.SuspendLayout();
+            this.tabPage_admin_url.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_admin_url_url_to_add)).BeginInit();
+            this.tabPage_admin_model.SuspendLayout();
+            this.tabPage_admin_vendor.SuspendLayout();
+            this.tabPage_chipset_add.SuspendLayout();
+            this.groupBox_chipset_select.SuspendLayout();
+            this.groupBox_vendor_select.SuspendLayout();
+            this.groupBox_model_bios_url.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox_model_name.SuspendLayout();
+            this.groupBox_add_vendor.SuspendLayout();
+            this.groupBox_edit_existing.SuspendLayout();
+            this.groupBox_select_model.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip_err_or_cwd
@@ -303,7 +351,7 @@
             // 
             // grpBox_chipset_intel
             // 
-            this.grpBox_chipset_intel.Controls.Add(this.checkBox_intel_select_all);
+            this.grpBox_chipset_intel.Controls.Add(this.checkBox_vendor_select_all);
             this.grpBox_chipset_intel.Controls.Add(this.listbox_INTEL_chipset);
             this.grpBox_chipset_intel.Location = new System.Drawing.Point(197, 17);
             this.grpBox_chipset_intel.Name = "grpBox_chipset_intel";
@@ -312,16 +360,16 @@
             this.grpBox_chipset_intel.TabStop = false;
             this.grpBox_chipset_intel.Text = "INTEL";
             // 
-            // checkBox_intel_select_all
+            // checkBox_vendor_select_all
             // 
-            this.checkBox_intel_select_all.AutoSize = true;
-            this.checkBox_intel_select_all.Location = new System.Drawing.Point(6, 339);
-            this.checkBox_intel_select_all.Name = "checkBox_intel_select_all";
-            this.checkBox_intel_select_all.Size = new System.Drawing.Size(70, 17);
-            this.checkBox_intel_select_all.TabIndex = 5;
-            this.checkBox_intel_select_all.Text = "Select All";
-            this.checkBox_intel_select_all.UseVisualStyleBackColor = true;
-            this.checkBox_intel_select_all.CheckedChanged += new System.EventHandler(this.checkBox_intel_select_all_CheckedChanged);
+            this.checkBox_vendor_select_all.AutoSize = true;
+            this.checkBox_vendor_select_all.Location = new System.Drawing.Point(6, 339);
+            this.checkBox_vendor_select_all.Name = "checkBox_vendor_select_all";
+            this.checkBox_vendor_select_all.Size = new System.Drawing.Size(70, 17);
+            this.checkBox_vendor_select_all.TabIndex = 5;
+            this.checkBox_vendor_select_all.Text = "Select All";
+            this.checkBox_vendor_select_all.UseVisualStyleBackColor = true;
+            this.checkBox_vendor_select_all.CheckedChanged += new System.EventHandler(this.checkBox_intel_select_all_CheckedChanged);
             // 
             // listbox_INTEL_chipset
             // 
@@ -426,6 +474,7 @@
             // 
             // tabPage_admin
             // 
+            this.tabPage_admin.Controls.Add(this.tabControl_admin);
             this.tabPage_admin.Location = new System.Drawing.Point(4, 22);
             this.tabPage_admin.Name = "tabPage_admin";
             this.tabPage_admin.Padding = new System.Windows.Forms.Padding(3);
@@ -433,6 +482,337 @@
             this.tabPage_admin.TabIndex = 3;
             this.tabPage_admin.Text = "Administrator";
             this.tabPage_admin.UseVisualStyleBackColor = true;
+            // 
+            // tabControl_admin
+            // 
+            this.tabControl_admin.Controls.Add(this.tabPage_admin_url);
+            this.tabControl_admin.Controls.Add(this.tabPage_admin_model);
+            this.tabControl_admin.Controls.Add(this.tabPage_admin_vendor);
+            this.tabControl_admin.Controls.Add(this.tabPage_chipset_add);
+            this.tabControl_admin.Location = new System.Drawing.Point(4, 4);
+            this.tabControl_admin.Name = "tabControl_admin";
+            this.tabControl_admin.SelectedIndex = 0;
+            this.tabControl_admin.Size = new System.Drawing.Size(572, 501);
+            this.tabControl_admin.TabIndex = 0;
+            // 
+            // tabPage_admin_url
+            // 
+            this.tabPage_admin_url.Controls.Add(this.groupBox_select_model);
+            this.tabPage_admin_url.Controls.Add(this.btn_add_url);
+            this.tabPage_admin_url.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_admin_url.Name = "tabPage_admin_url";
+            this.tabPage_admin_url.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_admin_url.Size = new System.Drawing.Size(564, 475);
+            this.tabPage_admin_url.TabIndex = 0;
+            this.tabPage_admin_url.Text = "Insert URL";
+            this.tabPage_admin_url.UseVisualStyleBackColor = true;
+            // 
+            // btn_get_model_from_database
+            // 
+            this.btn_get_model_from_database.Location = new System.Drawing.Point(471, 69);
+            this.btn_get_model_from_database.Name = "btn_get_model_from_database";
+            this.btn_get_model_from_database.Size = new System.Drawing.Size(75, 23);
+            this.btn_get_model_from_database.TabIndex = 3;
+            this.btn_get_model_from_database.Text = "Get Model";
+            this.btn_get_model_from_database.UseVisualStyleBackColor = true;
+            // 
+            // btn_add_url
+            // 
+            this.btn_add_url.Location = new System.Drawing.Point(486, 446);
+            this.btn_add_url.Name = "btn_add_url";
+            this.btn_add_url.Size = new System.Drawing.Size(75, 23);
+            this.btn_add_url.TabIndex = 2;
+            this.btn_add_url.Text = "Add URL";
+            this.btn_add_url.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_select_model
+            // 
+            this.comboBox_select_model.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_select_model.FormattingEnabled = true;
+            this.comboBox_select_model.Location = new System.Drawing.Point(6, 71);
+            this.comboBox_select_model.Name = "comboBox_select_model";
+            this.comboBox_select_model.Size = new System.Drawing.Size(314, 21);
+            this.comboBox_select_model.TabIndex = 1;
+            // 
+            // numericUpDown_admin_url_url_to_add
+            // 
+            this.numericUpDown_admin_url_url_to_add.Location = new System.Drawing.Point(471, 33);
+            this.numericUpDown_admin_url_url_to_add.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numericUpDown_admin_url_url_to_add.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_admin_url_url_to_add.Name = "numericUpDown_admin_url_url_to_add";
+            this.numericUpDown_admin_url_url_to_add.Size = new System.Drawing.Size(75, 20);
+            this.numericUpDown_admin_url_url_to_add.TabIndex = 0;
+            this.numericUpDown_admin_url_url_to_add.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // tabPage_admin_model
+            // 
+            this.tabPage_admin_model.Controls.Add(this.groupBox_model_name);
+            this.tabPage_admin_model.Controls.Add(this.groupBox_model_bios_url);
+            this.tabPage_admin_model.Controls.Add(this.groupBox_vendor_select);
+            this.tabPage_admin_model.Controls.Add(this.groupBox_chipset_select);
+            this.tabPage_admin_model.Controls.Add(this.btn_add_model);
+            this.tabPage_admin_model.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_admin_model.Name = "tabPage_admin_model";
+            this.tabPage_admin_model.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_admin_model.Size = new System.Drawing.Size(564, 475);
+            this.tabPage_admin_model.TabIndex = 1;
+            this.tabPage_admin_model.Text = "Insert Model";
+            this.tabPage_admin_model.UseVisualStyleBackColor = true;
+            this.tabPage_admin_model.Click += new System.EventHandler(this.tabPage_admin_model_Click);
+            // 
+            // textBox_model_bios_url
+            // 
+            this.textBox_model_bios_url.Location = new System.Drawing.Point(6, 19);
+            this.textBox_model_bios_url.Name = "textBox_model_bios_url";
+            this.textBox_model_bios_url.Size = new System.Drawing.Size(254, 20);
+            this.textBox_model_bios_url.TabIndex = 3;
+            this.textBox_model_bios_url.TextChanged += new System.EventHandler(this.textBox_model_bios_url_TextChanged);
+            // 
+            // comboBox_select_vendor
+            // 
+            this.comboBox_select_vendor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_select_vendor.FormattingEnabled = true;
+            this.comboBox_select_vendor.Location = new System.Drawing.Point(6, 19);
+            this.comboBox_select_vendor.Name = "comboBox_select_vendor";
+            this.comboBox_select_vendor.Size = new System.Drawing.Size(128, 21);
+            this.comboBox_select_vendor.TabIndex = 2;
+            // 
+            // comboBox_select_chipset
+            // 
+            this.comboBox_select_chipset.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_select_chipset.FormattingEnabled = true;
+            this.comboBox_select_chipset.Location = new System.Drawing.Point(6, 19);
+            this.comboBox_select_chipset.Name = "comboBox_select_chipset";
+            this.comboBox_select_chipset.Size = new System.Drawing.Size(128, 21);
+            this.comboBox_select_chipset.TabIndex = 1;
+            // 
+            // btn_add_model
+            // 
+            this.btn_add_model.Location = new System.Drawing.Point(483, 446);
+            this.btn_add_model.Name = "btn_add_model";
+            this.btn_add_model.Size = new System.Drawing.Size(75, 23);
+            this.btn_add_model.TabIndex = 0;
+            this.btn_add_model.Text = "Add Model";
+            this.btn_add_model.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_admin_vendor
+            // 
+            this.tabPage_admin_vendor.Controls.Add(this.groupBox_edit_existing);
+            this.tabPage_admin_vendor.Controls.Add(this.groupBox_add_vendor);
+            this.tabPage_admin_vendor.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_admin_vendor.Name = "tabPage_admin_vendor";
+            this.tabPage_admin_vendor.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_admin_vendor.Size = new System.Drawing.Size(564, 475);
+            this.tabPage_admin_vendor.TabIndex = 2;
+            this.tabPage_admin_vendor.Text = "Insert Vendor";
+            this.tabPage_admin_vendor.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_select_vendor_to_edit
+            // 
+            this.comboBox_select_vendor_to_edit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_select_vendor_to_edit.FormattingEnabled = true;
+            this.comboBox_select_vendor_to_edit.Location = new System.Drawing.Point(6, 19);
+            this.comboBox_select_vendor_to_edit.Name = "comboBox_select_vendor_to_edit";
+            this.comboBox_select_vendor_to_edit.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_select_vendor_to_edit.TabIndex = 1;
+            // 
+            // btn_add_vendor
+            // 
+            this.btn_add_vendor.Location = new System.Drawing.Point(470, 205);
+            this.btn_add_vendor.Name = "btn_add_vendor";
+            this.btn_add_vendor.Size = new System.Drawing.Size(75, 23);
+            this.btn_add_vendor.TabIndex = 0;
+            this.btn_add_vendor.Text = "Add Vendor";
+            this.btn_add_vendor.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_chipset_add
+            // 
+            this.tabPage_chipset_add.Controls.Add(this.btn_add_chipset);
+            this.tabPage_chipset_add.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_chipset_add.Name = "tabPage_chipset_add";
+            this.tabPage_chipset_add.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_chipset_add.Size = new System.Drawing.Size(564, 475);
+            this.tabPage_chipset_add.TabIndex = 3;
+            this.tabPage_chipset_add.Text = "Insert Chipset";
+            this.tabPage_chipset_add.UseVisualStyleBackColor = true;
+            // 
+            // btn_add_chipset
+            // 
+            this.btn_add_chipset.Location = new System.Drawing.Point(483, 446);
+            this.btn_add_chipset.Name = "btn_add_chipset";
+            this.btn_add_chipset.Size = new System.Drawing.Size(75, 23);
+            this.btn_add_chipset.TabIndex = 0;
+            this.btn_add_chipset.Text = "Add Chipset";
+            this.btn_add_chipset.UseVisualStyleBackColor = true;
+            // 
+            // groupBox_chipset_select
+            // 
+            this.groupBox_chipset_select.Controls.Add(this.comboBox_select_chipset);
+            this.groupBox_chipset_select.Location = new System.Drawing.Point(6, 6);
+            this.groupBox_chipset_select.Name = "groupBox_chipset_select";
+            this.groupBox_chipset_select.Size = new System.Drawing.Size(140, 47);
+            this.groupBox_chipset_select.TabIndex = 4;
+            this.groupBox_chipset_select.TabStop = false;
+            this.groupBox_chipset_select.Text = "Chipset Select";
+            // 
+            // groupBox_vendor_select
+            // 
+            this.groupBox_vendor_select.Controls.Add(this.groupBox1);
+            this.groupBox_vendor_select.Controls.Add(this.comboBox_select_vendor);
+            this.groupBox_vendor_select.Location = new System.Drawing.Point(6, 59);
+            this.groupBox_vendor_select.Name = "groupBox_vendor_select";
+            this.groupBox_vendor_select.Size = new System.Drawing.Size(140, 47);
+            this.groupBox_vendor_select.TabIndex = 5;
+            this.groupBox_vendor_select.TabStop = false;
+            this.groupBox_vendor_select.Text = "Vendor Select";
+            // 
+            // groupBox_model_bios_url
+            // 
+            this.groupBox_model_bios_url.Controls.Add(this.textBox_model_bios_url);
+            this.groupBox_model_bios_url.Location = new System.Drawing.Point(7, 168);
+            this.groupBox_model_bios_url.Name = "groupBox_model_bios_url";
+            this.groupBox_model_bios_url.Size = new System.Drawing.Size(265, 50);
+            this.groupBox_model_bios_url.TabIndex = 6;
+            this.groupBox_model_bios_url.TabStop = false;
+            this.groupBox_model_bios_url.Text = "URL of model\'s BIOS page";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Location = new System.Drawing.Point(6, 46);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(265, 50);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "URL of model\'s BIOS page";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 19);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(254, 20);
+            this.textBox1.TabIndex = 3;
+            // 
+            // groupBox_model_name
+            // 
+            this.groupBox_model_name.Controls.Add(this.textBox2);
+            this.groupBox_model_name.Location = new System.Drawing.Point(7, 112);
+            this.groupBox_model_name.Name = "groupBox_model_name";
+            this.groupBox_model_name.Size = new System.Drawing.Size(265, 50);
+            this.groupBox_model_name.TabIndex = 7;
+            this.groupBox_model_name.TabStop = false;
+            this.groupBox_model_name.Text = "Model Name(sku)";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(6, 19);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(254, 20);
+            this.textBox2.TabIndex = 3;
+            // 
+            // groupBox_add_vendor
+            // 
+            this.groupBox_add_vendor.Controls.Add(this.btn_add_vendor);
+            this.groupBox_add_vendor.Location = new System.Drawing.Point(7, 7);
+            this.groupBox_add_vendor.Name = "groupBox_add_vendor";
+            this.groupBox_add_vendor.Size = new System.Drawing.Size(551, 234);
+            this.groupBox_add_vendor.TabIndex = 2;
+            this.groupBox_add_vendor.TabStop = false;
+            this.groupBox_add_vendor.Text = "Add Vendor";
+            // 
+            // groupBox_edit_existing
+            // 
+            this.groupBox_edit_existing.Controls.Add(this.btn_vendor_edit_cancel);
+            this.groupBox_edit_existing.Controls.Add(this.btn_save_edits);
+            this.groupBox_edit_existing.Controls.Add(this.comboBox_select_vendor_to_edit);
+            this.groupBox_edit_existing.Location = new System.Drawing.Point(7, 247);
+            this.groupBox_edit_existing.Name = "groupBox_edit_existing";
+            this.groupBox_edit_existing.Size = new System.Drawing.Size(551, 222);
+            this.groupBox_edit_existing.TabIndex = 3;
+            this.groupBox_edit_existing.TabStop = false;
+            this.groupBox_edit_existing.Text = "Edit Exisitng Vendor";
+            // 
+            // btn_save_edits
+            // 
+            this.btn_save_edits.Location = new System.Drawing.Point(462, 193);
+            this.btn_save_edits.Name = "btn_save_edits";
+            this.btn_save_edits.Size = new System.Drawing.Size(83, 23);
+            this.btn_save_edits.TabIndex = 1;
+            this.btn_save_edits.Text = "Save Vendor";
+            this.btn_save_edits.UseVisualStyleBackColor = true;
+            // 
+            // btn_vendor_edit_cancel
+            // 
+            this.btn_vendor_edit_cancel.Location = new System.Drawing.Point(373, 193);
+            this.btn_vendor_edit_cancel.Name = "btn_vendor_edit_cancel";
+            this.btn_vendor_edit_cancel.Size = new System.Drawing.Size(83, 23);
+            this.btn_vendor_edit_cancel.TabIndex = 2;
+            this.btn_vendor_edit_cancel.Text = "Save Vendor";
+            this.btn_vendor_edit_cancel.UseVisualStyleBackColor = true;
+            // 
+            // groupBox_select_model
+            // 
+            this.groupBox_select_model.Controls.Add(this.btn_model_filter);
+            this.groupBox_select_model.Controls.Add(this.comboBox2);
+            this.groupBox_select_model.Controls.Add(this.comboBox1);
+            this.groupBox_select_model.Controls.Add(this.label_no_url_to_add);
+            this.groupBox_select_model.Controls.Add(this.comboBox_select_model);
+            this.groupBox_select_model.Controls.Add(this.btn_get_model_from_database);
+            this.groupBox_select_model.Controls.Add(this.numericUpDown_admin_url_url_to_add);
+            this.groupBox_select_model.Location = new System.Drawing.Point(6, 6);
+            this.groupBox_select_model.Name = "groupBox_select_model";
+            this.groupBox_select_model.Size = new System.Drawing.Size(552, 100);
+            this.groupBox_select_model.TabIndex = 4;
+            this.groupBox_select_model.TabStop = false;
+            this.groupBox_select_model.Text = "Select Model";
+            // 
+            // label_no_url_to_add
+            // 
+            this.label_no_url_to_add.AutoSize = true;
+            this.label_no_url_to_add.Location = new System.Drawing.Point(468, 16);
+            this.label_no_url_to_add.Name = "label_no_url_to_add";
+            this.label_no_url_to_add.Size = new System.Drawing.Size(78, 13);
+            this.label_no_url_to_add.TabIndex = 4;
+            this.label_no_url_to_add.Text = "Number to Add";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(6, 16);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(154, 21);
+            this.comboBox1.TabIndex = 5;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(166, 16);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(154, 21);
+            this.comboBox2.TabIndex = 6;
+            // 
+            // btn_model_filter
+            // 
+            this.btn_model_filter.Location = new System.Drawing.Point(245, 42);
+            this.btn_model_filter.Name = "btn_model_filter";
+            this.btn_model_filter.Size = new System.Drawing.Size(75, 23);
+            this.btn_model_filter.TabIndex = 7;
+            this.btn_model_filter.Text = "Filter";
+            this.btn_model_filter.UseVisualStyleBackColor = true;
             // 
             // BIOSUP_GUI
             // 
@@ -472,6 +852,25 @@
             this.grpBox_Intructions.ResumeLayout(false);
             this.grpBox_Intructions.PerformLayout();
             this.tab_control.ResumeLayout(false);
+            this.tabPage_admin.ResumeLayout(false);
+            this.tabControl_admin.ResumeLayout(false);
+            this.tabPage_admin_url.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_admin_url_url_to_add)).EndInit();
+            this.tabPage_admin_model.ResumeLayout(false);
+            this.tabPage_admin_vendor.ResumeLayout(false);
+            this.tabPage_chipset_add.ResumeLayout(false);
+            this.groupBox_chipset_select.ResumeLayout(false);
+            this.groupBox_vendor_select.ResumeLayout(false);
+            this.groupBox_model_bios_url.ResumeLayout(false);
+            this.groupBox_model_bios_url.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox_model_name.ResumeLayout(false);
+            this.groupBox_model_name.PerformLayout();
+            this.groupBox_add_vendor.ResumeLayout(false);
+            this.groupBox_edit_existing.ResumeLayout(false);
+            this.groupBox_select_model.ResumeLayout(false);
+            this.groupBox_select_model.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -500,7 +899,7 @@
         private System.Windows.Forms.CheckedListBox listbox_vendor;
         private System.Windows.Forms.GroupBox grpBox_Chipsets;
         private System.Windows.Forms.GroupBox grpBox_chipset_intel;
-        private System.Windows.Forms.CheckBox checkBox_intel_select_all;
+        private System.Windows.Forms.CheckBox checkBox_vendor_select_all;
         private System.Windows.Forms.CheckedListBox listbox_INTEL_chipset;
         private System.Windows.Forms.GroupBox grpBox_chipset_amd;
         private System.Windows.Forms.CheckBox checkBox_AMD_select_all;
@@ -513,6 +912,39 @@
         private System.Windows.Forms.TabControl tab_control;
         private System.Windows.Forms.CheckBox checkBox_all_vendors;
         private System.Windows.Forms.TabPage tabPage_admin;
+        private System.Windows.Forms.TabControl tabControl_admin;
+        private System.Windows.Forms.TabPage tabPage_admin_url;
+        private System.Windows.Forms.TabPage tabPage_admin_model;
+        private System.Windows.Forms.TabPage tabPage_admin_vendor;
+        private System.Windows.Forms.ComboBox comboBox_select_model;
+        private System.Windows.Forms.NumericUpDown numericUpDown_admin_url_url_to_add;
+        private System.Windows.Forms.Button btn_add_url;
+        private System.Windows.Forms.Button btn_add_model;
+        private System.Windows.Forms.Button btn_add_vendor;
+        private System.Windows.Forms.Button btn_get_model_from_database;
+        private System.Windows.Forms.TabPage tabPage_chipset_add;
+        private System.Windows.Forms.Button btn_add_chipset;
+        private System.Windows.Forms.TextBox textBox_model_bios_url;
+        private System.Windows.Forms.ComboBox comboBox_select_vendor;
+        private System.Windows.Forms.ComboBox comboBox_select_chipset;
+        private System.Windows.Forms.ComboBox comboBox_select_vendor_to_edit;
+        private System.Windows.Forms.GroupBox groupBox_vendor_select;
+        private System.Windows.Forms.GroupBox groupBox_chipset_select;
+        private System.Windows.Forms.GroupBox groupBox_model_bios_url;
+        private System.Windows.Forms.GroupBox groupBox_model_name;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.GroupBox groupBox_edit_existing;
+        private System.Windows.Forms.Button btn_vendor_edit_cancel;
+        private System.Windows.Forms.Button btn_save_edits;
+        private System.Windows.Forms.GroupBox groupBox_add_vendor;
+        private System.Windows.Forms.GroupBox groupBox_select_model;
+        private System.Windows.Forms.Button btn_model_filter;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label_no_url_to_add;
     }
 }
 

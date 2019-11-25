@@ -40,12 +40,15 @@ namespace BiosupCS
                 {
                     textBox_log_config.AppendText("\n\r" + row["vendor_name"] + "...");
                     Invoke(new Action(() => listbox_vendor.Items.Add(row["vendor_name"])));
+                    Invoke(new Action(() => comboBox_select_vendor.Items.Add(row["vendor_name"])));
+                    Invoke(new Action(() => comboBox_select_vendor_to_edit.Items.Add(row["vendor_name"])));
                 }
 
                 textBox_log_config.AppendText("\r\n Chipsets Found:");
                 foreach (DataRow row in Biosup_query_chipsets.my_table.Rows)
                 {
                     textBox_log_config.AppendText("\n\r" + row["chipset_vendor"] + ", " + row["chipset_name"]+"...");
+                    Invoke(new Action(() => comboBox_select_chipset.Items.Add(row["chipset_name"])));
                     //Need to update below to better method    
                     if (row["chipset_vendor"].ToString() == "AMD")
                    {                    
@@ -133,7 +136,7 @@ namespace BiosupCS
             {
                 listbox_AMD_chipset.SetItemChecked(i, bool_set_bool);
             }
-            checkBox_intel_select_all.Checked = bool_set_bool;
+            checkBox_vendor_select_all.Checked = bool_set_bool;
             for (int i = 0; i < listbox_INTEL_chipset.Items.Count; i++)
             {
                 listbox_INTEL_chipset.SetItemChecked(i, bool_set_bool);
@@ -153,15 +156,34 @@ namespace BiosupCS
 
         private void checkBox_intel_select_all_CheckedChanged(object sender, EventArgs e)
         {
-
+            for (int i = 0; i < listbox_INTEL_chipset.Items.Count; i++)
+            {
+                listbox_INTEL_chipset.SetItemChecked(i, checkBox_vendor_select_all.Checked);
+            }
         }
 
         private void checkBox_AMD_select_all_CheckedChanged(object sender, EventArgs e)
         {
-
+            for (int i = 0; i < listbox_AMD_chipset.Items.Count; i++)
+            {
+                listbox_AMD_chipset.SetItemChecked(i, checkBox_AMD_select_all.Checked);
+            }
         }
 
         private void checkBox_all_vendors_CheckedChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listbox_vendor.Items.Count; i++)
+            {
+                listbox_vendor.SetItemChecked(i, checkBox_all_vendors.Checked);
+            }
+        }
+
+        private void textBox_model_bios_url_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage_admin_model_Click(object sender, EventArgs e)
         {
 
         }
