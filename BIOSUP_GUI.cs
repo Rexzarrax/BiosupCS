@@ -14,7 +14,8 @@ namespace BiosupCS
     public partial class BIOSUP_GUI : Form
     {
         String str_working_dir;
-        String str_database_credentials;
+        String str_database_credentials = "Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        List<String> list_chipset_vendor = new List<String>() { "AMD", "INTEL" };
         Boolean bool_select_all = false;
         public BIOSUP_GUI()
         {
@@ -23,10 +24,8 @@ namespace BiosupCS
 
         private void BIOSUP_CONFIG_Load(object sender, EventArgs e)
         {
-            str_database_credentials = "Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             BIOSUP_SQL Biosup_query_vendors = new BIOSUP_SQL("SELECT * FROM dbo.vendor_data", str_database_credentials);
             BIOSUP_SQL Biosup_query_chipsets = new BIOSUP_SQL("SELECT chipset_name,chipset_vendor FROM dbo.chipset_check", str_database_credentials);
-
 
             str_working_dir = System.AppDomain.CurrentDomain.BaseDirectory;
             Console.WriteLine("CWD: " + str_working_dir + "\n");
@@ -42,6 +41,7 @@ namespace BiosupCS
                     Invoke(new Action(() => listbox_vendor.Items.Add(row["vendor_name"])));
                     Invoke(new Action(() => comboBox_select_vendor.Items.Add(row["vendor_name"])));
                     Invoke(new Action(() => comboBox_select_vendor_to_edit.Items.Add(row["vendor_name"])));
+                    Invoke(new Action(() => comboBox_admin_url_vendor.Items.Add(row["vendor_name"])));
                 }
 
                 textBox_log_config.AppendText("\r\n Chipsets Found:");
@@ -49,12 +49,14 @@ namespace BiosupCS
                 {
                     textBox_log_config.AppendText("\n\r" + row["chipset_vendor"] + ", " + row["chipset_name"]+"...");
                     Invoke(new Action(() => comboBox_select_chipset.Items.Add(row["chipset_name"])));
+                    Invoke(new Action(() => comboBox_admin_url_chipset.Items.Add(row["chipset_name"])));
+
                     //Need to update below to better method    
-                    if (row["chipset_vendor"].ToString() == "AMD")
+                    if (row["chipset_vendor"].ToString() == list_chipset_vendor[0])
                    {                    
                         Invoke(new Action(() => listbox_AMD_chipset.Items.Add(row["chipset_name"])));
                    }
-                   else if(row["chipset_vendor"].ToString() == "INTEL") 
+                   else if(row["chipset_vendor"].ToString() == list_chipset_vendor[1]) 
                    {
                         Invoke(new Action(() => listbox_INTEL_chipset.Items.Add(row["chipset_name"])));
                     }
@@ -63,6 +65,10 @@ namespace BiosupCS
                         textBox_log_config.AppendText("Error Sorting!");
                    }
                     
+                }
+                foreach(String str_vendor in list_chipset_vendor)
+                {
+                    Invoke(new Action(() => comboBox_admin_chipset_vendor.Items.Add(str_vendor)));
                 }
                     
             }
@@ -86,7 +92,11 @@ namespace BiosupCS
             {
                 textBox_log_running.AppendText("Directory Already Exists: ../BIOSHERE/");
             }
-            
+
+
+            //String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE " ;
+
+           // BIOSUP_SQL Biosup_query_url = new BIOSUP_SQL(str_built_query, str_database_credentials) ;
         }
 
         private void BIOSUP_CONFIG_LOAD_INTRUCTIONS()
@@ -105,14 +115,14 @@ namespace BiosupCS
                 {
                     method_bool_select_all(true);
                     btn_select_all.Text = "Deselect All";
+                    bool_select_all = true;
                 }
                 else
                 {
                     method_bool_select_all(false);
                     btn_select_all.Text = "Select All";
+                    bool_select_all = false;
                 }
-
-
                 
             }
             catch(Exception e3)
@@ -126,7 +136,6 @@ namespace BiosupCS
         private void method_bool_select_all(Boolean bool_set_bool)
         {
             checkBox_all_vendors.Checked = bool_set_bool;
-            bool_select_all = bool_set_bool;
             for (int i = 0; i < listbox_vendor.Items.Count; i++)
             {
                 listbox_vendor.SetItemChecked(i, bool_set_bool);
@@ -146,7 +155,7 @@ namespace BiosupCS
 
         private void btn_clear_config_Click(object sender, EventArgs e)
         {
-
+            method_bool_select_all(false);
         }
 
         private void btn_load_last_Click(object sender, EventArgs e)
@@ -178,12 +187,12 @@ namespace BiosupCS
             }
         }
 
-        private void textBox_model_bios_url_TextChanged(object sender, EventArgs e)
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void tabPage_admin_model_Click(object sender, EventArgs e)
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
