@@ -35,6 +35,8 @@
             this.tabPage_stats = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage_Current_Run = new System.Windows.Forms.TabPage();
+            this.btn_biosup_stop = new System.Windows.Forms.Button();
+            this.btn_biosup_pause = new System.Windows.Forms.Button();
             this.grpBox_log_history = new System.Windows.Forms.GroupBox();
             this.textBox_log_running = new System.Windows.Forms.TextBox();
             this.grpBox_current_run = new System.Windows.Forms.GroupBox();
@@ -68,6 +70,8 @@
             this.textBox_admin_log = new System.Windows.Forms.TextBox();
             this.tabControl_admin = new System.Windows.Forms.TabControl();
             this.tabPage_admin_url = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel_add_url_str = new System.Windows.Forms.FlowLayoutPanel();
+            this.btn_admin_url_add_url = new System.Windows.Forms.Button();
             this.groupBox_select_model = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -106,6 +110,7 @@
             this.btn_add_chipset = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
+            this.groupBox_admin_url_contain_url = new System.Windows.Forms.GroupBox();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -136,6 +141,7 @@
             this.groupBox_add_vendor.SuspendLayout();
             this.tabPage_chipset_add.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).BeginInit();
+            this.groupBox_admin_url_contain_url.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip_err_or_cwd
@@ -177,6 +183,8 @@
             // 
             // tabPage_Current_Run
             // 
+            this.tabPage_Current_Run.Controls.Add(this.btn_biosup_stop);
+            this.tabPage_Current_Run.Controls.Add(this.btn_biosup_pause);
             this.tabPage_Current_Run.Controls.Add(this.grpBox_log_history);
             this.tabPage_Current_Run.Controls.Add(this.grpBox_current_run);
             this.tabPage_Current_Run.Controls.Add(this.grpBox_current_progress);
@@ -188,6 +196,24 @@
             this.tabPage_Current_Run.TabIndex = 1;
             this.tabPage_Current_Run.Text = "Current Run";
             this.tabPage_Current_Run.UseVisualStyleBackColor = true;
+            // 
+            // btn_biosup_stop
+            // 
+            this.btn_biosup_stop.Location = new System.Drawing.Point(487, 403);
+            this.btn_biosup_stop.Name = "btn_biosup_stop";
+            this.btn_biosup_stop.Size = new System.Drawing.Size(75, 23);
+            this.btn_biosup_stop.TabIndex = 9;
+            this.btn_biosup_stop.Text = "Stop";
+            this.btn_biosup_stop.UseVisualStyleBackColor = true;
+            // 
+            // btn_biosup_pause
+            // 
+            this.btn_biosup_pause.Location = new System.Drawing.Point(487, 362);
+            this.btn_biosup_pause.Name = "btn_biosup_pause";
+            this.btn_biosup_pause.Size = new System.Drawing.Size(75, 23);
+            this.btn_biosup_pause.TabIndex = 8;
+            this.btn_biosup_pause.Text = "Pause";
+            this.btn_biosup_pause.UseVisualStyleBackColor = true;
             // 
             // grpBox_log_history
             // 
@@ -204,6 +230,7 @@
             this.textBox_log_running.Location = new System.Drawing.Point(6, 15);
             this.textBox_log_running.Multiline = true;
             this.textBox_log_running.Name = "textBox_log_running";
+            this.textBox_log_running.ReadOnly = true;
             this.textBox_log_running.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_log_running.Size = new System.Drawing.Size(332, 323);
             this.textBox_log_running.TabIndex = 4;
@@ -223,6 +250,7 @@
             this.textBox_current_UEFI_info.Location = new System.Drawing.Point(6, 15);
             this.textBox_current_UEFI_info.Multiline = true;
             this.textBox_current_UEFI_info.Name = "textBox_current_UEFI_info";
+            this.textBox_current_UEFI_info.ReadOnly = true;
             this.textBox_current_UEFI_info.Size = new System.Drawing.Size(206, 323);
             this.textBox_current_UEFI_info.TabIndex = 5;
             // 
@@ -232,7 +260,7 @@
             this.grpBox_current_progress.Controls.Add(this.progressBar1);
             this.grpBox_current_progress.Location = new System.Drawing.Point(3, 353);
             this.grpBox_current_progress.Name = "grpBox_current_progress";
-            this.grpBox_current_progress.Size = new System.Drawing.Size(573, 73);
+            this.grpBox_current_progress.Size = new System.Drawing.Size(468, 73);
             this.grpBox_current_progress.TabIndex = 3;
             this.grpBox_current_progress.TabStop = false;
             this.grpBox_current_progress.Text = "Current Progress";
@@ -250,7 +278,7 @@
             // 
             this.progressBar1.Location = new System.Drawing.Point(10, 36);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(540, 23);
+            this.progressBar1.Size = new System.Drawing.Size(448, 23);
             this.progressBar1.TabIndex = 1;
             // 
             // grpBox_Overall_progress
@@ -517,6 +545,8 @@
             // 
             // tabPage_admin_url
             // 
+            this.tabPage_admin_url.Controls.Add(this.groupBox_admin_url_contain_url);
+            this.tabPage_admin_url.Controls.Add(this.btn_admin_url_add_url);
             this.tabPage_admin_url.Controls.Add(this.groupBox_select_model);
             this.tabPage_admin_url.Controls.Add(this.btn_add_url);
             this.tabPage_admin_url.Location = new System.Drawing.Point(4, 22);
@@ -526,6 +556,23 @@
             this.tabPage_admin_url.TabIndex = 0;
             this.tabPage_admin_url.Text = "Insert URL";
             this.tabPage_admin_url.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel_add_url_str
+            // 
+            this.flowLayoutPanel_add_url_str.AutoScroll = true;
+            this.flowLayoutPanel_add_url_str.Location = new System.Drawing.Point(6, 19);
+            this.flowLayoutPanel_add_url_str.Name = "flowLayoutPanel_add_url_str";
+            this.flowLayoutPanel_add_url_str.Size = new System.Drawing.Size(540, 199);
+            this.flowLayoutPanel_add_url_str.TabIndex = 6;
+            // 
+            // btn_admin_url_add_url
+            // 
+            this.btn_admin_url_add_url.Location = new System.Drawing.Point(483, 342);
+            this.btn_admin_url_add_url.Name = "btn_admin_url_add_url";
+            this.btn_admin_url_add_url.Size = new System.Drawing.Size(75, 23);
+            this.btn_admin_url_add_url.TabIndex = 5;
+            this.btn_admin_url_add_url.Text = "Add";
+            this.btn_admin_url_add_url.UseVisualStyleBackColor = true;
             // 
             // groupBox_select_model
             // 
@@ -571,7 +618,6 @@
             this.label3.Size = new System.Drawing.Size(86, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Filter by Vendor: ";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // comboBox_admin_url_chipset
             // 
@@ -581,7 +627,6 @@
             this.comboBox_admin_url_chipset.Name = "comboBox_admin_url_chipset";
             this.comboBox_admin_url_chipset.Size = new System.Drawing.Size(239, 21);
             this.comboBox_admin_url_chipset.TabIndex = 6;
-            this.comboBox_admin_url_chipset.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // comboBox_admin_url_vendor
             // 
@@ -616,14 +661,15 @@
             this.btn_get_model_from_database.Name = "btn_get_model_from_database";
             this.btn_get_model_from_database.Size = new System.Drawing.Size(75, 23);
             this.btn_get_model_from_database.TabIndex = 3;
-            this.btn_get_model_from_database.Text = "Get Model";
+            this.btn_get_model_from_database.Text = "Add Slot";
             this.btn_get_model_from_database.UseVisualStyleBackColor = true;
+            this.btn_get_model_from_database.Click += new System.EventHandler(this.btn_get_model_from_database_Click);
             // 
             // numericUpDown_admin_url_url_to_add
             // 
             this.numericUpDown_admin_url_url_to_add.Location = new System.Drawing.Point(471, 33);
             this.numericUpDown_admin_url_url_to_add.Maximum = new decimal(new int[] {
-            20,
+            10,
             0,
             0,
             0});
@@ -677,6 +723,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox2.Location = new System.Drawing.Point(6, 19);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(254, 20);
@@ -694,6 +741,7 @@
             // 
             // textBox_model_bios_url
             // 
+            this.textBox_model_bios_url.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.textBox_model_bios_url.Location = new System.Drawing.Point(6, 19);
             this.textBox_model_bios_url.Name = "textBox_model_bios_url";
             this.textBox_model_bios_url.Size = new System.Drawing.Size(254, 20);
@@ -757,7 +805,7 @@
             // 
             // btn_add_model
             // 
-            this.btn_add_model.Location = new System.Drawing.Point(315, 217);
+            this.btn_add_model.Location = new System.Drawing.Point(483, 342);
             this.btn_add_model.Name = "btn_add_model";
             this.btn_add_model.Size = new System.Drawing.Size(75, 23);
             this.btn_add_model.TabIndex = 0;
@@ -891,10 +939,21 @@
             this.btn_add_chipset.TabIndex = 0;
             this.btn_add_chipset.Text = "Add Chipset";
             this.btn_add_chipset.UseVisualStyleBackColor = true;
+            this.btn_add_chipset.Click += new System.EventHandler(this.btn_add_chipset_Click);
             // 
             // errorProvider_admin_model_validator
             // 
             this.errorProvider_admin_model_validator.ContainerControl = this;
+            // 
+            // groupBox_admin_url_contain_url
+            // 
+            this.groupBox_admin_url_contain_url.Controls.Add(this.flowLayoutPanel_add_url_str);
+            this.groupBox_admin_url_contain_url.Location = new System.Drawing.Point(6, 112);
+            this.groupBox_admin_url_contain_url.Name = "groupBox_admin_url_contain_url";
+            this.groupBox_admin_url_contain_url.Size = new System.Drawing.Size(552, 224);
+            this.groupBox_admin_url_contain_url.TabIndex = 7;
+            this.groupBox_admin_url_contain_url.TabStop = false;
+            this.groupBox_admin_url_contain_url.Text = "URL\'s";
             // 
             // BIOSUP_GUI
             // 
@@ -956,6 +1015,7 @@
             this.tabPage_chipset_add.ResumeLayout(false);
             this.tabPage_chipset_add.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).EndInit();
+            this.groupBox_admin_url_contain_url.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1038,6 +1098,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btn_biosup_stop;
+        private System.Windows.Forms.Button btn_biosup_pause;
+        private System.Windows.Forms.Button btn_admin_url_add_url;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_add_url_str;
+        private System.Windows.Forms.GroupBox groupBox_admin_url_contain_url;
     }
 }
 

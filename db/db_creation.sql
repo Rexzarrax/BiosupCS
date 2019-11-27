@@ -2,10 +2,15 @@ DROP TABLE motherboard_url;
 DROP TABLE motherboard_data;
 DROP TABLE vendor_data;
 DROP TABLE chipset_check;
+DROP TABLE chipset_vendor;
+DROP TABLE url_bridge;
+
 DROP SEQUENCE seq_model_id;
 DROP SEQUENCE seq_vendor_id;
 DROP SEQUENCE seq_url_id;
 DROP SEQUENCE seq_chipset_id;
+--DROP SEQUENCE seq_url_bridge_id;
+--DROP SEQUENCE seq_chipset_vendor_id
 
 CREATE TABLE vendor_data (
     vendor_id int NOT NULL,
@@ -26,12 +31,30 @@ CREATE TABLE motherboard_data (
 	FOREIGN KEY (vendor_id) REFERENCES vendor_data(vendor_id)
 );
 go
+CREATE TABLE chipset_vendor (
+    chipset_vendor_id int not null IDENTITY(1,1),
+    chipset_vendor_name varchar(5) UNIQUE,
+    Primary Key (chipset_vendor_id)
+);
+go
+CREATE TABLE url_bridge (
+    url_bridge_id int not null IDENTITY(1,1),
+    url_bridge_name varchar(1) UNIQUE,
+    Primary Key (url_bridge_id)
+);
+go
+--CREATE SEQUENCE seq_url_bridge_id NO MAXVALUE INCREMENT BY 1 START WITH 1;
+--CREATE SEQUENCE seq_chipset_vendor_id NO MAXVALUE INCREMENT BY 1 START WITH 1;
+
+
+go
 CREATE TABLE motherboard_url (
     url_id int,
     model_id int,
     url_str varchar(255) UNIQUE,
-	url_bridge varchar(1) CHECK (url_bridge = 'Y' OR url_bridge='N' OR url_bridge='U'),
-	url_date_collected DATE,
+	--url_bridge varchar(1) CHECK (url_bridge = 'Y' OR url_bridge='N' OR url_bridge='U'),
+	url_bridge varchar(1) CHECK (url_bridge in ('Y','N','U')),
+    url_date_collected DATE,
     PRIMARY KEY (url_id),
     FOREIGN KEY (model_id) REFERENCES motherboard_data(model_id)
 );
@@ -39,7 +62,7 @@ go
 CREATE TABLE chipset_check(
 	chipset_id int,
 	chipset_name varchar(10) NOT NULL UNIQUE,
-	chipset_vendor varchar(10) CHECK(chipset_vendor = 'AMD' OR chipset_vendor = 'INTEL'),
+	chipset_vendor varchar(10) CHECK(chipset_vendor in ('AMD','INTEL')),
 	PRIMARY KEY (chipset_id)
 );
 go

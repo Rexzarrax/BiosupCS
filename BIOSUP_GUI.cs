@@ -187,13 +187,35 @@ namespace BiosupCS
             }
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void btn_get_model_from_database_Click(object sender, EventArgs e)
         {
-
+            for(int i = 0; i < numericUpDown_admin_url_url_to_add.Value; i++)
+            {
+                flowLayoutPanel_add_url_str.Controls.Add(new biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
+            }
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void btn_add_chipset_Click(object sender, EventArgs e)
         {
+            if(textBox_admin_chipset_name.Text == "" || (String)comboBox_admin_chipset_vendor.SelectedItem == "")
+            {
+                textBox_admin_log.AppendText("Please make sure Both UI elements have values");
+            }
+            else
+            {
+                String str_query_var = "Variables: " + textBox_admin_chipset_name.Text + "," + comboBox_admin_chipset_vendor.SelectedItem;
+                try
+                {
+                    BIOSUP_SQL Biosup_query_insert_chipset = new BIOSUP_SQL(str_query, str_database_credentials);
+                }
+                catch (Exception e_run)
+                {
+                    textBox_admin_chipset_name.AppendText( e_run.ToString());
+                }
+                textBox_admin_chipset_name.Text = "";
+                comboBox_admin_chipset_vendor.SelectedIndex = -1;
+            }
+
 
         }
     }

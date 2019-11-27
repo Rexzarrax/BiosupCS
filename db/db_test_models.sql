@@ -49,4 +49,19 @@ VALUES (7,'X470','GAMING-PLUS',4,'https://us.msi.com/Motherboard/support/X470-GA
 INSERT INTO motherboard_url (url_id, model_id, url_str, url_bridge, url_date_collected)
 VALUES (NEXT VALUE FOR seq_url_id,7,'http://download.msi.com/bos_exe/mb/7B79vAG2.zip','N',(SELECT GETDATE()));
 
+insert into url_bridge (url_bridge_name)
+values ('Y');
+
+insert into url_bridge (url_bridge_name)
+values ('N');
+
+insert into url_bridge (url_bridge_name)
+values ('U');
+
+insert into chipset_vendor (chipset_vendor_name)
+values ('AMD');
+
+insert into chipset_vendor (chipset_vendor_name)
+values ('INTEL');
+
 

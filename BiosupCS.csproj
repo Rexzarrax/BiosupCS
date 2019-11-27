@@ -58,13 +58,23 @@
     <Compile Include="BIOSUP_GUI.Designer.cs">
       <DependentUpon>BIOSUP_GUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="biosup_multi_url_add.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="biosup_multi_url_add.Designer.cs">
+      <DependentUpon>biosup_multi_url_add.cs</DependentUpon>
+    </Compile>
     <Compile Include="BIOSUP_RM_FILE.cs" />
     <Compile Include="BIOSUP_SQL.cs" />
+    <Compile Include="BIOSUP_SQL_PROCEDURES.cs" />
     <Compile Include="BIOSUP_UNZIP.cs" />
     <Compile Include="BIOSUP_Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BIOSUP_GUI.resx">
       <DependentUpon>BIOSUP_GUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="biosup_multi_url_add.resx">
+      <DependentUpon>biosup_multi_url_add.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
