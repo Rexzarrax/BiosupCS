@@ -520,7 +520,6 @@
             this.tabPage_admin.Size = new System.Drawing.Size(579, 511);
             this.tabPage_admin.TabIndex = 3;
             this.tabPage_admin.Text = "Administrator";
-            this.tabPage_admin.UseVisualStyleBackColor = true;
             // 
             // textBox_admin_log
             // 

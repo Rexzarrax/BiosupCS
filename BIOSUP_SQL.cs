@@ -8,64 +8,86 @@ namespace BiosupCS
 {
     public class BIOSUP_SQL
     {
-        SqlDataReader Bios_Data_Reader = null;
-        private String str_connection_url;
-        public DataTable my_table = new DataTable();
+        public SqlDataReader Bios_Data_Reader = null;
+        public SqlConnection connection;
+        private string str_connection_string;
 
-        public virtual void SQL(String str_connection_url)
+        public BIOSUP_SQL(String str_connection_url)
         {
-            this.str_connection_url = str_connection_url;
-            using (SqlConnection connection = new SqlConnection(this.str_connection_url))
-            {
+            this.str_connection_string = str_connection_url;
+        }
 
+        public DataTable BIOSUP_SQL_GET(String str_SQL)
+        {
+            DataTable my_table = new DataTable();
+            using (connection = new SqlConnection(this.str_connection_string))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(str_SQL, connection);
+                    Console.WriteLine(str_SQL);
+                    SqlDataAdapter my_adapter = new SqlDataAdapter(cmd);
+                    my_adapter.Fill(my_table);
+                    connection.Open();
+
+                    Bios_Data_Reader = cmd.ExecuteReader();
+                    Bios_Data_Reader.Read();
+                    
+                    Bios_Data_Reader.Close();
+                    cmd.Dispose();
+                    connection.Close();
+                    
+                    return my_table;
+                }
+                // Handle any errors that may have occurred.
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return null;
+                }
             }
         }
+        public void BIOSUP_SQL_SET(String str_procedurename, List<SQL_Params> list_parameter)
+        {
+            using (connection = new SqlConnection(this.str_connection_string))
+            using (var command = new SqlCommand(str_procedurename, connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            })
+            {
+                try
+                {   
+                    foreach(SQL_Params param in list_parameter)
+                    {
+                        command.Parameters.Add(param.str_parameter, param.DBT_Type, param.int_size ).Value = param.any_value;
+                    }
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+            }
+
+        }
+
     }
-    class BIOSUP_SQL_GET_DATA : BIOSUP_SQL
+    public class SQL_Params
     {
-        public override void SQL()
+        public String str_parameter;
+        public SqlDbType DBT_Type;
+        public int int_size;
+        public dynamic any_value;
+
+        public SQL_Params(String str_parameter, SqlDbType DBT_Type, int int_size, dynamic any_value)
         {
-            try
-            {
-                SqlCommand cmd = new SqlCommand(str_SQL, connection);
-                Console.WriteLine(str_SQL);
-                SqlDataAdapter my_adapter = new SqlDataAdapter(cmd);
-                my_adapter.Fill(my_table);
-                connection.Open();
-
-                Bios_Data_Reader = cmd.ExecuteReader();
-                Bios_Data_Reader.Read();
-
-                Bios_Data_Reader.Close();
-                cmd.Dispose();
-                connection.Close();
-            }
-            // Handle any errors that may have occurred.
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            this.str_parameter = str_parameter;
+            this.DBT_Type = DBT_Type;
+            this.int_size = int_size;
+            this.any_value = any_value;
         }
-    }
-    class BIOSUP_SQL_SET_DATA : BIOSUP_SQL
-    {
-        public override void SQL()
-        {
-            string stmt = "INSERT INTO dbo.Test(id, name) VALUES(@ID, @Name)";
-
-            SqlCommand cmd = new SqlCommand(smt, _connection);
-            cmd.Parameters.Add("@ID", SqlDbType.Int);
-            cmd.Parameters.Add("@Name", SqlDbType.VarChar, 100);
-
-            for (int i = 0; i < 10000; i++)
-            {
-                cmd.Parameters["@ID"].Value = i;
-                cmd.Parameters["@Name"].Value = i.ToString();
-
-                cmd.ExecuteNonQuery();
-            }
-        }
-
     }
 }
-

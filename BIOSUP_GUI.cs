@@ -17,25 +17,35 @@ namespace BiosupCS
         String str_database_credentials = "Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         List<String> list_chipset_vendor = new List<String>() { "AMD", "INTEL" };
         Boolean bool_select_all = false;
+        BIOSUP_SQL Biosup_query;
         public BIOSUP_GUI()
         {
             InitializeComponent();
+            Biosup_query = new BIOSUP_SQL(this.str_database_credentials);
+
         }
 
         private void BIOSUP_CONFIG_Load(object sender, EventArgs e)
         {
-            BIOSUP_SQL Biosup_query_vendors = new BIOSUP_SQL("SELECT * FROM dbo.vendor_data", str_database_credentials);
-            BIOSUP_SQL Biosup_query_chipsets = new BIOSUP_SQL("SELECT chipset_name,chipset_vendor FROM dbo.chipset_check", str_database_credentials);
+
+            DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.vendor_data");
+            DataTable Biosup_query_chipsets = Biosup_query.BIOSUP_SQL_GET("SELECT chipset_name, chipset_vendor FROM dbo.chipset_check");
 
             str_working_dir = System.AppDomain.CurrentDomain.BaseDirectory;
             Console.WriteLine("CWD: " + str_working_dir + "\n");
             toolStripStatusLabel_cwd.Text = "CWD: "+ str_working_dir;
             textBox_log_config.AppendText("CWD: " + str_working_dir);
+
+            if (!File.Exists(str_working_dir + "key.txt"))
+            {
+                tab_control.TabPages.Remove(tabPage_admin);
+            }
+
             BIOSUP_CONFIG_LOAD_INTRUCTIONS();
             try
             {
                 textBox_log_config.AppendText("\r\n Vendors Found:");
-                foreach (DataRow row in Biosup_query_vendors.my_table.Rows)
+                foreach (DataRow row in Biosup_query_vendors.Rows)
                 {
                     textBox_log_config.AppendText("\n\r" + row["vendor_name"] + "...");
                     Invoke(new Action(() => listbox_vendor.Items.Add(row["vendor_name"])));
@@ -45,7 +55,7 @@ namespace BiosupCS
                 }
 
                 textBox_log_config.AppendText("\r\n Chipsets Found:");
-                foreach (DataRow row in Biosup_query_chipsets.my_table.Rows)
+                foreach (DataRow row in Biosup_query_chipsets.Rows)
                 {
                     textBox_log_config.AppendText("\n\r" + row["chipset_vendor"] + ", " + row["chipset_name"]+"...");
                     Invoke(new Action(() => comboBox_select_chipset.Items.Add(row["chipset_name"])));
@@ -81,9 +91,9 @@ namespace BiosupCS
 
         private void btn_run_Click(object sender, EventArgs e)
         {
-            String BIOSHERE = str_working_dir + "/BIOSHERE/";
+            String BIOSHERE = str_working_dir + "BIOSHERE";
             tab_control.SelectedTab = tabPage_Current_Run;
-            if (!File.Exists(BIOSHERE))
+            if (!Directory.Exists(BIOSHERE))
             {
                 System.IO.Directory.CreateDirectory(BIOSHERE);
                 textBox_log_running.AppendText("Directory Created: ../BIOSHERE/");
@@ -206,7 +216,12 @@ namespace BiosupCS
                 String str_query_var = "Variables: " + textBox_admin_chipset_name.Text + "," + comboBox_admin_chipset_vendor.SelectedItem;
                 try
                 {
-                    BIOSUP_SQL Biosup_query_insert_chipset = new BIOSUP_SQL(str_query, str_database_credentials);
+                    List<SQL_Params> list_parameter = new List<SQL_Params>();
+                    SQL_Params obj_paramater_chipset = new SQL_Params("@a_chipset_name", SqlDbType.VarChar, 10, textBox_admin_chipset_name.Text);
+                    SQL_Params obj_paramater_vendor = new SQL_Params("@a_chipset_vendor", SqlDbType.VarChar, 10, textBox_admin_chipset_name.Text);
+                    list_parameter.Add(obj_paramater_chipset);
+                    list_parameter.Add(obj_paramater_vendor);
+                    Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 }
                 catch (Exception e_run)
                 {

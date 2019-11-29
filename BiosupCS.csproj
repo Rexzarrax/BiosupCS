@@ -66,7 +66,6 @@
     </Compile>
     <Compile Include="BIOSUP_RM_FILE.cs" />
     <Compile Include="BIOSUP_SQL.cs" />
-    <Compile Include="BIOSUP_SQL_PROCEDURES.cs" />
     <Compile Include="BIOSUP_UNZIP.cs" />
     <Compile Include="BIOSUP_Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
