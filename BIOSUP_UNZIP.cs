@@ -10,7 +10,7 @@ namespace BiosupCS
         * 
         *
         */
-        public static void main(String str_zipfile_path, String str_destination_folder, String str_start_path)
+        public void unzip(String str_zipfile_path, String str_destination_folder)
         {
             /*may not be needed based on upstream code*/
             Console.WriteLine("File to Extract: " + str_zipfile_path);
@@ -21,7 +21,7 @@ namespace BiosupCS
                 System.IO.Directory.CreateDirectory(str_destination_folder);
             }
 
-            System.IO.Compression.ZipFile.CreateFromDirectory(str_start_path, str_zipfile_path);
+            //System.IO.Compression.ZipFile.CreateFromDirectory(str_destination_folder, str_zipfile_path);
             System.IO.Compression.ZipFile.ExtractToDirectory(str_zipfile_path, str_destination_folder);
         }
     }

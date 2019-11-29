@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Net;
 
-namespace BIOSUP
+namespace BiosupCS
 {
     public class BIOSUP_DL_FILE
     {
-        public static void main(String str_url, String str_download_to_file)
+        public void DL_FILE(String str_url, String str_download_to_file)
         {
             Console.WriteLine("Opening connection...");
             Console.WriteLine("UEFI URL: " + str_url);
@@ -14,7 +14,7 @@ namespace BIOSUP
             {
                 using (WebClient wc = new WebClient())
                 {
-                //    wc.DownloadProgressChanged += wc_DownloadProgressChanged();
+                    //    wc.DownloadProgressChanged += wc_DownloadProgressChanged();
                     wc.DownloadFileAsync(new System.Uri(str_url), str_download_to_file);
                 }
                 Console.WriteLine("File Successfully downloaded.");

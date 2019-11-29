@@ -16,12 +16,19 @@ namespace BiosupCS
         String str_working_dir;
         String str_database_credentials = "Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         List<String> list_chipset_vendor = new List<String>() { "AMD", "INTEL" };
+        List<String> list_points = new List<String>() { "Downloading", "Unzipping","Other" };
         Boolean bool_select_all = false;
         BIOSUP_SQL Biosup_query;
+        BIOSUP_UNZIP OBJ_UNZIP;
+        BIOSUP_DL_FILE OBJ_DL_FILE;
+        BIOSUP_RM_FILE OBJ_RM_FILE;
         public BIOSUP_GUI()
         {
             InitializeComponent();
             Biosup_query = new BIOSUP_SQL(this.str_database_credentials);
+            OBJ_UNZIP = new BIOSUP_UNZIP();
+            OBJ_DL_FILE = new BIOSUP_DL_FILE();
+            OBJ_RM_FILE = new BIOSUP_RM_FILE();
 
         }
 
@@ -33,7 +40,7 @@ namespace BiosupCS
 
             str_working_dir = System.AppDomain.CurrentDomain.BaseDirectory;
             Console.WriteLine("CWD: " + str_working_dir + "\n");
-            toolStripStatusLabel_cwd.Text = "CWD: "+ str_working_dir;
+            toolStripStatusLabel_cwd.Text = "CWD: " + str_working_dir;
             textBox_log_config.AppendText("CWD: " + str_working_dir);
 
             if (!File.Exists(str_working_dir + "key.txt"))
@@ -57,36 +64,36 @@ namespace BiosupCS
                 textBox_log_config.AppendText("\r\n Chipsets Found:");
                 foreach (DataRow row in Biosup_query_chipsets.Rows)
                 {
-                    textBox_log_config.AppendText("\n\r" + row["chipset_vendor"] + ", " + row["chipset_name"]+"...");
+                    textBox_log_config.AppendText("\n\r" + row["chipset_vendor"] + ", " + row["chipset_name"] + "...");
                     Invoke(new Action(() => comboBox_select_chipset.Items.Add(row["chipset_name"])));
                     Invoke(new Action(() => comboBox_admin_url_chipset.Items.Add(row["chipset_name"])));
 
                     //Need to update below to better method    
                     if (row["chipset_vendor"].ToString() == list_chipset_vendor[0])
-                   {                    
+                    {
                         Invoke(new Action(() => listbox_AMD_chipset.Items.Add(row["chipset_name"])));
-                   }
-                   else if(row["chipset_vendor"].ToString() == list_chipset_vendor[1]) 
-                   {
+                    }
+                    else if (row["chipset_vendor"].ToString() == list_chipset_vendor[1])
+                    {
                         Invoke(new Action(() => listbox_INTEL_chipset.Items.Add(row["chipset_name"])));
                     }
-                   else
-                   {
+                    else
+                    {
                         textBox_log_config.AppendText("Error Sorting!");
-                   }
-                    
+                    }
+
                 }
-                foreach(String str_vendor in list_chipset_vendor)
+                foreach (String str_vendor in list_chipset_vendor)
                 {
                     Invoke(new Action(() => comboBox_admin_chipset_vendor.Items.Add(str_vendor)));
                 }
-                    
+
             }
             catch (Exception e2)
             {
                 textBox_log_config.AppendText(e2.ToString());
             }
-            
+
         }
 
         private void btn_run_Click(object sender, EventArgs e)
@@ -96,19 +103,59 @@ namespace BiosupCS
             if (!Directory.Exists(BIOSHERE))
             {
                 System.IO.Directory.CreateDirectory(BIOSHERE);
-                textBox_log_running.AppendText("Directory Created: ../BIOSHERE/");
+                textBox_log_running.AppendText("Directory Created: ../BIOSHERE/\r\n");
             }
             else
             {
-                textBox_log_running.AppendText("Directory Already Exists: ../BIOSHERE/");
+                textBox_log_running.AppendText("Directory Already Exists: ../BIOSHERE/\r\n");
             }
 
 
-            //String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE " ;
+            String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id;";
 
-           // BIOSUP_SQL Biosup_query_url = new BIOSUP_SQL(str_built_query, str_database_credentials) ;
+            DataTable Biosup_query_urls = Biosup_query.BIOSUP_SQL_GET(str_built_query);
+            loop_through(Biosup_query_urls);
+
         }
+        private void loop_through(DataTable Biosup_query_urls)
+        {
+            int int_count_mobo = Biosup_query_urls.Rows.Count;
+            int int_progress = 0;
+            progressBar_overall_progress.Maximum = int_count_mobo;
+            foreach (DataRow row in Biosup_query_urls.Rows)
+            {
+                int_progress++;
+                label_current_progress_fraction.Text = int_count_mobo + "/" + int_progress;
+                progressBar_overall_progress.Value = int_count_mobo;
 
+
+
+                textBox_log_running.AppendText("--------------------URL--------------------\r\n");
+                current_mobo(row);
+                textBox_log_running.AppendText(row["model_name"] + "\r\n" + row["url_str"]);
+                change_point(list_points[0]);
+                String str_file_path ="BIOSHERE/" + row["vendor_name"] +"-" + row["model_name"] + ".zip";
+                OBJ_DL_FILE.DL_FILE((row["url_str"].ToString()), str_file_path);
+                
+                change_point(list_points[1]);
+                OBJ_UNZIP.unzip(str_file_path, str_working_dir + "BIOSHERE/" + row["vendor_name"]+"/"+ row["chipset"]);
+                change_point(list_points[2]);
+                OBJ_RM_FILE.remove(str_file_path);
+            }
+        }
+        private void change_point(String str_point)
+        {
+            label_current_point.Text = "Current Point: " + str_point;
+        }
+        private void current_mobo(DataRow row)
+        {
+            textBox_current_UEFI_info.AppendText("\r\nModel: "+ row["model_name"]);
+            textBox_current_UEFI_info.AppendText("\r\nVendor: " + row["vendor_name"]);
+            textBox_current_UEFI_info.AppendText("\r\nChipset: " + row["chipset"]);
+            textBox_current_UEFI_info.AppendText("\r\nDate Added: " + row["url_date_collected"]);
+            textBox_current_UEFI_info.AppendText("\r\nBridge: " + row["url_bridge"]);
+            textBox_current_UEFI_info.AppendText("\r\nUEFI URL: " + row["url_str"]);
+        }
         private void BIOSUP_CONFIG_LOAD_INTRUCTIONS()
         {
             textBox_instructions.AppendText("1. Select the Chipsets/vendors\r\n");

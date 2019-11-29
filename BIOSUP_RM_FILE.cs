@@ -4,7 +4,7 @@ using System.IO;
 namespace BiosupCS
 {
     public class BIOSUP_RM_FILE {
-    public static void main(String str_file_path){
+    public void remove(String str_file_path){
         try{
 
             if(File.Exists(str_file_path)){

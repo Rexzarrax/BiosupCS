@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BIOSUP_DL_FILE.cs" />
     <Compile Include="BIOSUP_GUI.cs">
       <SubType>Form</SubType>
     </Compile>
