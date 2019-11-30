@@ -115,6 +115,7 @@ namespace BiosupCS
 
             DataTable Biosup_query_urls = Biosup_query.BIOSUP_SQL_GET(str_built_query);
 
+            Application.DoEvents();
             loop_through(Biosup_query_urls);
         }
          void loop_through(DataTable Biosup_query_urls)
@@ -128,6 +129,7 @@ namespace BiosupCS
                 int_progress++;
                 label_current_progress_fraction.Text = int_count_mobo + "/" + int_progress;
                 progressBar_overall_progress.Value = int_count_mobo;
+                progressBar_current_progress.Value = int_count_mobo;
 
 
 
@@ -152,8 +154,12 @@ namespace BiosupCS
                     if (!IsFileLocked(FI_file_path))
                     {
                         change_point(list_points[1]);
+                        textBox_log_running.AppendText("\r\nUnzipping...");
+                        Application.DoEvents();
                         OBJ_UNZIP.unzip(str_file_path, str_working_dir + str_filetree);
                         change_point(list_points[2]);
+                        textBox_log_running.AppendText("\r\nDeleting Zip...");
+                        Application.DoEvents();
                         OBJ_RM_FILE.remove(str_file_path);
                         break;
                     }
@@ -161,6 +167,7 @@ namespace BiosupCS
                     {
                         textBox_log_running.AppendText("\r\nDownloading...");                    
                         Thread.Sleep(500);
+                        Application.DoEvents();
                     }
                     
                 }

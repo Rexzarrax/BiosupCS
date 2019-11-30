@@ -12,12 +12,12 @@ namespace BiosupCS
         public Boolean bool_completed;
         public BIOSUP_DL_FILE(ProgressBar progressBar_current_progress)
         {
-            this.progressBar_current_progress = new ProgressBar();
-            this.bool_completed = false;
+            this.progressBar_current_progress = progressBar_current_progress;
+            //this.bool_completed = false;
         }
         public void DL_FILE(String str_url, String str_download_to_file)
         {
-            this.bool_completed = false;
+           // this.bool_completed = false;
             Console.WriteLine("Opening connection...");
             Console.WriteLine("UEFI URL: " + str_url);
             Console.WriteLine("Save Path: " + str_download_to_file);
@@ -30,12 +30,12 @@ namespace BiosupCS
                     wc.DownloadFileAsync(new System.Uri(str_url), str_download_to_file);
                 }
                 Console.WriteLine("File Successfully downloaded.");
-                this.bool_completed = true;
+                //this.bool_completed = true;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-                this.bool_completed = true;
+                //this.bool_completed = true;
             }
         }
         void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
