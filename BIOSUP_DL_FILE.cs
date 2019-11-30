@@ -1,12 +1,23 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Net;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace BiosupCS
 {
     public class BIOSUP_DL_FILE
     {
+        ProgressBar progressBar_current_progress;
+        public Boolean bool_completed;
+        public BIOSUP_DL_FILE(ProgressBar progressBar_current_progress)
+        {
+            this.progressBar_current_progress = new ProgressBar();
+            this.bool_completed = false;
+        }
         public void DL_FILE(String str_url, String str_download_to_file)
         {
+            this.bool_completed = false;
             Console.WriteLine("Opening connection...");
             Console.WriteLine("UEFI URL: " + str_url);
             Console.WriteLine("Save Path: " + str_download_to_file);
@@ -14,19 +25,39 @@ namespace BiosupCS
             {
                 using (WebClient wc = new WebClient())
                 {
-                    //    wc.DownloadProgressChanged += wc_DownloadProgressChanged();
+                    wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_DownloadProgressChanged);
+                    wc.DownloadFileCompleted += new AsyncCompletedEventHandler(wc_DownloadFileCompleted);
                     wc.DownloadFileAsync(new System.Uri(str_url), str_download_to_file);
                 }
                 Console.WriteLine("File Successfully downloaded.");
+                this.bool_completed = true;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
+                this.bool_completed = true;
             }
         }
-        //void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        //{
-        //    progressBar.Value = e.ProgressPercentage;
-        //}
+        void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            progressBar_current_progress.Value = e.ProgressPercentage;
+        }
+        private void wc_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            progressBar_current_progress.Value = 0;
+
+            if (e.Cancelled)
+            {
+                MessageBox.Show("The download has been cancelled");
+                return;
+            }
+
+            if (e.Error != null) // We have an error! Retry a few times, then abort.
+            {
+                MessageBox.Show("An error ocurred while trying to download file");
+
+                return;
+            }
+        }
     }
 }

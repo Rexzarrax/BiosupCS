@@ -43,7 +43,7 @@
             this.textBox_current_UEFI_info = new System.Windows.Forms.TextBox();
             this.grpBox_current_progress = new System.Windows.Forms.GroupBox();
             this.label_current_point = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBar_current_progress = new System.Windows.Forms.ProgressBar();
             this.grpBox_Overall_progress = new System.Windows.Forms.GroupBox();
             this.label_current_progress_fraction = new System.Windows.Forms.Label();
             this.progressBar_overall_progress = new System.Windows.Forms.ProgressBar();
@@ -257,7 +257,7 @@
             // grpBox_current_progress
             // 
             this.grpBox_current_progress.Controls.Add(this.label_current_point);
-            this.grpBox_current_progress.Controls.Add(this.progressBar1);
+            this.grpBox_current_progress.Controls.Add(this.progressBar_current_progress);
             this.grpBox_current_progress.Location = new System.Drawing.Point(3, 353);
             this.grpBox_current_progress.Name = "grpBox_current_progress";
             this.grpBox_current_progress.Size = new System.Drawing.Size(468, 73);
@@ -274,12 +274,12 @@
             this.label_current_point.TabIndex = 2;
             this.label_current_point.Text = "Current Point: ";
             // 
-            // progressBar1
+            // progressBar_current_progress
             // 
-            this.progressBar1.Location = new System.Drawing.Point(10, 36);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(448, 23);
-            this.progressBar1.TabIndex = 1;
+            this.progressBar_current_progress.Location = new System.Drawing.Point(10, 36);
+            this.progressBar_current_progress.Name = "progressBar_current_progress";
+            this.progressBar_current_progress.Size = new System.Drawing.Size(448, 23);
+            this.progressBar_current_progress.TabIndex = 1;
             // 
             // grpBox_Overall_progress
             // 
@@ -1032,7 +1032,7 @@
         private System.Windows.Forms.TextBox textBox_current_UEFI_info;
         private System.Windows.Forms.GroupBox grpBox_current_progress;
         private System.Windows.Forms.Label label_current_point;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progressBar_current_progress;
         private System.Windows.Forms.GroupBox grpBox_Overall_progress;
         private System.Windows.Forms.Label label_current_progress_fraction;
         private System.Windows.Forms.ProgressBar progressBar_overall_progress;

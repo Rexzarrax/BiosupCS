@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 
@@ -27,7 +27,7 @@ namespace BiosupCS
             InitializeComponent();
             Biosup_query = new BIOSUP_SQL(this.str_database_credentials);
             OBJ_UNZIP = new BIOSUP_UNZIP();
-            OBJ_DL_FILE = new BIOSUP_DL_FILE();
+            OBJ_DL_FILE = new BIOSUP_DL_FILE(progressBar_current_progress);
             OBJ_RM_FILE = new BIOSUP_RM_FILE();
 
         }
@@ -114,14 +114,15 @@ namespace BiosupCS
             String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id;";
 
             DataTable Biosup_query_urls = Biosup_query.BIOSUP_SQL_GET(str_built_query);
-            loop_through(Biosup_query_urls);
 
+            loop_through(Biosup_query_urls);
         }
-        private void loop_through(DataTable Biosup_query_urls)
+         void loop_through(DataTable Biosup_query_urls)
         {
             int int_count_mobo = Biosup_query_urls.Rows.Count;
             int int_progress = 0;
             progressBar_overall_progress.Maximum = int_count_mobo;
+            progressBar_overall_progress.Value = int_progress;
             foreach (DataRow row in Biosup_query_urls.Rows)
             {
                 int_progress++;
@@ -134,14 +135,60 @@ namespace BiosupCS
                 current_mobo(row);
                 textBox_log_running.AppendText(row["model_name"] + "\r\n" + row["url_str"]);
                 change_point(list_points[0]);
-                String str_file_path ="BIOSHERE/" + row["vendor_name"] +"-" + row["model_name"] + ".zip";
-                OBJ_DL_FILE.DL_FILE((row["url_str"].ToString()), str_file_path);
-                
-                change_point(list_points[1]);
-                OBJ_UNZIP.unzip(str_file_path, str_working_dir + "BIOSHERE/" + row["vendor_name"]+"/"+ row["chipset"]);
-                change_point(list_points[2]);
-                OBJ_RM_FILE.remove(str_file_path);
+                String str_filetree = "BIOSHERE/" + row["vendor_name"] + "/" + row["chipset"] + "/" + row["model_name"];
+                String str_file_path = str_filetree+"/" + row["vendor_name"] +"-" + row["model_name"] + ".zip";
+                FileInfo FI_file_path = new FileInfo(str_file_path);
+
+                if (!File.Exists(str_filetree))
+                {
+                    System.IO.Directory.CreateDirectory(str_filetree);
+                }
+                OBJ_DL_FILE.DL_FILE(row["url_str"].ToString(), str_file_path);
+
+                Boolean bool_wait_for_file_freed = true;
+
+                while (bool_wait_for_file_freed)
+                {
+                    if (!IsFileLocked(FI_file_path))
+                    {
+                        change_point(list_points[1]);
+                        OBJ_UNZIP.unzip(str_file_path, str_working_dir + str_filetree);
+                        change_point(list_points[2]);
+                        OBJ_RM_FILE.remove(str_file_path);
+                        break;
+                    }
+                    else
+                    {
+                        textBox_log_running.AppendText("\r\nDownloading...");                    
+                        Thread.Sleep(500);
+                    }
+                    
+                }
+                textBox_log_running.AppendText("\r\nMoving to Next UEFI/BIOS...\r\n");
+                MessageBox.Show("All Firmware have been attempted.\r\nPlease close Biosup");
+
             }
+        }
+        protected virtual bool IsFileLocked(FileInfo file)
+        {
+            try
+            {
+                using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))
+                {
+                    stream.Close();
+                }
+            }
+            catch (IOException)
+            {
+                //the file is unavailable because it is:
+                //still being written to
+                //or being processed by another thread
+                //or does not exist (has already been processed)
+                return true;
+            }
+
+            //file is not locked
+            return false;
         }
         private void change_point(String str_point)
         {

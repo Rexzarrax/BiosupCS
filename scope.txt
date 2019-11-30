@@ -16,6 +16,7 @@
 What i need:
 -create folder tree/sort uefi
 -check for client updates
+--take hashes of current files and files on server, if they match, dont update
 -load last config
 -basic analytics, successful dl, etc
 -logs
