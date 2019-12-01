@@ -14,7 +14,7 @@ namespace BiosupCS
     public partial class BIOSUP_GUI : Form
     {
         String str_working_dir;
-        String str_database_credentials = "Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private String str_database_credentials = "Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         List<String> list_chipset_vendor = new List<String>() { "AMD", "INTEL" };
         List<String> list_points = new List<String>() { "Downloading", "Unzipping","Other" };
         Boolean bool_select_all = false;
@@ -49,6 +49,14 @@ namespace BiosupCS
             }
 
             BIOSUP_CONFIG_LOAD_INTRUCTIONS();
+
+            
+            Invoke(new Action(() => comboBox_what_to_get.Items.Add("Latest Only")));
+            Invoke(new Action(() => comboBox_what_to_get.Items.Add("Bridge + Latest")));
+            Invoke(new Action(() => comboBox_what_to_get.Items.Add("Bridge Only")));
+            Invoke(new Action(() => comboBox_what_to_get.Items.Add("All")));
+            Invoke(new Action(() => comboBox_what_to_get.SelectedItem = "Latest Only"));
+
             try
             {
                 textBox_log_config.AppendText("\r\n Vendors Found:");
@@ -111,8 +119,31 @@ namespace BiosupCS
             }
 
 
+            //String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE";
             String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id;";
 
+
+
+            foreach (object itemChecked in this.listbox_vendor.CheckedItems)
+            {
+                textBox_log_running.AppendText("\r\nFiltering by: "+ itemChecked.ToString());
+                String str_addon = " or vendor_name" + " = " + itemChecked.ToString();
+                str_built_query += str_addon;
+            }
+
+            foreach (object itemChecked in this.listbox_AMD_chipset.CheckedItems)
+            {
+                textBox_log_running.AppendText("\r\nFiltering by: " + itemChecked.ToString());
+                String str_addon = " or chipset_name" + " = " + itemChecked.ToString();
+                str_built_query += str_addon;
+            }
+            foreach (object itemChecked in this.listbox_INTEL_chipset.CheckedItems)
+            {
+                textBox_log_running.AppendText("\r\nFiltering by: " + itemChecked.ToString());
+                String str_addon = " or chipset_name" + " = " + itemChecked.ToString();
+                str_built_query += str_addon;
+            }
+            str_built_query += ";";
             DataTable Biosup_query_urls = Biosup_query.BIOSUP_SQL_GET(str_built_query);
 
             Application.DoEvents();
@@ -130,8 +161,6 @@ namespace BiosupCS
                 label_current_progress_fraction.Text = int_count_mobo + "/" + int_progress;
                 progressBar_overall_progress.Value = int_count_mobo;
                 progressBar_current_progress.Value = int_count_mobo;
-
-
 
                 textBox_log_running.AppendText("--------------------URL--------------------\r\n");
                 current_mobo(row);
@@ -203,12 +232,12 @@ namespace BiosupCS
         }
         private void current_mobo(DataRow row)
         {
-            textBox_current_UEFI_info.AppendText("\r\nModel: "+ row["model_name"]);
-            textBox_current_UEFI_info.AppendText("\r\nVendor: " + row["vendor_name"]);
-            textBox_current_UEFI_info.AppendText("\r\nChipset: " + row["chipset"]);
-            textBox_current_UEFI_info.AppendText("\r\nDate Added: " + row["url_date_collected"]);
-            textBox_current_UEFI_info.AppendText("\r\nBridge: " + row["url_bridge"]);
-            textBox_current_UEFI_info.AppendText("\r\nUEFI URL: " + row["url_str"]);
+            textBox_current_UEFI_info.AppendText("Model:\r\n" + row["model_name"]);
+            textBox_current_UEFI_info.AppendText("\r\n\r\nVendor:\r\n" + row["vendor_name"]);
+            textBox_current_UEFI_info.AppendText("\r\n\r\nChipset:\r\n" + row["chipset"]);
+            textBox_current_UEFI_info.AppendText("\r\n\r\nDate Added:\r\n" + row["url_date_collected"]);
+            textBox_current_UEFI_info.AppendText("\r\n\r\nBridge:\r\n" + row["url_bridge"]);
+            textBox_current_UEFI_info.AppendText("\r\n\r\nUEFI URL:\r\n" + row["url_str"]);
         }
         private void BIOSUP_CONFIG_LOAD_INTRUCTIONS()
         {
@@ -334,5 +363,6 @@ namespace BiosupCS
 
 
         }
+
     }
 }

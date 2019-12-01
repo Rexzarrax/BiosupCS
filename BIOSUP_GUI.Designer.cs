@@ -70,6 +70,7 @@
             this.textBox_admin_log = new System.Windows.Forms.TextBox();
             this.tabControl_admin = new System.Windows.Forms.TabControl();
             this.tabPage_admin_url = new System.Windows.Forms.TabPage();
+            this.groupBox_admin_url_contain_url = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel_add_url_str = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_admin_url_add_url = new System.Windows.Forms.Button();
             this.groupBox_select_model = new System.Windows.Forms.GroupBox();
@@ -110,7 +111,8 @@
             this.btn_add_chipset = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
-            this.groupBox_admin_url_contain_url = new System.Windows.Forms.GroupBox();
+            this.comboBox_what_to_get = new System.Windows.Forms.ComboBox();
+            this.groupBox_what_to_get = new System.Windows.Forms.GroupBox();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -128,6 +130,7 @@
             this.tabPage_admin.SuspendLayout();
             this.tabControl_admin.SuspendLayout();
             this.tabPage_admin_url.SuspendLayout();
+            this.groupBox_admin_url_contain_url.SuspendLayout();
             this.groupBox_select_model.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_admin_url_url_to_add)).BeginInit();
             this.tabPage_admin_model.SuspendLayout();
@@ -141,7 +144,7 @@
             this.groupBox_add_vendor.SuspendLayout();
             this.tabPage_chipset_add.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).BeginInit();
-            this.groupBox_admin_url_contain_url.SuspendLayout();
+            this.groupBox_what_to_get.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip_err_or_cwd
@@ -247,11 +250,11 @@
             // 
             // textBox_current_UEFI_info
             // 
-            this.textBox_current_UEFI_info.Location = new System.Drawing.Point(6, 15);
+            this.textBox_current_UEFI_info.Location = new System.Drawing.Point(6, 19);
             this.textBox_current_UEFI_info.Multiline = true;
             this.textBox_current_UEFI_info.Name = "textBox_current_UEFI_info";
             this.textBox_current_UEFI_info.ReadOnly = true;
-            this.textBox_current_UEFI_info.Size = new System.Drawing.Size(206, 323);
+            this.textBox_current_UEFI_info.Size = new System.Drawing.Size(206, 319);
             this.textBox_current_UEFI_info.TabIndex = 5;
             // 
             // grpBox_current_progress
@@ -310,6 +313,7 @@
             // 
             // tabPage_config
             // 
+            this.tabPage_config.Controls.Add(this.groupBox_what_to_get);
             this.tabPage_config.Controls.Add(this.textBox_log_config);
             this.tabPage_config.Controls.Add(this.btn_load_last);
             this.tabPage_config.Controls.Add(this.grpBox_vendor);
@@ -333,7 +337,7 @@
             this.textBox_log_config.Name = "textBox_log_config";
             this.textBox_log_config.ReadOnly = true;
             this.textBox_log_config.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_log_config.Size = new System.Drawing.Size(564, 78);
+            this.textBox_log_config.Size = new System.Drawing.Size(363, 78);
             this.textBox_log_config.TabIndex = 11;
             // 
             // btn_load_last
@@ -480,9 +484,9 @@
             // grpBox_Intructions
             // 
             this.grpBox_Intructions.Controls.Add(this.textBox_instructions);
-            this.grpBox_Intructions.Location = new System.Drawing.Point(376, 264);
+            this.grpBox_Intructions.Location = new System.Drawing.Point(376, 322);
             this.grpBox_Intructions.Name = "grpBox_Intructions";
-            this.grpBox_Intructions.Size = new System.Drawing.Size(195, 127);
+            this.grpBox_Intructions.Size = new System.Drawing.Size(195, 154);
             this.grpBox_Intructions.TabIndex = 9;
             this.grpBox_Intructions.TabStop = false;
             this.grpBox_Intructions.Text = "GUI Intructions";
@@ -495,7 +499,7 @@
             this.textBox_instructions.Name = "textBox_instructions";
             this.textBox_instructions.ReadOnly = true;
             this.textBox_instructions.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_instructions.Size = new System.Drawing.Size(182, 101);
+            this.textBox_instructions.Size = new System.Drawing.Size(182, 128);
             this.textBox_instructions.TabIndex = 0;
             // 
             // tab_control
@@ -555,6 +559,16 @@
             this.tabPage_admin_url.TabIndex = 0;
             this.tabPage_admin_url.Text = "Insert URL";
             this.tabPage_admin_url.UseVisualStyleBackColor = true;
+            // 
+            // groupBox_admin_url_contain_url
+            // 
+            this.groupBox_admin_url_contain_url.Controls.Add(this.flowLayoutPanel_add_url_str);
+            this.groupBox_admin_url_contain_url.Location = new System.Drawing.Point(6, 112);
+            this.groupBox_admin_url_contain_url.Name = "groupBox_admin_url_contain_url";
+            this.groupBox_admin_url_contain_url.Size = new System.Drawing.Size(552, 224);
+            this.groupBox_admin_url_contain_url.TabIndex = 7;
+            this.groupBox_admin_url_contain_url.TabStop = false;
+            this.groupBox_admin_url_contain_url.Text = "URL\'s";
             // 
             // flowLayoutPanel_add_url_str
             // 
@@ -944,15 +958,24 @@
             // 
             this.errorProvider_admin_model_validator.ContainerControl = this;
             // 
-            // groupBox_admin_url_contain_url
+            // comboBox_what_to_get
             // 
-            this.groupBox_admin_url_contain_url.Controls.Add(this.flowLayoutPanel_add_url_str);
-            this.groupBox_admin_url_contain_url.Location = new System.Drawing.Point(6, 112);
-            this.groupBox_admin_url_contain_url.Name = "groupBox_admin_url_contain_url";
-            this.groupBox_admin_url_contain_url.Size = new System.Drawing.Size(552, 224);
-            this.groupBox_admin_url_contain_url.TabIndex = 7;
-            this.groupBox_admin_url_contain_url.TabStop = false;
-            this.groupBox_admin_url_contain_url.Text = "URL\'s";
+            this.comboBox_what_to_get.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_what_to_get.FormattingEnabled = true;
+            this.comboBox_what_to_get.Location = new System.Drawing.Point(6, 19);
+            this.comboBox_what_to_get.Name = "comboBox_what_to_get";
+            this.comboBox_what_to_get.Size = new System.Drawing.Size(182, 21);
+            this.comboBox_what_to_get.TabIndex = 12;
+            // 
+            // groupBox_what_to_get
+            // 
+            this.groupBox_what_to_get.Controls.Add(this.comboBox_what_to_get);
+            this.groupBox_what_to_get.Location = new System.Drawing.Point(377, 265);
+            this.groupBox_what_to_get.Name = "groupBox_what_to_get";
+            this.groupBox_what_to_get.Size = new System.Drawing.Size(200, 51);
+            this.groupBox_what_to_get.TabIndex = 13;
+            this.groupBox_what_to_get.TabStop = false;
+            this.groupBox_what_to_get.Text = "What to get";
             // 
             // BIOSUP_GUI
             // 
@@ -996,6 +1019,7 @@
             this.tabPage_admin.PerformLayout();
             this.tabControl_admin.ResumeLayout(false);
             this.tabPage_admin_url.ResumeLayout(false);
+            this.groupBox_admin_url_contain_url.ResumeLayout(false);
             this.groupBox_select_model.ResumeLayout(false);
             this.groupBox_select_model.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_admin_url_url_to_add)).EndInit();
@@ -1014,7 +1038,7 @@
             this.tabPage_chipset_add.ResumeLayout(false);
             this.tabPage_chipset_add.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).EndInit();
-            this.groupBox_admin_url_contain_url.ResumeLayout(false);
+            this.groupBox_what_to_get.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1102,6 +1126,8 @@
         private System.Windows.Forms.Button btn_admin_url_add_url;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_add_url_str;
         private System.Windows.Forms.GroupBox groupBox_admin_url_contain_url;
+        private System.Windows.Forms.GroupBox groupBox_what_to_get;
+        private System.Windows.Forms.ComboBox comboBox_what_to_get;
     }
 }
 
