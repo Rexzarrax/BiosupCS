@@ -158,11 +158,12 @@ namespace BiosupCS
             foreach (DataRow row in Biosup_query_urls.Rows)
             {
                 int_progress++;
-                label_current_progress_fraction.Text = int_count_mobo + "/" + int_progress;
-                progressBar_overall_progress.Value = int_count_mobo;
-                progressBar_current_progress.Value = int_count_mobo;
+                label_current_progress_fraction.Text = int_progress + "/" + int_count_mobo;
+                progressBar_overall_progress.Value = int_progress;
+                progressBar_current_progress.Value = int_progress;
 
                 textBox_log_running.AppendText("--------------------URL--------------------\r\n");
+                textBox_current_UEFI_info.Text = "";
                 current_mobo(row);
                 textBox_log_running.AppendText(row["model_name"] + "\r\n" + row["url_str"]);
                 change_point(list_points[0]);
@@ -193,17 +194,17 @@ namespace BiosupCS
                         break;
                     }
                     else
-                    {
-                        textBox_log_running.AppendText("\r\nDownloading...");                    
-                        Thread.Sleep(500);
+                    {                
+                        Thread.Sleep(250);
                         Application.DoEvents();
                     }
                     
                 }
                 textBox_log_running.AppendText("\r\nMoving to Next UEFI/BIOS...\r\n");
-                MessageBox.Show("All Firmware have been attempted.\r\nPlease close Biosup");
+                
 
             }
+            MessageBox.Show("All Firmware have been attempted.\r\nPlease close Biosup");
         }
         protected virtual bool IsFileLocked(FileInfo file)
         {
@@ -364,5 +365,14 @@ namespace BiosupCS
 
         }
 
+        private void btn_biosup_pause_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_biosup_stop_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

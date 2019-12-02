@@ -54,7 +54,10 @@ CREATE TABLE motherboard_url (
     url_str varchar(255) UNIQUE,
 	--url_bridge varchar(1) CHECK (url_bridge = 'Y' OR url_bridge='N' OR url_bridge='U'),
 	url_bridge varchar(1) CHECK (url_bridge in ('Y','N','U')),
+    url_version varchar(10),
+    --possible need to be manual depending on past or future bios
     url_date_collected DATE,
+    url_date_of_bios DATE,
     PRIMARY KEY (url_id),
     FOREIGN KEY (model_id) REFERENCES motherboard_data(model_id)
 );

@@ -35,8 +35,6 @@
             this.tabPage_stats = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage_Current_Run = new System.Windows.Forms.TabPage();
-            this.btn_biosup_stop = new System.Windows.Forms.Button();
-            this.btn_biosup_pause = new System.Windows.Forms.Button();
             this.grpBox_log_history = new System.Windows.Forms.GroupBox();
             this.textBox_log_running = new System.Windows.Forms.TextBox();
             this.grpBox_current_run = new System.Windows.Forms.GroupBox();
@@ -186,8 +184,6 @@
             // 
             // tabPage_Current_Run
             // 
-            this.tabPage_Current_Run.Controls.Add(this.btn_biosup_stop);
-            this.tabPage_Current_Run.Controls.Add(this.btn_biosup_pause);
             this.tabPage_Current_Run.Controls.Add(this.grpBox_log_history);
             this.tabPage_Current_Run.Controls.Add(this.grpBox_current_run);
             this.tabPage_Current_Run.Controls.Add(this.grpBox_current_progress);
@@ -199,24 +195,6 @@
             this.tabPage_Current_Run.TabIndex = 1;
             this.tabPage_Current_Run.Text = "Current Run";
             this.tabPage_Current_Run.UseVisualStyleBackColor = true;
-            // 
-            // btn_biosup_stop
-            // 
-            this.btn_biosup_stop.Location = new System.Drawing.Point(487, 403);
-            this.btn_biosup_stop.Name = "btn_biosup_stop";
-            this.btn_biosup_stop.Size = new System.Drawing.Size(75, 23);
-            this.btn_biosup_stop.TabIndex = 9;
-            this.btn_biosup_stop.Text = "Stop";
-            this.btn_biosup_stop.UseVisualStyleBackColor = true;
-            // 
-            // btn_biosup_pause
-            // 
-            this.btn_biosup_pause.Location = new System.Drawing.Point(487, 362);
-            this.btn_biosup_pause.Name = "btn_biosup_pause";
-            this.btn_biosup_pause.Size = new System.Drawing.Size(75, 23);
-            this.btn_biosup_pause.TabIndex = 8;
-            this.btn_biosup_pause.Text = "Pause";
-            this.btn_biosup_pause.UseVisualStyleBackColor = true;
             // 
             // grpBox_log_history
             // 
@@ -263,7 +241,7 @@
             this.grpBox_current_progress.Controls.Add(this.progressBar_current_progress);
             this.grpBox_current_progress.Location = new System.Drawing.Point(3, 353);
             this.grpBox_current_progress.Name = "grpBox_current_progress";
-            this.grpBox_current_progress.Size = new System.Drawing.Size(468, 73);
+            this.grpBox_current_progress.Size = new System.Drawing.Size(573, 73);
             this.grpBox_current_progress.TabIndex = 3;
             this.grpBox_current_progress.TabStop = false;
             this.grpBox_current_progress.Text = "Current Progress";
@@ -281,7 +259,7 @@
             // 
             this.progressBar_current_progress.Location = new System.Drawing.Point(10, 36);
             this.progressBar_current_progress.Name = "progressBar_current_progress";
-            this.progressBar_current_progress.Size = new System.Drawing.Size(448, 23);
+            this.progressBar_current_progress.Size = new System.Drawing.Size(540, 23);
             this.progressBar_current_progress.TabIndex = 1;
             // 
             // grpBox_Overall_progress
@@ -1121,8 +1099,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btn_biosup_stop;
-        private System.Windows.Forms.Button btn_biosup_pause;
         private System.Windows.Forms.Button btn_admin_url_add_url;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_add_url_str;
         private System.Windows.Forms.GroupBox groupBox_admin_url_contain_url;
