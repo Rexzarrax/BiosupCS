@@ -32,6 +32,8 @@
             this.comboBox_bridge_select = new System.Windows.Forms.ComboBox();
             this.label_number_of_url_to_add = new System.Windows.Forms.Label();
             this.btn_admin_url_remove_url = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label_Date_of_bios = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox_str_admin_url_multi_add
@@ -68,16 +70,34 @@
             this.btn_admin_url_remove_url.UseVisualStyleBackColor = true;
             this.btn_admin_url_remove_url.Click += new System.EventHandler(this.btn_admin_url_remove_url_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(109, 42);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 4;
+            // 
+            // label_Date_of_bios
+            // 
+            this.label_Date_of_bios.AutoSize = true;
+            this.label_Date_of_bios.Location = new System.Drawing.Point(3, 42);
+            this.label_Date_of_bios.Name = "label_Date_of_bios";
+            this.label_Date_of_bios.Size = new System.Drawing.Size(100, 13);
+            this.label_Date_of_bios.TabIndex = 5;
+            this.label_Date_of_bios.Text = "Date of Bios/UEFI: ";
+            // 
             // biosup_multi_url_add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label_Date_of_bios);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btn_admin_url_remove_url);
             this.Controls.Add(this.label_number_of_url_to_add);
             this.Controls.Add(this.comboBox_bridge_select);
             this.Controls.Add(this.textBox_str_admin_url_multi_add);
             this.Name = "biosup_multi_url_add";
-            this.Size = new System.Drawing.Size(494, 50);
+            this.Size = new System.Drawing.Size(494, 67);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -89,5 +109,7 @@
         private System.Windows.Forms.ComboBox comboBox_bridge_select;
         private System.Windows.Forms.Label label_number_of_url_to_add;
         private System.Windows.Forms.Button btn_admin_url_remove_url;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label_Date_of_bios;
     }
 }
