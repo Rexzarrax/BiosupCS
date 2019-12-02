@@ -17,6 +17,7 @@ namespace BiosupCS
         private String str_database_credentials = "Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         List<String> list_chipset_vendor = new List<String>() { "AMD", "INTEL" };
         List<String> list_points = new List<String>() { "Downloading", "Unzipping","Other" };
+        List<String> list_what_to_download= new List<String>() { "Latest Only", "Bridge + Latest", "All","Latest Only" };
         Boolean bool_select_all = false;
         BIOSUP_SQL Biosup_query;
         BIOSUP_UNZIP OBJ_UNZIP;
@@ -51,11 +52,11 @@ namespace BiosupCS
             BIOSUP_CONFIG_LOAD_INTRUCTIONS();
 
             
-            Invoke(new Action(() => comboBox_what_to_get.Items.Add("Latest Only")));
-            Invoke(new Action(() => comboBox_what_to_get.Items.Add("Bridge + Latest")));
-            Invoke(new Action(() => comboBox_what_to_get.Items.Add("Bridge Only")));
-            Invoke(new Action(() => comboBox_what_to_get.Items.Add("All")));
-            Invoke(new Action(() => comboBox_what_to_get.SelectedItem = "Latest Only"));
+            foreach(String str_string in list_what_to_download)
+            {
+                Invoke(new Action(() => comboBox_what_to_get.Items.Add(str_string)));
+            }
+
 
             try
             {
