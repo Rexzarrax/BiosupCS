@@ -119,35 +119,53 @@ namespace BiosupCS
             }
 
 
-            //String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE";
-            String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id;";
+            
+            String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE (";
 
-
-
+            //need to throw error when no chipset selected or when no chipset selected
+            int int_i = 0;
             foreach (object itemChecked in this.listbox_vendor.CheckedItems)
             {
-                textBox_log_running.AppendText("\r\nFiltering by: "+ itemChecked.ToString());
-                String str_addon = " or vendor_name" + " = " + itemChecked.ToString();
-                str_built_query += str_addon;
+                //code here could be redone in a better way
+                if(int_i == 0){
+                    textBox_log_running.AppendText("\r\nIncluding All: " + itemChecked.ToString());
+                    String str_addon = "(vd.vendor_name" + " = '" + itemChecked.ToString() + "')";
+                    str_built_query += str_addon;
+                } else
+                {
+                    textBox_log_running.AppendText("\r\nIncluding All: " + itemChecked.ToString());
+                    String str_addon = " or (vd.vendor_name" + " = '" + itemChecked.ToString() + "')";
+                    str_built_query += str_addon;
+                }
+                int_i++;
+
             }
 
             foreach (object itemChecked in this.listbox_AMD_chipset.CheckedItems)
             {
-                textBox_log_running.AppendText("\r\nFiltering by: " + itemChecked.ToString());
-                String str_addon = " or chipset_name" + " = " + itemChecked.ToString();
+                textBox_log_running.AppendText("\r\nIncluding All: " + itemChecked.ToString());
+                String str_addon = " or (md.chipset" + " = '" + itemChecked.ToString() + "')";
                 str_built_query += str_addon;
             }
             foreach (object itemChecked in this.listbox_INTEL_chipset.CheckedItems)
             {
-                textBox_log_running.AppendText("\r\nFiltering by: " + itemChecked.ToString());
-                String str_addon = " or chipset_name" + " = " + itemChecked.ToString();
+                textBox_log_running.AppendText("\r\nIncluding All: " + itemChecked.ToString());
+                String str_addon = " or (md.chipset" + " = '" + itemChecked.ToString() + "')";
                 str_built_query += str_addon;
             }
-            str_built_query += ";";
+            str_built_query += ");";
             DataTable Biosup_query_urls = Biosup_query.BIOSUP_SQL_GET(str_built_query);
 
             Application.DoEvents();
-            loop_through(Biosup_query_urls);
+            try
+            {
+                loop_through(Biosup_query_urls);
+            }
+            catch(Exception e5)
+            {
+                textBox_log_running.AppendText("\r\n Please select at least one Vendor and One Chipset");
+            }
+
         }
          void loop_through(DataTable Biosup_query_urls)
         {
@@ -155,56 +173,67 @@ namespace BiosupCS
             int int_progress = 0;
             progressBar_overall_progress.Maximum = int_count_mobo;
             progressBar_overall_progress.Value = int_progress;
-            foreach (DataRow row in Biosup_query_urls.Rows)
+            if (Biosup_query_urls.Rows.Count != 0)
             {
-                int_progress++;
-                label_current_progress_fraction.Text = int_progress + "/" + int_count_mobo;
-                progressBar_overall_progress.Value = int_progress;
-                progressBar_current_progress.Value = int_progress;
-
-                textBox_log_running.AppendText("--------------------URL--------------------\r\n");
-                textBox_current_UEFI_info.Text = "";
-                current_mobo(row);
-                textBox_log_running.AppendText(row["model_name"] + "\r\n" + row["url_str"]);
-                change_point(list_points[0]);
-                String str_filetree = "BIOSHERE/" + row["vendor_name"] + "/" + row["chipset"] + "/" + row["model_name"];
-                String str_file_path = str_filetree+"/" + row["vendor_name"] +"-" + row["model_name"] + ".zip";
-                FileInfo FI_file_path = new FileInfo(str_file_path);
-
-                if (!File.Exists(str_filetree))
+                foreach (DataRow row in Biosup_query_urls.Rows)
                 {
-                    System.IO.Directory.CreateDirectory(str_filetree);
-                }
-                OBJ_DL_FILE.DL_FILE(row["url_str"].ToString(), str_file_path);
+                    int_progress++;
+                    label_current_progress_fraction.Text = int_progress + "/" + int_count_mobo;
+                    progressBar_overall_progress.Value = int_progress;
+                    progressBar_current_progress.Value = int_progress;
 
-                Boolean bool_wait_for_file_freed = true;
+                    textBox_log_running.AppendText("\n\r--------------------URL--------------------\r\n");
+                    textBox_current_UEFI_info.Text = "";
+                    current_mobo(row);
+                    textBox_log_running.AppendText(row["model_name"] + "\r\n" + row["url_str"]);
+                    change_point(list_points[0]);
+                    String str_filetree = "BIOSHERE/" + row["vendor_name"] + "/" + row["chipset"] + "/" + row["model_name"];
+                    String str_file_path = str_filetree + "/" + row["vendor_name"] + "-" + row["model_name"] + ".zip";
+                    FileInfo FI_file_path = new FileInfo(str_file_path);
 
-                while (bool_wait_for_file_freed)
-                {
-                    if (!IsFileLocked(FI_file_path))
+                    if (!File.Exists(str_filetree))
                     {
-                        change_point(list_points[1]);
-                        textBox_log_running.AppendText("\r\nUnzipping...");
-                        Application.DoEvents();
-                        OBJ_UNZIP.unzip(str_file_path, str_working_dir + str_filetree);
-                        change_point(list_points[2]);
-                        textBox_log_running.AppendText("\r\nDeleting Zip...");
-                        Application.DoEvents();
-                        OBJ_RM_FILE.remove(str_file_path);
-                        break;
+                        System.IO.Directory.CreateDirectory(str_filetree);
                     }
-                    else
-                    {                
-                        Thread.Sleep(250);
-                        Application.DoEvents();
+                    OBJ_DL_FILE.DL_FILE(row["url_str"].ToString(), str_file_path);
+
+                    Boolean bool_wait_for_file_freed = true;
+
+                    while (bool_wait_for_file_freed)
+                    {
+                        if (!IsFileLocked(FI_file_path))
+                        {
+                            change_point(list_points[1]);
+                            textBox_log_running.AppendText("\r\nUnzipping...");
+                            Application.DoEvents();
+                            OBJ_UNZIP.unzip(str_file_path, str_working_dir + str_filetree);
+                            change_point(list_points[2]);
+                            textBox_log_running.AppendText("\r\nDeleting Zip...");
+                            Application.DoEvents();
+                            OBJ_RM_FILE.remove(str_file_path);
+                            break;
+                        }
+                        else
+                        {
+                            Thread.Sleep(100);
+                            Application.DoEvents();
+                        }
+
                     }
-                    
+                    textBox_log_running.AppendText("\r\nMoving to Next UEFI/BIOS...\r\n");
+
+
                 }
-                textBox_log_running.AppendText("\r\nMoving to Next UEFI/BIOS...\r\n");
-                
+                MessageBox.Show("All Firmware have been attempted.\r\nPlease close Biosup");
 
             }
-            MessageBox.Show("All Firmware have been attempted.\r\nPlease close Biosup");
+            else
+            {
+                MessageBox.Show("Error!\r\nPlease see Log for Issue");
+                textBox_log_running.AppendText("\r\n No Bios/UEFI found, please select Some from the config menu");
+                textBox_log_config.AppendText("\r\n No Bios/UEFI found, please select Some from the config menu");
+            }
+           
         }
         protected virtual bool IsFileLocked(FileInfo file)
         {
