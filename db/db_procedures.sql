@@ -38,6 +38,7 @@ CREATE OR ALTER PROCEDURE INSERT_MOTHERBOARD_MODEL (
     @a_chipset varchar(10),
     @a_model varchar(255),
     @a_motherboard_uefi_page_url varchar(255),
+    @a_url_date_of_bios DATE,
     @a_motherboard_dl varchar(255),
     @a_motherboard_bridge varchar(1)
   ) AS BEGIN
@@ -54,8 +55,8 @@ ELSE
 BEGIN 
     SET @motherboard_id = (SELECT model_id FROM motherboard_data WHERE chipset = @a_chipset AND vendor_id = @a_vendor AND model_name = @a_model)
 END
-INSERT INTO motherboard_url (url_id, model_id, url_str, url_bridge, url_date_collected)
-    VALUES(NEXT VALUE FOR seq_url_id, @motherboard_id, @a_motherboard_dl, @a_motherboard_bridge,(SELECT CONVERT (date, SYSDATETIME())))
+INSERT INTO motherboard_url (url_id, model_id, url_str, url_bridge, url_date_collected, url_date_of_bios)
+    VALUES(NEXT VALUE FOR seq_url_id, @motherboard_id, @a_motherboard_dl, @a_motherboard_bridge,(SELECT CONVERT (date, SYSDATETIME())),@a_url_date_of_bios)
 END
 GO
 
@@ -124,6 +125,7 @@ INSERT_MOTHERBOARD_MODEL @a_vendor_name = N'ASROCK',
   @a_chipset = N'Z390',
   @a_model = N'PHANTOM-GAMING-4',
   @a_motherboard_uefi_page_url = N'https://www.asrock.com/mb/Intel/Z390 Phantom Gaming 4/index.asp#BIOS',
+  @a_url_date_of_bios = N'2019/9/5',
   @a_motherboard_dl = N'http://asrock.pc.cdn.bitgravity.com/BIOS/1151/Z390%20Phantom%20Gaming%204(4.30)ROM.zip',
   @a_motherboard_bridge = N'N'
 GO
@@ -132,16 +134,30 @@ INSERT_MOTHERBOARD_MODEL @a_vendor_name = N'ASUS',
   @a_chipset = N'CROSSHAIR',
   @a_model = N'ROG-CROSSHAIR-VIII-HERO-(WI-FI)',
   @a_motherboard_uefi_page_url = N'https://www.asus.com/au/Motherboards/ROG-Crosshair-VIII-Hero-WI-FI/HelpDesk_BIOS/',
+  @a_url_date_of_bios = N'2019/11/05',
   @a_motherboard_dl = N'https://dlcdnets.asus.com/pub/ASUS/mb/SocketAM4/ROG_CROSSHAIR_VIII_HERO_WI-FI/ROG-CROSSHAIR-VIII-HERO-WIFI-ASUS-1105.zip',
   @a_motherboard_bridge = N'N'
 GO
+
 INSERT_MOTHERBOARD_MODEL @a_vendor_name = N'ASROCK',
   @a_chipset = N'Z390',
   @a_model = N'PHANTOM-GAMING-4',
   @a_motherboard_uefi_page_url = N'https://www.asrock.com/mb/Intel/Z390 Phantom Gaming 4/index.asp#BIOS',
+  @a_url_date_of_bios = N'2019/3/26',
   @a_motherboard_dl = N'http://asrock.pc.cdn.bitgravity.com/BIOS/1151/Z390%20Phantom%20Gaming%204(4.00)ROM.zip',
   @a_motherboard_bridge = N'N'
 GO
 
+INSERT_MOTHERBOARD_MODEL @a_vendor_name = N'ASROCK',
+  @a_chipset = N'B350',
+  @a_model = N'AB350-PRO4',
+  @a_motherboard_uefi_page_url = N'https://www.asrock.com/mb/AMD/AB350%20Pro4/#BIOS',
+  @a_url_date_of_bios = N'2018/1/10',
+  @a_motherboard_dl = N'http://asrock.pc.cdn.bitgravity.com/BIOS/AM4/AB350%20Pro4(3.40)ROM.zip',
+  @a_motherboard_bridge = N'Y'
+GO
+
   --SELECT_MOTHERBOARDS N'Z390',N'GIGABYTE';
   --GO
+SELECT MAX(mu.url_date_of_bios) AS "Latest",mu.url_str FROM motherboard_url mu Group By mu.url_str;
+  Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE mu.url_bridge = 'Y';

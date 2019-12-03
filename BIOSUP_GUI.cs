@@ -17,7 +17,8 @@ namespace BiosupCS
         private String str_database_credentials = "Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         List<String> list_chipset_vendor = new List<String>() { "AMD", "INTEL" };
         List<String> list_points = new List<String>() { "Downloading", "Unzipping","Other" };
-        List<String> list_what_to_download= new List<String>() { "Latest Only", "Bridge + Latest", "All","Latest Only" };
+        //Order is important for method set_how_much_to_dl
+        List<String> list_what_to_download= new List<String>() { "Latest Only", "Bridge + Latest", "All","Bridge Only" };
         Boolean bool_select_all = false;
         BIOSUP_SQL Biosup_query;
         BIOSUP_UNZIP OBJ_UNZIP;
@@ -57,7 +58,7 @@ namespace BiosupCS
                 Invoke(new Action(() => comboBox_what_to_get.Items.Add(str_string)));
             }
 
-
+            Application.DoEvents();
             try
             {
                 textBox_log_config.AppendText("\r\n Vendors Found:");
@@ -105,6 +106,24 @@ namespace BiosupCS
 
         }
 
+        private String set_how_much_to_dl(int int_option)
+        {
+            //textBox_log_running.AppendText("case: " + int_option);
+            switch (int_option)
+            {
+                case 0:
+                    return ")AND(mu.url_date_of_bios = SELECT MAX(mu.url_date_of_bios) AS Latest FROM motherboard_url mu GROUP BY url_str)";
+                case 1:
+                    return ")AND(mu.url_bridge = 'Y')";
+                case 2:
+                    return ")";
+                case 3:
+                    return ")AND(mu.url_bridge = 'Y')";
+                default:
+                    return "ERROR";
+            }
+        }
+
         private void btn_run_Click(object sender, EventArgs e)
         {
             String BIOSHERE = str_working_dir + "BIOSHERE";
@@ -119,8 +138,10 @@ namespace BiosupCS
                 textBox_log_running.AppendText("Directory Already Exists: ../BIOSHERE/\r\n");
             }
 
-
+            textBox_log_running.AppendText("What to collect: "+comboBox_what_to_get.SelectedItem);
             
+
+            Application.DoEvents();
             String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE (";
 
             //need to throw error when no chipset selected or when no chipset selected
@@ -142,6 +163,8 @@ namespace BiosupCS
 
             }
 
+
+            Application.DoEvents();
             foreach (object itemChecked in this.listbox_AMD_chipset.CheckedItems)
             {
                 textBox_log_running.AppendText("\r\nIncluding All: " + itemChecked.ToString());
@@ -154,18 +177,25 @@ namespace BiosupCS
                 String str_addon = " or (md.chipset" + " = '" + itemChecked.ToString() + "')";
                 str_built_query += str_addon;
             }
-            str_built_query += ");";
+            str_built_query += set_how_much_to_dl(comboBox_what_to_get.SelectedIndex);
+
+            str_built_query += ";";
+
             DataTable Biosup_query_urls = Biosup_query.BIOSUP_SQL_GET(str_built_query);
 
-            Application.DoEvents();
             try
             {
                 loop_through(Biosup_query_urls);
             }
-            catch(Exception e5)
+            catch (System.NullReferenceException e6)
             {
-                textBox_log_running.AppendText("\r\n Please select at least one Vendor and One Chipset");
+                textBox_log_running.AppendText("\r\n No Bios/UEFI found, please try a different selection");
             }
+            catch (Exception e5)
+            {
+                textBox_log_running.AppendText(e5.ToString());
+            }
+
 
         }
          void loop_through(DataTable Biosup_query_urls)
@@ -266,9 +296,10 @@ namespace BiosupCS
             textBox_current_UEFI_info.AppendText("Model:\r\n" + row["model_name"]);
             textBox_current_UEFI_info.AppendText("\r\n\r\nVendor:\r\n" + row["vendor_name"]);
             textBox_current_UEFI_info.AppendText("\r\n\r\nChipset:\r\n" + row["chipset"]);
-            textBox_current_UEFI_info.AppendText("\r\n\r\nDate Added:\r\n" + row["url_date_collected"]);
+            textBox_current_UEFI_info.AppendText("\r\n\r\nDate of Bios/UEFI:\r\n" + row["url_date_of_bios"]);
             textBox_current_UEFI_info.AppendText("\r\n\r\nBridge:\r\n" + row["url_bridge"]);
             textBox_current_UEFI_info.AppendText("\r\n\r\nUEFI URL:\r\n" + row["url_str"]);
+            textBox_current_UEFI_info.AppendText("\r\n\r\nDate Added:\r\n" + row["url_date_collected"]);
         }
         private void BIOSUP_CONFIG_LOAD_INTRUCTIONS()
         {
@@ -395,14 +426,20 @@ namespace BiosupCS
 
         }
 
-        private void btn_biosup_pause_Click(object sender, EventArgs e)
+        private void comboBox_admin_url_vendor_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void btn_biosup_stop_Click(object sender, EventArgs e)
+        private void comboBox_admin_url_chipset_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void comboBox_select_model_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

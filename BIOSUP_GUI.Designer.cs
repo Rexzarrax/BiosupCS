@@ -111,6 +111,10 @@
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
             this.comboBox_what_to_get = new System.Windows.Forms.ComboBox();
             this.groupBox_what_to_get = new System.Windows.Forms.GroupBox();
+            this.button_remvoe_chipset = new System.Windows.Forms.Button();
+            this.comboBox_select_chipset_to_remove = new System.Windows.Forms.ComboBox();
+            this.groupBox_add_shipset = new System.Windows.Forms.GroupBox();
+            this.groupBox_remove_chipset = new System.Windows.Forms.GroupBox();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -143,6 +147,8 @@
             this.tabPage_chipset_add.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).BeginInit();
             this.groupBox_what_to_get.SuspendLayout();
+            this.groupBox_add_shipset.SuspendLayout();
+            this.groupBox_remove_chipset.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip_err_or_cwd
@@ -618,6 +624,7 @@
             this.comboBox_admin_url_chipset.Name = "comboBox_admin_url_chipset";
             this.comboBox_admin_url_chipset.Size = new System.Drawing.Size(239, 21);
             this.comboBox_admin_url_chipset.TabIndex = 6;
+            this.comboBox_admin_url_chipset.SelectedIndexChanged += new System.EventHandler(this.comboBox_admin_url_chipset_SelectedIndexChanged);
             // 
             // comboBox_admin_url_vendor
             // 
@@ -627,6 +634,7 @@
             this.comboBox_admin_url_vendor.Name = "comboBox_admin_url_vendor";
             this.comboBox_admin_url_vendor.Size = new System.Drawing.Size(239, 21);
             this.comboBox_admin_url_vendor.TabIndex = 5;
+            this.comboBox_admin_url_vendor.SelectedIndexChanged += new System.EventHandler(this.comboBox_admin_url_vendor_SelectedIndexChanged);
             // 
             // label_no_url_to_add
             // 
@@ -645,6 +653,7 @@
             this.comboBox_select_model.Name = "comboBox_select_model";
             this.comboBox_select_model.Size = new System.Drawing.Size(366, 21);
             this.comboBox_select_model.TabIndex = 1;
+            this.comboBox_select_model.SelectedIndexChanged += new System.EventHandler(this.comboBox_select_model_SelectedIndexChanged);
             // 
             // btn_get_model_from_database
             // 
@@ -829,7 +838,7 @@
             // 
             // btn_vendor_edit_cancel
             // 
-            this.btn_vendor_edit_cancel.Location = new System.Drawing.Point(280, 159);
+            this.btn_vendor_edit_cancel.Location = new System.Drawing.Point(359, 172);
             this.btn_vendor_edit_cancel.Name = "btn_vendor_edit_cancel";
             this.btn_vendor_edit_cancel.Size = new System.Drawing.Size(97, 23);
             this.btn_vendor_edit_cancel.TabIndex = 2;
@@ -838,7 +847,7 @@
             // 
             // btn_save_edits
             // 
-            this.btn_save_edits.Location = new System.Drawing.Point(383, 159);
+            this.btn_save_edits.Location = new System.Drawing.Point(462, 172);
             this.btn_save_edits.Name = "btn_save_edits";
             this.btn_save_edits.Size = new System.Drawing.Size(83, 23);
             this.btn_save_edits.TabIndex = 1;
@@ -875,23 +884,20 @@
             // 
             // tabPage_chipset_add
             // 
-            this.tabPage_chipset_add.Controls.Add(this.label_admin_chispset_vendor);
-            this.tabPage_chipset_add.Controls.Add(this.label_admin_chipset_name);
-            this.tabPage_chipset_add.Controls.Add(this.comboBox_admin_chipset_vendor);
-            this.tabPage_chipset_add.Controls.Add(this.textBox_admin_chipset_name);
-            this.tabPage_chipset_add.Controls.Add(this.btn_add_chipset);
+            this.tabPage_chipset_add.Controls.Add(this.groupBox_remove_chipset);
+            this.tabPage_chipset_add.Controls.Add(this.groupBox_add_shipset);
             this.tabPage_chipset_add.Location = new System.Drawing.Point(4, 22);
             this.tabPage_chipset_add.Name = "tabPage_chipset_add";
             this.tabPage_chipset_add.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_chipset_add.Size = new System.Drawing.Size(564, 371);
             this.tabPage_chipset_add.TabIndex = 3;
-            this.tabPage_chipset_add.Text = "Insert Chipset";
+            this.tabPage_chipset_add.Text = "Chipset";
             this.tabPage_chipset_add.UseVisualStyleBackColor = true;
             // 
             // label_admin_chispset_vendor
             // 
             this.label_admin_chispset_vendor.AutoSize = true;
-            this.label_admin_chispset_vendor.Location = new System.Drawing.Point(22, 61);
+            this.label_admin_chispset_vendor.Location = new System.Drawing.Point(6, 69);
             this.label_admin_chispset_vendor.Name = "label_admin_chispset_vendor";
             this.label_admin_chispset_vendor.Size = new System.Drawing.Size(41, 13);
             this.label_admin_chispset_vendor.TabIndex = 4;
@@ -900,7 +906,7 @@
             // label_admin_chipset_name
             // 
             this.label_admin_chipset_name.AutoSize = true;
-            this.label_admin_chipset_name.Location = new System.Drawing.Point(22, 15);
+            this.label_admin_chipset_name.Location = new System.Drawing.Point(6, 16);
             this.label_admin_chipset_name.Name = "label_admin_chipset_name";
             this.label_admin_chipset_name.Size = new System.Drawing.Size(73, 13);
             this.label_admin_chipset_name.TabIndex = 3;
@@ -910,21 +916,21 @@
             // 
             this.comboBox_admin_chipset_vendor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_admin_chipset_vendor.FormattingEnabled = true;
-            this.comboBox_admin_chipset_vendor.Location = new System.Drawing.Point(22, 77);
+            this.comboBox_admin_chipset_vendor.Location = new System.Drawing.Point(6, 85);
             this.comboBox_admin_chipset_vendor.Name = "comboBox_admin_chipset_vendor";
-            this.comboBox_admin_chipset_vendor.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_admin_chipset_vendor.Size = new System.Drawing.Size(257, 21);
             this.comboBox_admin_chipset_vendor.TabIndex = 2;
             // 
             // textBox_admin_chipset_name
             // 
-            this.textBox_admin_chipset_name.Location = new System.Drawing.Point(22, 34);
+            this.textBox_admin_chipset_name.Location = new System.Drawing.Point(6, 32);
             this.textBox_admin_chipset_name.Name = "textBox_admin_chipset_name";
-            this.textBox_admin_chipset_name.Size = new System.Drawing.Size(121, 20);
+            this.textBox_admin_chipset_name.Size = new System.Drawing.Size(257, 20);
             this.textBox_admin_chipset_name.TabIndex = 1;
             // 
             // btn_add_chipset
             // 
-            this.btn_add_chipset.Location = new System.Drawing.Point(483, 342);
+            this.btn_add_chipset.Location = new System.Drawing.Point(188, 140);
             this.btn_add_chipset.Name = "btn_add_chipset";
             this.btn_add_chipset.Size = new System.Drawing.Size(75, 23);
             this.btn_add_chipset.TabIndex = 0;
@@ -954,6 +960,49 @@
             this.groupBox_what_to_get.TabIndex = 13;
             this.groupBox_what_to_get.TabStop = false;
             this.groupBox_what_to_get.Text = "What to get";
+            // 
+            // button_remvoe_chipset
+            // 
+            this.button_remvoe_chipset.Location = new System.Drawing.Point(185, 140);
+            this.button_remvoe_chipset.Name = "button_remvoe_chipset";
+            this.button_remvoe_chipset.Size = new System.Drawing.Size(75, 23);
+            this.button_remvoe_chipset.TabIndex = 5;
+            this.button_remvoe_chipset.Text = "Remove Chipset";
+            this.button_remvoe_chipset.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_select_chipset_to_remove
+            // 
+            this.comboBox_select_chipset_to_remove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_select_chipset_to_remove.FormattingEnabled = true;
+            this.comboBox_select_chipset_to_remove.Location = new System.Drawing.Point(40, 69);
+            this.comboBox_select_chipset_to_remove.Name = "comboBox_select_chipset_to_remove";
+            this.comboBox_select_chipset_to_remove.Size = new System.Drawing.Size(188, 21);
+            this.comboBox_select_chipset_to_remove.TabIndex = 6;
+            // 
+            // groupBox_add_shipset
+            // 
+            this.groupBox_add_shipset.Controls.Add(this.btn_add_chipset);
+            this.groupBox_add_shipset.Controls.Add(this.comboBox_admin_chipset_vendor);
+            this.groupBox_add_shipset.Controls.Add(this.textBox_admin_chipset_name);
+            this.groupBox_add_shipset.Controls.Add(this.label_admin_chispset_vendor);
+            this.groupBox_add_shipset.Controls.Add(this.label_admin_chipset_name);
+            this.groupBox_add_shipset.Location = new System.Drawing.Point(6, 6);
+            this.groupBox_add_shipset.Name = "groupBox_add_shipset";
+            this.groupBox_add_shipset.Size = new System.Drawing.Size(269, 169);
+            this.groupBox_add_shipset.TabIndex = 7;
+            this.groupBox_add_shipset.TabStop = false;
+            this.groupBox_add_shipset.Text = "Add Chipset";
+            // 
+            // groupBox_remove_chipset
+            // 
+            this.groupBox_remove_chipset.Controls.Add(this.comboBox_select_chipset_to_remove);
+            this.groupBox_remove_chipset.Controls.Add(this.button_remvoe_chipset);
+            this.groupBox_remove_chipset.Location = new System.Drawing.Point(292, 6);
+            this.groupBox_remove_chipset.Name = "groupBox_remove_chipset";
+            this.groupBox_remove_chipset.Size = new System.Drawing.Size(266, 169);
+            this.groupBox_remove_chipset.TabIndex = 8;
+            this.groupBox_remove_chipset.TabStop = false;
+            this.groupBox_remove_chipset.Text = "Remove Chipset";
             // 
             // BIOSUP_GUI
             // 
@@ -1014,9 +1063,11 @@
             this.groupBox_edit_existing.ResumeLayout(false);
             this.groupBox_add_vendor.ResumeLayout(false);
             this.tabPage_chipset_add.ResumeLayout(false);
-            this.tabPage_chipset_add.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).EndInit();
             this.groupBox_what_to_get.ResumeLayout(false);
+            this.groupBox_add_shipset.ResumeLayout(false);
+            this.groupBox_add_shipset.PerformLayout();
+            this.groupBox_remove_chipset.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1104,6 +1155,10 @@
         private System.Windows.Forms.GroupBox groupBox_admin_url_contain_url;
         private System.Windows.Forms.GroupBox groupBox_what_to_get;
         private System.Windows.Forms.ComboBox comboBox_what_to_get;
+        private System.Windows.Forms.GroupBox groupBox_remove_chipset;
+        private System.Windows.Forms.ComboBox comboBox_select_chipset_to_remove;
+        private System.Windows.Forms.Button button_remvoe_chipset;
+        private System.Windows.Forms.GroupBox groupBox_add_shipset;
     }
 }
 
