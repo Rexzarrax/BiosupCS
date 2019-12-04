@@ -112,18 +112,61 @@ namespace BiosupCS
             switch (int_option)
             {
                 case 0:
-                    return ")AND(mu.url_date_of_bios = SELECT MAX(mu.url_date_of_bios) AS Latest FROM motherboard_url mu GROUP BY url_str)";
+                    return "EXISTS(SELECT MAX(mu.url_date_of_bios) AS 'Latest',mu.model_id FROM motherboard_url mu Group By mu.model_id) AND ";
                 case 1:
-                    return ")AND(mu.url_bridge = 'Y')";
+                    return "((mu.url_bridge = 'Y') OR (mu.model_id in (SELECT MAX(mu.url_date_of_bios) AS 'Latest',mu.model_id FROM motherboard_url mu Group By mu.model_id))) AND ";
                 case 2:
-                    return ")";
+                    return "";
                 case 3:
-                    return ")AND(mu.url_bridge = 'Y')";
+                    return "(mu.url_bridge = 'Y') AND ";
                 default:
                     return "ERROR";
             }
         }
 
+        private String queryBuilder()
+        {
+            String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE (";
+
+            str_built_query += set_how_much_to_dl(comboBox_what_to_get.SelectedIndex);
+
+            Application.DoEvents();
+
+            str_built_query += "(vd.vendor_name in (";
+            for (int i = 0; i< this.listbox_vendor.CheckedItems.Count; i++)
+            {
+                textBox_log_running.AppendText("\r\nIncluding All: " + this.listbox_vendor.CheckedItems[i].ToString());
+                String str_addon = "'" + this.listbox_vendor.CheckedItems[i].ToString() + "'";
+                if (i != this.listbox_vendor.CheckedItems.Count-1)
+                {
+                    str_addon += ",";
+                }
+                str_built_query += str_addon;
+            }
+            str_built_query += ")) AND (md.chipset in (";
+            for (int i = 0; i < this.listbox_AMD_chipset.CheckedItems.Count; i++)
+            {
+                textBox_log_running.AppendText("\r\nIncluding All: " + this.listbox_AMD_chipset.CheckedItems[i].ToString());
+                String str_addon = "'" + this.listbox_AMD_chipset.CheckedItems[i].ToString() + "'";
+                if (i != this.listbox_AMD_chipset.CheckedItems.Count-1)
+                {
+                    str_addon += ",";
+                }
+                str_built_query += str_addon;
+            }
+            for (int i = 0; i < this.listbox_INTEL_chipset.CheckedItems.Count; i++)
+            {
+                textBox_log_running.AppendText("\r\nIncluding All: " + this.listbox_INTEL_chipset.CheckedItems[i].ToString());
+                String str_addon = "'" + this.listbox_INTEL_chipset.CheckedItems[i].ToString() + "'";
+                if (i != this.listbox_INTEL_chipset.CheckedItems.Count-1)
+                {
+                    str_addon += ",";
+                }
+                str_built_query += str_addon;
+            }
+            str_built_query += ")));";
+            return str_built_query;
+        }
         private void btn_run_Click(object sender, EventArgs e)
         {
             String BIOSHERE = str_working_dir + "BIOSHERE";
@@ -142,46 +185,8 @@ namespace BiosupCS
             
 
             Application.DoEvents();
-            String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE (";
-
-            //need to throw error when no chipset selected or when no chipset selected
-            int int_i = 0;
-            foreach (object itemChecked in this.listbox_vendor.CheckedItems)
-            {
-                //code here could be redone in a better way
-                if(int_i == 0){
-                    textBox_log_running.AppendText("\r\nIncluding All: " + itemChecked.ToString());
-                    String str_addon = "(vd.vendor_name" + " = '" + itemChecked.ToString() + "')";
-                    str_built_query += str_addon;
-                } else
-                {
-                    textBox_log_running.AppendText("\r\nIncluding All: " + itemChecked.ToString());
-                    String str_addon = " or (vd.vendor_name" + " = '" + itemChecked.ToString() + "')";
-                    str_built_query += str_addon;
-                }
-                int_i++;
-
-            }
-
-
-            Application.DoEvents();
-            foreach (object itemChecked in this.listbox_AMD_chipset.CheckedItems)
-            {
-                textBox_log_running.AppendText("\r\nIncluding All: " + itemChecked.ToString());
-                String str_addon = " or (md.chipset" + " = '" + itemChecked.ToString() + "')";
-                str_built_query += str_addon;
-            }
-            foreach (object itemChecked in this.listbox_INTEL_chipset.CheckedItems)
-            {
-                textBox_log_running.AppendText("\r\nIncluding All: " + itemChecked.ToString());
-                String str_addon = " or (md.chipset" + " = '" + itemChecked.ToString() + "')";
-                str_built_query += str_addon;
-            }
-            str_built_query += set_how_much_to_dl(comboBox_what_to_get.SelectedIndex);
-
-            str_built_query += ";";
-
-            DataTable Biosup_query_urls = Biosup_query.BIOSUP_SQL_GET(str_built_query);
+ 
+            DataTable Biosup_query_urls = Biosup_query.BIOSUP_SQL_GET(queryBuilder());
 
             try
             {
@@ -220,6 +225,7 @@ namespace BiosupCS
                     change_point(list_points[0]);
                     String str_filetree = "BIOSHERE/" + row["vendor_name"] + "/" + row["chipset"] + "/" + row["model_name"];
                     String str_file_path = str_filetree + "/" + row["vendor_name"] + "-" + row["model_name"] + ".zip";
+                    textBox_log_running.AppendText("\r\n" + row["url_date_of_bios"]);
                     FileInfo FI_file_path = new FileInfo(str_file_path);
 
                     if (!File.Exists(str_filetree))

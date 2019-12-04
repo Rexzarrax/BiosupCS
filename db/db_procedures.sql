@@ -159,5 +159,10 @@ GO
 
   --SELECT_MOTHERBOARDS N'Z390',N'GIGABYTE';
   --GO
-SELECT MAX(mu.url_date_of_bios) AS "Latest",mu.url_str FROM motherboard_url mu Group By mu.url_str;
+SELECT MAX(mu.url_date_of_bios) AS "Latest",mu.model_id FROM motherboard_url mu Group By mu.model_id;
+
+
+
   Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE mu.url_bridge = 'Y';
+
+  Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE ((mu.url_bridge = 'Y') AND (vd.vendor_name in ('ASROCK','ASUS','GIGABYTE','MSI',)) AND (md.chipset in ('X399','A320','B350','B450','X370','X470','B550','CROSSHAIR','ZENITH','TRX40','X299','Z390','H370','B365','B360','H310','Z370','Z270','RAMPAGE','MAXIMUS','X99',)));
