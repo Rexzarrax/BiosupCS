@@ -112,13 +112,13 @@ namespace BiosupCS
             switch (int_option)
             {
                 case 0:
-                    return "EXISTS(SELECT MAX(mu.url_date_of_bios) AS 'Latest',mu.model_id FROM motherboard_url mu Group By mu.model_id) AND ";
+                    return " WHERE (mu.url_date_of_bios IN (SELECT MAX(mu.url_date_of_bios) AS 'Latest' FROM motherboard_url mu Group By mu.model_id)AND";
                 case 1:
-                    return "((mu.url_bridge = 'Y') OR (mu.model_id in (SELECT MAX(mu.url_date_of_bios) AS 'Latest',mu.model_id FROM motherboard_url mu Group By mu.model_id))) AND ";
+                    return " WHERE (((mu.url_bridge = 'Y') OR (mu.url_date_of_bios IN (SELECT MAX(mu.url_date_of_bios) AS 'Latest' FROM motherboard_url mu Group By mu.model_id))) AND ";
                 case 2:
                     return "";
                 case 3:
-                    return "(mu.url_bridge = 'Y') AND ";
+                    return "WHERE ((mu.url_bridge = 'Y') AND ";
                 default:
                     return "ERROR";
             }
@@ -126,7 +126,7 @@ namespace BiosupCS
 
         private String queryBuilder()
         {
-            String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE (";
+            String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id";
 
             str_built_query += set_how_much_to_dl(comboBox_what_to_get.SelectedIndex);
 
@@ -154,6 +154,7 @@ namespace BiosupCS
                 }
                 str_built_query += str_addon;
             }
+            str_built_query += ",";
             for (int i = 0; i < this.listbox_INTEL_chipset.CheckedItems.Count; i++)
             {
                 textBox_log_running.AppendText("\r\nIncluding All: " + this.listbox_INTEL_chipset.CheckedItems[i].ToString());
@@ -190,9 +191,13 @@ namespace BiosupCS
 
             try
             {
+                foreach (DataRow row in Biosup_query_urls.Rows)
+                {
+                    textBox_log_running.AppendText("\r\n"+row["model_name"] + "\r\n" + row["url_date_of_bios"]+"\r\n");
+                }
                 loop_through(Biosup_query_urls);
             }
-            catch (System.NullReferenceException e6)
+            catch (System.NullReferenceException)
             {
                 textBox_log_running.AppendText("\r\n No Bios/UEFI found, please try a different selection");
             }

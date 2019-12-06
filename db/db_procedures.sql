@@ -157,12 +157,40 @@ INSERT_MOTHERBOARD_MODEL @a_vendor_name = N'ASROCK',
   @a_motherboard_bridge = N'Y'
 GO
 
+INSERT_MOTHERBOARD_MODEL @a_vendor_name = N'ASROCK',
+  @a_chipset = N'B350',
+  @a_model = N'AB350-PRO4',
+  @a_motherboard_uefi_page_url = N'https://www.asrock.com/mb/AMD/AB350%20Pro4/#BIOS',
+  @a_url_date_of_bios = N'2019/8/6',
+  @a_motherboard_dl = N'http://asrock.pc.cdn.bitgravity.com/BIOS/AM4/AB350%20Pro4(6.00)ROM.zip',
+  @a_motherboard_bridge = N'N'
+GO
+
+INSERT_MOTHERBOARD_MODEL @a_vendor_name = N'ASROCK',
+  @a_chipset = N'B350',
+  @a_model = N'AB350-PRO4',
+  @a_motherboard_uefi_page_url = N'https://www.asrock.com/mb/AMD/AB350%20Pro4/#BIOS',
+  @a_url_date_of_bios = N'2018/12/25',
+  @a_motherboard_dl = N'http://asrock.pc.cdn.bitgravity.com/BIOS/AM4/AB350%20Pro4(5.40)ROM.zip',
+  @a_motherboard_bridge = N'Y'
+GO
+
+INSERT_MOTHERBOARD_MODEL @a_vendor_name = N'ASROCK',
+  @a_chipset = N'B350',
+  @a_model = N'AB350-PRO4',
+  @a_motherboard_uefi_page_url = N'https://www.asrock.com/mb/AMD/AB350%20Pro4/#BIOS',
+  @a_url_date_of_bios = N'2019/6/24',
+  @a_motherboard_dl = N'asrock.pc.cdn.bitgravity.com/BIOS/AM4/AB350%20Pro4(5.80)ROM.zip',
+  @a_motherboard_bridge = N'N'
+GO
+
   --SELECT_MOTHERBOARDS N'Z390',N'GIGABYTE';
   --GO
 SELECT MAX(mu.url_date_of_bios) AS "Latest",mu.model_id FROM motherboard_url mu Group By mu.model_id;
 
 
-
   Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE mu.url_bridge = 'Y';
 
   Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id WHERE ((mu.url_bridge = 'Y') AND (vd.vendor_name in ('ASROCK','ASUS','GIGABYTE','MSI',)) AND (md.chipset in ('X399','A320','B350','B450','X370','X470','B550','CROSSHAIR','ZENITH','TRX40','X299','Z390','H370','B365','B360','H310','Z370','Z270','RAMPAGE','MAXIMUS','X99',)));
+
+  SELECT MAX(mu.url_date_of_bios) AS 'Latest'FROM motherboard_url mu Group By mu.model_id
