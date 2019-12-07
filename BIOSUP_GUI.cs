@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+//using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+//using System.Drawing;
+//using System.Linq;
+//using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
@@ -112,13 +112,13 @@ namespace BiosupCS
             switch (int_option)
             {
                 case 0:
-                    return " WHERE (mu.url_date_of_bios IN (SELECT MAX(mu.url_date_of_bios) AS 'Latest' FROM motherboard_url mu Group By mu.model_id)AND";
+                    return " WHERE (mu.url_date_of_bios IN (SELECT MAX(mu.url_date_of_bios) AS 'Latest' FROM motherboard_url mu Group By mu.model_id) AND";
                 case 1:
                     return " WHERE (((mu.url_bridge = 'Y') OR (mu.url_date_of_bios IN (SELECT MAX(mu.url_date_of_bios) AS 'Latest' FROM motherboard_url mu Group By mu.model_id))) AND ";
                 case 2:
-                    return "";
+                    return " WHERE (";
                 case 3:
-                    return "WHERE ((mu.url_bridge = 'Y') AND ";
+                    return " WHERE ((mu.url_bridge = 'Y') AND ";
                 default:
                     return "ERROR";
             }
@@ -150,61 +150,69 @@ namespace BiosupCS
                 String str_addon = "'" + this.listbox_AMD_chipset.CheckedItems[i].ToString() + "'";
                 if (i != this.listbox_AMD_chipset.CheckedItems.Count-1)
                 {
-                    str_addon += ",";
+                    str_built_query += str_addon+",";
                 }
-                str_built_query += str_addon;
             }
-            str_built_query += ",";
+
             for (int i = 0; i < this.listbox_INTEL_chipset.CheckedItems.Count; i++)
             {
                 textBox_log_running.AppendText("\r\nIncluding All: " + this.listbox_INTEL_chipset.CheckedItems[i].ToString());
                 String str_addon = "'" + this.listbox_INTEL_chipset.CheckedItems[i].ToString() + "'";
-                if (i != this.listbox_INTEL_chipset.CheckedItems.Count-1)
+                if (i != this.listbox_INTEL_chipset.CheckedItems.Count - 1)
                 {
-                    str_addon += ",";
+                    str_built_query += str_addon+",";
                 }
-                str_built_query += str_addon;
+
             }
-            str_built_query += ")));";
+            str_built_query += "'')));";
             return str_built_query;
         }
         private void btn_run_Click(object sender, EventArgs e)
         {
-            String BIOSHERE = str_working_dir + "BIOSHERE";
-            tab_control.SelectedTab = tabPage_Current_Run;
-            if (!Directory.Exists(BIOSHERE))
+            if (comboBox_what_to_get.Text == "")
             {
-                System.IO.Directory.CreateDirectory(BIOSHERE);
-                textBox_log_running.AppendText("Directory Created: ../BIOSHERE/\r\n");
+                MessageBox.Show("Please Select a 'What to get'");
+                
             }
             else
             {
-                textBox_log_running.AppendText("Directory Already Exists: ../BIOSHERE/\r\n");
-            }
-
-            textBox_log_running.AppendText("What to collect: "+comboBox_what_to_get.SelectedItem);
-            
-
-            Application.DoEvents();
- 
-            DataTable Biosup_query_urls = Biosup_query.BIOSUP_SQL_GET(queryBuilder());
-
-            try
-            {
-                foreach (DataRow row in Biosup_query_urls.Rows)
+                String BIOSHERE = str_working_dir + "BIOSHERE";
+                tab_control.SelectedTab = tabPage_Current_Run;
+                if (!Directory.Exists(BIOSHERE))
                 {
-                    textBox_log_running.AppendText("\r\n"+row["model_name"] + "\r\n" + row["url_date_of_bios"]+"\r\n");
+                    System.IO.Directory.CreateDirectory(BIOSHERE);
+                    textBox_log_running.AppendText("Directory Created: ../BIOSHERE/\r\n");
                 }
-                loop_through(Biosup_query_urls);
+                else
+                {
+                    textBox_log_running.AppendText("Directory Already Exists: ../BIOSHERE/\r\n");
+                }
+
+                textBox_log_running.AppendText("What to collect: " + comboBox_what_to_get.SelectedItem);
+
+
+                Application.DoEvents();
+
+                DataTable Biosup_query_urls = Biosup_query.BIOSUP_SQL_GET(queryBuilder());
+
+                try
+                {
+                    foreach (DataRow row in Biosup_query_urls.Rows)
+                    {
+                        textBox_log_running.AppendText("\r\n" + row["model_name"] + "\r\n" + row["url_date_of_bios"] + "\r\n");
+                    }
+                    loop_through(Biosup_query_urls);
+                }
+                catch (System.NullReferenceException)
+                {
+                    textBox_log_running.AppendText("\r\n No Bios/UEFI found, please try a different selection of chipsets");
+                }
+                catch (Exception e5)
+                {
+                    textBox_log_running.AppendText(e5.ToString());
+                }
             }
-            catch (System.NullReferenceException)
-            {
-                textBox_log_running.AppendText("\r\n No Bios/UEFI found, please try a different selection");
-            }
-            catch (Exception e5)
-            {
-                textBox_log_running.AppendText(e5.ToString());
-            }
+            
 
 
         }

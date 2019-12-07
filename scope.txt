@@ -1,20 +1,5 @@
 
-    class test_model {
-        int id;
-        String chipset,model,vendor,dl_url;
-        public test_model(int int_id, String str_chipset, String str_model_name, String str_vendor_name,
-                String str_dl_url) {
-            this.id = int_id;
-            this.chipset = str_chipset;
-            this.model = str_model_name;
-            this.vendor = str_vendor_name;    
-            this.dl_url = str_dl_url;
-        }
-    }
-}
-/*
 What i need:
--create folder tree/sort uefi
 -check for client updates
 --take hashes of current files and files on server, if they match, dont update
 -load last config
@@ -22,9 +7,7 @@ What i need:
 -logs
 -if more then 5 bios fail in similar way, exit
 --options:
----select vendor/chipset
----get latest/all/bridge+latest bios(where applicable)
----start
+---resume/pause
 ---safe cancel
 ---run last config
 -need to pull gui options on the fly
@@ -33,5 +16,4 @@ What i need:
 ---have default/backup copy of db
 ---host own dl's(intel mainly)
 --use treeview for future expandablitiy
-*/
-
+--https://stackoverflow.com/questions/12553809/how-to-check-whether-file-exists-in-zip-file-using-dotnetzip#12554063

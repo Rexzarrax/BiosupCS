@@ -180,7 +180,7 @@ INSERT_MOTHERBOARD_MODEL @a_vendor_name = N'ASROCK',
   @a_model = N'AB350-PRO4',
   @a_motherboard_uefi_page_url = N'https://www.asrock.com/mb/AMD/AB350%20Pro4/#BIOS',
   @a_url_date_of_bios = N'2019/6/24',
-  @a_motherboard_dl = N'asrock.pc.cdn.bitgravity.com/BIOS/AM4/AB350%20Pro4(5.80)ROM.zip',
+  @a_motherboard_dl = N'http://asrock.pc.cdn.bitgravity.com/BIOS/AM4/AB350%20Pro4(5.80)ROM.zip',
   @a_motherboard_bridge = N'N'
 GO
 
