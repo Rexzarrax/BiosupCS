@@ -46,6 +46,8 @@
             this.label_current_progress_fraction = new System.Windows.Forms.Label();
             this.progressBar_overall_progress = new System.Windows.Forms.ProgressBar();
             this.tabPage_config = new System.Windows.Forms.TabPage();
+            this.groupBox_what_to_get = new System.Windows.Forms.GroupBox();
+            this.comboBox_what_to_get = new System.Windows.Forms.ComboBox();
             this.textBox_log_config = new System.Windows.Forms.TextBox();
             this.btn_load_last = new System.Windows.Forms.Button();
             this.grpBox_vendor = new System.Windows.Forms.GroupBox();
@@ -102,19 +104,17 @@
             this.groupBox_add_vendor = new System.Windows.Forms.GroupBox();
             this.btn_add_vendor = new System.Windows.Forms.Button();
             this.tabPage_chipset_add = new System.Windows.Forms.TabPage();
-            this.label_admin_chispset_vendor = new System.Windows.Forms.Label();
-            this.label_admin_chipset_name = new System.Windows.Forms.Label();
+            this.groupBox_remove_chipset = new System.Windows.Forms.GroupBox();
+            this.comboBox_select_chipset_to_remove = new System.Windows.Forms.ComboBox();
+            this.button_remvoe_chipset = new System.Windows.Forms.Button();
+            this.groupBox_add_shipset = new System.Windows.Forms.GroupBox();
+            this.btn_add_chipset = new System.Windows.Forms.Button();
             this.comboBox_admin_chipset_vendor = new System.Windows.Forms.ComboBox();
             this.textBox_admin_chipset_name = new System.Windows.Forms.TextBox();
-            this.btn_add_chipset = new System.Windows.Forms.Button();
+            this.label_admin_chispset_vendor = new System.Windows.Forms.Label();
+            this.label_admin_chipset_name = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
-            this.comboBox_what_to_get = new System.Windows.Forms.ComboBox();
-            this.groupBox_what_to_get = new System.Windows.Forms.GroupBox();
-            this.button_remvoe_chipset = new System.Windows.Forms.Button();
-            this.comboBox_select_chipset_to_remove = new System.Windows.Forms.ComboBox();
-            this.groupBox_add_shipset = new System.Windows.Forms.GroupBox();
-            this.groupBox_remove_chipset = new System.Windows.Forms.GroupBox();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -123,6 +123,7 @@
             this.grpBox_current_progress.SuspendLayout();
             this.grpBox_Overall_progress.SuspendLayout();
             this.tabPage_config.SuspendLayout();
+            this.groupBox_what_to_get.SuspendLayout();
             this.grpBox_vendor.SuspendLayout();
             this.grpBox_Chipsets.SuspendLayout();
             this.grpBox_chipset_intel.SuspendLayout();
@@ -145,10 +146,9 @@
             this.groupBox_edit_existing.SuspendLayout();
             this.groupBox_add_vendor.SuspendLayout();
             this.tabPage_chipset_add.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).BeginInit();
-            this.groupBox_what_to_get.SuspendLayout();
-            this.groupBox_add_shipset.SuspendLayout();
             this.groupBox_remove_chipset.SuspendLayout();
+            this.groupBox_add_shipset.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip_err_or_cwd
@@ -313,6 +313,25 @@
             this.tabPage_config.TabIndex = 0;
             this.tabPage_config.Text = "Configurator";
             this.tabPage_config.UseVisualStyleBackColor = true;
+            // 
+            // groupBox_what_to_get
+            // 
+            this.groupBox_what_to_get.Controls.Add(this.comboBox_what_to_get);
+            this.groupBox_what_to_get.Location = new System.Drawing.Point(377, 265);
+            this.groupBox_what_to_get.Name = "groupBox_what_to_get";
+            this.groupBox_what_to_get.Size = new System.Drawing.Size(200, 51);
+            this.groupBox_what_to_get.TabIndex = 13;
+            this.groupBox_what_to_get.TabStop = false;
+            this.groupBox_what_to_get.Text = "What to get";
+            // 
+            // comboBox_what_to_get
+            // 
+            this.comboBox_what_to_get.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_what_to_get.FormattingEnabled = true;
+            this.comboBox_what_to_get.Location = new System.Drawing.Point(6, 19);
+            this.comboBox_what_to_get.Name = "comboBox_what_to_get";
+            this.comboBox_what_to_get.Size = new System.Drawing.Size(182, 21);
+            this.comboBox_what_to_get.TabIndex = 12;
             // 
             // textBox_log_config
             // 
@@ -894,6 +913,76 @@
             this.tabPage_chipset_add.Text = "Chipset";
             this.tabPage_chipset_add.UseVisualStyleBackColor = true;
             // 
+            // groupBox_remove_chipset
+            // 
+            this.groupBox_remove_chipset.Controls.Add(this.comboBox_select_chipset_to_remove);
+            this.groupBox_remove_chipset.Controls.Add(this.button_remvoe_chipset);
+            this.groupBox_remove_chipset.Location = new System.Drawing.Point(292, 6);
+            this.groupBox_remove_chipset.Name = "groupBox_remove_chipset";
+            this.groupBox_remove_chipset.Size = new System.Drawing.Size(266, 169);
+            this.groupBox_remove_chipset.TabIndex = 8;
+            this.groupBox_remove_chipset.TabStop = false;
+            this.groupBox_remove_chipset.Text = "Remove Chipset";
+            // 
+            // comboBox_select_chipset_to_remove
+            // 
+            this.comboBox_select_chipset_to_remove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_select_chipset_to_remove.FormattingEnabled = true;
+            this.comboBox_select_chipset_to_remove.Location = new System.Drawing.Point(40, 69);
+            this.comboBox_select_chipset_to_remove.Name = "comboBox_select_chipset_to_remove";
+            this.comboBox_select_chipset_to_remove.Size = new System.Drawing.Size(188, 21);
+            this.comboBox_select_chipset_to_remove.TabIndex = 6;
+            // 
+            // button_remvoe_chipset
+            // 
+            this.button_remvoe_chipset.Location = new System.Drawing.Point(185, 140);
+            this.button_remvoe_chipset.Name = "button_remvoe_chipset";
+            this.button_remvoe_chipset.Size = new System.Drawing.Size(75, 23);
+            this.button_remvoe_chipset.TabIndex = 5;
+            this.button_remvoe_chipset.Text = "Remove Chipset";
+            this.button_remvoe_chipset.UseVisualStyleBackColor = true;
+            this.button_remvoe_chipset.Click += new System.EventHandler(this.button_remvoe_chipset_Click);
+            // 
+            // groupBox_add_shipset
+            // 
+            this.groupBox_add_shipset.Controls.Add(this.btn_add_chipset);
+            this.groupBox_add_shipset.Controls.Add(this.comboBox_admin_chipset_vendor);
+            this.groupBox_add_shipset.Controls.Add(this.textBox_admin_chipset_name);
+            this.groupBox_add_shipset.Controls.Add(this.label_admin_chispset_vendor);
+            this.groupBox_add_shipset.Controls.Add(this.label_admin_chipset_name);
+            this.groupBox_add_shipset.Location = new System.Drawing.Point(6, 6);
+            this.groupBox_add_shipset.Name = "groupBox_add_shipset";
+            this.groupBox_add_shipset.Size = new System.Drawing.Size(269, 169);
+            this.groupBox_add_shipset.TabIndex = 7;
+            this.groupBox_add_shipset.TabStop = false;
+            this.groupBox_add_shipset.Text = "Add Chipset";
+            // 
+            // btn_add_chipset
+            // 
+            this.btn_add_chipset.Location = new System.Drawing.Point(188, 140);
+            this.btn_add_chipset.Name = "btn_add_chipset";
+            this.btn_add_chipset.Size = new System.Drawing.Size(75, 23);
+            this.btn_add_chipset.TabIndex = 0;
+            this.btn_add_chipset.Text = "Add Chipset";
+            this.btn_add_chipset.UseVisualStyleBackColor = true;
+            this.btn_add_chipset.Click += new System.EventHandler(this.btn_add_chipset_Click);
+            // 
+            // comboBox_admin_chipset_vendor
+            // 
+            this.comboBox_admin_chipset_vendor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_admin_chipset_vendor.FormattingEnabled = true;
+            this.comboBox_admin_chipset_vendor.Location = new System.Drawing.Point(6, 85);
+            this.comboBox_admin_chipset_vendor.Name = "comboBox_admin_chipset_vendor";
+            this.comboBox_admin_chipset_vendor.Size = new System.Drawing.Size(257, 21);
+            this.comboBox_admin_chipset_vendor.TabIndex = 2;
+            // 
+            // textBox_admin_chipset_name
+            // 
+            this.textBox_admin_chipset_name.Location = new System.Drawing.Point(6, 32);
+            this.textBox_admin_chipset_name.Name = "textBox_admin_chipset_name";
+            this.textBox_admin_chipset_name.Size = new System.Drawing.Size(257, 20);
+            this.textBox_admin_chipset_name.TabIndex = 1;
+            // 
             // label_admin_chispset_vendor
             // 
             this.label_admin_chispset_vendor.AutoSize = true;
@@ -912,97 +1001,9 @@
             this.label_admin_chipset_name.TabIndex = 3;
             this.label_admin_chipset_name.Text = "Chipset Name";
             // 
-            // comboBox_admin_chipset_vendor
-            // 
-            this.comboBox_admin_chipset_vendor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_admin_chipset_vendor.FormattingEnabled = true;
-            this.comboBox_admin_chipset_vendor.Location = new System.Drawing.Point(6, 85);
-            this.comboBox_admin_chipset_vendor.Name = "comboBox_admin_chipset_vendor";
-            this.comboBox_admin_chipset_vendor.Size = new System.Drawing.Size(257, 21);
-            this.comboBox_admin_chipset_vendor.TabIndex = 2;
-            // 
-            // textBox_admin_chipset_name
-            // 
-            this.textBox_admin_chipset_name.Location = new System.Drawing.Point(6, 32);
-            this.textBox_admin_chipset_name.Name = "textBox_admin_chipset_name";
-            this.textBox_admin_chipset_name.Size = new System.Drawing.Size(257, 20);
-            this.textBox_admin_chipset_name.TabIndex = 1;
-            // 
-            // btn_add_chipset
-            // 
-            this.btn_add_chipset.Location = new System.Drawing.Point(188, 140);
-            this.btn_add_chipset.Name = "btn_add_chipset";
-            this.btn_add_chipset.Size = new System.Drawing.Size(75, 23);
-            this.btn_add_chipset.TabIndex = 0;
-            this.btn_add_chipset.Text = "Add Chipset";
-            this.btn_add_chipset.UseVisualStyleBackColor = true;
-            this.btn_add_chipset.Click += new System.EventHandler(this.btn_add_chipset_Click);
-            // 
             // errorProvider_admin_model_validator
             // 
             this.errorProvider_admin_model_validator.ContainerControl = this;
-            // 
-            // comboBox_what_to_get
-            // 
-            this.comboBox_what_to_get.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_what_to_get.FormattingEnabled = true;
-            this.comboBox_what_to_get.Location = new System.Drawing.Point(6, 19);
-            this.comboBox_what_to_get.Name = "comboBox_what_to_get";
-            this.comboBox_what_to_get.Size = new System.Drawing.Size(182, 21);
-            this.comboBox_what_to_get.TabIndex = 12;
-            // 
-            // groupBox_what_to_get
-            // 
-            this.groupBox_what_to_get.Controls.Add(this.comboBox_what_to_get);
-            this.groupBox_what_to_get.Location = new System.Drawing.Point(377, 265);
-            this.groupBox_what_to_get.Name = "groupBox_what_to_get";
-            this.groupBox_what_to_get.Size = new System.Drawing.Size(200, 51);
-            this.groupBox_what_to_get.TabIndex = 13;
-            this.groupBox_what_to_get.TabStop = false;
-            this.groupBox_what_to_get.Text = "What to get";
-            // 
-            // button_remvoe_chipset
-            // 
-            this.button_remvoe_chipset.Location = new System.Drawing.Point(185, 140);
-            this.button_remvoe_chipset.Name = "button_remvoe_chipset";
-            this.button_remvoe_chipset.Size = new System.Drawing.Size(75, 23);
-            this.button_remvoe_chipset.TabIndex = 5;
-            this.button_remvoe_chipset.Text = "Remove Chipset";
-            this.button_remvoe_chipset.UseVisualStyleBackColor = true;
-            // 
-            // comboBox_select_chipset_to_remove
-            // 
-            this.comboBox_select_chipset_to_remove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_select_chipset_to_remove.FormattingEnabled = true;
-            this.comboBox_select_chipset_to_remove.Location = new System.Drawing.Point(40, 69);
-            this.comboBox_select_chipset_to_remove.Name = "comboBox_select_chipset_to_remove";
-            this.comboBox_select_chipset_to_remove.Size = new System.Drawing.Size(188, 21);
-            this.comboBox_select_chipset_to_remove.TabIndex = 6;
-            // 
-            // groupBox_add_shipset
-            // 
-            this.groupBox_add_shipset.Controls.Add(this.btn_add_chipset);
-            this.groupBox_add_shipset.Controls.Add(this.comboBox_admin_chipset_vendor);
-            this.groupBox_add_shipset.Controls.Add(this.textBox_admin_chipset_name);
-            this.groupBox_add_shipset.Controls.Add(this.label_admin_chispset_vendor);
-            this.groupBox_add_shipset.Controls.Add(this.label_admin_chipset_name);
-            this.groupBox_add_shipset.Location = new System.Drawing.Point(6, 6);
-            this.groupBox_add_shipset.Name = "groupBox_add_shipset";
-            this.groupBox_add_shipset.Size = new System.Drawing.Size(269, 169);
-            this.groupBox_add_shipset.TabIndex = 7;
-            this.groupBox_add_shipset.TabStop = false;
-            this.groupBox_add_shipset.Text = "Add Chipset";
-            // 
-            // groupBox_remove_chipset
-            // 
-            this.groupBox_remove_chipset.Controls.Add(this.comboBox_select_chipset_to_remove);
-            this.groupBox_remove_chipset.Controls.Add(this.button_remvoe_chipset);
-            this.groupBox_remove_chipset.Location = new System.Drawing.Point(292, 6);
-            this.groupBox_remove_chipset.Name = "groupBox_remove_chipset";
-            this.groupBox_remove_chipset.Size = new System.Drawing.Size(266, 169);
-            this.groupBox_remove_chipset.TabIndex = 8;
-            this.groupBox_remove_chipset.TabStop = false;
-            this.groupBox_remove_chipset.Text = "Remove Chipset";
             // 
             // BIOSUP_GUI
             // 
@@ -1032,6 +1033,7 @@
             this.grpBox_Overall_progress.PerformLayout();
             this.tabPage_config.ResumeLayout(false);
             this.tabPage_config.PerformLayout();
+            this.groupBox_what_to_get.ResumeLayout(false);
             this.grpBox_vendor.ResumeLayout(false);
             this.grpBox_vendor.PerformLayout();
             this.grpBox_Chipsets.ResumeLayout(false);
@@ -1063,11 +1065,10 @@
             this.groupBox_edit_existing.ResumeLayout(false);
             this.groupBox_add_vendor.ResumeLayout(false);
             this.tabPage_chipset_add.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).EndInit();
-            this.groupBox_what_to_get.ResumeLayout(false);
+            this.groupBox_remove_chipset.ResumeLayout(false);
             this.groupBox_add_shipset.ResumeLayout(false);
             this.groupBox_add_shipset.PerformLayout();
-            this.groupBox_remove_chipset.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

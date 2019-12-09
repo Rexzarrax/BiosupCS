@@ -66,6 +66,7 @@
       <DependentUpon>biosup_multi_url_add.cs</DependentUpon>
     </Compile>
     <Compile Include="BIOSUP_RM_FILE.cs" />
+    <Compile Include="BIOSUP_SAVE.cs" />
     <Compile Include="BIOSUP_SQL.cs" />
     <Compile Include="BIOSUP_UNZIP.cs" />
     <Compile Include="BIOSUP_Program.cs" />

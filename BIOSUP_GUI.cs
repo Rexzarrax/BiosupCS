@@ -61,6 +61,18 @@ namespace BiosupCS
             Application.DoEvents();
             try
             {
+                comboBox_select_chipset_to_remove.Items.Clear();
+                listbox_vendor.Items.Clear();
+                comboBox_select_vendor.Items.Clear();
+                comboBox_select_vendor_to_edit.Items.Clear();
+                comboBox_admin_url_vendor.Items.Clear();
+                comboBox_select_chipset.Items.Clear();
+                comboBox_admin_url_chipset.Items.Clear();
+                comboBox_select_chipset_to_remove.Items.Clear();
+                listbox_AMD_chipset.Items.Clear();
+                listbox_INTEL_chipset.Items.Clear();
+                comboBox_admin_chipset_vendor.Items.Clear();
+
                 textBox_log_config.AppendText("\r\n Vendors Found:");
                 foreach (DataRow row in Biosup_query_vendors.Rows)
                 {
@@ -77,6 +89,7 @@ namespace BiosupCS
                     textBox_log_config.AppendText("\n\r" + row["chipset_vendor"] + ", " + row["chipset_name"] + "...");
                     Invoke(new Action(() => comboBox_select_chipset.Items.Add(row["chipset_name"])));
                     Invoke(new Action(() => comboBox_admin_url_chipset.Items.Add(row["chipset_name"])));
+                    Invoke(new Action(() => comboBox_select_chipset_to_remove.Items.Add(row["chipset_name"])));
 
                     //Need to update below to better method    
                     if (row["chipset_vendor"].ToString() == list_chipset_vendor[0])
@@ -133,7 +146,7 @@ namespace BiosupCS
             Application.DoEvents();
 
             str_built_query += "(vd.vendor_name in (";
-            for (int i = 0; i< this.listbox_vendor.CheckedItems.Count; i++)
+            for (int i = 0; i < this.listbox_vendor.CheckedItems.Count; i++)
             {
                 textBox_log_running.AppendText("\r\nIncluding All: " + this.listbox_vendor.CheckedItems[i].ToString());
                 String str_addon = "'" + this.listbox_vendor.CheckedItems[i].ToString() + "'";
@@ -150,8 +163,9 @@ namespace BiosupCS
                 String str_addon = "'" + this.listbox_AMD_chipset.CheckedItems[i].ToString() + "'";
                 if (i != this.listbox_AMD_chipset.CheckedItems.Count-1)
                 {
-                    str_built_query += str_addon+",";
+                    str_addon += ",";
                 }
+                str_built_query += str_addon;
             }
 
             for (int i = 0; i < this.listbox_INTEL_chipset.CheckedItems.Count; i++)
@@ -160,11 +174,12 @@ namespace BiosupCS
                 String str_addon = "'" + this.listbox_INTEL_chipset.CheckedItems[i].ToString() + "'";
                 if (i != this.listbox_INTEL_chipset.CheckedItems.Count - 1)
                 {
-                    str_built_query += str_addon+",";
+                    str_addon += ",";
                 }
+                str_built_query += str_addon;
 
             }
-            str_built_query += "'')));";
+            str_built_query += ",'')));";
             return str_built_query;
         }
         private void btn_run_Click(object sender, EventArgs e)
@@ -418,25 +433,32 @@ namespace BiosupCS
 
         private void btn_add_chipset_Click(object sender, EventArgs e)
         {
-            if(textBox_admin_chipset_name.Text == "" || (String)comboBox_admin_chipset_vendor.SelectedItem == "")
+            if(textBox_admin_chipset_name.Text == "" || comboBox_admin_chipset_vendor.SelectedIndex == -1)
             {
                 textBox_admin_log.AppendText("Please make sure Both UI elements have values");
             }
             else
             {
                 String str_query_var = "Variables: " + textBox_admin_chipset_name.Text + "," + comboBox_admin_chipset_vendor.SelectedItem;
+                textBox_admin_log.AppendText(str_query_var);
+                String str_query = "INSERT INTO dbo.chipset_check(chipset_id,chipset_name,chipset_vendor) VALUES(NEXT VALUE FOR seq_chipset_id, '"+ textBox_admin_chipset_name.Text + "','"+ comboBox_admin_chipset_vendor.SelectedItem + "');" ;
                 try
                 {
-                    List<SQL_Params> list_parameter = new List<SQL_Params>();
+                    Biosup_query.BIOSUP_SQL_GET(str_query);
+                    textBox_admin_log.AppendText(" Added Successfully");
+                    BIOSUP_CONFIG_Load(sender, e);
+                    /*List<SQL_Params> list_parameter = new List<SQL_Params>();
                     SQL_Params obj_paramater_chipset = new SQL_Params("@a_chipset_name", SqlDbType.VarChar, 10, textBox_admin_chipset_name.Text);
-                    SQL_Params obj_paramater_vendor = new SQL_Params("@a_chipset_vendor", SqlDbType.VarChar, 10, textBox_admin_chipset_name.Text);
+                    SQL_Params obj_paramater_vendor = new SQL_Params("@a_chipset_vendor", SqlDbType.VarChar, 10, textBox_admin_chipset_name.Text.ToString());
                     list_parameter.Add(obj_paramater_chipset);
                     list_parameter.Add(obj_paramater_vendor);
                     Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
+                    */
+
                 }
                 catch (Exception e_run)
                 {
-                    textBox_admin_chipset_name.AppendText( e_run.ToString());
+                    textBox_admin_log.AppendText( e_run.ToString());
                 }
                 textBox_admin_chipset_name.Text = "";
                 comboBox_admin_chipset_vendor.SelectedIndex = -1;
@@ -460,5 +482,22 @@ namespace BiosupCS
 
         }
 
+        private void button_remvoe_chipset_Click(object sender, EventArgs e)
+        {
+            String str_chipset_to_remove = comboBox_select_chipset_to_remove.Text;
+            String str_query = "DELETE FROM dbo.chipset_check WHERE chipset_name ='"+ str_chipset_to_remove+"'";
+            Console.WriteLine(str_query);
+            try
+            {
+                Biosup_query.BIOSUP_SQL_GET(str_query);
+                textBox_admin_log.AppendText(str_chipset_to_remove + " Deleted Successfully");
+                BIOSUP_CONFIG_Load(sender, e);
+            }
+            catch (Exception e_run)
+            {
+                textBox_admin_log.AppendText(e_run.ToString());
+            }
+
+        }
     }
 }
