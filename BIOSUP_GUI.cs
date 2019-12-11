@@ -39,6 +39,7 @@ namespace BiosupCS
 
             DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.vendor_data");
             DataTable Biosup_query_chipsets = Biosup_query.BIOSUP_SQL_GET("SELECT chipset_name, chipset_vendor FROM dbo.chipset_check");
+            DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data");
 
             str_working_dir = System.AppDomain.CurrentDomain.BaseDirectory;
             Console.WriteLine("CWD: " + str_working_dir + "\n");
@@ -72,6 +73,12 @@ namespace BiosupCS
                 listbox_AMD_chipset.Items.Clear();
                 listbox_INTEL_chipset.Items.Clear();
                 comboBox_admin_chipset_vendor.Items.Clear();
+                comboBox_admin_model_delete.Items.Clear();
+
+                foreach (DataRow row in Biosup_query_model.Rows)
+                {
+                    Invoke(new Action(() => comboBox_admin_model_delete.Items.Add(row["model_name"]))); 
+                }
 
                 textBox_log_config.AppendText("\r\n Vendors Found:");
                 foreach (DataRow row in Biosup_query_vendors.Rows)
@@ -485,7 +492,7 @@ namespace BiosupCS
         private void button_remvoe_chipset_Click(object sender, EventArgs e)
         {
             String str_chipset_to_remove = comboBox_select_chipset_to_remove.Text;
-            String str_query = "DELETE FROM dbo.chipset_check WHERE chipset_name ='"+ str_chipset_to_remove+"'";
+            String str_query = "DELETE FROM dbo.chipset_check WHERE chipset_name ='"+str_chipset_to_remove+"'";
             Console.WriteLine(str_query);
             try
             {
@@ -498,6 +505,58 @@ namespace BiosupCS
                 textBox_admin_log.AppendText(e_run.ToString());
             }
 
+        }
+
+        private void btn_add_model_Click(object sender, EventArgs e)
+        {
+            String str_chipset = comboBox_select_chipset.Text;
+            String str_vendor = comboBox_select_vendor.Text;
+            String str_model_sku = textBox_admin_model_sku.Text;
+            String str_bios_url = textBox_model_bios_url.Text;
+            DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM dbo.vendor_data where vendor_name ='" + str_vendor+"';");
+
+
+            String str_query = "INSERT INTO dbo.motherboard_data(model_id, chipset, model_name, vendor_id, model_page) VALUES(NEXT VALUE FOR seq_model_id, '"+str_chipset + "','"+ str_model_sku + "','" + Biosup_query_model.Rows[0]["vendor_id"] + "','" + str_bios_url + "');";
+            textBox_admin_log.AppendText(str_query);
+            try
+            {
+                Biosup_query.BIOSUP_SQL_GET(str_query);
+                textBox_admin_log.AppendText(str_model_sku + " Added Successfully");
+                BIOSUP_CONFIG_Load(sender, e);
+                textBox_admin_model_sku.Text = "";
+                textBox_model_bios_url.Text = "";
+            }
+            catch (Exception e_run)
+            {
+                textBox_admin_log.AppendText(e_run.ToString());
+            }
+
+        }
+
+        private void btn_admin_url_add_url_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_delete_model_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("This action will delete all associated BIOS","",MessageBoxButtons.OKCancel);
+            if (dr == DialogResult.OK)
+            {
+                String str_model_to_remove = comboBox_admin_model_delete.Text;
+                String str_query = "DELETE FROM dbo.motherboard_data WHERE model_name ='" + str_model_to_remove + "'";
+                Console.WriteLine(str_query);
+                try
+                {
+                    Biosup_query.BIOSUP_SQL_GET(str_query);
+                    textBox_admin_log.AppendText(str_model_to_remove + " Deleted Successfully");
+                    BIOSUP_CONFIG_Load(sender, e);
+                }
+                catch (Exception e_run)
+                {
+                    textBox_admin_log.AppendText(e_run.ToString());
+                }
+            }
         }
     }
 }

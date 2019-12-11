@@ -22,7 +22,7 @@ CREATE TABLE vendor_data (
 );
 go
 CREATE TABLE motherboard_data (
-    model_id INT NOT NULL,
+    model_id INT NOT NULL ,
     chipset varchar(20),
     model_name varchar(255) UNIQUE,
     vendor_id int,

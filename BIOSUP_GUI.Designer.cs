@@ -86,7 +86,7 @@
             this.btn_add_url = new System.Windows.Forms.Button();
             this.tabPage_admin_model = new System.Windows.Forms.TabPage();
             this.groupBox_model_name = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_admin_model_sku = new System.Windows.Forms.TextBox();
             this.groupBox_model_bios_url = new System.Windows.Forms.GroupBox();
             this.textBox_model_bios_url = new System.Windows.Forms.TextBox();
             this.groupBox_vendor_select = new System.Windows.Forms.GroupBox();
@@ -115,6 +115,11 @@
             this.label_admin_chipset_name = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btn_delete_model = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox_admin_model_delete = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -149,6 +154,9 @@
             this.groupBox_remove_chipset.SuspendLayout();
             this.groupBox_add_shipset.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip_err_or_cwd
@@ -560,7 +568,7 @@
             this.tabPage_admin_url.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_admin_url.Size = new System.Drawing.Size(564, 371);
             this.tabPage_admin_url.TabIndex = 0;
-            this.tabPage_admin_url.Text = "Insert URL";
+            this.tabPage_admin_url.Text = "BIOS URL";
             this.tabPage_admin_url.UseVisualStyleBackColor = true;
             // 
             // groupBox_admin_url_contain_url
@@ -587,8 +595,9 @@
             this.btn_admin_url_add_url.Name = "btn_admin_url_add_url";
             this.btn_admin_url_add_url.Size = new System.Drawing.Size(75, 23);
             this.btn_admin_url_add_url.TabIndex = 5;
-            this.btn_admin_url_add_url.Text = "Add";
+            this.btn_admin_url_add_url.Text = "Add/Save";
             this.btn_admin_url_add_url.UseVisualStyleBackColor = true;
+            this.btn_admin_url_add_url.Click += new System.EventHandler(this.btn_admin_url_add_url_Click);
             // 
             // groupBox_select_model
             // 
@@ -717,43 +726,40 @@
             // 
             // tabPage_admin_model
             // 
-            this.tabPage_admin_model.Controls.Add(this.groupBox_model_name);
-            this.tabPage_admin_model.Controls.Add(this.groupBox_model_bios_url);
-            this.tabPage_admin_model.Controls.Add(this.groupBox_vendor_select);
-            this.tabPage_admin_model.Controls.Add(this.groupBox_chipset_select);
-            this.tabPage_admin_model.Controls.Add(this.btn_add_model);
+            this.tabPage_admin_model.Controls.Add(this.groupBox4);
+            this.tabPage_admin_model.Controls.Add(this.groupBox3);
             this.tabPage_admin_model.Location = new System.Drawing.Point(4, 22);
             this.tabPage_admin_model.Name = "tabPage_admin_model";
             this.tabPage_admin_model.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_admin_model.Size = new System.Drawing.Size(564, 371);
             this.tabPage_admin_model.TabIndex = 1;
-            this.tabPage_admin_model.Text = "Insert Model";
+            this.tabPage_admin_model.Text = "Model";
             this.tabPage_admin_model.UseVisualStyleBackColor = true;
             // 
             // groupBox_model_name
             // 
-            this.groupBox_model_name.Controls.Add(this.textBox2);
-            this.groupBox_model_name.Location = new System.Drawing.Point(7, 112);
+            this.groupBox_model_name.Controls.Add(this.textBox_admin_model_sku);
+            this.groupBox_model_name.Location = new System.Drawing.Point(4, 125);
             this.groupBox_model_name.Name = "groupBox_model_name";
-            this.groupBox_model_name.Size = new System.Drawing.Size(265, 50);
+            this.groupBox_model_name.Size = new System.Drawing.Size(260, 50);
             this.groupBox_model_name.TabIndex = 7;
             this.groupBox_model_name.TabStop = false;
             this.groupBox_model_name.Text = "Model Name(sku)";
             // 
-            // textBox2
+            // textBox_admin_model_sku
             // 
-            this.textBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox2.Location = new System.Drawing.Point(6, 19);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(254, 20);
-            this.textBox2.TabIndex = 3;
+            this.textBox_admin_model_sku.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBox_admin_model_sku.Location = new System.Drawing.Point(6, 19);
+            this.textBox_admin_model_sku.Name = "textBox_admin_model_sku";
+            this.textBox_admin_model_sku.Size = new System.Drawing.Size(237, 20);
+            this.textBox_admin_model_sku.TabIndex = 3;
             // 
             // groupBox_model_bios_url
             // 
             this.groupBox_model_bios_url.Controls.Add(this.textBox_model_bios_url);
-            this.groupBox_model_bios_url.Location = new System.Drawing.Point(7, 168);
+            this.groupBox_model_bios_url.Location = new System.Drawing.Point(4, 181);
             this.groupBox_model_bios_url.Name = "groupBox_model_bios_url";
-            this.groupBox_model_bios_url.Size = new System.Drawing.Size(265, 50);
+            this.groupBox_model_bios_url.Size = new System.Drawing.Size(260, 50);
             this.groupBox_model_bios_url.TabIndex = 6;
             this.groupBox_model_bios_url.TabStop = false;
             this.groupBox_model_bios_url.Text = "URL of model\'s BIOS page";
@@ -763,14 +769,14 @@
             this.textBox_model_bios_url.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.textBox_model_bios_url.Location = new System.Drawing.Point(6, 19);
             this.textBox_model_bios_url.Name = "textBox_model_bios_url";
-            this.textBox_model_bios_url.Size = new System.Drawing.Size(254, 20);
+            this.textBox_model_bios_url.Size = new System.Drawing.Size(237, 20);
             this.textBox_model_bios_url.TabIndex = 3;
             // 
             // groupBox_vendor_select
             // 
             this.groupBox_vendor_select.Controls.Add(this.groupBox1);
             this.groupBox_vendor_select.Controls.Add(this.comboBox_select_vendor);
-            this.groupBox_vendor_select.Location = new System.Drawing.Point(6, 59);
+            this.groupBox_vendor_select.Location = new System.Drawing.Point(6, 72);
             this.groupBox_vendor_select.Name = "groupBox_vendor_select";
             this.groupBox_vendor_select.Size = new System.Drawing.Size(140, 47);
             this.groupBox_vendor_select.TabIndex = 5;
@@ -806,7 +812,7 @@
             // groupBox_chipset_select
             // 
             this.groupBox_chipset_select.Controls.Add(this.comboBox_select_chipset);
-            this.groupBox_chipset_select.Location = new System.Drawing.Point(6, 6);
+            this.groupBox_chipset_select.Location = new System.Drawing.Point(6, 19);
             this.groupBox_chipset_select.Name = "groupBox_chipset_select";
             this.groupBox_chipset_select.Size = new System.Drawing.Size(140, 47);
             this.groupBox_chipset_select.TabIndex = 4;
@@ -824,12 +830,13 @@
             // 
             // btn_add_model
             // 
-            this.btn_add_model.Location = new System.Drawing.Point(483, 342);
+            this.btn_add_model.Location = new System.Drawing.Point(192, 330);
             this.btn_add_model.Name = "btn_add_model";
             this.btn_add_model.Size = new System.Drawing.Size(75, 23);
             this.btn_add_model.TabIndex = 0;
             this.btn_add_model.Text = "Add Model";
             this.btn_add_model.UseVisualStyleBackColor = true;
+            this.btn_add_model.Click += new System.EventHandler(this.btn_add_model_Click);
             // 
             // tabPage_admin_vendor
             // 
@@ -840,7 +847,7 @@
             this.tabPage_admin_vendor.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_admin_vendor.Size = new System.Drawing.Size(564, 371);
             this.tabPage_admin_vendor.TabIndex = 2;
-            this.tabPage_admin_vendor.Text = "Insert Vendor";
+            this.tabPage_admin_vendor.Text = "Vendor";
             this.tabPage_admin_vendor.UseVisualStyleBackColor = true;
             // 
             // groupBox_edit_existing
@@ -1005,6 +1012,60 @@
             // 
             this.errorProvider_admin_model_validator.ContainerControl = this;
             // 
+            // btn_delete_model
+            // 
+            this.btn_delete_model.Location = new System.Drawing.Point(195, 330);
+            this.btn_delete_model.Name = "btn_delete_model";
+            this.btn_delete_model.Size = new System.Drawing.Size(75, 23);
+            this.btn_delete_model.TabIndex = 8;
+            this.btn_delete_model.Text = "Remove Model";
+            this.btn_delete_model.UseVisualStyleBackColor = true;
+            this.btn_delete_model.Click += new System.EventHandler(this.btn_delete_model_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.comboBox_admin_model_delete);
+            this.groupBox2.Location = new System.Drawing.Point(6, 19);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(264, 47);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Model Select";
+            // 
+            // comboBox_admin_model_delete
+            // 
+            this.comboBox_admin_model_delete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_admin_model_delete.FormattingEnabled = true;
+            this.comboBox_admin_model_delete.Location = new System.Drawing.Point(6, 19);
+            this.comboBox_admin_model_delete.Name = "comboBox_admin_model_delete";
+            this.comboBox_admin_model_delete.Size = new System.Drawing.Size(252, 21);
+            this.comboBox_admin_model_delete.TabIndex = 1;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.groupBox_chipset_select);
+            this.groupBox3.Controls.Add(this.groupBox_vendor_select);
+            this.groupBox3.Controls.Add(this.groupBox_model_name);
+            this.groupBox3.Controls.Add(this.btn_add_model);
+            this.groupBox3.Controls.Add(this.groupBox_model_bios_url);
+            this.groupBox3.Location = new System.Drawing.Point(3, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(273, 359);
+            this.groupBox3.TabIndex = 9;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Add Model";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.groupBox2);
+            this.groupBox4.Controls.Add(this.btn_delete_model);
+            this.groupBox4.Location = new System.Drawing.Point(282, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(276, 359);
+            this.groupBox4.TabIndex = 10;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Delete";
+            // 
             // BIOSUP_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1069,6 +1130,9 @@
             this.groupBox_add_shipset.ResumeLayout(false);
             this.groupBox_add_shipset.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1130,7 +1194,7 @@
         private System.Windows.Forms.GroupBox groupBox_chipset_select;
         private System.Windows.Forms.GroupBox groupBox_model_bios_url;
         private System.Windows.Forms.GroupBox groupBox_model_name;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_admin_model_sku;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -1160,6 +1224,11 @@
         private System.Windows.Forms.ComboBox comboBox_select_chipset_to_remove;
         private System.Windows.Forms.Button button_remvoe_chipset;
         private System.Windows.Forms.GroupBox groupBox_add_shipset;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox comboBox_admin_model_delete;
+        private System.Windows.Forms.Button btn_delete_model;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
 
