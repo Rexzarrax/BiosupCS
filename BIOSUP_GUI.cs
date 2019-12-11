@@ -476,16 +476,68 @@ namespace BiosupCS
 
         private void comboBox_admin_url_vendor_SelectedIndexChanged(object sender, EventArgs e)
         {
+            String str_vendor = comboBox_admin_url_vendor.Text;
+            comboBox_select_model.Items.Clear();
+            try
+            {
+                DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM dbo.vendor_data where vendor_name ='" + str_vendor + "';");
+
+                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data where vendor_id = " + Biosup_query_vendor.Rows[0]["vendor_id"]);
+                foreach (DataRow row in Biosup_query_model.Rows)
+                {
+                    Invoke(new Action(() => comboBox_select_model.Items.Add(row["model_name"])));
+                }
+            }
+            catch
+            {
+                textBox_admin_log.AppendText("No Model Found");
+            }
 
         }
 
         private void comboBox_admin_url_chipset_SelectedIndexChanged(object sender, EventArgs e)
         {
+            String str_vendor = comboBox_admin_url_vendor.Text;
+            String str_chipset = comboBox_admin_url_chipset.Text;
+            comboBox_select_model.Items.Clear();
+            try
+            {
+                DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM dbo.vendor_data where vendor_name ='" + str_vendor + "';");
+
+                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data where vendor_id = " + Biosup_query_vendor.Rows[0]["vendor_id"] + " AND chipset = '" + str_chipset + "';");
+                foreach (DataRow row in Biosup_query_model.Rows)
+                {
+                    Invoke(new Action(() => comboBox_select_model.Items.Add(row["model_name"])));
+                }
+            }
+            catch
+            {
+                textBox_admin_log.AppendText("No Model Found");
+            }
 
         }
 
         private void comboBox_select_model_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                String str_model = comboBox_select_model.Text;
+                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT model_id FROM dbo.motherboard_data where model_name = '" + str_model + "';");
+                DataTable Biosup_query_url = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_url where model_id = " + Biosup_query_model.Rows[0]["model_id"] + ";");
+                int i = 0;
+                foreach (DataRow row in Biosup_query_url.Rows)
+                {
+                    flowLayoutPanel_admin_url_edit.Controls.Add(new biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
+                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["textBox_str_admin_url_multi_add"].Text = row["url_str"].ToString();
+                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["comboBox_bridge_select"].Text = row["url_bridge"].ToString();
+                    //flowLayoutPanel_admin_url_edit.Controls[i].Controls["dateTimePicker1"].v = row["url_date_of_bios"];
+                    i++;
+                }
+            }
+            catch (Exception e_run)
+            {
+                textBox_admin_log.AppendText(e_run.ToString());
+            }
 
         }
 
@@ -513,10 +565,10 @@ namespace BiosupCS
             String str_vendor = comboBox_select_vendor.Text;
             String str_model_sku = textBox_admin_model_sku.Text;
             String str_bios_url = textBox_model_bios_url.Text;
-            DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM dbo.vendor_data where vendor_name ='" + str_vendor+"';");
+            DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM dbo.vendor_data where vendor_name ='" + str_vendor+"';");
 
 
-            String str_query = "INSERT INTO dbo.motherboard_data(model_id, chipset, model_name, vendor_id, model_page) VALUES(NEXT VALUE FOR seq_model_id, '"+str_chipset + "','"+ str_model_sku + "','" + Biosup_query_model.Rows[0]["vendor_id"] + "','" + str_bios_url + "');";
+            String str_query = "INSERT INTO dbo.motherboard_data(model_id, chipset, model_name, vendor_id, model_page) VALUES(NEXT VALUE FOR seq_model_id, '"+str_chipset + "','"+ str_model_sku + "','" + Biosup_query_vendor.Rows[0]["vendor_id"] + "','" + str_bios_url + "');";
             textBox_admin_log.AppendText(str_query);
             try
             {
