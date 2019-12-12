@@ -524,15 +524,11 @@ namespace BiosupCS
                 String str_model = comboBox_select_model.Text;
                 DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT model_id FROM dbo.motherboard_data where model_name = '" + str_model + "';");
                 DataTable Biosup_query_url = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_url where model_id = " + Biosup_query_model.Rows[0]["model_id"] + ";");
-                int i = 0;
-                foreach (DataRow row in Biosup_query_url.Rows)
-                {
-                    flowLayoutPanel_admin_url_edit.Controls.Add(new biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
-                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["textBox_str_admin_url_multi_add"].Text = row["url_str"].ToString();
-                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["comboBox_bridge_select"].Text = row["url_bridge"].ToString();
-                    //flowLayoutPanel_admin_url_edit.Controls[i].Controls["dateTimePicker1"].v = row["url_date_of_bios"];
-                    i++;
-                }
+                DataRow row = Biosup_query_model.Rows[0];
+                flowLayoutPanel_admin_url_edit.Controls.Add(new biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
+                flowLayoutPanel_admin_url_edit.Controls[0].Controls["textBox_str_admin_url_multi_add"].Text = row["url_str"].ToString();
+                flowLayoutPanel_admin_url_edit.Controls[0].Controls["comboBox_bridge_select"].Text = row["url_bridge"].ToString();
+                // flowLayoutPanel_admin_url_edit.Controls[i].Controls["dateTimePicker1"] = row["url_date_of_bios"];
             }
             catch (Exception e_run)
             {
