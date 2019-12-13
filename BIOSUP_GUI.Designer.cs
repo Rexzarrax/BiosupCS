@@ -75,7 +75,6 @@
             this.tabPage_admin_url_urls_add = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel_add_url_str = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPage_admin_url_urls_edit = new System.Windows.Forms.TabPage();
-            this.btn_admin_url_add_url = new System.Windows.Forms.Button();
             this.groupBox_select_model = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -126,6 +125,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel_admin_url_edit = new System.Windows.Forms.FlowLayoutPanel();
+            this.btn_admin_url_add_url = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -569,7 +570,6 @@
             // tabPage_admin_url
             // 
             this.tabPage_admin_url.Controls.Add(this.groupBox_admin_url_contain_url);
-            this.tabPage_admin_url.Controls.Add(this.btn_admin_url_add_url);
             this.tabPage_admin_url.Controls.Add(this.groupBox_select_model);
             this.tabPage_admin_url.Controls.Add(this.btn_add_url);
             this.tabPage_admin_url.Location = new System.Drawing.Point(4, 22);
@@ -585,7 +585,7 @@
             this.groupBox_admin_url_contain_url.Controls.Add(this.tabControl1);
             this.groupBox_admin_url_contain_url.Location = new System.Drawing.Point(6, 112);
             this.groupBox_admin_url_contain_url.Name = "groupBox_admin_url_contain_url";
-            this.groupBox_admin_url_contain_url.Size = new System.Drawing.Size(552, 224);
+            this.groupBox_admin_url_contain_url.Size = new System.Drawing.Size(552, 253);
             this.groupBox_admin_url_contain_url.TabIndex = 7;
             this.groupBox_admin_url_contain_url.TabStop = false;
             this.groupBox_admin_url_contain_url.Text = "URL\'s";
@@ -594,19 +594,20 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage_admin_url_urls_add);
             this.tabControl1.Controls.Add(this.tabPage_admin_url_urls_edit);
-            this.tabControl1.Location = new System.Drawing.Point(10, 20);
+            this.tabControl1.Location = new System.Drawing.Point(6, 20);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(536, 198);
+            this.tabControl1.Size = new System.Drawing.Size(546, 227);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage_admin_url_urls_add
             // 
+            this.tabPage_admin_url_urls_add.Controls.Add(this.btn_admin_url_add_url);
             this.tabPage_admin_url_urls_add.Controls.Add(this.flowLayoutPanel_add_url_str);
             this.tabPage_admin_url_urls_add.Location = new System.Drawing.Point(4, 22);
             this.tabPage_admin_url_urls_add.Name = "tabPage_admin_url_urls_add";
             this.tabPage_admin_url_urls_add.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_admin_url_urls_add.Size = new System.Drawing.Size(528, 172);
+            this.tabPage_admin_url_urls_add.Size = new System.Drawing.Size(538, 201);
             this.tabPage_admin_url_urls_add.TabIndex = 0;
             this.tabPage_admin_url_urls_add.Text = "Add";
             this.tabPage_admin_url_urls_add.UseVisualStyleBackColor = true;
@@ -616,31 +617,22 @@
             this.flowLayoutPanel_add_url_str.AutoScroll = true;
             this.flowLayoutPanel_add_url_str.Location = new System.Drawing.Point(6, 6);
             this.flowLayoutPanel_add_url_str.Name = "flowLayoutPanel_add_url_str";
-            this.flowLayoutPanel_add_url_str.Size = new System.Drawing.Size(516, 160);
+            this.flowLayoutPanel_add_url_str.Size = new System.Drawing.Size(532, 160);
             this.flowLayoutPanel_add_url_str.TabIndex = 6;
             // 
             // tabPage_admin_url_urls_edit
             // 
+            this.tabPage_admin_url_urls_edit.Controls.Add(this.button2);
             this.tabPage_admin_url_urls_edit.Controls.Add(this.flowLayoutPanel_admin_url_edit);
             this.tabPage_admin_url_urls_edit.Controls.Add(this.comboBox1);
             this.tabPage_admin_url_urls_edit.Controls.Add(this.label1);
             this.tabPage_admin_url_urls_edit.Location = new System.Drawing.Point(4, 22);
             this.tabPage_admin_url_urls_edit.Name = "tabPage_admin_url_urls_edit";
             this.tabPage_admin_url_urls_edit.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_admin_url_urls_edit.Size = new System.Drawing.Size(528, 172);
+            this.tabPage_admin_url_urls_edit.Size = new System.Drawing.Size(528, 201);
             this.tabPage_admin_url_urls_edit.TabIndex = 1;
             this.tabPage_admin_url_urls_edit.Text = "Edit/Delete";
             this.tabPage_admin_url_urls_edit.UseVisualStyleBackColor = true;
-            // 
-            // btn_admin_url_add_url
-            // 
-            this.btn_admin_url_add_url.Location = new System.Drawing.Point(483, 342);
-            this.btn_admin_url_add_url.Name = "btn_admin_url_add_url";
-            this.btn_admin_url_add_url.Size = new System.Drawing.Size(75, 23);
-            this.btn_admin_url_add_url.TabIndex = 5;
-            this.btn_admin_url_add_url.Text = "Add/Save";
-            this.btn_admin_url_add_url.UseVisualStyleBackColor = true;
-            this.btn_admin_url_add_url.Click += new System.EventHandler(this.btn_admin_url_add_url_Click);
             // 
             // groupBox_select_model
             // 
@@ -1135,6 +1127,25 @@
             this.flowLayoutPanel_admin_url_edit.Size = new System.Drawing.Size(516, 136);
             this.flowLayoutPanel_admin_url_edit.TabIndex = 13;
             // 
+            // btn_admin_url_add_url
+            // 
+            this.btn_admin_url_add_url.Location = new System.Drawing.Point(447, 172);
+            this.btn_admin_url_add_url.Name = "btn_admin_url_add_url";
+            this.btn_admin_url_add_url.Size = new System.Drawing.Size(75, 23);
+            this.btn_admin_url_add_url.TabIndex = 7;
+            this.btn_admin_url_add_url.Text = "Add";
+            this.btn_admin_url_add_url.UseVisualStyleBackColor = true;
+            this.btn_admin_url_add_url.Click += new System.EventHandler(this.btn_admin_url_add_url_Click_1);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(438, 172);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 23);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "Save/Delete";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // BIOSUP_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1288,7 +1299,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btn_admin_url_add_url;
         private System.Windows.Forms.GroupBox groupBox_admin_url_contain_url;
         private System.Windows.Forms.GroupBox groupBox_what_to_get;
         private System.Windows.Forms.ComboBox comboBox_what_to_get;
@@ -1308,6 +1318,8 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_admin_url_edit;
+        private System.Windows.Forms.Button btn_admin_url_add_url;
+        private System.Windows.Forms.Button button2;
     }
 }
 

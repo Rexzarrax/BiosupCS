@@ -581,11 +581,6 @@ namespace BiosupCS
 
         }
 
-        private void btn_admin_url_add_url_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_delete_model_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("This action will delete all associated BIOS","",MessageBoxButtons.OKCancel);
@@ -604,6 +599,14 @@ namespace BiosupCS
                 {
                     textBox_admin_log.AppendText(e_run.ToString());
                 }
+            }
+        }
+
+        private void btn_admin_url_add_url_Click_1(object sender, EventArgs e)
+        {
+            foreach(biosup_multi_url_add url_control in flowLayoutPanel_add_url_str.Controls)
+            {
+                textBox_admin_log.AppendText(url_control.Controls["textBox_str_admin_url_multi_add"].Text);
             }
         }
     }
