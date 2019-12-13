@@ -122,8 +122,6 @@
             this.label_admin_chipset_name = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel_admin_url_edit = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_admin_url_add_url = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -624,12 +622,10 @@
             // 
             this.tabPage_admin_url_urls_edit.Controls.Add(this.button2);
             this.tabPage_admin_url_urls_edit.Controls.Add(this.flowLayoutPanel_admin_url_edit);
-            this.tabPage_admin_url_urls_edit.Controls.Add(this.comboBox1);
-            this.tabPage_admin_url_urls_edit.Controls.Add(this.label1);
             this.tabPage_admin_url_urls_edit.Location = new System.Drawing.Point(4, 22);
             this.tabPage_admin_url_urls_edit.Name = "tabPage_admin_url_urls_edit";
             this.tabPage_admin_url_urls_edit.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_admin_url_urls_edit.Size = new System.Drawing.Size(528, 201);
+            this.tabPage_admin_url_urls_edit.Size = new System.Drawing.Size(538, 201);
             this.tabPage_admin_url_urls_edit.TabIndex = 1;
             this.tabPage_admin_url_urls_edit.Text = "Edit/Delete";
             this.tabPage_admin_url_urls_edit.UseVisualStyleBackColor = true;
@@ -1101,31 +1097,14 @@
             // 
             this.errorProvider_admin_model_validator.ContainerControl = this;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Select Bios Version";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(110, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(239, 21);
-            this.comboBox1.TabIndex = 12;
-            // 
             // flowLayoutPanel_admin_url_edit
             // 
             this.flowLayoutPanel_admin_url_edit.AutoScroll = true;
-            this.flowLayoutPanel_admin_url_edit.Location = new System.Drawing.Point(6, 30);
+            this.flowLayoutPanel_admin_url_edit.Location = new System.Drawing.Point(6, 6);
             this.flowLayoutPanel_admin_url_edit.Name = "flowLayoutPanel_admin_url_edit";
-            this.flowLayoutPanel_admin_url_edit.Size = new System.Drawing.Size(516, 136);
+            this.flowLayoutPanel_admin_url_edit.Size = new System.Drawing.Size(516, 160);
             this.flowLayoutPanel_admin_url_edit.TabIndex = 13;
+            this.flowLayoutPanel_admin_url_edit.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel_admin_url_edit_Paint);
             // 
             // btn_admin_url_add_url
             // 
@@ -1193,7 +1172,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage_admin_url_urls_add.ResumeLayout(false);
             this.tabPage_admin_url_urls_edit.ResumeLayout(false);
-            this.tabPage_admin_url_urls_edit.PerformLayout();
             this.groupBox_select_model.ResumeLayout(false);
             this.groupBox_select_model.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_admin_url_url_to_add)).EndInit();
@@ -1315,8 +1293,6 @@
         private System.Windows.Forms.TabPage tabPage_admin_url_urls_add;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_add_url_str;
         private System.Windows.Forms.TabPage tabPage_admin_url_urls_edit;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_admin_url_edit;
         private System.Windows.Forms.Button btn_admin_url_add_url;
         private System.Windows.Forms.Button button2;

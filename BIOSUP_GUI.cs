@@ -524,10 +524,19 @@ namespace BiosupCS
                 String str_model = comboBox_select_model.Text;
                 DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT model_id FROM dbo.motherboard_data where model_name = '" + str_model + "';");
                 DataTable Biosup_query_url = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_url where model_id = " + Biosup_query_model.Rows[0]["model_id"] + ";");
-                DataRow row = Biosup_query_model.Rows[0];
-                flowLayoutPanel_admin_url_edit.Controls.Add(new biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
-                flowLayoutPanel_admin_url_edit.Controls[0].Controls["textBox_str_admin_url_multi_add"].Text = row["url_str"].ToString();
-                flowLayoutPanel_admin_url_edit.Controls[0].Controls["comboBox_bridge_select"].Text = row["url_bridge"].ToString();
+
+                int i = 0;
+                flowLayoutPanel_admin_url_edit.Controls.Clear();
+                foreach (DataRow row_url in Biosup_query_url.Rows)
+                {
+                    flowLayoutPanel_admin_url_edit.Controls.Add(new biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
+                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["textBox_str_admin_url_multi_add"].Text = row_url["url_str"].ToString();
+                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["dateTimePicker1"].Text = row_url["url_date_collected"].ToString();
+                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["textBox1"].Text = row_url["url_version"].ToString();
+                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["comboBox_bridge_select"].Text = row_url["url_bridge"].ToString();
+                    i++;
+                }
+
                 // flowLayoutPanel_admin_url_edit.Controls[i].Controls["dateTimePicker1"] = row["url_date_of_bios"];
             }
             catch (Exception e_run)
@@ -606,8 +615,16 @@ namespace BiosupCS
         {
             foreach(biosup_multi_url_add url_control in flowLayoutPanel_add_url_str.Controls)
             {
-                textBox_admin_log.AppendText(url_control.Controls["textBox_str_admin_url_multi_add"].Text);
+                textBox_admin_log.AppendText("\r\n" + url_control.Controls["textBox_str_admin_url_multi_add"].Text);
+                textBox_admin_log.AppendText("\r\n" + url_control.Controls["dateTimePicker1"].Text);
+                textBox_admin_log.AppendText("\r\n" + url_control.Controls["textBox1"].Text);
+                textBox_admin_log.AppendText("\r\n" + url_control.Controls["comboBox_bridge_select"].Text);
             }
+        }
+
+        private void flowLayoutPanel_admin_url_edit_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

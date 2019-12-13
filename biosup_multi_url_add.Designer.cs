@@ -36,19 +36,23 @@
             this.label_Date_of_bios = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox_str_admin_url_multi_add
             // 
-            this.textBox_str_admin_url_multi_add.Location = new System.Drawing.Point(3, 16);
+            this.textBox_str_admin_url_multi_add.Location = new System.Drawing.Point(35, 33);
             this.textBox_str_admin_url_multi_add.Name = "textBox_str_admin_url_multi_add";
-            this.textBox_str_admin_url_multi_add.Size = new System.Drawing.Size(397, 20);
+            this.textBox_str_admin_url_multi_add.Size = new System.Drawing.Size(353, 20);
             this.textBox_str_admin_url_multi_add.TabIndex = 0;
             // 
             // comboBox_bridge_select
             // 
             this.comboBox_bridge_select.FormattingEnabled = true;
-            this.comboBox_bridge_select.Location = new System.Drawing.Point(406, 16);
+            this.comboBox_bridge_select.Items.AddRange(new object[] {
+            "Y",
+            "N"});
+            this.comboBox_bridge_select.Location = new System.Drawing.Point(440, 32);
             this.comboBox_bridge_select.Name = "comboBox_bridge_select";
             this.comboBox_bridge_select.Size = new System.Drawing.Size(50, 21);
             this.comboBox_bridge_select.TabIndex = 1;
@@ -56,15 +60,15 @@
             // label_number_of_url_to_add
             // 
             this.label_number_of_url_to_add.AutoSize = true;
-            this.label_number_of_url_to_add.Location = new System.Drawing.Point(3, 0);
+            this.label_number_of_url_to_add.Location = new System.Drawing.Point(3, 36);
             this.label_number_of_url_to_add.Name = "label_number_of_url_to_add";
-            this.label_number_of_url_to_add.Size = new System.Drawing.Size(39, 13);
+            this.label_number_of_url_to_add.Size = new System.Drawing.Size(32, 13);
             this.label_number_of_url_to_add.TabIndex = 2;
-            this.label_number_of_url_to_add.Text = "URL #";
+            this.label_number_of_url_to_add.Text = "URL:";
             // 
             // btn_admin_url_remove_url
             // 
-            this.btn_admin_url_remove_url.Location = new System.Drawing.Point(463, 16);
+            this.btn_admin_url_remove_url.Location = new System.Drawing.Point(462, 3);
             this.btn_admin_url_remove_url.Name = "btn_admin_url_remove_url";
             this.btn_admin_url_remove_url.Size = new System.Drawing.Size(28, 20);
             this.btn_admin_url_remove_url.TabIndex = 3;
@@ -74,15 +78,16 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(109, 42);
+            this.dateTimePicker1.CustomFormat = "dd/mm/yyyy";
+            this.dateTimePicker1.Location = new System.Drawing.Point(113, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(179, 20);
             this.dateTimePicker1.TabIndex = 4;
             // 
             // label_Date_of_bios
             // 
             this.label_Date_of_bios.AutoSize = true;
-            this.label_Date_of_bios.Location = new System.Drawing.Point(3, 42);
+            this.label_Date_of_bios.Location = new System.Drawing.Point(7, 6);
             this.label_Date_of_bios.Name = "label_Date_of_bios";
             this.label_Date_of_bios.Size = new System.Drawing.Size(100, 13);
             this.label_Date_of_bios.TabIndex = 5;
@@ -90,7 +95,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(371, 42);
+            this.textBox1.Location = new System.Drawing.Point(356, 3);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 6;
@@ -98,16 +103,26 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(316, 43);
+            this.label1.Location = new System.Drawing.Point(298, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Bios Ver.";
+            this.label1.Text = "Bios Ver.:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(394, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Bridge:";
             // 
             // biosup_multi_url_add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label_Date_of_bios);
@@ -117,7 +132,7 @@
             this.Controls.Add(this.comboBox_bridge_select);
             this.Controls.Add(this.textBox_str_admin_url_multi_add);
             this.Name = "biosup_multi_url_add";
-            this.Size = new System.Drawing.Size(494, 67);
+            this.Size = new System.Drawing.Size(494, 62);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,5 +148,6 @@
         private System.Windows.Forms.Label label_Date_of_bios;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
