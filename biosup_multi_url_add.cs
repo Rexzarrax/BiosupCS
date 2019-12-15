@@ -20,6 +20,12 @@ namespace BiosupCS
         private void btn_admin_url_remove_url_Click(object sender, EventArgs e)
         {
             this.Dispose();
+            //create delete statements here
+        }
+
+        private void biosup_multi_url_add_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

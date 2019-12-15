@@ -49,7 +49,6 @@
             this.groupBox_what_to_get = new System.Windows.Forms.GroupBox();
             this.comboBox_what_to_get = new System.Windows.Forms.ComboBox();
             this.textBox_log_config = new System.Windows.Forms.TextBox();
-            this.btn_load_last = new System.Windows.Forms.Button();
             this.grpBox_vendor = new System.Windows.Forms.GroupBox();
             this.checkBox_all_vendors = new System.Windows.Forms.CheckBox();
             this.listbox_vendor = new System.Windows.Forms.CheckedListBox();
@@ -73,8 +72,11 @@
             this.groupBox_admin_url_contain_url = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_admin_url_urls_add = new System.Windows.Forms.TabPage();
+            this.btn_admin_url_add_url = new System.Windows.Forms.Button();
             this.flowLayoutPanel_add_url_str = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPage_admin_url_urls_edit = new System.Windows.Forms.TabPage();
+            this.button_admin_url_save_del = new System.Windows.Forms.Button();
+            this.flowLayoutPanel_admin_url_edit = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox_select_model = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -88,6 +90,10 @@
             this.btn_add_url = new System.Windows.Forms.Button();
             this.tabPage_admin_model = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label_admin_model = new System.Windows.Forms.Label();
+            this.button_save_model_url = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.textBox_admin_model_url = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBox_admin_model_delete = new System.Windows.Forms.ComboBox();
             this.btn_delete_model = new System.Windows.Forms.Button();
@@ -105,10 +111,11 @@
             this.textBox_model_bios_url = new System.Windows.Forms.TextBox();
             this.tabPage_admin_vendor = new System.Windows.Forms.TabPage();
             this.groupBox_edit_existing = new System.Windows.Forms.GroupBox();
-            this.btn_vendor_edit_cancel = new System.Windows.Forms.Button();
+            this.textBox_admin_vendor_name = new System.Windows.Forms.TextBox();
             this.btn_save_edits = new System.Windows.Forms.Button();
             this.comboBox_select_vendor_to_edit = new System.Windows.Forms.ComboBox();
             this.groupBox_add_vendor = new System.Windows.Forms.GroupBox();
+            this.textBox_admin_vendor_name_add = new System.Windows.Forms.TextBox();
             this.btn_add_vendor = new System.Windows.Forms.Button();
             this.tabPage_chipset_add = new System.Windows.Forms.TabPage();
             this.groupBox_remove_chipset = new System.Windows.Forms.GroupBox();
@@ -120,11 +127,27 @@
             this.textBox_admin_chipset_name = new System.Windows.Forms.TextBox();
             this.label_admin_chispset_vendor = new System.Windows.Forms.Label();
             this.label_admin_chipset_name = new System.Windows.Forms.Label();
+            this.tabPage_admin_scripts = new System.Windows.Forms.TabPage();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
-            this.flowLayoutPanel_admin_url_edit = new System.Windows.Forms.FlowLayoutPanel();
-            this.btn_admin_url_add_url = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.groupBox_admin_vendor_vendor_name = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.textBox_admin_vendor_sort_add = new System.Windows.Forms.TextBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.textBox_admin_vendor_sort_edit = new System.Windows.Forms.TextBox();
+            this.groupBox_admin_vendor_add_base = new System.Windows.Forms.GroupBox();
+            this.textBox_admin_vendor_base_add = new System.Windows.Forms.TextBox();
+            this.groupBox_admin_vendor_edit_base = new System.Windows.Forms.GroupBox();
+            this.textBox_admin_vendor_base_edit = new System.Windows.Forms.TextBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.textBox_admin_vendor_addon_add = new System.Windows.Forms.TextBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.textBox_admin_vendor_addon_edit = new System.Windows.Forms.TextBox();
+            this.button_add_vendor = new System.Windows.Forms.Button();
+            this.button_get_models = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button_admin_vendor_del = new System.Windows.Forms.Button();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -151,6 +174,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_admin_url_url_to_add)).BeginInit();
             this.tabPage_admin_model.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox_chipset_select.SuspendLayout();
@@ -164,7 +188,16 @@
             this.tabPage_chipset_add.SuspendLayout();
             this.groupBox_remove_chipset.SuspendLayout();
             this.groupBox_add_shipset.SuspendLayout();
+            this.tabPage_admin_scripts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).BeginInit();
+            this.groupBox_admin_vendor_vendor_name.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox_admin_vendor_add_base.SuspendLayout();
+            this.groupBox_admin_vendor_edit_base.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip_err_or_cwd
@@ -186,6 +219,7 @@
             // 
             // tabPage_stats
             // 
+            this.tabPage_stats.Controls.Add(this.label1);
             this.tabPage_stats.Controls.Add(this.button1);
             this.tabPage_stats.Location = new System.Drawing.Point(4, 22);
             this.tabPage_stats.Name = "tabPage_stats";
@@ -315,7 +349,6 @@
             // 
             this.tabPage_config.Controls.Add(this.groupBox_what_to_get);
             this.tabPage_config.Controls.Add(this.textBox_log_config);
-            this.tabPage_config.Controls.Add(this.btn_load_last);
             this.tabPage_config.Controls.Add(this.grpBox_vendor);
             this.tabPage_config.Controls.Add(this.grpBox_Chipsets);
             this.tabPage_config.Controls.Add(this.btn_select_all);
@@ -358,16 +391,6 @@
             this.textBox_log_config.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_log_config.Size = new System.Drawing.Size(363, 78);
             this.textBox_log_config.TabIndex = 11;
-            // 
-            // btn_load_last
-            // 
-            this.btn_load_last.Location = new System.Drawing.Point(6, 482);
-            this.btn_load_last.Name = "btn_load_last";
-            this.btn_load_last.Size = new System.Drawing.Size(75, 23);
-            this.btn_load_last.TabIndex = 10;
-            this.btn_load_last.Text = "Load Last";
-            this.btn_load_last.UseVisualStyleBackColor = true;
-            this.btn_load_last.Click += new System.EventHandler(this.btn_load_last_Click);
             // 
             // grpBox_vendor
             // 
@@ -492,7 +515,7 @@
             // 
             // btn_clear_config
             // 
-            this.btn_clear_config.Location = new System.Drawing.Point(135, 482);
+            this.btn_clear_config.Location = new System.Drawing.Point(3, 482);
             this.btn_clear_config.Name = "btn_clear_config";
             this.btn_clear_config.Size = new System.Drawing.Size(75, 23);
             this.btn_clear_config.TabIndex = 0;
@@ -550,6 +573,7 @@
             this.textBox_admin_log.Multiline = true;
             this.textBox_admin_log.Name = "textBox_admin_log";
             this.textBox_admin_log.ReadOnly = true;
+            this.textBox_admin_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_admin_log.Size = new System.Drawing.Size(572, 108);
             this.textBox_admin_log.TabIndex = 1;
             // 
@@ -559,6 +583,7 @@
             this.tabControl_admin.Controls.Add(this.tabPage_admin_model);
             this.tabControl_admin.Controls.Add(this.tabPage_admin_vendor);
             this.tabControl_admin.Controls.Add(this.tabPage_chipset_add);
+            this.tabControl_admin.Controls.Add(this.tabPage_admin_scripts);
             this.tabControl_admin.Location = new System.Drawing.Point(4, 4);
             this.tabControl_admin.Name = "tabControl_admin";
             this.tabControl_admin.SelectedIndex = 0;
@@ -610,6 +635,16 @@
             this.tabPage_admin_url_urls_add.Text = "Add";
             this.tabPage_admin_url_urls_add.UseVisualStyleBackColor = true;
             // 
+            // btn_admin_url_add_url
+            // 
+            this.btn_admin_url_add_url.Location = new System.Drawing.Point(447, 172);
+            this.btn_admin_url_add_url.Name = "btn_admin_url_add_url";
+            this.btn_admin_url_add_url.Size = new System.Drawing.Size(75, 23);
+            this.btn_admin_url_add_url.TabIndex = 7;
+            this.btn_admin_url_add_url.Text = "Add";
+            this.btn_admin_url_add_url.UseVisualStyleBackColor = true;
+            this.btn_admin_url_add_url.Click += new System.EventHandler(this.btn_admin_url_add_url_Click_1);
+            // 
             // flowLayoutPanel_add_url_str
             // 
             this.flowLayoutPanel_add_url_str.AutoScroll = true;
@@ -620,7 +655,7 @@
             // 
             // tabPage_admin_url_urls_edit
             // 
-            this.tabPage_admin_url_urls_edit.Controls.Add(this.button2);
+            this.tabPage_admin_url_urls_edit.Controls.Add(this.button_admin_url_save_del);
             this.tabPage_admin_url_urls_edit.Controls.Add(this.flowLayoutPanel_admin_url_edit);
             this.tabPage_admin_url_urls_edit.Location = new System.Drawing.Point(4, 22);
             this.tabPage_admin_url_urls_edit.Name = "tabPage_admin_url_urls_edit";
@@ -629,6 +664,25 @@
             this.tabPage_admin_url_urls_edit.TabIndex = 1;
             this.tabPage_admin_url_urls_edit.Text = "Edit/Delete";
             this.tabPage_admin_url_urls_edit.UseVisualStyleBackColor = true;
+            // 
+            // button_admin_url_save_del
+            // 
+            this.button_admin_url_save_del.Location = new System.Drawing.Point(438, 172);
+            this.button_admin_url_save_del.Name = "button_admin_url_save_del";
+            this.button_admin_url_save_del.Size = new System.Drawing.Size(84, 23);
+            this.button_admin_url_save_del.TabIndex = 14;
+            this.button_admin_url_save_del.Text = "Save/Delete";
+            this.button_admin_url_save_del.UseVisualStyleBackColor = true;
+            this.button_admin_url_save_del.Click += new System.EventHandler(this.button_admin_url_save_del_Click);
+            // 
+            // flowLayoutPanel_admin_url_edit
+            // 
+            this.flowLayoutPanel_admin_url_edit.AutoScroll = true;
+            this.flowLayoutPanel_admin_url_edit.Location = new System.Drawing.Point(6, 6);
+            this.flowLayoutPanel_admin_url_edit.Name = "flowLayoutPanel_admin_url_edit";
+            this.flowLayoutPanel_admin_url_edit.Size = new System.Drawing.Size(516, 160);
+            this.flowLayoutPanel_admin_url_edit.TabIndex = 13;
+            this.flowLayoutPanel_admin_url_edit.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel_admin_url_edit_Paint);
             // 
             // groupBox_select_model
             // 
@@ -769,6 +823,9 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label_admin_model);
+            this.groupBox4.Controls.Add(this.button_save_model_url);
+            this.groupBox4.Controls.Add(this.groupBox5);
             this.groupBox4.Controls.Add(this.groupBox2);
             this.groupBox4.Controls.Add(this.btn_delete_model);
             this.groupBox4.Location = new System.Drawing.Point(282, 6);
@@ -777,6 +834,43 @@
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Delete";
+            // 
+            // label_admin_model
+            // 
+            this.label_admin_model.AutoSize = true;
+            this.label_admin_model.Location = new System.Drawing.Point(12, 255);
+            this.label_admin_model.Name = "label_admin_model";
+            this.label_admin_model.Size = new System.Drawing.Size(41, 13);
+            this.label_admin_model.TabIndex = 11;
+            this.label_admin_model.Text = "[model]";
+            // 
+            // button_save_model_url
+            // 
+            this.button_save_model_url.Location = new System.Drawing.Point(195, 330);
+            this.button_save_model_url.Name = "button_save_model_url";
+            this.button_save_model_url.Size = new System.Drawing.Size(75, 23);
+            this.button_save_model_url.TabIndex = 10;
+            this.button_save_model_url.Text = "Save";
+            this.button_save_model_url.UseVisualStyleBackColor = true;
+            this.button_save_model_url.Click += new System.EventHandler(this.button_save_model_url_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.textBox_admin_model_url);
+            this.groupBox5.Location = new System.Drawing.Point(6, 274);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(266, 50);
+            this.groupBox5.TabIndex = 9;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "URL of model\'s BIOS page";
+            // 
+            // textBox_admin_model_url
+            // 
+            this.textBox_admin_model_url.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.textBox_admin_model_url.Location = new System.Drawing.Point(6, 19);
+            this.textBox_admin_model_url.Name = "textBox_admin_model_url";
+            this.textBox_admin_model_url.Size = new System.Drawing.Size(258, 20);
+            this.textBox_admin_model_url.TabIndex = 3;
             // 
             // groupBox2
             // 
@@ -795,11 +889,13 @@
             this.comboBox_admin_model_delete.Location = new System.Drawing.Point(6, 19);
             this.comboBox_admin_model_delete.Name = "comboBox_admin_model_delete";
             this.comboBox_admin_model_delete.Size = new System.Drawing.Size(252, 21);
+            this.comboBox_admin_model_delete.Sorted = true;
             this.comboBox_admin_model_delete.TabIndex = 1;
+            this.comboBox_admin_model_delete.SelectedIndexChanged += new System.EventHandler(this.comboBox_admin_model_delete_SelectedIndexChanged);
             // 
             // btn_delete_model
             // 
-            this.btn_delete_model.Location = new System.Drawing.Point(195, 330);
+            this.btn_delete_model.Location = new System.Drawing.Point(195, 72);
             this.btn_delete_model.Name = "btn_delete_model";
             this.btn_delete_model.Size = new System.Drawing.Size(75, 23);
             this.btn_delete_model.TabIndex = 8;
@@ -838,6 +934,7 @@
             this.comboBox_select_chipset.Location = new System.Drawing.Point(6, 19);
             this.comboBox_select_chipset.Name = "comboBox_select_chipset";
             this.comboBox_select_chipset.Size = new System.Drawing.Size(128, 21);
+            this.comboBox_select_chipset.Sorted = true;
             this.comboBox_select_chipset.TabIndex = 1;
             // 
             // groupBox_vendor_select
@@ -937,7 +1034,11 @@
             // 
             // groupBox_edit_existing
             // 
-            this.groupBox_edit_existing.Controls.Add(this.btn_vendor_edit_cancel);
+            this.groupBox_edit_existing.Controls.Add(this.button_admin_vendor_del);
+            this.groupBox_edit_existing.Controls.Add(this.groupBox10);
+            this.groupBox_edit_existing.Controls.Add(this.groupBox_admin_vendor_edit_base);
+            this.groupBox_edit_existing.Controls.Add(this.groupBox8);
+            this.groupBox_edit_existing.Controls.Add(this.groupBox6);
             this.groupBox_edit_existing.Controls.Add(this.btn_save_edits);
             this.groupBox_edit_existing.Controls.Add(this.comboBox_select_vendor_to_edit);
             this.groupBox_edit_existing.Location = new System.Drawing.Point(7, 169);
@@ -947,14 +1048,12 @@
             this.groupBox_edit_existing.TabStop = false;
             this.groupBox_edit_existing.Text = "Edit Exisitng Vendor";
             // 
-            // btn_vendor_edit_cancel
+            // textBox_admin_vendor_name
             // 
-            this.btn_vendor_edit_cancel.Location = new System.Drawing.Point(359, 172);
-            this.btn_vendor_edit_cancel.Name = "btn_vendor_edit_cancel";
-            this.btn_vendor_edit_cancel.Size = new System.Drawing.Size(97, 23);
-            this.btn_vendor_edit_cancel.TabIndex = 2;
-            this.btn_vendor_edit_cancel.Text = "Discard Changes";
-            this.btn_vendor_edit_cancel.UseVisualStyleBackColor = true;
+            this.textBox_admin_vendor_name.Location = new System.Drawing.Point(6, 19);
+            this.textBox_admin_vendor_name.Name = "textBox_admin_vendor_name";
+            this.textBox_admin_vendor_name.Size = new System.Drawing.Size(147, 20);
+            this.textBox_admin_vendor_name.TabIndex = 3;
             // 
             // btn_save_edits
             // 
@@ -964,6 +1063,7 @@
             this.btn_save_edits.TabIndex = 1;
             this.btn_save_edits.Text = "Save Vendor";
             this.btn_save_edits.UseVisualStyleBackColor = true;
+            this.btn_save_edits.Click += new System.EventHandler(this.btn_save_edits_Click);
             // 
             // comboBox_select_vendor_to_edit
             // 
@@ -973,9 +1073,15 @@
             this.comboBox_select_vendor_to_edit.Name = "comboBox_select_vendor_to_edit";
             this.comboBox_select_vendor_to_edit.Size = new System.Drawing.Size(121, 21);
             this.comboBox_select_vendor_to_edit.TabIndex = 1;
+            this.comboBox_select_vendor_to_edit.SelectedIndexChanged += new System.EventHandler(this.comboBox_select_vendor_to_edit_SelectedIndexChanged);
             // 
             // groupBox_add_vendor
             // 
+            this.groupBox_add_vendor.Controls.Add(this.button_add_vendor);
+            this.groupBox_add_vendor.Controls.Add(this.groupBox9);
+            this.groupBox_add_vendor.Controls.Add(this.groupBox_admin_vendor_add_base);
+            this.groupBox_add_vendor.Controls.Add(this.groupBox7);
+            this.groupBox_add_vendor.Controls.Add(this.groupBox_admin_vendor_vendor_name);
             this.groupBox_add_vendor.Controls.Add(this.btn_add_vendor);
             this.groupBox_add_vendor.Location = new System.Drawing.Point(7, 7);
             this.groupBox_add_vendor.Name = "groupBox_add_vendor";
@@ -983,6 +1089,13 @@
             this.groupBox_add_vendor.TabIndex = 2;
             this.groupBox_add_vendor.TabStop = false;
             this.groupBox_add_vendor.Text = "Add Vendor";
+            // 
+            // textBox_admin_vendor_name_add
+            // 
+            this.textBox_admin_vendor_name_add.Location = new System.Drawing.Point(6, 19);
+            this.textBox_admin_vendor_name_add.Name = "textBox_admin_vendor_name_add";
+            this.textBox_admin_vendor_name_add.Size = new System.Drawing.Size(147, 20);
+            this.textBox_admin_vendor_name_add.TabIndex = 4;
             // 
             // btn_add_vendor
             // 
@@ -1093,37 +1206,181 @@
             this.label_admin_chipset_name.TabIndex = 3;
             this.label_admin_chipset_name.Text = "Chipset Name";
             // 
+            // tabPage_admin_scripts
+            // 
+            this.tabPage_admin_scripts.Controls.Add(this.button_get_models);
+            this.tabPage_admin_scripts.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_admin_scripts.Name = "tabPage_admin_scripts";
+            this.tabPage_admin_scripts.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_admin_scripts.Size = new System.Drawing.Size(564, 371);
+            this.tabPage_admin_scripts.TabIndex = 4;
+            this.tabPage_admin_scripts.Text = "Scripts";
+            this.tabPage_admin_scripts.UseVisualStyleBackColor = true;
+            // 
             // errorProvider_admin_model_validator
             // 
             this.errorProvider_admin_model_validator.ContainerControl = this;
             // 
-            // flowLayoutPanel_admin_url_edit
+            // groupBox_admin_vendor_vendor_name
             // 
-            this.flowLayoutPanel_admin_url_edit.AutoScroll = true;
-            this.flowLayoutPanel_admin_url_edit.Location = new System.Drawing.Point(6, 6);
-            this.flowLayoutPanel_admin_url_edit.Name = "flowLayoutPanel_admin_url_edit";
-            this.flowLayoutPanel_admin_url_edit.Size = new System.Drawing.Size(516, 160);
-            this.flowLayoutPanel_admin_url_edit.TabIndex = 13;
-            this.flowLayoutPanel_admin_url_edit.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel_admin_url_edit_Paint);
+            this.groupBox_admin_vendor_vendor_name.Controls.Add(this.textBox_admin_vendor_name_add);
+            this.groupBox_admin_vendor_vendor_name.Location = new System.Drawing.Point(6, 19);
+            this.groupBox_admin_vendor_vendor_name.Name = "groupBox_admin_vendor_vendor_name";
+            this.groupBox_admin_vendor_vendor_name.Size = new System.Drawing.Size(161, 48);
+            this.groupBox_admin_vendor_vendor_name.TabIndex = 5;
+            this.groupBox_admin_vendor_vendor_name.TabStop = false;
+            this.groupBox_admin_vendor_vendor_name.Text = "Name";
             // 
-            // btn_admin_url_add_url
+            // groupBox6
             // 
-            this.btn_admin_url_add_url.Location = new System.Drawing.Point(447, 172);
-            this.btn_admin_url_add_url.Name = "btn_admin_url_add_url";
-            this.btn_admin_url_add_url.Size = new System.Drawing.Size(75, 23);
-            this.btn_admin_url_add_url.TabIndex = 7;
-            this.btn_admin_url_add_url.Text = "Add";
-            this.btn_admin_url_add_url.UseVisualStyleBackColor = true;
-            this.btn_admin_url_add_url.Click += new System.EventHandler(this.btn_admin_url_add_url_Click_1);
+            this.groupBox6.Controls.Add(this.textBox_admin_vendor_name);
+            this.groupBox6.Location = new System.Drawing.Point(6, 46);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(161, 48);
+            this.groupBox6.TabIndex = 6;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Name";
             // 
-            // button2
+            // groupBox7
             // 
-            this.button2.Location = new System.Drawing.Point(438, 172);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 23);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Save/Delete";
-            this.button2.UseVisualStyleBackColor = true;
+            this.groupBox7.Controls.Add(this.textBox_admin_vendor_sort_add);
+            this.groupBox7.Location = new System.Drawing.Point(6, 73);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(215, 48);
+            this.groupBox7.TabIndex = 6;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Sort";
+            // 
+            // textBox_admin_vendor_sort_add
+            // 
+            this.textBox_admin_vendor_sort_add.Location = new System.Drawing.Point(6, 19);
+            this.textBox_admin_vendor_sort_add.Name = "textBox_admin_vendor_sort_add";
+            this.textBox_admin_vendor_sort_add.Size = new System.Drawing.Size(203, 20);
+            this.textBox_admin_vendor_sort_add.TabIndex = 4;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.textBox_admin_vendor_sort_edit);
+            this.groupBox8.Location = new System.Drawing.Point(6, 100);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(215, 48);
+            this.groupBox8.TabIndex = 7;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Sort";
+            // 
+            // textBox_admin_vendor_sort_edit
+            // 
+            this.textBox_admin_vendor_sort_edit.Location = new System.Drawing.Point(6, 19);
+            this.textBox_admin_vendor_sort_edit.Name = "textBox_admin_vendor_sort_edit";
+            this.textBox_admin_vendor_sort_edit.Size = new System.Drawing.Size(203, 20);
+            this.textBox_admin_vendor_sort_edit.TabIndex = 4;
+            // 
+            // groupBox_admin_vendor_add_base
+            // 
+            this.groupBox_admin_vendor_add_base.Controls.Add(this.textBox_admin_vendor_base_add);
+            this.groupBox_admin_vendor_add_base.Location = new System.Drawing.Point(184, 19);
+            this.groupBox_admin_vendor_add_base.Name = "groupBox_admin_vendor_add_base";
+            this.groupBox_admin_vendor_add_base.Size = new System.Drawing.Size(215, 48);
+            this.groupBox_admin_vendor_add_base.TabIndex = 7;
+            this.groupBox_admin_vendor_add_base.TabStop = false;
+            this.groupBox_admin_vendor_add_base.Text = "Base";
+            // 
+            // textBox_admin_vendor_base_add
+            // 
+            this.textBox_admin_vendor_base_add.Location = new System.Drawing.Point(6, 19);
+            this.textBox_admin_vendor_base_add.Name = "textBox_admin_vendor_base_add";
+            this.textBox_admin_vendor_base_add.Size = new System.Drawing.Size(203, 20);
+            this.textBox_admin_vendor_base_add.TabIndex = 4;
+            // 
+            // groupBox_admin_vendor_edit_base
+            // 
+            this.groupBox_admin_vendor_edit_base.Controls.Add(this.textBox_admin_vendor_base_edit);
+            this.groupBox_admin_vendor_edit_base.Location = new System.Drawing.Point(184, 46);
+            this.groupBox_admin_vendor_edit_base.Name = "groupBox_admin_vendor_edit_base";
+            this.groupBox_admin_vendor_edit_base.Size = new System.Drawing.Size(215, 48);
+            this.groupBox_admin_vendor_edit_base.TabIndex = 8;
+            this.groupBox_admin_vendor_edit_base.TabStop = false;
+            this.groupBox_admin_vendor_edit_base.Text = "Base";
+            // 
+            // textBox_admin_vendor_base_edit
+            // 
+            this.textBox_admin_vendor_base_edit.Location = new System.Drawing.Point(6, 19);
+            this.textBox_admin_vendor_base_edit.Name = "textBox_admin_vendor_base_edit";
+            this.textBox_admin_vendor_base_edit.Size = new System.Drawing.Size(203, 20);
+            this.textBox_admin_vendor_base_edit.TabIndex = 4;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.textBox_admin_vendor_addon_add);
+            this.groupBox9.Location = new System.Drawing.Point(241, 73);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(215, 48);
+            this.groupBox9.TabIndex = 8;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Addon";
+            // 
+            // textBox_admin_vendor_addon_add
+            // 
+            this.textBox_admin_vendor_addon_add.Location = new System.Drawing.Point(6, 19);
+            this.textBox_admin_vendor_addon_add.Name = "textBox_admin_vendor_addon_add";
+            this.textBox_admin_vendor_addon_add.Size = new System.Drawing.Size(203, 20);
+            this.textBox_admin_vendor_addon_add.TabIndex = 4;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.textBox_admin_vendor_addon_edit);
+            this.groupBox10.Location = new System.Drawing.Point(241, 100);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(215, 48);
+            this.groupBox10.TabIndex = 9;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Addon";
+            // 
+            // textBox_admin_vendor_addon_edit
+            // 
+            this.textBox_admin_vendor_addon_edit.Location = new System.Drawing.Point(6, 19);
+            this.textBox_admin_vendor_addon_edit.Name = "textBox_admin_vendor_addon_edit";
+            this.textBox_admin_vendor_addon_edit.Size = new System.Drawing.Size(203, 20);
+            this.textBox_admin_vendor_addon_edit.TabIndex = 4;
+            // 
+            // button_add_vendor
+            // 
+            this.button_add_vendor.Location = new System.Drawing.Point(462, 127);
+            this.button_add_vendor.Name = "button_add_vendor";
+            this.button_add_vendor.Size = new System.Drawing.Size(83, 23);
+            this.button_add_vendor.TabIndex = 10;
+            this.button_add_vendor.Text = "Add Vendor";
+            this.button_add_vendor.UseVisualStyleBackColor = true;
+            this.button_add_vendor.Click += new System.EventHandler(this.button_add_vendor_Click);
+            // 
+            // button_get_models
+            // 
+            this.button_get_models.Location = new System.Drawing.Point(19, 21);
+            this.button_get_models.Name = "button_get_models";
+            this.button_get_models.Size = new System.Drawing.Size(108, 23);
+            this.button_get_models.TabIndex = 0;
+            this.button_get_models.Text = "Mass Get Models";
+            this.button_get_models.UseVisualStyleBackColor = true;
+            this.button_get_models.Click += new System.EventHandler(this.button_get_models_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(270, 231);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "WIP";
+            // 
+            // button_admin_vendor_del
+            // 
+            this.button_admin_vendor_del.Location = new System.Drawing.Point(373, 172);
+            this.button_admin_vendor_del.Name = "button_admin_vendor_del";
+            this.button_admin_vendor_del.Size = new System.Drawing.Size(83, 23);
+            this.button_admin_vendor_del.TabIndex = 10;
+            this.button_admin_vendor_del.Text = "Delete Vendor";
+            this.button_admin_vendor_del.UseVisualStyleBackColor = true;
+            this.button_admin_vendor_del.Click += new System.EventHandler(this.button_admin_vendor_del_Click);
             // 
             // BIOSUP_GUI
             // 
@@ -1142,6 +1399,7 @@
             this.statusStrip_err_or_cwd.ResumeLayout(false);
             this.statusStrip_err_or_cwd.PerformLayout();
             this.tabPage_stats.ResumeLayout(false);
+            this.tabPage_stats.PerformLayout();
             this.tabPage_Current_Run.ResumeLayout(false);
             this.grpBox_log_history.ResumeLayout(false);
             this.grpBox_log_history.PerformLayout();
@@ -1177,6 +1435,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_admin_url_url_to_add)).EndInit();
             this.tabPage_admin_model.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox_chipset_select.ResumeLayout(false);
@@ -1194,7 +1455,24 @@
             this.groupBox_remove_chipset.ResumeLayout(false);
             this.groupBox_add_shipset.ResumeLayout(false);
             this.groupBox_add_shipset.PerformLayout();
+            this.tabPage_admin_scripts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).EndInit();
+            this.groupBox_admin_vendor_vendor_name.ResumeLayout(false);
+            this.groupBox_admin_vendor_vendor_name.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox_admin_vendor_add_base.ResumeLayout(false);
+            this.groupBox_admin_vendor_add_base.PerformLayout();
+            this.groupBox_admin_vendor_edit_base.ResumeLayout(false);
+            this.groupBox_admin_vendor_edit_base.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1218,7 +1496,6 @@
         private System.Windows.Forms.ProgressBar progressBar_overall_progress;
         private System.Windows.Forms.TabPage tabPage_config;
         private System.Windows.Forms.TextBox textBox_log_config;
-        private System.Windows.Forms.Button btn_load_last;
         private System.Windows.Forms.GroupBox grpBox_vendor;
         private System.Windows.Forms.CheckedListBox listbox_vendor;
         private System.Windows.Forms.GroupBox grpBox_Chipsets;
@@ -1261,7 +1538,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.GroupBox groupBox_edit_existing;
-        private System.Windows.Forms.Button btn_vendor_edit_cancel;
         private System.Windows.Forms.Button btn_save_edits;
         private System.Windows.Forms.GroupBox groupBox_add_vendor;
         private System.Windows.Forms.GroupBox groupBox_select_model;
@@ -1295,7 +1571,32 @@
         private System.Windows.Forms.TabPage tabPage_admin_url_urls_edit;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_admin_url_edit;
         private System.Windows.Forms.Button btn_admin_url_add_url;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_admin_url_save_del;
+        private System.Windows.Forms.Label label_admin_model;
+        private System.Windows.Forms.Button button_save_model_url;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox textBox_admin_model_url;
+        private System.Windows.Forms.TabPage tabPage_admin_scripts;
+        private System.Windows.Forms.TextBox textBox_admin_vendor_name;
+        private System.Windows.Forms.TextBox textBox_admin_vendor_name_add;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBox_admin_vendor_vendor_name;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.TextBox textBox_admin_vendor_addon_edit;
+        private System.Windows.Forms.GroupBox groupBox_admin_vendor_edit_base;
+        private System.Windows.Forms.TextBox textBox_admin_vendor_base_edit;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.TextBox textBox_admin_vendor_sort_edit;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.TextBox textBox_admin_vendor_addon_add;
+        private System.Windows.Forms.GroupBox groupBox_admin_vendor_add_base;
+        private System.Windows.Forms.TextBox textBox_admin_vendor_base_add;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TextBox textBox_admin_vendor_sort_add;
+        private System.Windows.Forms.Button button_add_vendor;
+        private System.Windows.Forms.Button button_get_models;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button_admin_vendor_del;
     }
 }
 

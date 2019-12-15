@@ -37,22 +37,24 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label_id = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox_str_admin_url_multi_add
             // 
             this.textBox_str_admin_url_multi_add.Location = new System.Drawing.Point(35, 33);
             this.textBox_str_admin_url_multi_add.Name = "textBox_str_admin_url_multi_add";
-            this.textBox_str_admin_url_multi_add.Size = new System.Drawing.Size(353, 20);
+            this.textBox_str_admin_url_multi_add.Size = new System.Drawing.Size(315, 20);
             this.textBox_str_admin_url_multi_add.TabIndex = 0;
             // 
             // comboBox_bridge_select
             // 
+            this.comboBox_bridge_select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_bridge_select.FormattingEnabled = true;
             this.comboBox_bridge_select.Items.AddRange(new object[] {
             "Y",
             "N"});
-            this.comboBox_bridge_select.Location = new System.Drawing.Point(440, 32);
+            this.comboBox_bridge_select.Location = new System.Drawing.Point(402, 33);
             this.comboBox_bridge_select.Name = "comboBox_bridge_select";
             this.comboBox_bridge_select.Size = new System.Drawing.Size(50, 21);
             this.comboBox_bridge_select.TabIndex = 1;
@@ -112,16 +114,25 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(394, 35);
+            this.label2.Location = new System.Drawing.Point(356, 36);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "Bridge:";
             // 
+            // label_id
+            // 
+            this.label_id.AutoSize = true;
+            this.label_id.Location = new System.Drawing.Point(459, 40);
+            this.label_id.Name = "label_id";
+            this.label_id.Size = new System.Drawing.Size(0, 13);
+            this.label_id.TabIndex = 9;
+            // 
             // biosup_multi_url_add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label_id);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
@@ -133,6 +144,7 @@
             this.Controls.Add(this.textBox_str_admin_url_multi_add);
             this.Name = "biosup_multi_url_add";
             this.Size = new System.Drawing.Size(494, 62);
+            this.Load += new System.EventHandler(this.biosup_multi_url_add_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,5 +161,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label_id;
     }
 }

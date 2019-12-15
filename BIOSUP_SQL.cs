@@ -43,11 +43,36 @@ namespace BiosupCS
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    return null;
+                    throw e;
                 }
             }
         }
-        public void BIOSUP_SQL_SET(String str_procedurename, List<SQL_Params> list_parameter)
+        public void BIOSUP_SQL_SET(String str_SQL)
+        {
+            using (connection = new SqlConnection(this.str_connection_string))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(str_SQL, connection);
+                    Console.WriteLine(str_SQL);
+                    cmd.CommandType = CommandType.Text;
+                    //SqlDataAdapter my_adapter = new SqlDataAdapter(cmd);
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                    connection.Close();
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw e;
+                }
+
+            }
+
+        }
+        /*public void BIOSUP_SQL_SET(String str_procedurename, List<SQL_Params> list_parameter)
         {
             using (connection = new SqlConnection(this.str_connection_string))
             using (var command = new SqlCommand(str_procedurename, connection)
@@ -67,12 +92,12 @@ namespace BiosupCS
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
+                    throw e;
                 }
 
             }
 
-        }
+        }*/
 
     }
     public class SQL_Params
