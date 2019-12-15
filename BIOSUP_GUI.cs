@@ -529,7 +529,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 String str_model = comboBox_select_model.Text;
                 DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT model_id FROM dbo.motherboard_data where model_name = '" + str_model + "';");
                 DataTable Biosup_query_url = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_url where model_id = " + Biosup_query_model.Rows[0]["model_id"] + ";");
-
+                label_admin_url_model.Text = str_model;
                 int i = 0;
                 flowLayoutPanel_admin_url_edit.Controls.Clear();
                 foreach (DataRow row_url in Biosup_query_url.Rows)
@@ -828,5 +828,12 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
         {
 
         }
+
+        private void button_admin_url_model_copy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(label_admin_url_model.Text);
+            textBox_admin_log.AppendText("\n\rCopied!");
+        }
+
     }
 }
