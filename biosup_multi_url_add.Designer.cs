@@ -58,7 +58,7 @@
             this.comboBox_bridge_select.Location = new System.Drawing.Point(402, 33);
             this.comboBox_bridge_select.Name = "comboBox_bridge_select";
             this.comboBox_bridge_select.Size = new System.Drawing.Size(50, 21);
-            this.comboBox_bridge_select.TabIndex = 1;
+            this.comboBox_bridge_select.SelectedItem = "N";
             // 
             // label_number_of_url_to_add
             // 
@@ -139,6 +139,7 @@
             this.checkBox_multi_del.TabIndex = 10;
             this.checkBox_multi_del.Text = "Del";
             this.checkBox_multi_del.UseVisualStyleBackColor = true;
+            this.checkBox_multi_del.CheckedChanged += new System.EventHandler(this.checkBox_multi_del_CheckedChanged);
             // 
             // Biosup_multi_url_add
             // 

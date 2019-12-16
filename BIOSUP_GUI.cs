@@ -606,8 +606,6 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 textBox_admin_log.AppendText("\r\n" + str_version);
                 textBox_admin_log.AppendText("\r\n" + str_bridge);
 
-                CultureInfo culture = new CultureInfo("en-US");
-
                 DateTime format_date = DateTime.Parse(str_date);
                 str_date = format_date.ToString("yyyy-MM-dd");
 
@@ -643,6 +641,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
         private void Button_admin_url_save_del_Click(object sender, EventArgs e)
         {
+            
             foreach (Biosup_multi_url_add url_control in flowLayoutPanel_admin_url_edit.Controls)
             {
                 String str_url = url_control.Controls["textBox_str_admin_url_multi_add"].Text;
@@ -650,15 +649,25 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 String str_version = url_control.Controls["textBox1"].Text;
                 String str_bridge = url_control.Controls["comboBox_bridge_select"].Text;
                 String str_id = url_control.Controls["label_id"].Text;
+                if (url_control.Controls["btn_admin_url_remove_url"].Enabled)
+                {
+                    textBox_admin_log.AppendText("\r\n" + str_url);
+                    textBox_admin_log.AppendText("\r\n" + str_date);
+                    textBox_admin_log.AppendText("\r\n" + str_version);
+                    textBox_admin_log.AppendText("\r\n" + str_bridge);
+                    DateTime format_date = DateTime.Parse(str_date);
+                    str_date = format_date.ToString("yyyy-MM-dd");
 
-                textBox_admin_log.AppendText("\r\n" + str_url);
-                textBox_admin_log.AppendText("\r\n" + str_date);
-                textBox_admin_log.AppendText("\r\n" + str_version);
-                textBox_admin_log.AppendText("\r\n" + str_bridge);
-                DateTime myDate = DateTime.Parse(str_date);
-
-                String str_query = "UPDATE dbo.motherboard_url SET url_str = '"+ str_url + "', url_date_of_bios = '" + myDate.Date + "', url_version = '" + str_version + "', url_bridge = '" + str_bridge + "' WHERE url_id =" + str_id + ";";
-                Execute_query_SET(sender, e, str_query, str_url);
+                    String str_query = "UPDATE dbo.motherboard_url SET url_str = '" + str_url + "', url_date_of_bios = '" + str_date + "', url_version = '" + str_version + "', url_bridge = '" + str_bridge + "' WHERE url_id =" + str_id + ";";
+                    Execute_query_SET(sender, e, str_query, str_url);
+                }
+                else
+                {
+                    Console.WriteLine("Deleteing " + url_control.Controls["textBox1"].Text);
+                    String str_query = "DELETE dbo.motherboard_url WHERE url_str = '" + str_url + "';";
+                    Execute_query_SET(sender, e, str_query, label_admin_model.Text);
+                }
+               
 
             }
             flowLayoutPanel_admin_url_edit.Controls.Clear();

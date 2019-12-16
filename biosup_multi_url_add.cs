@@ -37,5 +37,16 @@ namespace BiosupCS
             }
         }
 
+        private void checkBox_multi_del_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_multi_del.Checked)
+            {
+                btn_admin_url_remove_url.Enabled = false;
+            }
+            else
+            {
+                btn_admin_url_remove_url.Enabled = true;
+            }
+        }
     }
 }
