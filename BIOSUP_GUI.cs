@@ -8,23 +8,24 @@ using System.Data;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
+using System.Globalization;
 
 namespace BiosupCS
 {
     public partial class BIOSUP_GUI : Form
     {
         String str_working_dir;
-        private String str_database_credentials = "Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-        List<String> list_chipset_vendor = new List<String>() { "AMD", "INTEL" };
-        List<String> list_points = new List<String>() { "Downloading", "Unzipping","Other" };
+        readonly String str_database_credentials = "Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        readonly List<String> list_chipset_vendor = new List<String>() { "AMD", "INTEL" };
+        readonly List<String> list_points = new List<String>() { "Downloading", "Unzipping","Other" };
         //Order is important for method set_how_much_to_dl
-        List<String> list_what_to_download= new List<String>() { "Latest Only", "Bridge + Latest", "All","Bridge Only" };
+        readonly List<String> list_what_to_download= new List<String>() { "Latest Only", "Bridge + Latest", "All","Bridge Only" };
         Boolean bool_select_all = false;
         DataTable Biosup_query_chipsets;
-        BIOSUP_SQL Biosup_query;
-        BIOSUP_UNZIP OBJ_UNZIP;
-        BIOSUP_DL_FILE OBJ_DL_FILE;
-        BIOSUP_RM_FILE OBJ_RM_FILE;
+        readonly BIOSUP_SQL Biosup_query;
+        readonly BIOSUP_UNZIP OBJ_UNZIP;
+        readonly BIOSUP_DL_FILE OBJ_DL_FILE;
+        readonly BIOSUP_RM_FILE OBJ_RM_FILE;
         public BIOSUP_GUI()
         {
             InitializeComponent();
@@ -142,7 +143,7 @@ namespace BiosupCS
 
         }
 
-        private String set_how_much_to_dl(int int_option)
+        private String Set_how_much_to_dl(int int_option)
         {
             //textBox_log_running.AppendText("case: " + int_option);
             switch (int_option)
@@ -160,11 +161,11 @@ namespace BiosupCS
             }
         }
 
-        private String queryBuilder()
+        private String QueryBuilder()
         {
             String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id";
 
-            str_built_query += set_how_much_to_dl(comboBox_what_to_get.SelectedIndex);
+            str_built_query += Set_how_much_to_dl(comboBox_what_to_get.SelectedIndex);
 
             Application.DoEvents();
 
@@ -205,7 +206,7 @@ namespace BiosupCS
             str_built_query += ",'')));";
             return str_built_query;
         }
-        private void btn_run_Click(object sender, EventArgs e)
+        private void Btn_run_Click(object sender, EventArgs e)
         {
             if (comboBox_what_to_get.Text == "")
             {
@@ -231,7 +232,7 @@ namespace BiosupCS
 
                 Application.DoEvents();
 
-                DataTable Biosup_query_urls = Biosup_query.BIOSUP_SQL_GET(queryBuilder());
+                DataTable Biosup_query_urls = Biosup_query.BIOSUP_SQL_GET(QueryBuilder());
 
                 try
                 {
@@ -239,7 +240,7 @@ namespace BiosupCS
                     {
                         textBox_log_running.AppendText("\r\n" + row["model_name"] + "\r\n" + row["url_date_of_bios"] + "\r\n");
                     }
-                    loop_through(Biosup_query_urls);
+                    Loop_through(Biosup_query_urls);
                 }
                 catch (System.NullReferenceException)
                 {
@@ -254,7 +255,7 @@ namespace BiosupCS
 
 
         }
-         void loop_through(DataTable Biosup_query_urls)
+         void Loop_through(DataTable Biosup_query_urls)
         {
             int int_count_mobo = Biosup_query_urls.Rows.Count;
             int int_progress = 0;
@@ -271,9 +272,9 @@ namespace BiosupCS
 
                     textBox_log_running.AppendText("\n\r--------------------URL--------------------\r\n");
                     textBox_current_UEFI_info.Text = "";
-                    current_mobo(row);
+                    Current_mobo(row);
                     textBox_log_running.AppendText(row["model_name"] + "\r\n" + row["url_str"]);
-                    change_point(list_points[0]);
+                    Change_point(list_points[0]);
                     String str_filetree = "BIOSHERE/" + row["vendor_name"] + "/" + row["chipset"] + "/" + row["model_name"];
                     String str_file_path = str_filetree + "/" + row["vendor_name"] + "-" + row["model_name"] + ".zip";
                     textBox_log_running.AppendText("\r\n" + row["url_date_of_bios"]);
@@ -291,14 +292,14 @@ namespace BiosupCS
                     {
                         if (!IsFileLocked(FI_file_path))
                         {
-                            change_point(list_points[1]);
+                            Change_point(list_points[1]);
                             textBox_log_running.AppendText("\r\nUnzipping...");
                             Application.DoEvents();
-                            OBJ_UNZIP.unzip(str_file_path, str_working_dir + str_filetree);
-                            change_point(list_points[2]);
+                            OBJ_UNZIP.Unzip(str_file_path, str_working_dir + str_filetree);
+                            Change_point(list_points[2]);
                             textBox_log_running.AppendText("\r\nDeleting Zip...");
                             Application.DoEvents();
-                            OBJ_RM_FILE.remove(str_file_path);
+                            OBJ_RM_FILE.Remove(str_file_path);
                             break;
                         }
                         else
@@ -344,11 +345,11 @@ namespace BiosupCS
             //file is not locked
             return false;
         }
-        private void change_point(String str_point)
+        private void Change_point(String str_point)
         {
             label_current_point.Text = "Current Point: " + str_point;
         }
-        private void current_mobo(DataRow row)
+        private void Current_mobo(DataRow row)
         {
             textBox_current_UEFI_info.AppendText("Model:\r\n" + row["model_name"]);
             textBox_current_UEFI_info.AppendText("\r\n\r\nVendor:\r\n" + row["vendor_name"]);
@@ -366,19 +367,19 @@ namespace BiosupCS
             textBox_instructions.AppendText("\r\n4. Close the GUI\r\n");
         }
 
-        private void btn_select_all_Click(object sender, EventArgs e)
+        private void Btn_select_all_Click(object sender, EventArgs e)
         {
             try
             {
                 if (!bool_select_all)
                 {
-                    method_bool_select_all(true);
+                    Method_bool_select_all(true);
                     btn_select_all.Text = "Deselect All";
                     bool_select_all = true;
                 }
                 else
                 {
-                    method_bool_select_all(false);
+                    Method_bool_select_all(false);
                     btn_select_all.Text = "Select All";
                     bool_select_all = false;
                 }
@@ -392,7 +393,7 @@ namespace BiosupCS
 
         }
 
-        private void method_bool_select_all(Boolean bool_set_bool)
+        private void Method_bool_select_all(Boolean bool_set_bool)
         {
             checkBox_all_vendors.Checked = bool_set_bool;
             for (int i = 0; i < listbox_vendor.Items.Count; i++)
@@ -412,17 +413,17 @@ namespace BiosupCS
         }
 
 
-        private void btn_clear_config_Click(object sender, EventArgs e)
+        private void Btn_clear_config_Click(object sender, EventArgs e)
         {
-            method_bool_select_all(false);
+            Method_bool_select_all(false);
         }
 
-        private void btn_load_last_Click(object sender, EventArgs e)
+        private void Btn_load_last_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void checkBox_intel_select_all_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox_intel_select_all_CheckedChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < listbox_INTEL_chipset.Items.Count; i++)
             {
@@ -430,7 +431,7 @@ namespace BiosupCS
             }
         }
 
-        private void checkBox_AMD_select_all_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox_AMD_select_all_CheckedChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < listbox_AMD_chipset.Items.Count; i++)
             {
@@ -438,7 +439,7 @@ namespace BiosupCS
             }
         }
 
-        private void checkBox_all_vendors_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox_all_vendors_CheckedChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < listbox_vendor.Items.Count; i++)
             {
@@ -446,15 +447,15 @@ namespace BiosupCS
             }
         }
 
-        private void btn_get_model_from_database_Click(object sender, EventArgs e)
+        private void Btn_get_model_from_database_Click(object sender, EventArgs e)
         {
             for(int i = 0; i < numericUpDown_admin_url_url_to_add.Value; i++)
             {
-                flowLayoutPanel_add_url_str.Controls.Add(new biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
+                flowLayoutPanel_add_url_str.Controls.Add(new Biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
             }
         }
 
-        private void btn_add_chipset_Click(object sender, EventArgs e)
+        private void Btn_add_chipset_Click(object sender, EventArgs e)
         {
             if(textBox_admin_chipset_name.Text == "" || comboBox_admin_chipset_vendor.SelectedIndex == -1)
             {
@@ -465,7 +466,7 @@ namespace BiosupCS
                 String str_query_var = "Variables: " + textBox_admin_chipset_name.Text + "," + comboBox_admin_chipset_vendor.SelectedItem;
                 textBox_admin_log.AppendText(str_query_var);
                 String str_query = "INSERT INTO dbo.chipset_check(chipset_name,chipset_vendor) VALUES('"+ textBox_admin_chipset_name.Text + "','"+ comboBox_admin_chipset_vendor.SelectedItem + "');" ;
-                execute_query_SET(sender, e, str_query, textBox_admin_chipset_name.Text);
+                Execute_query_SET(sender, e, str_query, textBox_admin_chipset_name.Text);
                 textBox_admin_chipset_name.Text = "";
                 comboBox_admin_chipset_vendor.SelectedIndex = -1;
             }
@@ -479,7 +480,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 */
         }
 
-        private void comboBox_admin_url_vendor_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_admin_url_vendor_SelectedIndexChanged(object sender, EventArgs e)
         {
             String str_vendor = comboBox_admin_url_vendor.Text;
             comboBox_select_model.Items.Clear();
@@ -500,7 +501,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
         }
 
-        private void comboBox_admin_url_chipset_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_admin_url_chipset_SelectedIndexChanged(object sender, EventArgs e)
         {
             String str_vendor = comboBox_admin_url_vendor.Text;
             String str_chipset = comboBox_admin_url_chipset.Text;
@@ -522,10 +523,12 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
         }
 
-        private void comboBox_select_model_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_select_model_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
+                flowLayoutPanel_admin_url_edit.Controls.Clear();
+                flowLayoutPanel_add_url_str.Controls.Clear();
                 String str_model = comboBox_select_model.Text;
                 DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT model_id FROM dbo.motherboard_data where model_name = '" + str_model + "';");
                 DataTable Biosup_query_url = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_url where model_id = " + Biosup_query_model.Rows[0]["model_id"] + ";");
@@ -534,7 +537,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 flowLayoutPanel_admin_url_edit.Controls.Clear();
                 foreach (DataRow row_url in Biosup_query_url.Rows)
                 {
-                    flowLayoutPanel_admin_url_edit.Controls.Add(new biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
+                    flowLayoutPanel_admin_url_edit.Controls.Add(new Biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
                     flowLayoutPanel_admin_url_edit.Controls[i].Controls["textBox_str_admin_url_multi_add"].Text = row_url["url_str"].ToString();
                     flowLayoutPanel_admin_url_edit.Controls[i].Controls["dateTimePicker1"].Text = row_url["url_date_of_bios"].ToString();
                     flowLayoutPanel_admin_url_edit.Controls[i].Controls["textBox1"].Text = row_url["url_version"].ToString();
@@ -550,15 +553,15 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
         }
 
-        private void button_remvoe_chipset_Click(object sender, EventArgs e)
+        private void Button_remove_chipset_Click(object sender, EventArgs e)
         {
             String str_chipset_to_remove = comboBox_select_chipset_to_remove.Text;
             String str_query = "DELETE FROM dbo.chipset_check WHERE chipset_name ='"+str_chipset_to_remove+"'";
-            execute_query_SET(sender, e, str_query, str_chipset_to_remove);
+            Execute_query_SET(sender, e, str_query, str_chipset_to_remove);
 
         }
 
-        private void btn_add_model_Click(object sender, EventArgs e)
+        private void Btn_add_model_Click(object sender, EventArgs e)
         {
             String str_chipset = comboBox_select_chipset.Text;
             String str_vendor = comboBox_select_vendor.Text;
@@ -569,14 +572,14 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
             String str_query = "INSERT INTO dbo.motherboard_data(chipset, model_name, vendor_id, model_page) VALUES('"+str_chipset + "','"+ str_model_sku + "','" + Biosup_query_vendor.Rows[0]["vendor_id"] + "','" + str_bios_url + "');";
             textBox_admin_log.AppendText(str_query);
-            execute_query_SET(sender, e, str_query, str_model_sku);
+            Execute_query_SET(sender, e, str_query, str_model_sku);
             textBox_admin_model_sku.Text = "";
             textBox_model_bios_url.Text = "";
 
 
         }
 
-        private void btn_delete_model_Click(object sender, EventArgs e)
+        private void Btn_delete_model_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("This action will delete all associated BIOS","",MessageBoxButtons.OKCancel);
             if (dr == DialogResult.OK)
@@ -584,13 +587,13 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 String str_model_to_remove = comboBox_admin_model_delete.Text;
                 String str_query = "DELETE FROM dbo.motherboard_data WHERE model_name ='" + str_model_to_remove + "'";
                 Console.WriteLine(str_query);
-                execute_query_SET(sender, e, str_query, str_model_to_remove);
+                Execute_query_SET(sender, e, str_query, str_model_to_remove);
             }
         }
 
-        private void btn_admin_url_add_url_Click_1(object sender, EventArgs e)
+        private void Btn_admin_url_add_url_Click_1(object sender, EventArgs e)
         {
-            foreach(biosup_multi_url_add url_control in flowLayoutPanel_add_url_str.Controls)
+            foreach(Biosup_multi_url_add url_control in flowLayoutPanel_add_url_str.Controls)
             {
                 String str_url = url_control.Controls["textBox_str_admin_url_multi_add"].Text;
                 String str_date = url_control.Controls["dateTimePicker1"].Text;
@@ -602,7 +605,11 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 textBox_admin_log.AppendText("\r\n" + str_date);
                 textBox_admin_log.AppendText("\r\n" + str_version);
                 textBox_admin_log.AppendText("\r\n" + str_bridge);
-                DateTime myDate = DateTime.Parse(str_date);
+
+                CultureInfo culture = new CultureInfo("en-US");
+
+                DateTime format_date = DateTime.Parse(str_date);
+                str_date = format_date.ToString("yyyy-MM-dd");
 
                 String str_query_get_model = "SELECT model_id from motherboard_data where model_name = '" + comboBox_select_model.Text+"'";
 
@@ -610,8 +617,9 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 {
                     DataTable dt_query_get_model_id = Biosup_query.BIOSUP_SQL_GET(str_query_get_model);
 
-                    String str_query = "INSERT INTO dbo.motherboard_url(model_id ,url_str, url_date_of_bios, url_version, url_bridge) VALUES("+dt_query_get_model_id.Rows[0]["model_id"] + ", '" + str_url + "','" + myDate.Date + "','" + str_version + "','" + str_bridge+"')";
-                    execute_query_SET(sender, e, str_query, str_url);
+                    String str_query = "INSERT INTO dbo.motherboard_url(model_id ,url_str, url_date_of_bios, url_version, url_bridge) VALUES("+dt_query_get_model_id.Rows[0]["model_id"] + ", '" + str_url + "','" + str_date + "','" + str_version + "','" + str_bridge+"')";
+
+                    Execute_query_SET(sender, e, str_query, str_url);
 
                 }
                 catch (System.Data.SqlClient.SqlException e_run)
@@ -632,15 +640,10 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             flowLayoutPanel_admin_url_edit.Controls.Clear();
         }
 
-        private void flowLayoutPanel_admin_url_edit_Paint(object sender, PaintEventArgs e)
+
+        private void Button_admin_url_save_del_Click(object sender, EventArgs e)
         {
-
-        }
-
-
-        private void button_admin_url_save_del_Click(object sender, EventArgs e)
-        {
-            foreach (biosup_multi_url_add url_control in flowLayoutPanel_admin_url_edit.Controls)
+            foreach (Biosup_multi_url_add url_control in flowLayoutPanel_admin_url_edit.Controls)
             {
                 String str_url = url_control.Controls["textBox_str_admin_url_multi_add"].Text;
                 String str_date = url_control.Controls["dateTimePicker1"].Text;
@@ -655,13 +658,13 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 DateTime myDate = DateTime.Parse(str_date);
 
                 String str_query = "UPDATE dbo.motherboard_url SET url_str = '"+ str_url + "', url_date_of_bios = '" + myDate.Date + "', url_version = '" + str_version + "', url_bridge = '" + str_bridge + "' WHERE url_id =" + str_id + ";";
-                execute_query_SET(sender, e, str_query, str_url);
+                Execute_query_SET(sender, e, str_query, str_url);
 
             }
             flowLayoutPanel_admin_url_edit.Controls.Clear();
         }
 
-        private void comboBox_admin_model_delete_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_admin_model_delete_SelectedIndexChanged(object sender, EventArgs e)
         {
             String str_query = "SELECT model_page,model_name from motherboard_data where model_name = '" + comboBox_admin_model_delete.Text + "'";
             try
@@ -676,13 +679,13 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             }
         }
 
-        private void button_save_model_url_Click(object sender, EventArgs e)
+        private void Button_save_model_url_Click(object sender, EventArgs e)
         {
             String str_query = "UPDATE dbo.motherboard_data SET model_page = '" + textBox_admin_model_url.Text + "' WHERE model_name ='" + label_admin_model.Text + "';";
-            execute_query_SET(sender, e, str_query, label_admin_model.Text);
+            Execute_query_SET(sender, e, str_query, label_admin_model.Text);
         }
 
-        private void comboBox_select_vendor_to_edit_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_select_vendor_to_edit_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -699,18 +702,18 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
         }
 
-        private void button_add_vendor_Click(object sender, EventArgs e)
+        private void Button_add_vendor_Click(object sender, EventArgs e)
         {
             
             String str_query = "INSERT INTO dbo.vendor_data VALUES('" + textBox_admin_vendor_name_add.Text + "','"+ textBox_admin_vendor_sort_add.Text + "','"+ textBox_admin_vendor_base_add.Text+"','"+ textBox_admin_vendor_addon_add.Text + "')";
-            execute_query_SET(sender, e, str_query, textBox_admin_vendor_name_add.Text);
+            Execute_query_SET(sender, e, str_query, textBox_admin_vendor_name_add.Text);
         }
 
-        private void btn_save_edits_Click(object sender, EventArgs e)
+        private void Btn_save_edits_Click(object sender, EventArgs e)
         {
             String str_query = "UPDATE dbo.vendor_data SET vendor_name = '" + textBox_admin_vendor_name.Text + "',vendor_sort = '" + textBox_admin_vendor_sort_edit.Text + "', vendor_dl_url_base = '"+ textBox_admin_vendor_base_edit.Text + "', vendor_url_addon = '" + textBox_admin_vendor_addon_edit.Text + "'  WHERE vendor_name ='" + comboBox_select_vendor_to_edit.Text + "';";
 
-            execute_query_SET(sender, e, str_query, textBox_admin_vendor_name.Text);
+            Execute_query_SET(sender, e, str_query, textBox_admin_vendor_name.Text);
 
             textBox_admin_log.AppendText("\r\n" + textBox_admin_vendor_name.Text);
             textBox_admin_log.AppendText("\r\n" + textBox_admin_vendor_sort_edit.Text);
@@ -721,7 +724,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
            
         }
 
-        private void execute_query_SET(object sender, EventArgs e, String str_query, String str_changer)
+        private void Execute_query_SET(object sender, EventArgs e, String str_query, String str_changer)
         {
             try
             {
@@ -745,7 +748,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             BIOSUP_CONFIG_Load(sender, e);
         }
 
-        private void button_get_models_Click(object sender, EventArgs e)
+        private void Button_get_models_Click(object sender, EventArgs e)
         {
             try
             {
@@ -799,7 +802,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                             DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.vendor_data where vendor_name = '" + str_vendor + "'");
 
                             String str_query = "INSERT INTO dbo.motherboard_data(chipset,model_name,vendor_id) VALUES('" + str_chipset + "','" + str_model + "','" + Biosup_query_vendors.Rows[0]["vendor_id"] + "')";
-                            execute_query_SET(sender, e, str_query, str_model);
+                            Execute_query_SET(sender, e, str_query, str_model);
 
                             counter++;
                         }
@@ -824,16 +827,26 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             }
         }
 
-        private void button_admin_vendor_del_Click(object sender, EventArgs e)
+        private void Button_admin_vendor_del_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button_admin_url_model_copy_Click(object sender, EventArgs e)
+        private void Button_admin_url_model_copy_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(label_admin_url_model.Text);
             textBox_admin_log.AppendText("\n\rCopied!");
         }
 
+        private void button_admin_url_bulk_get_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_admin_model_copy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(label_admin_model.Text);
+            textBox_admin_log.AppendText("\n\rCopied!");
+        }
     }
 }

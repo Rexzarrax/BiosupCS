@@ -10,7 +10,7 @@ namespace BiosupCS
         * 
         *
         */
-        public void unzip(String str_zipfile_path, String str_destination_folder)
+        public void Unzip(String str_zipfile_path, String str_destination_folder)
         {
             try
             {

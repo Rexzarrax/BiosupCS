@@ -10,7 +10,7 @@ namespace BiosupCS
     {
         public SqlDataReader Bios_Data_Reader = null;
         public SqlConnection connection;
-        private string str_connection_string;
+        readonly private string str_connection_string;
 
         public BIOSUP_SQL(String str_connection_url)
         {
@@ -43,7 +43,7 @@ namespace BiosupCS
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    throw e;
+                    throw;
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace BiosupCS
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    throw e;
+                    throw;
                 }
 
             }

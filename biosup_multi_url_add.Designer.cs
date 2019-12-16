@@ -1,6 +1,6 @@
 ﻿namespace BiosupCS
 {
-    partial class biosup_multi_url_add
+    partial class Biosup_multi_url_add
     {
         /// <summary> 
         /// Required designer variable.
@@ -38,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label_id = new System.Windows.Forms.Label();
+            this.checkBox_multi_del = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // textBox_str_admin_url_multi_add
@@ -76,7 +77,7 @@
             this.btn_admin_url_remove_url.TabIndex = 3;
             this.btn_admin_url_remove_url.Text = "X";
             this.btn_admin_url_remove_url.UseVisualStyleBackColor = true;
-            this.btn_admin_url_remove_url.Click += new System.EventHandler(this.btn_admin_url_remove_url_Click);
+            this.btn_admin_url_remove_url.Click += new System.EventHandler(this.Btn_admin_url_remove_url_Click);
             // 
             // dateTimePicker1
             // 
@@ -85,6 +86,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(179, 20);
             this.dateTimePicker1.TabIndex = 4;
+            this.dateTimePicker1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker1_KeyDown);
             // 
             // label_Date_of_bios
             // 
@@ -128,10 +130,21 @@
             this.label_id.Size = new System.Drawing.Size(0, 13);
             this.label_id.TabIndex = 9;
             // 
-            // biosup_multi_url_add
+            // checkBox_multi_del
+            // 
+            this.checkBox_multi_del.AutoSize = true;
+            this.checkBox_multi_del.Location = new System.Drawing.Point(458, 35);
+            this.checkBox_multi_del.Name = "checkBox_multi_del";
+            this.checkBox_multi_del.Size = new System.Drawing.Size(42, 17);
+            this.checkBox_multi_del.TabIndex = 10;
+            this.checkBox_multi_del.Text = "Del";
+            this.checkBox_multi_del.UseVisualStyleBackColor = true;
+            // 
+            // Biosup_multi_url_add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkBox_multi_del);
             this.Controls.Add(this.label_id);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -142,9 +155,9 @@
             this.Controls.Add(this.label_number_of_url_to_add);
             this.Controls.Add(this.comboBox_bridge_select);
             this.Controls.Add(this.textBox_str_admin_url_multi_add);
-            this.Name = "biosup_multi_url_add";
+            this.Name = "Biosup_multi_url_add";
             this.Size = new System.Drawing.Size(494, 62);
-            this.Load += new System.EventHandler(this.biosup_multi_url_add_Load);
+            this.Load += new System.EventHandler(this.Biosup_multi_url_add_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,5 +175,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label_id;
+        private System.Windows.Forms.CheckBox checkBox_multi_del;
     }
 }

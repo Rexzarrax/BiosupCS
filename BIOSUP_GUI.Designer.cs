@@ -73,6 +73,7 @@
             this.groupBox_admin_url_contain_url = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_admin_url_urls_add = new System.Windows.Forms.TabPage();
+            this.button_admin_url_bulk_get = new System.Windows.Forms.Button();
             this.button_admin_url_model_copy = new System.Windows.Forms.Button();
             this.label_admin_url_model = new System.Windows.Forms.Label();
             this.btn_admin_url_add_url = new System.Windows.Forms.Button();
@@ -150,6 +151,7 @@
             this.button_get_models = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
+            this.button_admin_model_copy = new System.Windows.Forms.Button();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -423,7 +425,7 @@
             this.checkBox_all_vendors.TabIndex = 6;
             this.checkBox_all_vendors.Text = "Select All";
             this.checkBox_all_vendors.UseVisualStyleBackColor = true;
-            this.checkBox_all_vendors.CheckedChanged += new System.EventHandler(this.checkBox_all_vendors_CheckedChanged);
+            this.checkBox_all_vendors.CheckedChanged += new System.EventHandler(this.CheckBox_all_vendors_CheckedChanged);
             // 
             // listbox_vendor
             // 
@@ -464,7 +466,7 @@
             this.checkBox_vendor_select_all.TabIndex = 5;
             this.checkBox_vendor_select_all.Text = "Select All";
             this.checkBox_vendor_select_all.UseVisualStyleBackColor = true;
-            this.checkBox_vendor_select_all.CheckedChanged += new System.EventHandler(this.checkBox_intel_select_all_CheckedChanged);
+            this.checkBox_vendor_select_all.CheckedChanged += new System.EventHandler(this.CheckBox_intel_select_all_CheckedChanged);
             // 
             // listbox_INTEL_chipset
             // 
@@ -494,7 +496,7 @@
             this.checkBox_AMD_select_all.TabIndex = 4;
             this.checkBox_AMD_select_all.Text = "Select All";
             this.checkBox_AMD_select_all.UseVisualStyleBackColor = true;
-            this.checkBox_AMD_select_all.CheckedChanged += new System.EventHandler(this.checkBox_AMD_select_all_CheckedChanged);
+            this.checkBox_AMD_select_all.CheckedChanged += new System.EventHandler(this.CheckBox_AMD_select_all_CheckedChanged);
             // 
             // listbox_AMD_chipset
             // 
@@ -512,7 +514,7 @@
             this.btn_select_all.TabIndex = 2;
             this.btn_select_all.Text = "Select All";
             this.btn_select_all.UseVisualStyleBackColor = true;
-            this.btn_select_all.Click += new System.EventHandler(this.btn_select_all_Click);
+            this.btn_select_all.Click += new System.EventHandler(this.Btn_select_all_Click);
             // 
             // btn_run
             // 
@@ -522,7 +524,7 @@
             this.btn_run.TabIndex = 1;
             this.btn_run.Text = "Run";
             this.btn_run.UseVisualStyleBackColor = true;
-            this.btn_run.Click += new System.EventHandler(this.btn_run_Click);
+            this.btn_run.Click += new System.EventHandler(this.Btn_run_Click);
             // 
             // btn_clear_config
             // 
@@ -532,7 +534,7 @@
             this.btn_clear_config.TabIndex = 0;
             this.btn_clear_config.Text = "Clear Config";
             this.btn_clear_config.UseVisualStyleBackColor = true;
-            this.btn_clear_config.Click += new System.EventHandler(this.btn_clear_config_Click);
+            this.btn_clear_config.Click += new System.EventHandler(this.Btn_clear_config_Click);
             // 
             // grpBox_Intructions
             // 
@@ -636,6 +638,7 @@
             // 
             // tabPage_admin_url_urls_add
             // 
+            this.tabPage_admin_url_urls_add.Controls.Add(this.button_admin_url_bulk_get);
             this.tabPage_admin_url_urls_add.Controls.Add(this.button_admin_url_model_copy);
             this.tabPage_admin_url_urls_add.Controls.Add(this.label_admin_url_model);
             this.tabPage_admin_url_urls_add.Controls.Add(this.btn_admin_url_add_url);
@@ -648,6 +651,16 @@
             this.tabPage_admin_url_urls_add.Text = "Add";
             this.tabPage_admin_url_urls_add.UseVisualStyleBackColor = true;
             // 
+            // button_admin_url_bulk_get
+            // 
+            this.button_admin_url_bulk_get.Location = new System.Drawing.Point(352, 172);
+            this.button_admin_url_bulk_get.Name = "button_admin_url_bulk_get";
+            this.button_admin_url_bulk_get.Size = new System.Drawing.Size(75, 23);
+            this.button_admin_url_bulk_get.TabIndex = 10;
+            this.button_admin_url_bulk_get.Text = "Pull";
+            this.button_admin_url_bulk_get.UseVisualStyleBackColor = true;
+            this.button_admin_url_bulk_get.Click += new System.EventHandler(this.button_admin_url_bulk_get_Click);
+            // 
             // button_admin_url_model_copy
             // 
             this.button_admin_url_model_copy.Location = new System.Drawing.Point(253, 172);
@@ -656,7 +669,7 @@
             this.button_admin_url_model_copy.TabIndex = 9;
             this.button_admin_url_model_copy.Text = "Copy Model";
             this.button_admin_url_model_copy.UseVisualStyleBackColor = true;
-            this.button_admin_url_model_copy.Click += new System.EventHandler(this.button_admin_url_model_copy_Click);
+            this.button_admin_url_model_copy.Click += new System.EventHandler(this.Button_admin_url_model_copy_Click);
             // 
             // label_admin_url_model
             // 
@@ -675,7 +688,7 @@
             this.btn_admin_url_add_url.TabIndex = 7;
             this.btn_admin_url_add_url.Text = "Add";
             this.btn_admin_url_add_url.UseVisualStyleBackColor = true;
-            this.btn_admin_url_add_url.Click += new System.EventHandler(this.btn_admin_url_add_url_Click_1);
+            this.btn_admin_url_add_url.Click += new System.EventHandler(this.Btn_admin_url_add_url_Click_1);
             // 
             // flowLayoutPanel_add_url_str
             // 
@@ -705,7 +718,7 @@
             this.button_admin_url_save_del.TabIndex = 14;
             this.button_admin_url_save_del.Text = "Save/Delete";
             this.button_admin_url_save_del.UseVisualStyleBackColor = true;
-            this.button_admin_url_save_del.Click += new System.EventHandler(this.button_admin_url_save_del_Click);
+            this.button_admin_url_save_del.Click += new System.EventHandler(this.Button_admin_url_save_del_Click);
             // 
             // flowLayoutPanel_admin_url_edit
             // 
@@ -714,7 +727,6 @@
             this.flowLayoutPanel_admin_url_edit.Name = "flowLayoutPanel_admin_url_edit";
             this.flowLayoutPanel_admin_url_edit.Size = new System.Drawing.Size(516, 160);
             this.flowLayoutPanel_admin_url_edit.TabIndex = 13;
-            this.flowLayoutPanel_admin_url_edit.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel_admin_url_edit_Paint);
             // 
             // groupBox_select_model
             // 
@@ -769,7 +781,7 @@
             this.comboBox_admin_url_chipset.Name = "comboBox_admin_url_chipset";
             this.comboBox_admin_url_chipset.Size = new System.Drawing.Size(239, 21);
             this.comboBox_admin_url_chipset.TabIndex = 6;
-            this.comboBox_admin_url_chipset.SelectedIndexChanged += new System.EventHandler(this.comboBox_admin_url_chipset_SelectedIndexChanged);
+            this.comboBox_admin_url_chipset.SelectedIndexChanged += new System.EventHandler(this.ComboBox_admin_url_chipset_SelectedIndexChanged);
             // 
             // comboBox_admin_url_vendor
             // 
@@ -779,7 +791,7 @@
             this.comboBox_admin_url_vendor.Name = "comboBox_admin_url_vendor";
             this.comboBox_admin_url_vendor.Size = new System.Drawing.Size(239, 21);
             this.comboBox_admin_url_vendor.TabIndex = 5;
-            this.comboBox_admin_url_vendor.SelectedIndexChanged += new System.EventHandler(this.comboBox_admin_url_vendor_SelectedIndexChanged);
+            this.comboBox_admin_url_vendor.SelectedIndexChanged += new System.EventHandler(this.ComboBox_admin_url_vendor_SelectedIndexChanged);
             // 
             // label_no_url_to_add
             // 
@@ -798,7 +810,7 @@
             this.comboBox_select_model.Name = "comboBox_select_model";
             this.comboBox_select_model.Size = new System.Drawing.Size(239, 21);
             this.comboBox_select_model.TabIndex = 1;
-            this.comboBox_select_model.SelectedIndexChanged += new System.EventHandler(this.comboBox_select_model_SelectedIndexChanged);
+            this.comboBox_select_model.SelectedIndexChanged += new System.EventHandler(this.ComboBox_select_model_SelectedIndexChanged);
             // 
             // btn_get_model_from_database
             // 
@@ -808,7 +820,7 @@
             this.btn_get_model_from_database.TabIndex = 3;
             this.btn_get_model_from_database.Text = "Add Slot";
             this.btn_get_model_from_database.UseVisualStyleBackColor = true;
-            this.btn_get_model_from_database.Click += new System.EventHandler(this.btn_get_model_from_database_Click);
+            this.btn_get_model_from_database.Click += new System.EventHandler(this.Btn_get_model_from_database_Click);
             // 
             // numericUpDown_admin_url_url_to_add
             // 
@@ -855,6 +867,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button_admin_model_copy);
             this.groupBox4.Controls.Add(this.label_admin_model);
             this.groupBox4.Controls.Add(this.button_save_model_url);
             this.groupBox4.Controls.Add(this.groupBox5);
@@ -884,7 +897,7 @@
             this.button_save_model_url.TabIndex = 10;
             this.button_save_model_url.Text = "Save";
             this.button_save_model_url.UseVisualStyleBackColor = true;
-            this.button_save_model_url.Click += new System.EventHandler(this.button_save_model_url_Click);
+            this.button_save_model_url.Click += new System.EventHandler(this.Button_save_model_url_Click);
             // 
             // groupBox5
             // 
@@ -923,7 +936,7 @@
             this.comboBox_admin_model_delete.Size = new System.Drawing.Size(252, 21);
             this.comboBox_admin_model_delete.Sorted = true;
             this.comboBox_admin_model_delete.TabIndex = 1;
-            this.comboBox_admin_model_delete.SelectedIndexChanged += new System.EventHandler(this.comboBox_admin_model_delete_SelectedIndexChanged);
+            this.comboBox_admin_model_delete.SelectedIndexChanged += new System.EventHandler(this.ComboBox_admin_model_delete_SelectedIndexChanged);
             // 
             // btn_delete_model
             // 
@@ -933,7 +946,7 @@
             this.btn_delete_model.TabIndex = 8;
             this.btn_delete_model.Text = "Remove Model";
             this.btn_delete_model.UseVisualStyleBackColor = true;
-            this.btn_delete_model.Click += new System.EventHandler(this.btn_delete_model_Click);
+            this.btn_delete_model.Click += new System.EventHandler(this.Btn_delete_model_Click);
             // 
             // groupBox3
             // 
@@ -1032,7 +1045,7 @@
             this.btn_add_model.TabIndex = 0;
             this.btn_add_model.Text = "Add Model";
             this.btn_add_model.UseVisualStyleBackColor = true;
-            this.btn_add_model.Click += new System.EventHandler(this.btn_add_model_Click);
+            this.btn_add_model.Click += new System.EventHandler(this.Btn_add_model_Click);
             // 
             // groupBox_model_bios_url
             // 
@@ -1088,7 +1101,7 @@
             this.button_admin_vendor_del.TabIndex = 10;
             this.button_admin_vendor_del.Text = "Delete Vendor";
             this.button_admin_vendor_del.UseVisualStyleBackColor = true;
-            this.button_admin_vendor_del.Click += new System.EventHandler(this.button_admin_vendor_del_Click);
+            this.button_admin_vendor_del.Click += new System.EventHandler(this.Button_admin_vendor_del_Click);
             // 
             // groupBox10
             // 
@@ -1166,7 +1179,7 @@
             this.btn_save_edits.TabIndex = 1;
             this.btn_save_edits.Text = "Save Vendor";
             this.btn_save_edits.UseVisualStyleBackColor = true;
-            this.btn_save_edits.Click += new System.EventHandler(this.btn_save_edits_Click);
+            this.btn_save_edits.Click += new System.EventHandler(this.Btn_save_edits_Click);
             // 
             // comboBox_select_vendor_to_edit
             // 
@@ -1176,7 +1189,7 @@
             this.comboBox_select_vendor_to_edit.Name = "comboBox_select_vendor_to_edit";
             this.comboBox_select_vendor_to_edit.Size = new System.Drawing.Size(121, 21);
             this.comboBox_select_vendor_to_edit.TabIndex = 1;
-            this.comboBox_select_vendor_to_edit.SelectedIndexChanged += new System.EventHandler(this.comboBox_select_vendor_to_edit_SelectedIndexChanged);
+            this.comboBox_select_vendor_to_edit.SelectedIndexChanged += new System.EventHandler(this.ComboBox_select_vendor_to_edit_SelectedIndexChanged);
             // 
             // groupBox_add_vendor
             // 
@@ -1201,7 +1214,7 @@
             this.button_add_vendor.TabIndex = 10;
             this.button_add_vendor.Text = "Add Vendor";
             this.button_add_vendor.UseVisualStyleBackColor = true;
-            this.button_add_vendor.Click += new System.EventHandler(this.button_add_vendor_Click);
+            this.button_add_vendor.Click += new System.EventHandler(this.Button_add_vendor_Click);
             // 
             // groupBox9
             // 
@@ -1320,7 +1333,7 @@
             this.button_remvoe_chipset.TabIndex = 5;
             this.button_remvoe_chipset.Text = "Remove Chipset";
             this.button_remvoe_chipset.UseVisualStyleBackColor = true;
-            this.button_remvoe_chipset.Click += new System.EventHandler(this.button_remvoe_chipset_Click);
+            this.button_remvoe_chipset.Click += new System.EventHandler(this.Button_remove_chipset_Click);
             // 
             // groupBox_add_shipset
             // 
@@ -1344,7 +1357,7 @@
             this.btn_add_chipset.TabIndex = 0;
             this.btn_add_chipset.Text = "Add Chipset";
             this.btn_add_chipset.UseVisualStyleBackColor = true;
-            this.btn_add_chipset.Click += new System.EventHandler(this.btn_add_chipset_Click);
+            this.btn_add_chipset.Click += new System.EventHandler(this.Btn_add_chipset_Click);
             // 
             // comboBox_admin_chipset_vendor
             // 
@@ -1399,11 +1412,21 @@
             this.button_get_models.TabIndex = 0;
             this.button_get_models.Text = "Mass Get Models";
             this.button_get_models.UseVisualStyleBackColor = true;
-            this.button_get_models.Click += new System.EventHandler(this.button_get_models_Click);
+            this.button_get_models.Click += new System.EventHandler(this.Button_get_models_Click);
             // 
             // errorProvider_admin_model_validator
             // 
             this.errorProvider_admin_model_validator.ContainerControl = this;
+            // 
+            // button_admin_model_copy
+            // 
+            this.button_admin_model_copy.Location = new System.Drawing.Point(195, 245);
+            this.button_admin_model_copy.Name = "button_admin_model_copy";
+            this.button_admin_model_copy.Size = new System.Drawing.Size(75, 23);
+            this.button_admin_model_copy.TabIndex = 12;
+            this.button_admin_model_copy.Text = "Copy Model";
+            this.button_admin_model_copy.UseVisualStyleBackColor = true;
+            this.button_admin_model_copy.Click += new System.EventHandler(this.button_admin_model_copy_Click);
             // 
             // BIOSUP_GUI
             // 
@@ -1623,6 +1646,8 @@
         private System.Windows.Forms.Button button_admin_vendor_del;
         private System.Windows.Forms.Label label_admin_url_model;
         private System.Windows.Forms.Button button_admin_url_model_copy;
+        private System.Windows.Forms.Button button_admin_url_bulk_get;
+        private System.Windows.Forms.Button button_admin_model_copy;
     }
 }
 

@@ -10,22 +10,32 @@ using System.Windows.Forms;
 
 namespace BiosupCS
 {
-    public partial class biosup_multi_url_add : UserControl
+    public partial class Biosup_multi_url_add : UserControl
     {
-        public biosup_multi_url_add()
+        public Biosup_multi_url_add()
         {
             InitializeComponent();
         }
 
-        private void btn_admin_url_remove_url_Click(object sender, EventArgs e)
+        private void Btn_admin_url_remove_url_Click(object sender, EventArgs e)
         {
             this.Dispose();
             //create delete statements here
         }
 
-        private void biosup_multi_url_add_Load(object sender, EventArgs e)
+        private void Biosup_multi_url_add_Load(object sender, EventArgs e)
         {
 
         }
+
+        private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.V)
+            {
+                dateTimePicker1.Value = DateTime.Parse(Clipboard.GetText());
+                e.Handled = true;
+            }
+        }
+
     }
 }
