@@ -30,11 +30,19 @@ namespace BiosupCS
 
         private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.V)
+            try
             {
-                dateTimePicker1.Value = DateTime.Parse(Clipboard.GetText());
-                e.Handled = true;
+                if (e.Modifiers == Keys.Control && e.KeyCode == Keys.V)
+                {
+                    dateTimePicker1.Value = DateTime.Parse(Clipboard.GetText());
+                    e.Handled = true;
+                }
             }
+            catch
+            {
+                MessageBox.Show("Please Enter Valid Date!");
+            }
+
         }
 
         private void checkBox_multi_del_CheckedChanged(object sender, EventArgs e)
