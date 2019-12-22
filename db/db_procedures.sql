@@ -132,3 +132,5 @@ SELECT MAX(mu.url_date_of_bios) AS "Latest",mu.model_id FROM motherboard_url mu 
   SELECT MAX(mu.url_date_of_bios) AS 'Latest'FROM motherboard_url mu Group By mu.model_id
 
   SELECT vendor_id FROM dbo.vendor_data where vendor_name ='GIGABYTE';
+
+  SELECT GETDATE()

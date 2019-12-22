@@ -26,19 +26,21 @@ namespace BiosupCS
         readonly BIOSUP_UNZIP OBJ_UNZIP;
         readonly BIOSUP_DL_FILE OBJ_DL_FILE;
         readonly BIOSUP_RM_FILE OBJ_RM_FILE;
+        BIOSUP_CONFIG Obj_CONFIG;
         public BIOSUP_GUI()
         {
             InitializeComponent();
+            str_working_dir = System.AppDomain.CurrentDomain.BaseDirectory;
             Biosup_query = new BIOSUP_SQL(this.str_database_credentials);
             OBJ_UNZIP = new BIOSUP_UNZIP();
             OBJ_DL_FILE = new BIOSUP_DL_FILE(progressBar_current_progress);
             OBJ_RM_FILE = new BIOSUP_RM_FILE();
-
+            Obj_CONFIG = new BIOSUP_CONFIG(str_working_dir);
         }
 
         private void BIOSUP_CONFIG_Load(object sender, EventArgs e)
         {
-            str_working_dir = System.AppDomain.CurrentDomain.BaseDirectory;
+            
             Console.WriteLine("CWD: " + str_working_dir + "\n");
             toolStripStatusLabel_cwd.Text = "CWD: " + str_working_dir;
             textBox_log_config.AppendText("CWD: " + str_working_dir);
@@ -418,11 +420,6 @@ namespace BiosupCS
             Method_bool_select_all(false);
         }
 
-        private void Btn_load_last_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void CheckBox_intel_select_all_CheckedChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < listbox_INTEL_chipset.Items.Count; i++)
@@ -738,14 +735,14 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             try
             {
                 Biosup_query.BIOSUP_SQL_SET(str_query);
-                textBox_admin_log.AppendText(str_changer + "Successfull");
+                textBox_admin_log.AppendText("\r\n"+str_changer + "Successfull");
             }
             catch (System.Data.SqlClient.SqlException e_run)
             {
                 textBox_admin_log.AppendText("\r\nERROR ADDING MODEL " + str_changer);
                 if (e_run.Number == 2627)
                 {
-                    textBox_admin_log.AppendText("\r\n" + str_changer + " Already in System");
+                    textBox_admin_log.AppendText("\r\n" + str_changer + " Already in Database");
                 }
             }
             catch (Exception e_run)
@@ -817,7 +814,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                         }
 
                         file.Close();
-                        System.Console.WriteLine("There were {0} lines.", counter);
+                        textBox_admin_log.AppendText("\r\nThere were "+counter+" Models");
                         break;
                     }
                     else
@@ -856,6 +853,65 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
         {
             Clipboard.SetText(label_admin_model.Text);
             textBox_admin_log.AppendText("\n\rCopied!");
+        }
+
+        private void Load_config_to_gui(CheckedListBox Listbox, List<String> checklist)
+        {
+            for (int i = 0; i < Listbox.Items.Count; i++)
+            {
+                if (checklist.Contains(Listbox.Items[i].ToString()))
+                {
+                    Console.WriteLine(Listbox.Items[i].ToString());
+                    textBox_log_config.AppendText("\r\nChecking: " + Listbox.Items[i].ToString());
+                    Listbox.SetItemChecked(i, true);
+                }
+                else
+                {
+                    Console.WriteLine("\r\nNot Checking: " + Listbox.Items[i].ToString());
+                    textBox_log_config.AppendText("\r\nNot Checking: " + Listbox.Items[i].ToString());
+                    Listbox.SetItemChecked(i, false);
+                }
+                
+
+            }
+        }
+            private void button_load_config_Click(object sender, EventArgs e)
+        {
+            this.Obj_CONFIG.load_config();
+
+            Load_config_to_gui(listbox_AMD_chipset, this.Obj_CONFIG.List_amd_chipsets);
+
+            Load_config_to_gui(listbox_INTEL_chipset, this.Obj_CONFIG.List_intel_chipsets);
+
+            Load_config_to_gui(listbox_vendor, this.Obj_CONFIG.List_vendors);
+
+            comboBox_what_to_get.SelectedIndex = Int32.Parse(this.Obj_CONFIG.Str_option);
+
+        }
+
+        private List<String> collect_config(CheckedListBox Listbox)
+        {
+            List<String> list_temp = new List<String>();
+            for (int i = 0; i < Listbox.CheckedItems.Count; i++)
+            {
+                list_temp.Add(Listbox.CheckedItems[i].ToString());
+                textBox_log_config.AppendText("\r\nAdding: " + Listbox.CheckedItems[i].ToString());
+            }
+
+            return list_temp;
+        }
+
+        private void button_save_config_Click(object sender, EventArgs e)
+        {
+            textBox_log_config.AppendText("\r\nSaving...");
+            List <List<String>> list_of_lists_string = new List<List<string>>();
+
+            list_of_lists_string.Add(collect_config(listbox_AMD_chipset));
+            list_of_lists_string.Add(collect_config(listbox_INTEL_chipset));
+            list_of_lists_string.Add(collect_config(listbox_vendor));
+
+            this.Obj_CONFIG.set_config(list_of_lists_string, comboBox_what_to_get.SelectedIndex);
+            textBox_log_config.AppendText("\r\nSave Complete...");
         }
     }
 }

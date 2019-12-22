@@ -94,6 +94,7 @@
             this.btn_add_url = new System.Windows.Forms.Button();
             this.tabPage_admin_model = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button_admin_model_copy = new System.Windows.Forms.Button();
             this.label_admin_model = new System.Windows.Forms.Label();
             this.button_save_model_url = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -151,7 +152,8 @@
             this.button_get_models = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
-            this.button_admin_model_copy = new System.Windows.Forms.Button();
+            this.button_load_config = new System.Windows.Forms.Button();
+            this.button_save_config = new System.Windows.Forms.Button();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -360,6 +362,8 @@
             // 
             // tabPage_config
             // 
+            this.tabPage_config.Controls.Add(this.button_save_config);
+            this.tabPage_config.Controls.Add(this.button_load_config);
             this.tabPage_config.Controls.Add(this.groupBox_what_to_get);
             this.tabPage_config.Controls.Add(this.textBox_log_config);
             this.tabPage_config.Controls.Add(this.grpBox_vendor);
@@ -879,6 +883,16 @@
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Delete";
+            // 
+            // button_admin_model_copy
+            // 
+            this.button_admin_model_copy.Location = new System.Drawing.Point(195, 245);
+            this.button_admin_model_copy.Name = "button_admin_model_copy";
+            this.button_admin_model_copy.Size = new System.Drawing.Size(75, 23);
+            this.button_admin_model_copy.TabIndex = 12;
+            this.button_admin_model_copy.Text = "Copy Model";
+            this.button_admin_model_copy.UseVisualStyleBackColor = true;
+            this.button_admin_model_copy.Click += new System.EventHandler(this.button_admin_model_copy_Click);
             // 
             // label_admin_model
             // 
@@ -1418,15 +1432,25 @@
             // 
             this.errorProvider_admin_model_validator.ContainerControl = this;
             // 
-            // button_admin_model_copy
+            // button_load_config
             // 
-            this.button_admin_model_copy.Location = new System.Drawing.Point(195, 245);
-            this.button_admin_model_copy.Name = "button_admin_model_copy";
-            this.button_admin_model_copy.Size = new System.Drawing.Size(75, 23);
-            this.button_admin_model_copy.TabIndex = 12;
-            this.button_admin_model_copy.Text = "Copy Model";
-            this.button_admin_model_copy.UseVisualStyleBackColor = true;
-            this.button_admin_model_copy.Click += new System.EventHandler(this.button_admin_model_copy_Click);
+            this.button_load_config.Location = new System.Drawing.Point(84, 482);
+            this.button_load_config.Name = "button_load_config";
+            this.button_load_config.Size = new System.Drawing.Size(75, 23);
+            this.button_load_config.TabIndex = 14;
+            this.button_load_config.Text = "Load Config";
+            this.button_load_config.UseVisualStyleBackColor = true;
+            this.button_load_config.Click += new System.EventHandler(this.button_load_config_Click);
+            // 
+            // button_save_config
+            // 
+            this.button_save_config.Location = new System.Drawing.Point(165, 482);
+            this.button_save_config.Name = "button_save_config";
+            this.button_save_config.Size = new System.Drawing.Size(75, 23);
+            this.button_save_config.TabIndex = 15;
+            this.button_save_config.Text = "Save Config";
+            this.button_save_config.UseVisualStyleBackColor = true;
+            this.button_save_config.Click += new System.EventHandler(this.button_save_config_Click);
             // 
             // BIOSUP_GUI
             // 
@@ -1648,6 +1672,8 @@
         private System.Windows.Forms.Button button_admin_url_model_copy;
         private System.Windows.Forms.Button button_admin_url_bulk_get;
         private System.Windows.Forms.Button button_admin_model_copy;
+        private System.Windows.Forms.Button button_load_config;
+        private System.Windows.Forms.Button button_save_config;
     }
 }
 
