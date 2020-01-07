@@ -154,6 +154,14 @@
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
             this.button_load_config = new System.Windows.Forms.Button();
             this.button_save_config = new System.Windows.Forms.Button();
+            this.groupBox_script_buttons = new System.Windows.Forms.GroupBox();
+            this.tabPage_feed = new System.Windows.Forms.TabPage();
+            this.groupBox_feed = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel_admin_scripts = new System.Windows.Forms.FlowLayoutPanel();
+            this.button_get_next_10 = new System.Windows.Forms.Button();
+            this.tabControl_admin_feed = new System.Windows.Forms.TabControl();
+            this.tabPage_admin_feed_url = new System.Windows.Forms.TabPage();
+            this.tabPage_admin_feed_model = new System.Windows.Forms.TabPage();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -204,6 +212,11 @@
             this.groupBox_add_shipset.SuspendLayout();
             this.tabPage_admin_scripts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).BeginInit();
+            this.groupBox_script_buttons.SuspendLayout();
+            this.tabPage_feed.SuspendLayout();
+            this.groupBox_feed.SuspendLayout();
+            this.tabControl_admin_feed.SuspendLayout();
+            this.tabPage_admin_feed_url.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip_err_or_cwd
@@ -601,6 +614,7 @@
             this.tabControl_admin.Controls.Add(this.tabPage_admin_vendor);
             this.tabControl_admin.Controls.Add(this.tabPage_chipset_add);
             this.tabControl_admin.Controls.Add(this.tabPage_admin_scripts);
+            this.tabControl_admin.Controls.Add(this.tabPage_feed);
             this.tabControl_admin.Location = new System.Drawing.Point(4, 4);
             this.tabControl_admin.Name = "tabControl_admin";
             this.tabControl_admin.SelectedIndex = 0;
@@ -1409,7 +1423,7 @@
             // 
             // tabPage_admin_scripts
             // 
-            this.tabPage_admin_scripts.Controls.Add(this.button_get_models);
+            this.tabPage_admin_scripts.Controls.Add(this.groupBox_script_buttons);
             this.tabPage_admin_scripts.Location = new System.Drawing.Point(4, 22);
             this.tabPage_admin_scripts.Name = "tabPage_admin_scripts";
             this.tabPage_admin_scripts.Padding = new System.Windows.Forms.Padding(3);
@@ -1420,7 +1434,7 @@
             // 
             // button_get_models
             // 
-            this.button_get_models.Location = new System.Drawing.Point(19, 21);
+            this.button_get_models.Location = new System.Drawing.Point(8, 19);
             this.button_get_models.Name = "button_get_models";
             this.button_get_models.Size = new System.Drawing.Size(108, 23);
             this.button_get_models.TabIndex = 0;
@@ -1451,6 +1465,86 @@
             this.button_save_config.Text = "Save Config";
             this.button_save_config.UseVisualStyleBackColor = true;
             this.button_save_config.Click += new System.EventHandler(this.button_save_config_Click);
+            // 
+            // groupBox_script_buttons
+            // 
+            this.groupBox_script_buttons.Controls.Add(this.button_get_models);
+            this.groupBox_script_buttons.Location = new System.Drawing.Point(-2, 6);
+            this.groupBox_script_buttons.Name = "groupBox_script_buttons";
+            this.groupBox_script_buttons.Size = new System.Drawing.Size(560, 359);
+            this.groupBox_script_buttons.TabIndex = 1;
+            this.groupBox_script_buttons.TabStop = false;
+            this.groupBox_script_buttons.Text = "Scripts";
+            // 
+            // tabPage_feed
+            // 
+            this.tabPage_feed.Controls.Add(this.tabControl_admin_feed);
+            this.tabPage_feed.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_feed.Name = "tabPage_feed";
+            this.tabPage_feed.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_feed.Size = new System.Drawing.Size(564, 371);
+            this.tabPage_feed.TabIndex = 5;
+            this.tabPage_feed.Text = "The Feed";
+            this.tabPage_feed.UseVisualStyleBackColor = true;
+            // 
+            // groupBox_feed
+            // 
+            this.groupBox_feed.Controls.Add(this.flowLayoutPanel_admin_scripts);
+            this.groupBox_feed.Controls.Add(this.button_get_next_10);
+            this.groupBox_feed.Location = new System.Drawing.Point(4, 6);
+            this.groupBox_feed.Name = "groupBox_feed";
+            this.groupBox_feed.Size = new System.Drawing.Size(534, 320);
+            this.groupBox_feed.TabIndex = 3;
+            this.groupBox_feed.TabStop = false;
+            this.groupBox_feed.Text = "The Feed";
+            // 
+            // flowLayoutPanel_admin_scripts
+            // 
+            this.flowLayoutPanel_admin_scripts.AutoScroll = true;
+            this.flowLayoutPanel_admin_scripts.Location = new System.Drawing.Point(6, 19);
+            this.flowLayoutPanel_admin_scripts.Name = "flowLayoutPanel_admin_scripts";
+            this.flowLayoutPanel_admin_scripts.Size = new System.Drawing.Size(522, 266);
+            this.flowLayoutPanel_admin_scripts.TabIndex = 7;
+            // 
+            // button_get_next_10
+            // 
+            this.button_get_next_10.Location = new System.Drawing.Point(453, 291);
+            this.button_get_next_10.Name = "button_get_next_10";
+            this.button_get_next_10.Size = new System.Drawing.Size(75, 23);
+            this.button_get_next_10.TabIndex = 0;
+            this.button_get_next_10.Text = "Get Next 10";
+            this.button_get_next_10.UseVisualStyleBackColor = true;
+            // 
+            // tabControl_admin_feed
+            // 
+            this.tabControl_admin_feed.Controls.Add(this.tabPage_admin_feed_url);
+            this.tabControl_admin_feed.Controls.Add(this.tabPage_admin_feed_model);
+            this.tabControl_admin_feed.Location = new System.Drawing.Point(9, 7);
+            this.tabControl_admin_feed.Name = "tabControl_admin_feed";
+            this.tabControl_admin_feed.SelectedIndex = 0;
+            this.tabControl_admin_feed.Size = new System.Drawing.Size(549, 358);
+            this.tabControl_admin_feed.TabIndex = 4;
+            // 
+            // tabPage_admin_feed_url
+            // 
+            this.tabPage_admin_feed_url.Controls.Add(this.groupBox_feed);
+            this.tabPage_admin_feed_url.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_admin_feed_url.Name = "tabPage_admin_feed_url";
+            this.tabPage_admin_feed_url.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_admin_feed_url.Size = new System.Drawing.Size(541, 332);
+            this.tabPage_admin_feed_url.TabIndex = 0;
+            this.tabPage_admin_feed_url.Text = "URL";
+            this.tabPage_admin_feed_url.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_admin_feed_model
+            // 
+            this.tabPage_admin_feed_model.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_admin_feed_model.Name = "tabPage_admin_feed_model";
+            this.tabPage_admin_feed_model.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_admin_feed_model.Size = new System.Drawing.Size(541, 332);
+            this.tabPage_admin_feed_model.TabIndex = 1;
+            this.tabPage_admin_feed_model.Text = "Model";
+            this.tabPage_admin_feed_model.UseVisualStyleBackColor = true;
             // 
             // BIOSUP_GUI
             // 
@@ -1544,6 +1638,11 @@
             this.groupBox_add_shipset.PerformLayout();
             this.tabPage_admin_scripts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_admin_model_validator)).EndInit();
+            this.groupBox_script_buttons.ResumeLayout(false);
+            this.tabPage_feed.ResumeLayout(false);
+            this.groupBox_feed.ResumeLayout(false);
+            this.tabControl_admin_feed.ResumeLayout(false);
+            this.tabPage_admin_feed_url.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1674,6 +1773,14 @@
         private System.Windows.Forms.Button button_admin_model_copy;
         private System.Windows.Forms.Button button_load_config;
         private System.Windows.Forms.Button button_save_config;
+        private System.Windows.Forms.GroupBox groupBox_script_buttons;
+        private System.Windows.Forms.TabPage tabPage_feed;
+        private System.Windows.Forms.TabControl tabControl_admin_feed;
+        private System.Windows.Forms.TabPage tabPage_admin_feed_url;
+        private System.Windows.Forms.GroupBox groupBox_feed;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_admin_scripts;
+        private System.Windows.Forms.Button button_get_next_10;
+        private System.Windows.Forms.TabPage tabPage_admin_feed_model;
     }
 }
 

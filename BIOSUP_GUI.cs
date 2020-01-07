@@ -846,6 +846,11 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
         private void button_admin_url_bulk_get_Click(object sender, EventArgs e)
         {
+            //need to check: 
+            //if url is already in system(if it is, add to edit/save flow(leave sine it should already be there from previous select), if not, add to 'add new')
+            //if model support url already in system, use that
+            //if there are extra bits required to get url
+            //Need to get: date, url, version. bridge manual
 
         }
 
@@ -912,6 +917,16 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
             this.Obj_CONFIG.set_config(list_of_lists_string, comboBox_what_to_get.SelectedIndex);
             textBox_log_config.AppendText("\r\nSave Complete...");
+        }
+
+        private void button_get_next_10_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel_admin_scripts.Controls.Clear();
+            for( int i = 0; i <= 3; i++)
+            {
+                flowLayoutPanel_admin_scripts.Controls.Add(new Biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
+            }
+
         }
     }
 }
