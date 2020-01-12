@@ -14,7 +14,7 @@ namespace BiosupCS
 {
     public partial class BIOSUP_GUI : Form
     {
-        String str_working_dir;
+        readonly String str_working_dir;
         readonly String str_database_credentials = "Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         readonly List<String> list_chipset_vendor = new List<String>() { "AMD", "INTEL" };
         readonly List<String> list_points = new List<String>() { "Downloading", "Unzipping","Other" };
@@ -26,7 +26,7 @@ namespace BiosupCS
         readonly BIOSUP_UNZIP OBJ_UNZIP;
         readonly BIOSUP_DL_FILE OBJ_DL_FILE;
         readonly BIOSUP_RM_FILE OBJ_RM_FILE;
-        BIOSUP_CONFIG Obj_CONFIG;
+        readonly BIOSUP_CONFIG Obj_CONFIG;
         public BIOSUP_GUI()
         {
             InitializeComponent();
@@ -825,7 +825,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
                 }
 
-               
+
             }
             catch (Exception ex)
             {
@@ -844,17 +844,53 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             textBox_admin_log.AppendText("\n\rCopied!");
         }
 
-        private void button_admin_url_bulk_get_Click(object sender, EventArgs e)
+        private void Button_admin_url_bulk_get_Click(object sender, EventArgs e)
         {
+
+            String str_model = label_admin_url_model.Text;
+            int int_url_to_get = Convert.ToInt32(numericUpDown_admin_url_url_to_add.Value);
+
+            //URL check already occurs in DB upon insert, 
+            try
+            {
+                //if url + version already in system(if it is, add to edit/save flow(leave sine it should already be there from previous select), if not, add to 'add new')
+                for (int i = 1; i <= int_url_to_get; i++)
+                {
+                    String str_version = "x.x"+i;
+                    String str_url = "https/xxxxxxxx" + i;
+                    String str_date = "04/12/2019";
+
+                    Biosup_multi_url_add control_to_add = new Biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str };
+
+                    control_to_add.Controls["textBox1"].Text = str_version;
+                    control_to_add.Controls["textBox_str_admin_url_multi_add"].Text = str_url;
+
+                    try
+                    {
+                        control_to_add.Controls["dateTimePicker1"].Text = str_date;
+                    }
+                    catch
+                    {
+                        textBox_admin_log.AppendText("\r\nInvalid date format for Version: " + str_version);
+                        textBox_admin_log.AppendText("\r\nShowing today's date instead...");
+                    }
+                    
+                    flowLayoutPanel_add_url_str.Controls.Add(control_to_add);
+
+                }
+            }
+            catch
+            {
+
+            }
+            
             //need to check: 
-            //if url is already in system(if it is, add to edit/save flow(leave sine it should already be there from previous select), if not, add to 'add new')
-            //if model support url already in system, use that
+                 
             //if there are extra bits required to get url
-            //Need to get: date, url, version. bridge manual
 
         }
 
-        private void button_admin_model_copy_Click(object sender, EventArgs e)
+        private void Button_admin_model_copy_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(label_admin_model.Text);
             textBox_admin_log.AppendText("\n\rCopied!");
@@ -909,11 +945,12 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
         private void button_save_config_Click(object sender, EventArgs e)
         {
             textBox_log_config.AppendText("\r\nSaving...");
-            List <List<String>> list_of_lists_string = new List<List<string>>();
-
-            list_of_lists_string.Add(collect_config(listbox_AMD_chipset));
-            list_of_lists_string.Add(collect_config(listbox_INTEL_chipset));
-            list_of_lists_string.Add(collect_config(listbox_vendor));
+            List<List<String>> list_of_lists_string = new List<List<string>>
+            {
+                collect_config(listbox_AMD_chipset),
+                collect_config(listbox_INTEL_chipset),
+                collect_config(listbox_vendor)
+            };
 
             this.Obj_CONFIG.set_config(list_of_lists_string, comboBox_what_to_get.SelectedIndex);
             textBox_log_config.AppendText("\r\nSave Complete...");

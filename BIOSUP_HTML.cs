@@ -12,15 +12,21 @@ namespace BiosupCS
     public class BIOSUP_HTML
     {
         readonly String str_query = "https://duckduckgo.com/html/?q=";
+        readonly List<String> arr_vendor_check;
+        //grab the firsld from the database for vendors and add to array for checking
 
+        public BIOSUP_HTML(List<String>  arr_input_vendor_check)
+        {
+            arr_vendor_check = arr_input_vendor_check;
+        }
         public void get_webpage_ddg(String sku)
         {
             get_webpage(this.str_query + sku);
         }
 
-        private void get_webpage_model_support()
+        private void get_webpage_model_support(String URL)
         {
-
+            get_webpage(URL);
         }
 
         private void get_webpage(string str_url)
