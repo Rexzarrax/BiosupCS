@@ -45,7 +45,7 @@ namespace BiosupCS
 
         }
 
-        private void checkBox_multi_del_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox_multi_del_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox_multi_del.Checked)
             {

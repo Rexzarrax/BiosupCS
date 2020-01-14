@@ -139,7 +139,7 @@
             this.checkBox_multi_del.TabIndex = 10;
             this.checkBox_multi_del.Text = "Del";
             this.checkBox_multi_del.UseVisualStyleBackColor = true;
-            this.checkBox_multi_del.CheckedChanged += new System.EventHandler(this.checkBox_multi_del_CheckedChanged);
+            this.checkBox_multi_del.CheckedChanged += new System.EventHandler(this.CheckBox_multi_del_CheckedChanged);
             // 
             // Biosup_multi_url_add
             // 

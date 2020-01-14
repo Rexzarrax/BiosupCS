@@ -846,7 +846,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
         private void Button_admin_url_bulk_get_Click(object sender, EventArgs e)
         {
-
+            BIOSUP_HTML HTML = new BIOSUP_HTML();
             String str_model = label_admin_url_model.Text;
             int int_url_to_get = Convert.ToInt32(numericUpDown_admin_url_url_to_add.Value);
 
@@ -854,6 +854,9 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             try
             {
                 //if url + version already in system(if it is, add to edit/save flow(leave sine it should already be there from previous select), if not, add to 'add new')
+
+                HTML.get_webpage_ddg(str_model);
+
                 for (int i = 1; i <= int_url_to_get; i++)
                 {
                     String str_version = "x.x"+i;
@@ -916,7 +919,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
             }
         }
-            private void button_load_config_Click(object sender, EventArgs e)
+            private void Button_load_config_Click(object sender, EventArgs e)
         {
             this.Obj_CONFIG.load_config();
 
@@ -942,7 +945,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             return list_temp;
         }
 
-        private void button_save_config_Click(object sender, EventArgs e)
+        private void Button_save_config_Click(object sender, EventArgs e)
         {
             textBox_log_config.AppendText("\r\nSaving...");
             List<List<String>> list_of_lists_string = new List<List<string>>
@@ -956,7 +959,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             textBox_log_config.AppendText("\r\nSave Complete...");
         }
 
-        private void button_get_next_10_Click(object sender, EventArgs e)
+        private void Button_get_next_10_Click(object sender, EventArgs e)
         {
             flowLayoutPanel_admin_scripts.Controls.Clear();
             for( int i = 0; i <= 3; i++)

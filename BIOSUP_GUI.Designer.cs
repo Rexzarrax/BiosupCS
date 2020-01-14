@@ -401,7 +401,7 @@
             this.button_save_config.TabIndex = 15;
             this.button_save_config.Text = "Save Config";
             this.button_save_config.UseVisualStyleBackColor = true;
-            this.button_save_config.Click += new System.EventHandler(this.button_save_config_Click);
+            this.button_save_config.Click += new System.EventHandler(this.Button_save_config_Click);
             // 
             // button_load_config
             // 
@@ -411,7 +411,7 @@
             this.button_load_config.TabIndex = 14;
             this.button_load_config.Text = "Load Config";
             this.button_load_config.UseVisualStyleBackColor = true;
-            this.button_load_config.Click += new System.EventHandler(this.button_load_config_Click);
+            this.button_load_config.Click += new System.EventHandler(this.Button_load_config_Click);
             // 
             // groupBox_what_to_get
             // 
