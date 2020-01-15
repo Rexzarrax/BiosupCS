@@ -131,6 +131,7 @@ namespace BiosupCS
                     }
 
                 }
+
                 foreach (String str_vendor in list_chipset_vendor)
                 {
                     Invoke(new Action(() => comboBox_admin_chipset_vendor.Items.Add(str_vendor)));
@@ -967,6 +968,26 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 flowLayoutPanel_admin_scripts.Controls.Add(new Biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
             }
 
+        }
+
+        private void pull_link_ddg_Click(object sender, EventArgs e)
+        {
+            BIOSUP_HTML HTML = new BIOSUP_HTML();
+            String str_model = label_admin_model.Text;
+            HTML.get_webpage_ddg(str_model);
+            textBox_admin_model_url.Text = HTML.list_vendor_check[0];
+        }
+
+        private void button_goto_url_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(textBox_admin_model_url.Text);
+            }
+            catch
+            {
+                textBox_log_config.AppendText("\r\nError Opening URL");
+            }
         }
     }
 }

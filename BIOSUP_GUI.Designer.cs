@@ -162,6 +162,8 @@
             this.tabPage_admin_feed_model = new System.Windows.Forms.TabPage();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
+            this.pull_link_ddg = new System.Windows.Forms.Button();
+            this.button_goto_url = new System.Windows.Forms.Button();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -905,6 +907,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button_goto_url);
+            this.groupBox4.Controls.Add(this.pull_link_ddg);
             this.groupBox4.Controls.Add(this.button_admin_model_copy);
             this.groupBox4.Controls.Add(this.label_admin_model);
             this.groupBox4.Controls.Add(this.button_save_model_url);
@@ -959,7 +963,6 @@
             // 
             // textBox_admin_model_url
             // 
-            this.textBox_admin_model_url.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.textBox_admin_model_url.Location = new System.Drawing.Point(6, 19);
             this.textBox_admin_model_url.Name = "textBox_admin_model_url";
             this.textBox_admin_model_url.Size = new System.Drawing.Size(258, 20);
@@ -1371,6 +1374,7 @@
             this.comboBox_select_chipset_to_remove.Location = new System.Drawing.Point(40, 69);
             this.comboBox_select_chipset_to_remove.Name = "comboBox_select_chipset_to_remove";
             this.comboBox_select_chipset_to_remove.Size = new System.Drawing.Size(188, 21);
+            this.comboBox_select_chipset_to_remove.Sorted = true;
             this.comboBox_select_chipset_to_remove.TabIndex = 6;
             // 
             // button_remvoe_chipset
@@ -1545,6 +1549,26 @@
             // errorProvider_admin_model_validator
             // 
             this.errorProvider_admin_model_validator.ContainerControl = this;
+            // 
+            // pull_link_ddg
+            // 
+            this.pull_link_ddg.Location = new System.Drawing.Point(104, 330);
+            this.pull_link_ddg.Name = "pull_link_ddg";
+            this.pull_link_ddg.Size = new System.Drawing.Size(75, 23);
+            this.pull_link_ddg.TabIndex = 13;
+            this.pull_link_ddg.Text = "Pull";
+            this.pull_link_ddg.UseVisualStyleBackColor = true;
+            this.pull_link_ddg.Click += new System.EventHandler(this.pull_link_ddg_Click);
+            // 
+            // button_goto_url
+            // 
+            this.button_goto_url.Location = new System.Drawing.Point(12, 330);
+            this.button_goto_url.Name = "button_goto_url";
+            this.button_goto_url.Size = new System.Drawing.Size(75, 23);
+            this.button_goto_url.TabIndex = 14;
+            this.button_goto_url.Text = "Goto";
+            this.button_goto_url.UseVisualStyleBackColor = true;
+            this.button_goto_url.Click += new System.EventHandler(this.button_goto_url_Click);
             // 
             // BIOSUP_GUI
             // 
@@ -1781,6 +1805,8 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_admin_scripts;
         private System.Windows.Forms.Button button_get_next_10;
         private System.Windows.Forms.TabPage tabPage_admin_feed_model;
+        private System.Windows.Forms.Button pull_link_ddg;
+        private System.Windows.Forms.Button button_goto_url;
     }
 }
 

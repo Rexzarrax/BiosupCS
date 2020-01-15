@@ -13,39 +13,52 @@ namespace BiosupCS
     {
         readonly String str_query = "https://duckduckgo.com/html/?q=";
         readonly String str_ddg_remove = "/l/?kh=-1&amp;uddg=";
-        readonly List<String> arr_vendor_check;
-        private string webpage_html;
+        readonly String str_ddg_add = " bios, uefi, support";
+        public List<String> list_vendor_check;
         //grab the firsld from the database for vendors and add to array for checking
 
         public void get_webpage_ddg(String sku)
         {
-            get_webpage(this.str_query + sku+" bios");
+            get_webpage(this.str_query + sku+ this.str_ddg_add);
         }
+        private string clean_url(String url)
+        {
+            String result = url.Replace("%3A",":");
+            result = result.Replace("%2F", "/");
+            result = result.Replace("%2D", "-");
+            result = result.Replace("%5D", "_");
+            result = result.Replace("%2C", ",");
+            result = result.Replace("%3D", "=");
+            result = result.Replace("%25", "%");
 
+            return result;
+        }
         private void get_webpage_model_support(String URL)
         {
             get_webpage(URL);
         }
         private void get_webpage(string str_url)
         {
+            this.list_vendor_check = new List<string>();
+            this.list_vendor_check.Clear();
             HtmlWeb hw = new HtmlWeb();
             HtmlDocument doc = hw.Load(str_url);
             List<String> list_found_url = new List<String>();
 
             foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]"))
             {
-                String str_check = link.Attributes["href"].Value.Replace(this.str_ddg_remove, "");
+                String str_check = clean_url(link.Attributes["href"].Value.Replace(this.str_ddg_remove, ""));
                 try
                 {
                     if (!list_found_url.Contains(str_check))
                     {
                         list_found_url.Add(str_check);
                     }
-                    
+                    list_found_url = this.list_vendor_check;
                 }
                 catch
                 {
-
+                    this.list_vendor_check.Add("");
                 }
 
 
