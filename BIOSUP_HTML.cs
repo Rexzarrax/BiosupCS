@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using HtmlAgilityPack;
+using System.Text.RegularExpressions;
 
 namespace BiosupCS
 {
@@ -14,12 +15,46 @@ namespace BiosupCS
         readonly String str_query = "https://duckduckgo.com/html/?q=";
         readonly String str_ddg_remove = "/l/?kh=-1&amp;uddg=";
         readonly String str_ddg_add = " bios, uefi, support";
-        public List<String> list_vendor_check;
+        public List<String> list_url;
+        readonly List<String> list_vendor_check2;
         //grab the firsld from the database for vendors and add to array for checking
+
+        public BIOSUP_HTML(List<String> vendor_check_list)
+        {
+            this.list_vendor_check2 = vendor_check_list;
+        }
 
         public void get_webpage_ddg(String sku)
         {
             get_webpage(this.str_query + sku+ this.str_ddg_add);
+
+            List<String> list_old = this.list_url;
+
+            foreach(String url in list_old)
+            {
+                foreach(String check in this.list_vendor_check2)
+                {
+                    string input = url;
+                    string pattern = check;
+
+                    Regex rgx = new Regex(pattern);
+                    bool result = rgx.IsMatch(input);
+
+                    Console.WriteLine("Original String: {0}", input);
+                    Console.WriteLine("Replacement String: {0}", result);
+
+                    if (result)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        this.list_url.Remove(url);
+                    }
+                }
+
+            }
+
         }
         private string clean_url(String url)
         {
@@ -35,12 +70,12 @@ namespace BiosupCS
         }
         private void get_webpage_model_support(String URL)
         {
-            get_webpage(URL);
+            //get_webpage(URL);
         }
         private void get_webpage(string str_url)
         {
-            this.list_vendor_check = new List<string>();
-            this.list_vendor_check.Clear();
+            this.list_url = new List<string>();
+            this.list_url.Clear();
             HtmlWeb hw = new HtmlWeb();
             HtmlDocument doc = hw.Load(str_url);
             List<String> list_found_url = new List<String>();
@@ -52,13 +87,14 @@ namespace BiosupCS
                 {
                     if (!list_found_url.Contains(str_check))
                     {
-                        list_found_url.Add(str_check);
+                       list_found_url.Add(str_check);
+
                     }
-                    list_found_url = this.list_vendor_check;
+                    list_found_url = this.list_url;
                 }
                 catch
                 {
-                    this.list_vendor_check.Add("");
+                    this.list_url.Add("");
                 }
 
 

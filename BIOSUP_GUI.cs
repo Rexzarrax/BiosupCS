@@ -20,6 +20,7 @@ namespace BiosupCS
         readonly List<String> list_points = new List<String>() { "Downloading", "Unzipping","Other" };
         //Order is important for method set_how_much_to_dl
         readonly List<String> list_what_to_download= new List<String>() { "Latest Only", "Bridge + Latest", "All","Bridge Only" };
+        readonly List<String> list_vendor_url_model = new List<String>();
         Boolean bool_select_all = false;
         DataTable Biosup_query_chipsets;
         readonly BIOSUP_SQL Biosup_query;
@@ -105,7 +106,9 @@ namespace BiosupCS
                     Invoke(new Action(() => comboBox_select_vendor.Items.Add(row["vendor_name"])));
                     Invoke(new Action(() => comboBox_select_vendor_to_edit.Items.Add(row["vendor_name"])));
                     Invoke(new Action(() => comboBox_admin_url_vendor.Items.Add(row["vendor_name"])));
-                    
+                    this.list_vendor_url_model.Add(row["vendor_sort"].ToString());
+
+
                 }
 
                 textBox_log_config.AppendText("\r\n Chipsets Found:");
@@ -847,7 +850,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
         private void Button_admin_url_bulk_get_Click(object sender, EventArgs e)
         {
-            BIOSUP_HTML HTML = new BIOSUP_HTML();
+            BIOSUP_HTML HTML = new BIOSUP_HTML(this.list_vendor_url_model);
             String str_model = label_admin_url_model.Text;
             int int_url_to_get = Convert.ToInt32(numericUpDown_admin_url_url_to_add.Value);
 
@@ -972,10 +975,17 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
         private void pull_link_ddg_Click(object sender, EventArgs e)
         {
-            BIOSUP_HTML HTML = new BIOSUP_HTML();
+            BIOSUP_HTML HTML = new BIOSUP_HTML(this.list_vendor_url_model);
             String str_model = label_admin_model.Text;
             HTML.get_webpage_ddg(str_model);
-            textBox_admin_model_url.Text = HTML.list_vendor_check[0];
+            try
+            {
+                textBox_admin_model_url.Text = HTML.list_url[0];
+            }
+            catch
+            {
+                MessageBox.Show("No URL found", "Error!",MessageBoxButtons.OK);
+            }
         }
 
         private void button_goto_url_Click(object sender, EventArgs e)
