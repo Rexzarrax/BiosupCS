@@ -28,29 +28,39 @@ namespace BiosupCS
         {
             get_webpage(this.str_query + sku+ this.str_ddg_add);
 
-            List<String> list_old = this.list_url;
+            List<String> list_old = new List<String>(this.list_url);
 
             foreach(String url in list_old)
             {
-                foreach(String check in this.list_vendor_check2)
+                bool result = false;
+                foreach (String check in this.list_vendor_check2)
                 {
                     string input = url;
                     string pattern = check;
 
-                    Regex rgx = new Regex(pattern);
-                    bool result = rgx.IsMatch(input);
-
                     Console.WriteLine("Original String: {0}", input);
-                    Console.WriteLine("Replacement String: {0}", result);
+                    Console.WriteLine("Pattern String: {0}", pattern);
 
+                    Regex rgx = new Regex(pattern);
+                    result = rgx.IsMatch(input);
+                    Console.WriteLine(result);
                     if (result)
                     {
+                        Console.WriteLine("Match!");
                         break;
                     }
-                    else
-                    {
-                        this.list_url.Remove(url);
-                    }
+
+                }
+                Console.WriteLine(result);
+                if (result)
+                {
+                    Console.WriteLine("Match!");
+                    break;
+                }
+                else
+                {
+                    this.list_url.Remove(url);
+
                 }
 
             }

@@ -164,6 +164,8 @@
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
             this.pull_link_ddg = new System.Windows.Forms.Button();
             this.button_goto_url = new System.Windows.Forms.Button();
+            this.admin_url_url_label = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -661,7 +663,7 @@
             this.groupBox_admin_url_contain_url.Controls.Add(this.tabControl1);
             this.groupBox_admin_url_contain_url.Location = new System.Drawing.Point(6, 112);
             this.groupBox_admin_url_contain_url.Name = "groupBox_admin_url_contain_url";
-            this.groupBox_admin_url_contain_url.Size = new System.Drawing.Size(552, 253);
+            this.groupBox_admin_url_contain_url.Size = new System.Drawing.Size(552, 263);
             this.groupBox_admin_url_contain_url.TabIndex = 7;
             this.groupBox_admin_url_contain_url.TabStop = false;
             this.groupBox_admin_url_contain_url.Text = "URL\'s";
@@ -673,11 +675,13 @@
             this.tabControl1.Location = new System.Drawing.Point(6, 20);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(546, 227);
+            this.tabControl1.Size = new System.Drawing.Size(546, 237);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage_admin_url_urls_add
             // 
+            this.tabPage_admin_url_urls_add.Controls.Add(this.button2);
+            this.tabPage_admin_url_urls_add.Controls.Add(this.admin_url_url_label);
             this.tabPage_admin_url_urls_add.Controls.Add(this.button_admin_url_bulk_get);
             this.tabPage_admin_url_urls_add.Controls.Add(this.button_admin_url_model_copy);
             this.tabPage_admin_url_urls_add.Controls.Add(this.label_admin_url_model);
@@ -686,16 +690,16 @@
             this.tabPage_admin_url_urls_add.Location = new System.Drawing.Point(4, 22);
             this.tabPage_admin_url_urls_add.Name = "tabPage_admin_url_urls_add";
             this.tabPage_admin_url_urls_add.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_admin_url_urls_add.Size = new System.Drawing.Size(538, 201);
+            this.tabPage_admin_url_urls_add.Size = new System.Drawing.Size(538, 211);
             this.tabPage_admin_url_urls_add.TabIndex = 0;
             this.tabPage_admin_url_urls_add.Text = "Add";
             this.tabPage_admin_url_urls_add.UseVisualStyleBackColor = true;
             // 
             // button_admin_url_bulk_get
             // 
-            this.button_admin_url_bulk_get.Location = new System.Drawing.Point(352, 172);
+            this.button_admin_url_bulk_get.Location = new System.Drawing.Point(413, 172);
             this.button_admin_url_bulk_get.Name = "button_admin_url_bulk_get";
-            this.button_admin_url_bulk_get.Size = new System.Drawing.Size(75, 23);
+            this.button_admin_url_bulk_get.Size = new System.Drawing.Size(51, 23);
             this.button_admin_url_bulk_get.TabIndex = 10;
             this.button_admin_url_bulk_get.Text = "Pull";
             this.button_admin_url_bulk_get.UseVisualStyleBackColor = true;
@@ -703,7 +707,7 @@
             // 
             // button_admin_url_model_copy
             // 
-            this.button_admin_url_model_copy.Location = new System.Drawing.Point(253, 172);
+            this.button_admin_url_model_copy.Location = new System.Drawing.Point(332, 172);
             this.button_admin_url_model_copy.Name = "button_admin_url_model_copy";
             this.button_admin_url_model_copy.Size = new System.Drawing.Size(75, 23);
             this.button_admin_url_model_copy.TabIndex = 9;
@@ -714,7 +718,7 @@
             // label_admin_url_model
             // 
             this.label_admin_url_model.AutoSize = true;
-            this.label_admin_url_model.Location = new System.Drawing.Point(6, 182);
+            this.label_admin_url_model.Location = new System.Drawing.Point(6, 172);
             this.label_admin_url_model.Name = "label_admin_url_model";
             this.label_admin_url_model.Size = new System.Drawing.Size(98, 13);
             this.label_admin_url_model.TabIndex = 8;
@@ -722,9 +726,9 @@
             // 
             // btn_admin_url_add_url
             // 
-            this.btn_admin_url_add_url.Location = new System.Drawing.Point(447, 172);
+            this.btn_admin_url_add_url.Location = new System.Drawing.Point(470, 172);
             this.btn_admin_url_add_url.Name = "btn_admin_url_add_url";
-            this.btn_admin_url_add_url.Size = new System.Drawing.Size(75, 23);
+            this.btn_admin_url_add_url.Size = new System.Drawing.Size(62, 23);
             this.btn_admin_url_add_url.TabIndex = 7;
             this.btn_admin_url_add_url.Text = "Add";
             this.btn_admin_url_add_url.UseVisualStyleBackColor = true;
@@ -735,7 +739,7 @@
             this.flowLayoutPanel_add_url_str.AutoScroll = true;
             this.flowLayoutPanel_add_url_str.Location = new System.Drawing.Point(6, 6);
             this.flowLayoutPanel_add_url_str.Name = "flowLayoutPanel_add_url_str";
-            this.flowLayoutPanel_add_url_str.Size = new System.Drawing.Size(532, 160);
+            this.flowLayoutPanel_add_url_str.Size = new System.Drawing.Size(526, 160);
             this.flowLayoutPanel_add_url_str.TabIndex = 6;
             // 
             // tabPage_admin_url_urls_edit
@@ -789,7 +793,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 74);
+            this.label5.Location = new System.Drawing.Point(7, 66);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 13);
             this.label5.TabIndex = 10;
@@ -846,7 +850,7 @@
             // 
             this.comboBox_select_model.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_select_model.FormattingEnabled = true;
-            this.comboBox_select_model.Location = new System.Drawing.Point(99, 71);
+            this.comboBox_select_model.Location = new System.Drawing.Point(99, 66);
             this.comboBox_select_model.Name = "comboBox_select_model";
             this.comboBox_select_model.Size = new System.Drawing.Size(239, 21);
             this.comboBox_select_model.TabIndex = 1;
@@ -1570,6 +1574,25 @@
             this.button_goto_url.UseVisualStyleBackColor = true;
             this.button_goto_url.Click += new System.EventHandler(this.button_goto_url_Click);
             // 
+            // admin_url_url_label
+            // 
+            this.admin_url_url_label.AutoSize = true;
+            this.admin_url_url_label.Location = new System.Drawing.Point(3, 198);
+            this.admin_url_url_label.Name = "admin_url_url_label";
+            this.admin_url_url_label.Size = new System.Drawing.Size(126, 13);
+            this.admin_url_url_label.TabIndex = 11;
+            this.admin_url_url_label.Text = "[MOTHERBOARD_URL]";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(289, 172);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(39, 23);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "Goto";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // BIOSUP_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1807,6 +1830,8 @@
         private System.Windows.Forms.TabPage tabPage_admin_feed_model;
         private System.Windows.Forms.Button pull_link_ddg;
         private System.Windows.Forms.Button button_goto_url;
+        private System.Windows.Forms.Label admin_url_url_label;
+        private System.Windows.Forms.Button button2;
     }
 }
 
