@@ -12,21 +12,24 @@ namespace BiosupCS
 {
     public class BIOSUP_HTML
     {
+        public List<String> list_url;
+        public List<String> list_vendor_dl_found;
         readonly String str_query = "https://duckduckgo.com/html/?q=";
         readonly String str_ddg_remove = "/l/?kh=-1&amp;uddg=";
         readonly String str_ddg_add = " bios, uefi, support";
-        public List<String> list_url;
         readonly List<String> list_vendor_check2;
+        readonly List<String> list_vendor_dl_check;
         //grab the firsld from the database for vendors and add to array for checking
 
-        public BIOSUP_HTML(List<String> vendor_check_list)
+        public BIOSUP_HTML(List<String> vendor_check_list, List<String> list_vendor_dl_check)
         {
             this.list_vendor_check2 = vendor_check_list;
+            this.list_vendor_dl_check = list_vendor_dl_check;
         }
 
-        public void get_webpage_ddg(String sku)
+        public void Get_webpage_ddg(String sku)
         {
-            get_webpage(this.str_query + sku+ this.str_ddg_add);
+            Get_webpage(this.str_query + sku+ this.str_ddg_add, ref this.list_url);
 
             List<String> list_old = new List<String>(this.list_url);
 
@@ -41,7 +44,7 @@ namespace BiosupCS
                     Console.WriteLine("Original String: {0}", input);
                     Console.WriteLine("Pattern String: {0}", pattern);
 
-                    Regex rgx = new Regex(pattern);
+                    Regex rgx = new Regex(pattern,RegexOptions.IgnoreCase);
                     result = rgx.IsMatch(input);
                     Console.WriteLine(result);
                     if (result)
@@ -66,33 +69,60 @@ namespace BiosupCS
             }
 
         }
-        private string clean_url(String url)
-        {
-            String result = url.Replace("%3A",":");
-            result = result.Replace("%2F", "/");
-            result = result.Replace("%2D", "-");
-            result = result.Replace("%5D", "_");
-            result = result.Replace("%2C", ",");
-            result = result.Replace("%3D", "=");
-            result = result.Replace("%25", "%");
 
-            return result;
-        }
-        private void get_webpage_model_support(String URL)
+        public void Get_webpage_model_support(String str_url)
         {
-            //get_webpage(URL);
+            Get_webpage(str_url, ref this.list_vendor_dl_found);
+
+            List<String> list_old = new List<String>(this.list_vendor_dl_found);
+
+            foreach (String url in list_old)
+            {
+                bool result = false;
+                foreach (String check in this.list_vendor_dl_check)
+                {
+                    string input = url;
+                    string pattern = check;
+
+                    Console.WriteLine("Original String: {0}", input);
+                    Console.WriteLine("Pattern String: {0}", pattern);
+
+                    Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+                    result = rgx.IsMatch(input);
+                    Console.WriteLine(result);
+                    if (result)
+                    {
+                        Console.WriteLine("Match!");
+                        break;
+                    }
+
+                }
+                Console.WriteLine(result);
+                if (result)
+                {
+                    Console.WriteLine("Match!");
+                    break;
+                }
+                else
+                {
+                    this.list_vendor_dl_found.Remove(url);
+
+                }
+
+            }
+
         }
-        private void get_webpage(string str_url)
+        private void Get_webpage(string str_url,ref List<String> list_url)
         {
-            this.list_url = new List<string>();
-            this.list_url.Clear();
+            list_url = new List<string>();
+            list_url.Clear();
             HtmlWeb hw = new HtmlWeb();
             HtmlDocument doc = hw.Load(str_url);
             List<String> list_found_url = new List<String>();
 
             foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]"))
             {
-                String str_check = clean_url(link.Attributes["href"].Value.Replace(this.str_ddg_remove, ""));
+                String str_check = Clean_url(link.Attributes["href"].Value.Replace(this.str_ddg_remove, ""));
                 try
                 {
                     if (!list_found_url.Contains(str_check))
@@ -100,11 +130,11 @@ namespace BiosupCS
                        list_found_url.Add(str_check);
 
                     }
-                    list_found_url = this.list_url;
+                    list_found_url = list_url;
                 }
                 catch
                 {
-                    this.list_url.Add("");
+                    list_url.Add("");
                 }
 
 
@@ -117,22 +147,19 @@ namespace BiosupCS
 
 
         }
-        /*private void get_webpage(string str_url)
+
+        private string Clean_url(String url)
         {
-            WebClient client = new WebClient();
-            client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-            Stream data = client.OpenRead(str_url);
-            StreamReader reader = new StreamReader(data);
-            string s = reader.ReadToEnd();
-            Console.WriteLine(s);
-            Webpage_html = s;
-            data.Close();
-            reader.Close();
-        }*/
-        public string Webpage_html
-        {
-            get;set;
+            String result = url.Replace("%3A", ":");
+            result = result.Replace("%2F", "/");
+            result = result.Replace("%2D", "-");
+            result = result.Replace("%5D", "_");
+            result = result.Replace("%2C", ",");
+            result = result.Replace("%3D", "=");
+            result = result.Replace("%25", "%");
+
+            return result;
         }
-        
+
     }
 }

@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiosupCS", "BiosupCS.csproj", "{3B9CC6BD-3F8E-49EA-9314-E7E8CEB548AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiosupCSTests", "..\BiosupCSTests\BiosupCSTests.csproj", "{1E9C64BB-8DF7-4510-8F57-CDF0BDEA4255}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,12 +13,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3B9CC6BD-3F8E-49EA-9314-E7E8CEB548AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B9CC6BD-3F8E-49EA-9314-E7E8CEB548AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B9CC6BD-3F8E-49EA-9314-E7E8CEB548AA}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B9CC6BD-3F8E-49EA-9314-E7E8CEB548AA}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{1E9C64BB-8DF7-4510-8F57-CDF0BDEA4255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1E9C64BB-8DF7-4510-8F57-CDF0BDEA4255}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1E9C64BB-8DF7-4510-8F57-CDF0BDEA4255}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1E9C64BB-8DF7-4510-8F57-CDF0BDEA4255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B9CC6BD-3F8E-49EA-9314-E7E8CEB548AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B9CC6BD-3F8E-49EA-9314-E7E8CEB548AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

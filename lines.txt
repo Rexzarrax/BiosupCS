@@ -1,0 +1,4 @@
+asrock.pc.cdn.bitgravity.com/BIOS/AM4/A320M-HDV%20R4.0(3.70)ROM.zip
+asrock.pc.cdn.bitgravity.com/BIOS/AM4/A320M-HDV%20R4.0(3.30)ROM.zip
+
+readonly Dictionary<string,string> list_vendor_url_dl_model = new Dictionary<string, string>() { };

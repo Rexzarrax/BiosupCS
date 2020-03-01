@@ -28,7 +28,7 @@ namespace BiosupCS
 
         }
 
-        private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
+        private void DateTimePicker1_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {

@@ -75,6 +75,8 @@
             this.groupBox_admin_url_contain_url = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_admin_url_urls_add = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.admin_url_url_label = new System.Windows.Forms.Label();
             this.button_admin_url_bulk_get = new System.Windows.Forms.Button();
             this.button_admin_url_model_copy = new System.Windows.Forms.Button();
             this.label_admin_url_model = new System.Windows.Forms.Label();
@@ -96,6 +98,10 @@
             this.btn_add_url = new System.Windows.Forms.Button();
             this.tabPage_admin_model = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox_admin_model_edit_vendor_select = new System.Windows.Forms.GroupBox();
+            this.comboBox_admin_model_edit = new System.Windows.Forms.ComboBox();
+            this.button_goto_url = new System.Windows.Forms.Button();
+            this.pull_link_ddg = new System.Windows.Forms.Button();
             this.button_admin_model_copy = new System.Windows.Forms.Button();
             this.label_admin_model = new System.Windows.Forms.Label();
             this.button_save_model_url = new System.Windows.Forms.Button();
@@ -162,10 +168,7 @@
             this.tabPage_admin_feed_model = new System.Windows.Forms.TabPage();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pull_link_ddg = new System.Windows.Forms.Button();
-            this.button_goto_url = new System.Windows.Forms.Button();
-            this.admin_url_url_label = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.checkBox_admin_model_emptyurl = new System.Windows.Forms.CheckBox();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -192,6 +195,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_admin_url_url_to_add)).BeginInit();
             this.tabPage_admin_model.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox_admin_model_edit_vendor_select.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -475,6 +479,7 @@
             this.listbox_vendor.Name = "listbox_vendor";
             this.listbox_vendor.Size = new System.Drawing.Size(183, 199);
             this.listbox_vendor.TabIndex = 5;
+            this.listbox_vendor.SelectedIndexChanged += new System.EventHandler(this.listbox_vendor_SelectedIndexChanged);
             // 
             // grpBox_Chipsets
             // 
@@ -695,6 +700,25 @@
             this.tabPage_admin_url_urls_add.Text = "Add";
             this.tabPage_admin_url_urls_add.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(289, 172);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(39, 23);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "Goto";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // admin_url_url_label
+            // 
+            this.admin_url_url_label.AutoSize = true;
+            this.admin_url_url_label.Location = new System.Drawing.Point(3, 198);
+            this.admin_url_url_label.Name = "admin_url_url_label";
+            this.admin_url_url_label.Size = new System.Drawing.Size(126, 13);
+            this.admin_url_url_label.TabIndex = 11;
+            this.admin_url_url_label.Text = "[MOTHERBOARD_URL]";
+            // 
             // button_admin_url_bulk_get
             // 
             this.button_admin_url_bulk_get.Location = new System.Drawing.Point(413, 172);
@@ -749,7 +773,7 @@
             this.tabPage_admin_url_urls_edit.Location = new System.Drawing.Point(4, 22);
             this.tabPage_admin_url_urls_edit.Name = "tabPage_admin_url_urls_edit";
             this.tabPage_admin_url_urls_edit.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_admin_url_urls_edit.Size = new System.Drawing.Size(538, 201);
+            this.tabPage_admin_url_urls_edit.Size = new System.Drawing.Size(538, 211);
             this.tabPage_admin_url_urls_edit.TabIndex = 1;
             this.tabPage_admin_url_urls_edit.Text = "Edit/Delete";
             this.tabPage_admin_url_urls_edit.UseVisualStyleBackColor = true;
@@ -911,6 +935,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.checkBox_admin_model_emptyurl);
+            this.groupBox4.Controls.Add(this.groupBox_admin_model_edit_vendor_select);
             this.groupBox4.Controls.Add(this.button_goto_url);
             this.groupBox4.Controls.Add(this.pull_link_ddg);
             this.groupBox4.Controls.Add(this.button_admin_model_copy);
@@ -924,7 +950,48 @@
             this.groupBox4.Size = new System.Drawing.Size(276, 359);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Delete";
+            this.groupBox4.Text = "Edit/Delete";
+            this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
+            // 
+            // groupBox_admin_model_edit_vendor_select
+            // 
+            this.groupBox_admin_model_edit_vendor_select.Controls.Add(this.comboBox_admin_model_edit);
+            this.groupBox_admin_model_edit_vendor_select.Location = new System.Drawing.Point(6, 38);
+            this.groupBox_admin_model_edit_vendor_select.Name = "groupBox_admin_model_edit_vendor_select";
+            this.groupBox_admin_model_edit_vendor_select.Size = new System.Drawing.Size(257, 40);
+            this.groupBox_admin_model_edit_vendor_select.TabIndex = 16;
+            this.groupBox_admin_model_edit_vendor_select.TabStop = false;
+            this.groupBox_admin_model_edit_vendor_select.Text = "Vendor Select";
+            // 
+            // comboBox_admin_model_edit
+            // 
+            this.comboBox_admin_model_edit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_admin_model_edit.FormattingEnabled = true;
+            this.comboBox_admin_model_edit.Location = new System.Drawing.Point(6, 13);
+            this.comboBox_admin_model_edit.Name = "comboBox_admin_model_edit";
+            this.comboBox_admin_model_edit.Size = new System.Drawing.Size(245, 21);
+            this.comboBox_admin_model_edit.TabIndex = 15;
+            this.comboBox_admin_model_edit.SelectedIndexChanged += new System.EventHandler(this.comboBox_admin_model_edit_SelectedIndexChanged);
+            // 
+            // button_goto_url
+            // 
+            this.button_goto_url.Location = new System.Drawing.Point(12, 330);
+            this.button_goto_url.Name = "button_goto_url";
+            this.button_goto_url.Size = new System.Drawing.Size(75, 23);
+            this.button_goto_url.TabIndex = 14;
+            this.button_goto_url.Text = "Goto";
+            this.button_goto_url.UseVisualStyleBackColor = true;
+            this.button_goto_url.Click += new System.EventHandler(this.Button_goto_url_Click);
+            // 
+            // pull_link_ddg
+            // 
+            this.pull_link_ddg.Location = new System.Drawing.Point(104, 330);
+            this.pull_link_ddg.Name = "pull_link_ddg";
+            this.pull_link_ddg.Size = new System.Drawing.Size(75, 23);
+            this.pull_link_ddg.TabIndex = 13;
+            this.pull_link_ddg.Text = "Pull";
+            this.pull_link_ddg.UseVisualStyleBackColor = true;
+            this.pull_link_ddg.Click += new System.EventHandler(this.Pull_link_ddg_Click);
             // 
             // button_admin_model_copy
             // 
@@ -975,7 +1042,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.comboBox_admin_model_delete);
-            this.groupBox2.Location = new System.Drawing.Point(6, 19);
+            this.groupBox2.Location = new System.Drawing.Point(4, 82);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(264, 47);
             this.groupBox2.TabIndex = 5;
@@ -995,7 +1062,7 @@
             // 
             // btn_delete_model
             // 
-            this.btn_delete_model.Location = new System.Drawing.Point(195, 72);
+            this.btn_delete_model.Location = new System.Drawing.Point(195, 135);
             this.btn_delete_model.Name = "btn_delete_model";
             this.btn_delete_model.Size = new System.Drawing.Size(75, 23);
             this.btn_delete_model.TabIndex = 8;
@@ -1554,44 +1621,16 @@
             // 
             this.errorProvider_admin_model_validator.ContainerControl = this;
             // 
-            // pull_link_ddg
+            // checkBox_admin_model_emptyurl
             // 
-            this.pull_link_ddg.Location = new System.Drawing.Point(104, 330);
-            this.pull_link_ddg.Name = "pull_link_ddg";
-            this.pull_link_ddg.Size = new System.Drawing.Size(75, 23);
-            this.pull_link_ddg.TabIndex = 13;
-            this.pull_link_ddg.Text = "Pull";
-            this.pull_link_ddg.UseVisualStyleBackColor = true;
-            this.pull_link_ddg.Click += new System.EventHandler(this.pull_link_ddg_Click);
-            // 
-            // button_goto_url
-            // 
-            this.button_goto_url.Location = new System.Drawing.Point(12, 330);
-            this.button_goto_url.Name = "button_goto_url";
-            this.button_goto_url.Size = new System.Drawing.Size(75, 23);
-            this.button_goto_url.TabIndex = 14;
-            this.button_goto_url.Text = "Goto";
-            this.button_goto_url.UseVisualStyleBackColor = true;
-            this.button_goto_url.Click += new System.EventHandler(this.button_goto_url_Click);
-            // 
-            // admin_url_url_label
-            // 
-            this.admin_url_url_label.AutoSize = true;
-            this.admin_url_url_label.Location = new System.Drawing.Point(3, 198);
-            this.admin_url_url_label.Name = "admin_url_url_label";
-            this.admin_url_url_label.Size = new System.Drawing.Size(126, 13);
-            this.admin_url_url_label.TabIndex = 11;
-            this.admin_url_url_label.Text = "[MOTHERBOARD_URL]";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(289, 172);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(39, 23);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "Goto";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.checkBox_admin_model_emptyurl.AutoSize = true;
+            this.checkBox_admin_model_emptyurl.Location = new System.Drawing.Point(10, 15);
+            this.checkBox_admin_model_emptyurl.Name = "checkBox_admin_model_emptyurl";
+            this.checkBox_admin_model_emptyurl.Size = new System.Drawing.Size(80, 17);
+            this.checkBox_admin_model_emptyurl.TabIndex = 17;
+            this.checkBox_admin_model_emptyurl.Text = "Empty URL";
+            this.checkBox_admin_model_emptyurl.UseVisualStyleBackColor = true;
+            this.checkBox_admin_model_emptyurl.CheckedChanged += new System.EventHandler(this.checkBox_admin_model_emptyurl_CheckedChanged);
             // 
             // BIOSUP_GUI
             // 
@@ -1648,6 +1687,7 @@
             this.tabPage_admin_model.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox_admin_model_edit_vendor_select.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1832,6 +1872,9 @@
         private System.Windows.Forms.Button button_goto_url;
         private System.Windows.Forms.Label admin_url_url_label;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBox_admin_model_edit_vendor_select;
+        private System.Windows.Forms.ComboBox comboBox_admin_model_edit;
+        private System.Windows.Forms.CheckBox checkBox_admin_model_emptyurl;
     }
 }
 
