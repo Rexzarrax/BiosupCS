@@ -169,6 +169,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.errorProvider_admin_model_validator = new System.Windows.Forms.ErrorProvider(this.components);
             this.checkBox_admin_model_emptyurl = new System.Windows.Forms.CheckBox();
+            this.button_admin_model_edit_search = new System.Windows.Forms.Button();
             this.statusStrip_err_or_cwd.SuspendLayout();
             this.tabPage_stats.SuspendLayout();
             this.tabPage_Current_Run.SuspendLayout();
@@ -935,6 +936,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button_admin_model_edit_search);
             this.groupBox4.Controls.Add(this.checkBox_admin_model_emptyurl);
             this.groupBox4.Controls.Add(this.groupBox_admin_model_edit_vendor_select);
             this.groupBox4.Controls.Add(this.button_goto_url);
@@ -995,7 +997,7 @@
             // 
             // button_admin_model_copy
             // 
-            this.button_admin_model_copy.Location = new System.Drawing.Point(195, 245);
+            this.button_admin_model_copy.Location = new System.Drawing.Point(104, 229);
             this.button_admin_model_copy.Name = "button_admin_model_copy";
             this.button_admin_model_copy.Size = new System.Drawing.Size(75, 23);
             this.button_admin_model_copy.TabIndex = 12;
@@ -1632,6 +1634,16 @@
             this.checkBox_admin_model_emptyurl.UseVisualStyleBackColor = true;
             this.checkBox_admin_model_emptyurl.CheckedChanged += new System.EventHandler(this.checkBox_admin_model_emptyurl_CheckedChanged);
             // 
+            // button_admin_model_edit_search
+            // 
+            this.button_admin_model_edit_search.Location = new System.Drawing.Point(12, 229);
+            this.button_admin_model_edit_search.Name = "button_admin_model_edit_search";
+            this.button_admin_model_edit_search.Size = new System.Drawing.Size(85, 23);
+            this.button_admin_model_edit_search.TabIndex = 18;
+            this.button_admin_model_edit_search.Text = "Search DDG";
+            this.button_admin_model_edit_search.UseVisualStyleBackColor = true;
+            this.button_admin_model_edit_search.Click += new System.EventHandler(this.button_admin_model_edit_search_Click);
+            // 
             // BIOSUP_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1875,6 +1887,7 @@
         private System.Windows.Forms.GroupBox groupBox_admin_model_edit_vendor_select;
         private System.Windows.Forms.ComboBox comboBox_admin_model_edit;
         private System.Windows.Forms.CheckBox checkBox_admin_model_emptyurl;
+        private System.Windows.Forms.Button button_admin_model_edit_search;
     }
 }
 

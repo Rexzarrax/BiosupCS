@@ -26,7 +26,7 @@ CREATE TABLE motherboard_data (
     chipset varchar(20),
     model_name varchar(255) UNIQUE,
     vendor_id int,
-    model_page varchar(255), --THis is for the bios downlaod page, not product page per say
+    model_page varchar(255) DEFAULT NULL, --THis is for the bios downlaod page, not product page per say
     Primary Key (model_id),
 	FOREIGN KEY (vendor_id) REFERENCES vendor_data(vendor_id)
 );

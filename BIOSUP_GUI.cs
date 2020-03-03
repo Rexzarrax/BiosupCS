@@ -716,6 +716,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 DataTable dt_query_get_model_page = Biosup_query.BIOSUP_SQL_GET(str_query);
                 label_admin_model.Text = dt_query_get_model_page.Rows[0]["model_name"].ToString();
                 textBox_admin_model_url.Text = dt_query_get_model_page.Rows[0]["model_page"].ToString();
+
             }
             catch (Exception e_run)
             {
@@ -1069,7 +1070,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
                 if (checkBox_admin_model_emptyurl.Checked)
                 {
-                    Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data where vendor_id = " + Biosup_query_vendor.Rows[0]["vendor_id"] + " AND model_page = '';");
+                    Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data where vendor_id = " + Biosup_query_vendor.Rows[0]["vendor_id"] + " AND model_page = 'NULL';");
                 }
 
                 foreach (DataRow row in Biosup_query_model.Rows)
@@ -1091,7 +1092,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             {
                 DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM dbo.vendor_data where vendor_name ='" + str_vendor + "';");
 
-                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data where model_page = NULL;");
+                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data where model_page LIKE 'NULL' ;");
 
                 foreach (DataRow row in Biosup_query_model.Rows)
                 {
@@ -1107,6 +1108,18 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
         private void groupBox4_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void button_admin_model_edit_search_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://duckduckgo.com/?q="+ label_admin_model.Text+ " BIOS");
+            }
+            catch
+            {
+                textBox_log_config.AppendText("\r\nError Opening URL");
+            }
         }
     }
 }
