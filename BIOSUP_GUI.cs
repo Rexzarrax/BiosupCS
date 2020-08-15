@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.ComponentModel;
 using System.Data;
-//using System.Drawing;
-//using System.Linq;
-//using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
-using System.Globalization;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace BiosupCS
 {
     public partial class BIOSUP_GUI : Form
     {
         readonly String str_working_dir;
-        readonly String str_database_credentials = "Server=tcp:biosup.database.windows.net,1433;Initial Catalog=firmware-info;Persist Security Info=False;User ID=jaycar-root;Password=F^e36d3f7d^Ukiozp@kp;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        readonly String str_database_credentials = @"server=jardsvr.ddns.net;userid=BIOS_USER;password=;database=firmware_data";
+
         readonly List<String> list_chipset_vendor = new List<String>() { "AMD", "INTEL" };
         readonly List<String> list_points = new List<String>() { "Downloading", "Unzipping","Other" };
         //Order is important for method set_how_much_to_dl
@@ -59,6 +57,7 @@ namespace BiosupCS
         {
             if (CheckForInternetConnection())
             {
+                Console.WriteLine("Internet Detected!");
                 Console.WriteLine("CWD: " + str_working_dir + "\n");
                 toolStripStatusLabel_cwd.Text = "CWD: " + str_working_dir;
                 textBox_log_config.AppendText("CWD: " + str_working_dir);
@@ -70,27 +69,35 @@ namespace BiosupCS
                     tab_control.TabPages.Remove(tabPage_stats);
                 }
 
-                textBox_admin_log.AppendText("Clearing UI...");
-                textBox_current_UEFI_info.Text = "";
-                comboBox_select_chipset_to_remove.Items.Clear();
-                listbox_vendor.Items.Clear();
-                comboBox_select_vendor.Items.Clear();
-                comboBox_select_vendor_to_edit.Items.Clear();
-                comboBox_admin_url_vendor.Items.Clear();
-                comboBox_select_chipset.Items.Clear();
-                comboBox_admin_url_chipset.Items.Clear();
-                listbox_AMD_chipset.Items.Clear();
-                listbox_INTEL_chipset.Items.Clear();
-                comboBox_admin_chipset_vendor.Items.Clear();
-                comboBox_admin_model_delete.Items.Clear();
-                comboBox_select_vendor_to_edit.Items.Clear();
-                comboBox_what_to_get.Items.Clear();
-                list_vendor_url_model.Clear();
-                list_vendor_url_dl_model.Clear();
-                comboBox_admin_model_edit.Items.Clear();
-
-                BIOSUP_CONFIG_LOAD_INTRUCTIONS();
-
+                try
+                {
+                    Console.WriteLine("Attempting to clear UI");
+                    textBox_admin_log.AppendText("Clearing UI...");
+                    textBox_current_UEFI_info.Text = "";
+                    comboBox_select_chipset_to_remove.Items.Clear();
+                    listbox_vendor.Items.Clear();
+                    comboBox_select_vendor.Items.Clear();
+                    comboBox_select_vendor_to_edit.Items.Clear();
+                    comboBox_admin_url_vendor.Items.Clear();
+                    comboBox_select_chipset.Items.Clear();
+                    comboBox_admin_url_chipset.Items.Clear();
+                    listbox_AMD_chipset.Items.Clear();
+                    listbox_INTEL_chipset.Items.Clear();
+                    comboBox_admin_chipset_vendor.Items.Clear();
+                    comboBox_admin_model_delete.Items.Clear();
+                    comboBox_select_vendor_to_edit.Items.Clear();
+                    comboBox_what_to_get.Items.Clear();
+                    list_vendor_url_model.Clear();
+                    list_vendor_url_dl_model.Clear();
+                    comboBox_admin_model_edit.Items.Clear();
+                    Console.WriteLine("UI Cleared");
+                    BIOSUP_CONFIG_LOAD_INTRUCTIONS();
+                }
+                catch
+                {
+                    Console.WriteLine("Could not clear UI");
+                }
+                
                 try
                 {
                     Biosup_query_chipsets.Rows.Clear();
@@ -794,90 +801,162 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             System.Threading.Thread.Sleep(150);
             BIOSUP_CONFIG_Load(sender, e);
         }
-
-        private void Button_get_models_Click(object sender, EventArgs e)
+        private async void Button_get_models_Click(object sender, EventArgs e)
         {
-            try
+            using (var client = new HttpClient())
             {
-                String str_filename = string.Empty;
-                // Get the full name of the newly created Temporary file. 
-                // Note that the GetTempFileName() method actually creates
-                // a 0-byte file and returns the name of the created file.
-                str_filename = Path.GetTempFileName();
+                client.BaseAddress = new Uri("https://www.ple.com.au");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                // Craete a FileInfo object to set the file's attributes
-                FileInfo fileInfo = new FileInfo(str_filename)
+                string json_str = "{\"InventoryCategoryId\":302}";
+                var stringContent = new StringContent(json_str.ToString());
+
+                HttpResponseMessage response = await client.PostAsync("/api/getItemGrid", stringContent);
+                if (response.IsSuccessStatusCode)
                 {
+                    string jsonContent = response.Content.ReadAsStringAsync().Result;
+                    Console.WriteLine(jsonContent);
 
-                    // Set the Attribute property of this file to Temporary. 
-                    // Although this is not completely necessary, the .NET Framework is able 
-                    // to optimize the use of Temporary files by keeping them cached in memory.
-                    Attributes = FileAttributes.Temporary
-                };
-
-                Console.WriteLine("TEMP file created at: " + str_filename);
-                this.OBJ_DL_FILE.DL_FILE("https://raw.githubusercontent.com/Rexzarrax/Motherboard_Model_Names/master/motherboard_sku_data.txt", str_filename);
-                int counter = 0;
-                
-                string line;
-
-                while (true)
+                    textBox_admin_log.AppendText("\r\n");
+                }
+                else
                 {
-                    if (!IsFileLocked(fileInfo))
+                    textBox_admin_log.AppendText("\r\n ERROR-" + response.StatusCode);
+                }
+            }
+
+            /*
+            if r.status_code == 200:
+                res = r.json()
+                #vendArr = [mobo['ManufacturerModel'] for mobo in res["data"]["Items"] if mobo['ManufacturerName'].lower() == vendor.lower()]
+
+                for mobo in res["data"]["Items"]:
+                    #print(str(mobo))
+                    str_vendor = self.dl_Src_cleanStr(mobo['ManufacturerName'].lower())
+                    str_model = self.dl_Src_cleanStr(mobo['ManufacturerModel'].lower())
+                    str_combined = str(str_vendor + "-" + str_model)
+                    print("Found: " + str_combined)
+                    list_motherboard_mobo.append(str_combined)
+                print(str(list_motherboard_mobo))
+                return list_motherboard_mobo
+            else:
+                print("Error in connecting to base data server, code: " + str(r.status_code))
+                */
+            /*   while ((line = file.ReadLine()) != null)
+               {
+                   textBox_admin_log.AppendText("\r\n------------------------------------------------");
+                   textBox_admin_log.AppendText("\r\n" + counter + "/" + total);
+                   textBox_admin_log.AppendText("\r\n" + line);
+                   String[] model_attributes = line.Split('-');
+                   String str_chipset = "NF";
+                   //x299x could be a issue, we will see
+                   foreach (DataRow chipset in Biosup_query_chipsets.Rows)
+                   {
+                       if (line.Contains(chipset["chipset_name"].ToString()))
+                       {
+                           str_chipset = chipset["chipset_name"].ToString();
+                           break;
+                       }
+
+                   }
+                   String str_vendor = model_attributes[0];
+                   String str_model = line.Replace(model_attributes[0] + "-", "");
+                   textBox_admin_log.AppendText("\r\n" + str_chipset + " | " + str_vendor + " | " + str_model);
+
+                   DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.vendor_data where vendor_name = '" + str_vendor + "'");
+
+                   String str_query = "INSERT INTO dbo.motherboard_data(chipset,model_name,vendor_id) VALUES('" + str_chipset + "','" + str_model + "','" + Biosup_query_vendors.Rows[0]["vendor_id"] + "')";
+                   Execute_query_SET(sender, e, str_query, str_model);
+
+                   counter++;
+               }*/
+        }
+        
+    /*       
+     private void Button_get_models_Click(object sender, EventArgs e)
+            {
+                try
+                {
+                    String str_filename = string.Empty;
+                    // Get the full name of the newly created Temporary file. 
+                    // Note that the GetTempFileName() method actually creates
+                    // a 0-byte file and returns the name of the created file.
+                    str_filename = Path.GetTempFileName();
+
+                    // Craete a FileInfo object to set the file's attributes
+                    FileInfo fileInfo = new FileInfo(str_filename)
                     {
-                        // Read the file and display it line by line.  
-                        System.IO.StreamReader file =
-                            new System.IO.StreamReader(@str_filename);
-                        int total = File.ReadAllLines(@str_filename).Length;
-                        while ((line = file.ReadLine()) != null)
+
+                        // Set the Attribute property of this file to Temporary. 
+                        // Although this is not completely necessary, the .NET Framework is able 
+                        // to optimize the use of Temporary files by keeping them cached in memory.
+                        Attributes = FileAttributes.Temporary
+                    };
+
+                    Console.WriteLine("TEMP file created at: " + str_filename);
+                    this.OBJ_DL_FILE.DL_FILE("https://raw.githubusercontent.com/Rexzarrax/Motherboard_Model_Names/master/motherboard_sku_data.txt", str_filename);
+                    int counter = 0;
+
+                    string line;
+
+                    while (true)
+                    {
+                        if (!IsFileLocked(fileInfo))
                         {
-                            textBox_admin_log.AppendText("\r\n------------------------------------------------");
-                            textBox_admin_log.AppendText("\r\n"+counter+"/"+total);
-                            textBox_admin_log.AppendText("\r\n"+ line);
-                            String[] model_attributes = line.Split('-');
-                            String str_chipset = "NF";
-                            //x299x could be a issue, we will see
-                            foreach (DataRow chipset in Biosup_query_chipsets.Rows)
+                            // Read the file and display it line by line.  
+                            System.IO.StreamReader file =
+                                new System.IO.StreamReader(@str_filename);
+                            int total = File.ReadAllLines(@str_filename).Length;
+                            while ((line = file.ReadLine()) != null)
                             {
-                                if(line.Contains(chipset["chipset_name"].ToString())){
-                                    str_chipset = chipset["chipset_name"].ToString();
-                                    break;
+                                textBox_admin_log.AppendText("\r\n------------------------------------------------");
+                                textBox_admin_log.AppendText("\r\n"+counter+"/"+total);
+                                textBox_admin_log.AppendText("\r\n"+ line);
+                                String[] model_attributes = line.Split('-');
+                                String str_chipset = "NF";
+                                //x299x could be a issue, we will see
+                                foreach (DataRow chipset in Biosup_query_chipsets.Rows)
+                                {
+                                    if(line.Contains(chipset["chipset_name"].ToString())){
+                                        str_chipset = chipset["chipset_name"].ToString();
+                                        break;
+                                    }
+
                                 }
+                                String str_vendor = model_attributes[0];
+                                String str_model = line.Replace(model_attributes[0]+"-","");
+                                textBox_admin_log.AppendText("\r\n" + str_chipset +" | "+ str_vendor +" | "+ str_model);
 
+                                DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.vendor_data where vendor_name = '" + str_vendor + "'");
+
+                                String str_query = "INSERT INTO dbo.motherboard_data(chipset,model_name,vendor_id) VALUES('" + str_chipset + "','" + str_model + "','" + Biosup_query_vendors.Rows[0]["vendor_id"] + "')";
+                                Execute_query_SET(sender, e, str_query, str_model);
+
+                                counter++;
                             }
-                            String str_vendor = model_attributes[0];
-                            String str_model = line.Replace(model_attributes[0]+"-","");
-                            textBox_admin_log.AppendText("\r\n" + str_chipset +" | "+ str_vendor +" | "+ str_model);
 
-                            DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.vendor_data where vendor_name = '" + str_vendor + "'");
-
-                            String str_query = "INSERT INTO dbo.motherboard_data(chipset,model_name,vendor_id) VALUES('" + str_chipset + "','" + str_model + "','" + Biosup_query_vendors.Rows[0]["vendor_id"] + "')";
-                            Execute_query_SET(sender, e, str_query, str_model);
-
-                            counter++;
+                            file.Close();
+                            textBox_admin_log.AppendText("\r\nThere were "+counter+" Models");
+                            break;
+                        }
+                        else
+                        {
+                            Thread.Sleep(100);
+                            Application.DoEvents();
                         }
 
-                        file.Close();
-                        textBox_admin_log.AppendText("\r\nThere were "+counter+" Models");
-                        break;
                     }
-                    else
-                    {
-                        Thread.Sleep(100);
-                        Application.DoEvents();
-                    }
+
 
                 }
-
-
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Unable to create TEMP file or set its attributes: " + ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Unable to create TEMP file or set its attributes: " + ex.Message);
-            }
-        }
-
-        private void Button_admin_vendor_del_Click(object sender, EventArgs e)
+    */
+            private void Button_admin_vendor_del_Click(object sender, EventArgs e)
         {
 
         }
