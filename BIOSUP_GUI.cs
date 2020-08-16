@@ -402,7 +402,7 @@ namespace BiosupCS
             textBox_current_UEFI_info.AppendText("\r\n\r\nDate of Bios/UEFI:\r\n" + row["url_date_of_bios"]);
             textBox_current_UEFI_info.AppendText("\r\n\r\nBridge:\r\n" + row["url_bridge"]);
             textBox_current_UEFI_info.AppendText("\r\n\r\nUEFI URL:\r\n" + row["url_str"]);
-            textBox_current_UEFI_info.AppendText("\r\n\r\nDate Added:\r\n" + row["url_date_collected"]);
+            //textBox_current_UEFI_info.AppendText("\r\n\r\nDate Added:\r\n" + row["url_date_collected"]);
         }
         private void BIOSUP_CONFIG_LOAD_INTRUCTIONS()
         {
@@ -1199,6 +1199,41 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             catch
             {
                 textBox_log_config.AppendText("\r\nError Opening URL");
+            }
+        }
+
+        private void button_admin_url_refresh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                flowLayoutPanel_admin_url_edit.Controls.Clear();
+                flowLayoutPanel_add_url_str.Controls.Clear();
+                String str_model = comboBox_select_model.Text;
+                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT model_id,model_page FROM motherboard_data where model_name = '" + str_model + "';");
+                DataTable Biosup_query_url = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM motherboard_url where model_id = " + Biosup_query_model.Rows[0]["model_id"] + ";");
+                label_admin_url_model.Text = str_model;
+                int i = 0;
+                flowLayoutPanel_admin_url_edit.Controls.Clear();
+                admin_url_url_label.Text = Biosup_query_model.Rows[0]["model_page"].ToString();
+                foreach (DataRow row_url in Biosup_query_url.Rows)
+                {
+                    flowLayoutPanel_admin_url_edit.Controls.Add(new Biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
+                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["textBox_str_admin_url_multi_add"].Text = row_url["url_str"].ToString();
+                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["dateTimePicker1"].Text = row_url["url_date_of_bios"].ToString();
+                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["textBox1"].Text = row_url["url_version"].ToString();
+                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["comboBox_bridge_select"].Text = row_url["url_bridge"].ToString();
+                    flowLayoutPanel_admin_url_edit.Controls[i].Controls["label_id"].Text = row_url["url_id"].ToString();
+
+                    i++;
+                }
+            }
+            catch (System.IndexOutOfRangeException e_index)
+            {
+                textBox_admin_log.AppendText("Could not Refresh, please select a Model first");
+            }
+            catch (Exception e_run)
+            {
+                textBox_admin_log.AppendText(e_run.ToString());
             }
         }
     }
