@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace BiosupCS
 {
@@ -33,14 +34,21 @@ namespace BiosupCS
 
         public void load_config()
         {
-            string[] lines = File.ReadAllLines(str_conf_location);
+            try
+            {
+                string[] lines = File.ReadAllLines(str_conf_location);
 
-            List_intel_chipsets = insert_values(lines[1]);
-            List_amd_chipsets = insert_values(lines[0]);
-            List_vendors = insert_values(lines[2]);
-                
+                List_intel_chipsets = insert_values(lines[1]);
+                List_amd_chipsets = insert_values(lines[0]);
+                List_vendors = insert_values(lines[2]);
 
-            Str_option = lines[3];
+
+                Str_option = lines[3];
+            }
+            catch
+            {
+                MessageBox.Show("Could not load Config file", "Error");
+            }
 
         }
 

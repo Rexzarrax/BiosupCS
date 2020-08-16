@@ -208,7 +208,7 @@ namespace BiosupCS
 
         private String QueryBuilder()
         {
-            String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id";
+            String str_built_query = "Select * FROM motherboard_url mu INNER JOIN motherboard_data md ON mu.model_id = md.model_id INNER JOIN vendor_data vd ON md.vendor_id = vd.vendor_id INNER JOIN chipset_check cc ON cc.chipset_id = md.chipset_id";
 
             str_built_query += Set_how_much_to_dl(comboBox_what_to_get.SelectedIndex);
 
@@ -225,15 +225,16 @@ namespace BiosupCS
                 }
                 str_built_query += str_addon;
             }
-            str_built_query += ")) AND (md.chipset in (";
+            str_built_query += ")) AND (cc.chipset_name in (";
             for (int i = 0; i < this.listbox_AMD_chipset.CheckedItems.Count; i++)
             {
                 textBox_log_running.AppendText("\r\nIncluding All: " + this.listbox_AMD_chipset.CheckedItems[i].ToString());
                 String str_addon = "'" + this.listbox_AMD_chipset.CheckedItems[i].ToString() + "'";
-                if (i != this.listbox_AMD_chipset.CheckedItems.Count-1)
+                if (i != this.listbox_AMD_chipset.CheckedItems.Count)
                 {
                     str_addon += ",";
                 }
+                
                 str_built_query += str_addon;
             }
 
@@ -320,7 +321,7 @@ namespace BiosupCS
                     Current_mobo(row);
                     textBox_log_running.AppendText(row["model_name"] + "\r\n" + row["url_str"]);
                     Change_point(list_points[0]);
-                    String str_filetree = "BIOSHERE/" + row["vendor_name"] + "/" + row["chipset"] + "/" + row["model_name"];
+                    String str_filetree = "BIOSHERE/" + row["vendor_name"] + "/" + row["chipset_name"] + "/" + row["model_name"];
                     String str_file_path = str_filetree + "/" + row["vendor_name"] + "-" + row["model_name"] + ".zip";
                     textBox_log_running.AppendText("\r\n" + row["url_date_of_bios"]);
                     FileInfo FI_file_path = new FileInfo(str_file_path);
@@ -398,7 +399,7 @@ namespace BiosupCS
         {
             textBox_current_UEFI_info.AppendText("Model:\r\n" + row["model_name"]);
             textBox_current_UEFI_info.AppendText("\r\n\r\nVendor:\r\n" + row["vendor_name"]);
-            textBox_current_UEFI_info.AppendText("\r\n\r\nChipset:\r\n" + row["chipset"]);
+            textBox_current_UEFI_info.AppendText("\r\n\r\nChipset:\r\n" + row["chipset_name"]);
             textBox_current_UEFI_info.AppendText("\r\n\r\nDate of Bios/UEFI:\r\n" + row["url_date_of_bios"]);
             textBox_current_UEFI_info.AppendText("\r\n\r\nBridge:\r\n" + row["url_bridge"]);
             textBox_current_UEFI_info.AppendText("\r\n\r\nUEFI URL:\r\n" + row["url_str"]);

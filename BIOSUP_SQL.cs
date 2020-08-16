@@ -29,7 +29,6 @@ namespace BiosupCS
 
         public DataTable BIOSUP_SQL_GET(String str_SQL)
         {
-            DataTable my_table = new DataTable();
             try
             {
                 ReopenConnections();
