@@ -68,7 +68,7 @@ namespace BiosupCS
                     tab_control.TabPages.Remove(tabPage_admin);
                     tab_control.TabPages.Remove(tabPage_stats);
                 }
-
+                
                 try
                 {
                     Console.WriteLine("Attempting to clear UI");
@@ -106,12 +106,12 @@ namespace BiosupCS
                 {
                     textBox_log_config.AppendText("\r\nNot cleared");
                 }
-
+                
                 textBox_log_config.AppendText("\n\rLoading Database...");
 
-                DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.vendor_data");
-                Biosup_query_chipsets = Biosup_query.BIOSUP_SQL_GET("SELECT chipset_name, chipset_vendor FROM dbo.chipset_check");
-                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data");
+                DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM vendor_data");
+                Biosup_query_chipsets = Biosup_query.BIOSUP_SQL_GET("SELECT chipset_name, chipset_vendor FROM chipset_check");
+                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM motherboard_data");
 
 
 
@@ -505,7 +505,7 @@ namespace BiosupCS
             {
                 String str_query_var = "Variables: " + textBox_admin_chipset_name.Text + "," + comboBox_admin_chipset_vendor.SelectedItem;
                 textBox_admin_log.AppendText(str_query_var);
-                String str_query = "INSERT INTO dbo.chipset_check(chipset_name,chipset_vendor) VALUES('"+ textBox_admin_chipset_name.Text + "','"+ comboBox_admin_chipset_vendor.SelectedItem + "');" ;
+                String str_query = "INSERT INTO chipset_check(chipset_name,chipset_vendor) VALUES('"+ textBox_admin_chipset_name.Text + "','"+ comboBox_admin_chipset_vendor.SelectedItem + "');" ;
                 Execute_query_SET(sender, e, str_query, textBox_admin_chipset_name.Text);
                 textBox_admin_chipset_name.Text = "";
                 comboBox_admin_chipset_vendor.SelectedIndex = -1;
@@ -526,9 +526,9 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             comboBox_select_model.Items.Clear();
             try
             {
-                DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM dbo.vendor_data where vendor_name ='" + str_vendor + "';");
+                DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM vendor_data where vendor_name ='" + str_vendor + "';");
 
-                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data where vendor_id = " + Biosup_query_vendor.Rows[0]["vendor_id"]);
+                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM motherboard_data where vendor_id = " + Biosup_query_vendor.Rows[0]["vendor_id"]);
                 foreach (DataRow row in Biosup_query_model.Rows)
                 {
                     Invoke(new Action(() => comboBox_select_model.Items.Add(row["model_name"])));
@@ -548,9 +548,10 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             comboBox_select_model.Items.Clear();
             try
             {
-                DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM dbo.vendor_data where vendor_name ='" + str_vendor + "';");
+                DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM vendor_data where vendor_name ='" + str_vendor + "';");
+                DataTable Biosup_query_chipset = Biosup_query.BIOSUP_SQL_GET("SELECT chipset_id FROM chipset_check where chipset_name ='" + str_chipset + "';");
 
-                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data where vendor_id = " + Biosup_query_vendor.Rows[0]["vendor_id"] + " AND chipset = '" + str_chipset + "';");
+                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM motherboard_data where vendor_id = " + Biosup_query_vendor.Rows[0]["vendor_id"] + " AND chipset_id = " + Biosup_query_chipset.Rows[0]["chipset_id"] + ";");
                 foreach (DataRow row in Biosup_query_model.Rows)
                 {
                     Invoke(new Action(() => comboBox_select_model.Items.Add(row["model_name"])));
@@ -570,8 +571,8 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 flowLayoutPanel_admin_url_edit.Controls.Clear();
                 flowLayoutPanel_add_url_str.Controls.Clear();
                 String str_model = comboBox_select_model.Text;
-                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT model_id,model_page FROM dbo.motherboard_data where model_name = '" + str_model + "';");
-                DataTable Biosup_query_url = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_url where model_id = " + Biosup_query_model.Rows[0]["model_id"] + ";");
+                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT model_id,model_page FROM motherboard_data where model_name = '" + str_model + "';");
+                DataTable Biosup_query_url = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM motherboard_url where model_id = " + Biosup_query_model.Rows[0]["model_id"] + ";");
                 label_admin_url_model.Text = str_model;
                 int i = 0;
                 flowLayoutPanel_admin_url_edit.Controls.Clear();
@@ -598,7 +599,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
         private void Button_remove_chipset_Click(object sender, EventArgs e)
         {
             String str_chipset_to_remove = comboBox_select_chipset_to_remove.Text;
-            String str_query = "DELETE FROM dbo.chipset_check WHERE chipset_name ='"+str_chipset_to_remove+"'";
+            String str_query = "DELETE FROM chipset_check WHERE chipset_name ='"+str_chipset_to_remove+"'";
             Execute_query_SET(sender, e, str_query, str_chipset_to_remove);
 
         }
@@ -609,10 +610,10 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             String str_vendor = comboBox_select_vendor.Text;
             String str_model_sku = textBox_admin_model_sku.Text;
             String str_bios_url = textBox_model_bios_url.Text;
-            DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM dbo.vendor_data where vendor_name ='" + str_vendor+"';");
+            DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM vendor_data where vendor_name ='" + str_vendor+"';");
+            DataTable Biosup_query_chipset = Biosup_query.BIOSUP_SQL_GET("SELECT chipset_id FROM chipset_check where chipset_name ='" + str_chipset + "';");
 
-
-            String str_query = "INSERT INTO dbo.motherboard_data(chipset, model_name, vendor_id, model_page) VALUES('"+str_chipset + "','"+ str_model_sku + "','" + Biosup_query_vendor.Rows[0]["vendor_id"] + "','" + str_bios_url + "');";
+            String str_query = "INSERT INTO motherboard_data(chipset_id, model_name, vendor_id, model_page) VALUES('" + Biosup_query_chipset.Rows[0]["chipset_id"] + "','"+ str_model_sku + "','" + Biosup_query_vendor.Rows[0]["vendor_id"] + "','" + str_bios_url + "');";
             textBox_admin_log.AppendText(str_query);
             Execute_query_SET(sender, e, str_query, str_model_sku);
             textBox_admin_model_sku.Text = "";
@@ -627,7 +628,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             if (dr == DialogResult.OK)
             {
                 String str_model_to_remove = comboBox_admin_model_delete.Text;
-                String str_query = "DELETE FROM dbo.motherboard_data WHERE model_name ='" + str_model_to_remove + "'";
+                String str_query = "DELETE FROM motherboard_data WHERE model_name ='" + str_model_to_remove + "'";
                 Console.WriteLine(str_query);
                 Execute_query_SET(sender, e, str_query, str_model_to_remove);
             }
@@ -657,12 +658,12 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                 {
                     DataTable dt_query_get_model_id = Biosup_query.BIOSUP_SQL_GET(str_query_get_model);
 
-                    String str_query = "INSERT INTO dbo.motherboard_url(model_id ,url_str, url_date_of_bios, url_version, url_bridge) VALUES("+dt_query_get_model_id.Rows[0]["model_id"] + ", '" + str_url + "','" + str_date + "','" + str_version + "','" + str_bridge+"')";
+                    String str_query = "INSERT INTO motherboard_url(model_id ,url_str, url_date_of_bios, url_version, url_bridge) VALUES("+dt_query_get_model_id.Rows[0]["model_id"] + ", '" + str_url + "','" + str_date + "','" + str_version + "','" + str_bridge+"')";
 
                     Execute_query_SET(sender, e, str_query, str_url);
 
                 }
-                catch (System.Data.SqlClient.SqlException e_run)
+                catch (MySql.Data.MySqlClient.MySqlException e_run)
                 {
                     textBox_admin_log.AppendText(e_run.ToString());
                     textBox_admin_log.AppendText("ERROR UPDATING VERSION " + str_version);
@@ -700,13 +701,13 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                     DateTime format_date = DateTime.Parse(str_date);
                     str_date = format_date.ToString("yyyy-MM-dd");
 
-                    String str_query = "UPDATE dbo.motherboard_url SET url_str = '" + str_url + "', url_date_of_bios = '" + str_date + "', url_version = '" + str_version + "', url_bridge = '" + str_bridge + "' WHERE url_id =" + str_id + ";";
+                    String str_query = "UPDATE motherboard_url SET url_str = '" + str_url + "', url_date_of_bios = '" + str_date + "', url_version = '" + str_version + "', url_bridge = '" + str_bridge + "' WHERE url_id =" + str_id + ";";
                     Execute_query_SET(sender, e, str_query, str_url);
                 }
                 else
                 {
                     Console.WriteLine("Deleteing " + url_control.Controls["textBox1"].Text);
-                    String str_query = "DELETE dbo.motherboard_url WHERE url_str = '" + str_url + "';";
+                    String str_query = "DELETE motherboard_url WHERE url_str = '" + str_url + "';";
                     Execute_query_SET(sender, e, str_query, label_admin_model.Text);
                 }
                
@@ -733,7 +734,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
         private void Button_save_model_url_Click(object sender, EventArgs e)
         {
-            String str_query = "UPDATE dbo.motherboard_data SET model_page = '" + textBox_admin_model_url.Text + "' WHERE model_name ='" + label_admin_model.Text + "';";
+            String str_query = "UPDATE motherboard_data SET model_page = '" + textBox_admin_model_url.Text + "' WHERE model_name ='" + label_admin_model.Text + "';";
             Execute_query_SET(sender, e, str_query, label_admin_model.Text);
             textBox_admin_model_url.Clear();
             comboBox_admin_model_edit_SelectedIndexChanged(sender, e);
@@ -743,7 +744,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
         {
             try
             {
-                DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.vendor_data where vendor_name = '"+ comboBox_select_vendor_to_edit .Text+ "'");
+                DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM vendor_data where vendor_name = '"+ comboBox_select_vendor_to_edit .Text+ "'");
                 textBox_admin_vendor_name.Text = Biosup_query_vendors.Rows[0]["vendor_name"].ToString();
                 textBox_admin_vendor_sort_edit.Text = Biosup_query_vendors.Rows[0]["vendor_sort"].ToString();
                 textBox_admin_vendor_base_edit.Text = Biosup_query_vendors.Rows[0]["vendor_dl_url_base"].ToString();
@@ -759,13 +760,13 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
         private void Button_add_vendor_Click(object sender, EventArgs e)
         {
             
-            String str_query = "INSERT INTO dbo.vendor_data VALUES('" + textBox_admin_vendor_name_add.Text + "','"+ textBox_admin_vendor_sort_add.Text + "','"+ textBox_admin_vendor_base_add.Text+"','"+ textBox_admin_vendor_addon_add.Text + "')";
+            String str_query = "INSERT INTO vendor_data VALUES('" + textBox_admin_vendor_name_add.Text + "','"+ textBox_admin_vendor_sort_add.Text + "','"+ textBox_admin_vendor_base_add.Text+"','"+ textBox_admin_vendor_addon_add.Text + "')";
             Execute_query_SET(sender, e, str_query, textBox_admin_vendor_name_add.Text);
         }
 
         private void Btn_save_edits_Click(object sender, EventArgs e)
         {
-            String str_query = "UPDATE dbo.vendor_data SET vendor_name = '" + textBox_admin_vendor_name.Text + "',vendor_sort = '" + textBox_admin_vendor_sort_edit.Text + "', vendor_dl_url_base = '"+ textBox_admin_vendor_base_edit.Text + "', vendor_url_addon = '" + textBox_admin_vendor_addon_edit.Text + "'  WHERE vendor_name ='" + comboBox_select_vendor_to_edit.Text + "';";
+            String str_query = "UPDATE vendor_data SET vendor_name = '" + textBox_admin_vendor_name.Text + "',vendor_sort = '" + textBox_admin_vendor_sort_edit.Text + "', vendor_dl_url_base = '"+ textBox_admin_vendor_base_edit.Text + "', vendor_url_addon = '" + textBox_admin_vendor_addon_edit.Text + "'  WHERE vendor_name ='" + comboBox_select_vendor_to_edit.Text + "';";
 
             Execute_query_SET(sender, e, str_query, textBox_admin_vendor_name.Text);
 
@@ -864,9 +865,9 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                    String str_model = line.Replace(model_attributes[0] + "-", "");
                    textBox_admin_log.AppendText("\r\n" + str_chipset + " | " + str_vendor + " | " + str_model);
 
-                   DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.vendor_data where vendor_name = '" + str_vendor + "'");
+                   DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM vendor_data where vendor_name = '" + str_vendor + "'");
 
-                   String str_query = "INSERT INTO dbo.motherboard_data(chipset,model_name,vendor_id) VALUES('" + str_chipset + "','" + str_model + "','" + Biosup_query_vendors.Rows[0]["vendor_id"] + "')";
+                   String str_query = "INSERT INTO motherboard_data(chipset,model_name,vendor_id) VALUES('" + str_chipset + "','" + str_model + "','" + Biosup_query_vendors.Rows[0]["vendor_id"] + "')";
                    Execute_query_SET(sender, e, str_query, str_model);
 
                    counter++;
@@ -928,9 +929,9 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
                                 String str_model = line.Replace(model_attributes[0]+"-","");
                                 textBox_admin_log.AppendText("\r\n" + str_chipset +" | "+ str_vendor +" | "+ str_model);
 
-                                DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.vendor_data where vendor_name = '" + str_vendor + "'");
+                                DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM vendor_data where vendor_name = '" + str_vendor + "'");
 
-                                String str_query = "INSERT INTO dbo.motherboard_data(chipset,model_name,vendor_id) VALUES('" + str_chipset + "','" + str_model + "','" + Biosup_query_vendors.Rows[0]["vendor_id"] + "')";
+                                String str_query = "INSERT INTO motherboard_data(chipset,model_name,vendor_id) VALUES('" + str_chipset + "','" + str_model + "','" + Biosup_query_vendors.Rows[0]["vendor_id"] + "')";
                                 Execute_query_SET(sender, e, str_query, str_model);
 
                                 counter++;
@@ -1143,13 +1144,13 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             comboBox_admin_model_delete.Items.Clear();
             try
             {
-                DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM dbo.vendor_data where vendor_name ='" + str_vendor + "';");
+                DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM vendor_data where vendor_name ='" + str_vendor + "';");
 
-                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data where vendor_id = " + Biosup_query_vendor.Rows[0]["vendor_id"]);
+                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM motherboard_data where vendor_id = " + Biosup_query_vendor.Rows[0]["vendor_id"]);
 
                 if (checkBox_admin_model_emptyurl.Checked)
                 {
-                    Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data where vendor_id = " + Biosup_query_vendor.Rows[0]["vendor_id"] + " AND model_page = 'NULL';");
+                    Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM motherboard_data where vendor_id = " + Biosup_query_vendor.Rows[0]["vendor_id"] + " AND model_page = 'NULL';");
                 }
 
                 foreach (DataRow row in Biosup_query_model.Rows)
@@ -1169,9 +1170,9 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             comboBox_admin_model_delete.Items.Clear();
             try
             {
-                DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM dbo.vendor_data where vendor_name ='" + str_vendor + "';");
+                DataTable Biosup_query_vendor = Biosup_query.BIOSUP_SQL_GET("SELECT vendor_id FROM vendor_data where vendor_name ='" + str_vendor + "';");
 
-                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM dbo.motherboard_data where model_page LIKE 'NULL' ;");
+                DataTable Biosup_query_model = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM motherboard_data where model_page LIKE 'NULL' ;");
 
                 foreach (DataRow row in Biosup_query_model.Rows)
                 {
