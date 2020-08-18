@@ -512,13 +512,6 @@ namespace BiosupCS
                 comboBox_admin_chipset_vendor.SelectedIndex = -1;
             }
 
-            /*List<SQL_Params> list_parameter = new List<SQL_Params>();
-SQL_Params obj_paramater_chipset = new SQL_Params("@a_chipset_name", SqlDbType.VarChar, 10, textBox_admin_chipset_name.Text);
-SQL_Params obj_paramater_vendor = new SQL_Params("@a_chipset_vendor", SqlDbType.VarChar, 10, textBox_admin_chipset_name.Text.ToString());
-list_parameter.Add(obj_paramater_chipset);
-list_parameter.Add(obj_paramater_vendor);
-Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
-*/
         }
 
         private void ComboBox_admin_url_vendor_SelectedIndexChanged(object sender, EventArgs e)
@@ -803,165 +796,6 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             System.Threading.Thread.Sleep(150);
             BIOSUP_CONFIG_Load(sender, e);
         }
-        private async void Button_get_models_Click(object sender, EventArgs e)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://www.ple.com.au");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                string json_str = "{\"InventoryCategoryId\":302}";
-                var stringContent = new StringContent(json_str.ToString());
-
-                HttpResponseMessage response = await client.PostAsync("/api/getItemGrid", stringContent);
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonContent = response.Content.ReadAsStringAsync().Result;
-                    Console.WriteLine(jsonContent);
-
-                    textBox_admin_log.AppendText("\r\n");
-                }
-                else
-                {
-                    textBox_admin_log.AppendText("\r\n ERROR-" + response.StatusCode);
-                }
-            }
-
-            /*
-            if r.status_code == 200:
-                res = r.json()
-                #vendArr = [mobo['ManufacturerModel'] for mobo in res["data"]["Items"] if mobo['ManufacturerName'].lower() == vendor.lower()]
-
-                for mobo in res["data"]["Items"]:
-                    #print(str(mobo))
-                    str_vendor = self.dl_Src_cleanStr(mobo['ManufacturerName'].lower())
-                    str_model = self.dl_Src_cleanStr(mobo['ManufacturerModel'].lower())
-                    str_combined = str(str_vendor + "-" + str_model)
-                    print("Found: " + str_combined)
-                    list_motherboard_mobo.append(str_combined)
-                print(str(list_motherboard_mobo))
-                return list_motherboard_mobo
-            else:
-                print("Error in connecting to base data server, code: " + str(r.status_code))
-                */
-            /*   while ((line = file.ReadLine()) != null)
-               {
-                   textBox_admin_log.AppendText("\r\n------------------------------------------------");
-                   textBox_admin_log.AppendText("\r\n" + counter + "/" + total);
-                   textBox_admin_log.AppendText("\r\n" + line);
-                   String[] model_attributes = line.Split('-');
-                   String str_chipset = "NF";
-                   //x299x could be a issue, we will see
-                   foreach (DataRow chipset in Biosup_query_chipsets.Rows)
-                   {
-                       if (line.Contains(chipset["chipset_name"].ToString()))
-                       {
-                           str_chipset = chipset["chipset_name"].ToString();
-                           break;
-                       }
-
-                   }
-                   String str_vendor = model_attributes[0];
-                   String str_model = line.Replace(model_attributes[0] + "-", "");
-                   textBox_admin_log.AppendText("\r\n" + str_chipset + " | " + str_vendor + " | " + str_model);
-
-                   DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM vendor_data where vendor_name = '" + str_vendor + "'");
-
-                   String str_query = "INSERT INTO motherboard_data(chipset,model_name,vendor_id) VALUES('" + str_chipset + "','" + str_model + "','" + Biosup_query_vendors.Rows[0]["vendor_id"] + "')";
-                   Execute_query_SET(sender, e, str_query, str_model);
-
-                   counter++;
-               }*/
-        }
-        
-    /*       
-     private void Button_get_models_Click(object sender, EventArgs e)
-            {
-                try
-                {
-                    String str_filename = string.Empty;
-                    // Get the full name of the newly created Temporary file. 
-                    // Note that the GetTempFileName() method actually creates
-                    // a 0-byte file and returns the name of the created file.
-                    str_filename = Path.GetTempFileName();
-
-                    // Craete a FileInfo object to set the file's attributes
-                    FileInfo fileInfo = new FileInfo(str_filename)
-                    {
-
-                        // Set the Attribute property of this file to Temporary. 
-                        // Although this is not completely necessary, the .NET Framework is able 
-                        // to optimize the use of Temporary files by keeping them cached in memory.
-                        Attributes = FileAttributes.Temporary
-                    };
-
-                    Console.WriteLine("TEMP file created at: " + str_filename);
-                    this.OBJ_DL_FILE.DL_FILE("https://raw.githubusercontent.com/Rexzarrax/Motherboard_Model_Names/master/motherboard_sku_data.txt", str_filename);
-                    int counter = 0;
-
-                    string line;
-
-                    while (true)
-                    {
-                        if (!IsFileLocked(fileInfo))
-                        {
-                            // Read the file and display it line by line.  
-                            System.IO.StreamReader file =
-                                new System.IO.StreamReader(@str_filename);
-                            int total = File.ReadAllLines(@str_filename).Length;
-                            while ((line = file.ReadLine()) != null)
-                            {
-                                textBox_admin_log.AppendText("\r\n------------------------------------------------");
-                                textBox_admin_log.AppendText("\r\n"+counter+"/"+total);
-                                textBox_admin_log.AppendText("\r\n"+ line);
-                                String[] model_attributes = line.Split('-');
-                                String str_chipset = "NF";
-                                //x299x could be a issue, we will see
-                                foreach (DataRow chipset in Biosup_query_chipsets.Rows)
-                                {
-                                    if(line.Contains(chipset["chipset_name"].ToString())){
-                                        str_chipset = chipset["chipset_name"].ToString();
-                                        break;
-                                    }
-
-                                }
-                                String str_vendor = model_attributes[0];
-                                String str_model = line.Replace(model_attributes[0]+"-","");
-                                textBox_admin_log.AppendText("\r\n" + str_chipset +" | "+ str_vendor +" | "+ str_model);
-
-                                DataTable Biosup_query_vendors = Biosup_query.BIOSUP_SQL_GET("SELECT * FROM vendor_data where vendor_name = '" + str_vendor + "'");
-
-                                String str_query = "INSERT INTO motherboard_data(chipset,model_name,vendor_id) VALUES('" + str_chipset + "','" + str_model + "','" + Biosup_query_vendors.Rows[0]["vendor_id"] + "')";
-                                Execute_query_SET(sender, e, str_query, str_model);
-
-                                counter++;
-                            }
-
-                            file.Close();
-                            textBox_admin_log.AppendText("\r\nThere were "+counter+" Models");
-                            break;
-                        }
-                        else
-                        {
-                            Thread.Sleep(100);
-                            Application.DoEvents();
-                        }
-
-                    }
-
-
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Unable to create TEMP file or set its attributes: " + ex.Message);
-                }
-            }
-    */
-            private void Button_admin_vendor_del_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Button_admin_url_model_copy_Click(object sender, EventArgs e)
         {
@@ -1045,7 +879,7 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
 
             }
         }
-            private void Button_load_config_Click(object sender, EventArgs e)
+        private void Button_load_config_Click(object sender, EventArgs e)
         {
             this.Obj_CONFIG.load_config();
 
@@ -1085,16 +919,6 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             textBox_log_config.AppendText("\r\nSave Complete...");
         }
 
-        private void Button_get_next_10_Click(object sender, EventArgs e)
-        {
-            flowLayoutPanel_admin_scripts.Controls.Clear();
-            for( int i = 0; i <= 3; i++)
-            {
-                flowLayoutPanel_admin_scripts.Controls.Add(new Biosup_multi_url_add { Parent = flowLayoutPanel_add_url_str });
-            }
-
-        }
-
         private void Pull_link_ddg_Click(object sender, EventArgs e)
         {
             BIOSUP_HTML HTML = new BIOSUP_HTML(this.list_vendor_url_model, this.list_vendor_url_dl_model);
@@ -1132,11 +956,6 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             {
                 textBox_log_config.AppendText("\r\nError Opening URL");
             }
-        }
-
-        private void listbox_vendor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void comboBox_admin_model_edit_SelectedIndexChanged(object sender, EventArgs e)
@@ -1184,11 +1003,6 @@ Biosup_query.BIOSUP_SQL_SET("ADD_CHIPSET", list_parameter);
             {
                 textBox_admin_log.AppendText("No Model Found");
             }
-        }
-
-        private void groupBox4_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void button_admin_model_edit_search_Click(object sender, EventArgs e)
