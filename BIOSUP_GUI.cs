@@ -228,36 +228,53 @@ namespace BiosupCS
             str_built_query += ")) AND (cc.chipset_name in (";
             for (int i = 0; i < this.listbox_AMD_chipset.CheckedItems.Count; i++)
             {
-                textBox_log_running.AppendText("\r\nIncluding All: " + this.listbox_AMD_chipset.CheckedItems[i].ToString());
-                String str_addon = "'" + this.listbox_AMD_chipset.CheckedItems[i].ToString() + "'";
-                if (i != this.listbox_AMD_chipset.CheckedItems.Count)
+                if (this.listbox_AMD_chipset.CheckedItems.Count != 0)
                 {
-                    str_addon += ",";
+                    textBox_log_running.AppendText("\r\nIncluding All: " + this.listbox_AMD_chipset.CheckedItems[i].ToString());
+                    String str_addon = "'" + this.listbox_AMD_chipset.CheckedItems[i].ToString() + "'";
+                    if (this.listbox_AMD_chipset.CheckedItems.Count == 1)
+                    {
+                        Console.WriteLine("One Chipset only");
+                    }
+                    else if (i != this.listbox_AMD_chipset.CheckedItems.Count)
+                    {
+                        str_addon += ",";
+                    }
+                    str_built_query += str_addon;
                 }
-                
-                str_built_query += str_addon;
             }
 
             for (int i = 0; i < this.listbox_INTEL_chipset.CheckedItems.Count; i++)
             {
-                textBox_log_running.AppendText("\r\nIncluding All: " + this.listbox_INTEL_chipset.CheckedItems[i].ToString());
-                String str_addon = "'" + this.listbox_INTEL_chipset.CheckedItems[i].ToString() + "'";
-                if (i != this.listbox_INTEL_chipset.CheckedItems.Count - 1)
+                if (this.listbox_INTEL_chipset.CheckedItems.Count != 0)
                 {
-                    str_addon += ",";
+                    textBox_log_running.AppendText("\r\nIncluding All: " + this.listbox_INTEL_chipset.CheckedItems[i].ToString());
+                    String str_addon = "'" + this.listbox_INTEL_chipset.CheckedItems[i].ToString() + "'";
+                    if (this.listbox_INTEL_chipset.CheckedItems.Count == 1)
+                    {
+                        Console.WriteLine("One Chipset only");
+                    }
+                    else if (i != this.listbox_INTEL_chipset.CheckedItems.Count - 1)
+                    {
+                        str_addon += ",";
+                    }
+                    str_built_query += str_addon;
                 }
-                str_built_query += str_addon;
-
             }
-            str_built_query += ",'')));";
+            str_built_query += ")));";
             return str_built_query;
         }
         private void Btn_run_Click(object sender, EventArgs e)
         {
+            int int_number_checked = this.listbox_AMD_chipset.CheckedItems.Count + this.listbox_INTEL_chipset.CheckedItems.Count;
             if (comboBox_what_to_get.Text == "")
             {
-                MessageBox.Show("Please Select a 'What to get'");
+                MessageBox.Show("Please select a 'What to get'", "Error");
                 
+            }
+            else if (int_number_checked == 0 | this.listbox_vendor.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Please have one checkbox checked in each field.", "Error");
             }
             else
             {
@@ -321,7 +338,7 @@ namespace BiosupCS
                     Current_mobo(row);
                     textBox_log_running.AppendText(row["model_name"] + "\r\n" + row["url_str"]);
                     Change_point(list_points[0]);
-                    String str_filetree = "BIOSHERE/" + row["vendor_name"] + "/" + row["chipset_name"] + "/" + row["model_name"];
+                    String str_filetree = "BIOSHERE/" + row["vendor_name"] + "/" + row["chipset_name"] + "/" + row["model_name"] +"/"+row["url_version"];
                     String str_file_path = str_filetree + "/" + row["vendor_name"] + "-" + row["model_name"] + ".zip";
                     textBox_log_running.AppendText("\r\n" + row["url_date_of_bios"]);
                     FileInfo FI_file_path = new FileInfo(str_file_path);
