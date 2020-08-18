@@ -510,3 +510,9 @@ MigrationBackup/
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 
 # End of https://www.gitignore.io/api/csharp,visualstudio
+
+gitkraken_rsa
+
+gitkraken_rsa.pub
+
+get-data-ple.txt
