@@ -237,9 +237,9 @@
             this.tabPage_admin.Controls.Add(this.textBox_admin_log);
             this.tabPage_admin.Controls.Add(this.tabControl_admin);
             this.tabPage_admin.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_admin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_admin.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_admin.Name = "tabPage_admin";
-            this.tabPage_admin.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_admin.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage_admin.Size = new System.Drawing.Size(726, 642);
             this.tabPage_admin.TabIndex = 3;
             this.tabPage_admin.Text = "Administrator";
@@ -247,7 +247,7 @@
             // textBox_admin_log
             // 
             this.textBox_admin_log.Location = new System.Drawing.Point(5, 504);
-            this.textBox_admin_log.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_admin_log.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_admin_log.Multiline = true;
             this.textBox_admin_log.Name = "textBox_admin_log";
             this.textBox_admin_log.ReadOnly = true;
@@ -262,7 +262,7 @@
             this.tabControl_admin.Controls.Add(this.tabPage_admin_vendor);
             this.tabControl_admin.Controls.Add(this.tabPage_chipset_add);
             this.tabControl_admin.Location = new System.Drawing.Point(5, 5);
-            this.tabControl_admin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl_admin.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl_admin.Name = "tabControl_admin";
             this.tabControl_admin.SelectedIndex = 0;
             this.tabControl_admin.Size = new System.Drawing.Size(715, 496);
@@ -274,9 +274,9 @@
             this.tabPage_admin_url.Controls.Add(this.groupBox_select_model);
             this.tabPage_admin_url.Controls.Add(this.btn_add_url);
             this.tabPage_admin_url.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_admin_url.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_admin_url.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_admin_url.Name = "tabPage_admin_url";
-            this.tabPage_admin_url.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_admin_url.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage_admin_url.Size = new System.Drawing.Size(707, 467);
             this.tabPage_admin_url.TabIndex = 0;
             this.tabPage_admin_url.Text = "BIOS URL";
@@ -286,9 +286,9 @@
             // 
             this.groupBox_admin_url_contain_url.Controls.Add(this.tabControl1);
             this.groupBox_admin_url_contain_url.Location = new System.Drawing.Point(8, 140);
-            this.groupBox_admin_url_contain_url.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_admin_url_contain_url.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_admin_url_contain_url.Name = "groupBox_admin_url_contain_url";
-            this.groupBox_admin_url_contain_url.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_admin_url_contain_url.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_admin_url_contain_url.Size = new System.Drawing.Size(690, 329);
             this.groupBox_admin_url_contain_url.TabIndex = 7;
             this.groupBox_admin_url_contain_url.TabStop = false;
@@ -299,7 +299,7 @@
             this.tabControl1.Controls.Add(this.tabPage_admin_url_urls_add);
             this.tabControl1.Controls.Add(this.tabPage_admin_url_urls_edit);
             this.tabControl1.Location = new System.Drawing.Point(8, 25);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(682, 296);
@@ -315,9 +315,9 @@
             this.tabPage_admin_url_urls_add.Controls.Add(this.btn_admin_url_add_url);
             this.tabPage_admin_url_urls_add.Controls.Add(this.flowLayoutPanel_add_url_str);
             this.tabPage_admin_url_urls_add.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_admin_url_urls_add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_admin_url_urls_add.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_admin_url_urls_add.Name = "tabPage_admin_url_urls_add";
-            this.tabPage_admin_url_urls_add.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_admin_url_urls_add.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage_admin_url_urls_add.Size = new System.Drawing.Size(674, 267);
             this.tabPage_admin_url_urls_add.TabIndex = 0;
             this.tabPage_admin_url_urls_add.Text = "Add";
@@ -326,7 +326,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(361, 215);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(49, 29);
             this.button2.TabIndex = 15;
@@ -347,7 +347,7 @@
             // button_admin_url_bulk_get
             // 
             this.button_admin_url_bulk_get.Location = new System.Drawing.Point(516, 215);
-            this.button_admin_url_bulk_get.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_admin_url_bulk_get.Margin = new System.Windows.Forms.Padding(4);
             this.button_admin_url_bulk_get.Name = "button_admin_url_bulk_get";
             this.button_admin_url_bulk_get.Size = new System.Drawing.Size(64, 29);
             this.button_admin_url_bulk_get.TabIndex = 10;
@@ -358,7 +358,7 @@
             // button_admin_url_model_copy
             // 
             this.button_admin_url_model_copy.Location = new System.Drawing.Point(415, 215);
-            this.button_admin_url_model_copy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_admin_url_model_copy.Margin = new System.Windows.Forms.Padding(4);
             this.button_admin_url_model_copy.Name = "button_admin_url_model_copy";
             this.button_admin_url_model_copy.Size = new System.Drawing.Size(94, 29);
             this.button_admin_url_model_copy.TabIndex = 9;
@@ -379,7 +379,7 @@
             // btn_admin_url_add_url
             // 
             this.btn_admin_url_add_url.Location = new System.Drawing.Point(588, 215);
-            this.btn_admin_url_add_url.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_admin_url_add_url.Margin = new System.Windows.Forms.Padding(4);
             this.btn_admin_url_add_url.Name = "btn_admin_url_add_url";
             this.btn_admin_url_add_url.Size = new System.Drawing.Size(78, 29);
             this.btn_admin_url_add_url.TabIndex = 7;
@@ -391,7 +391,7 @@
             // 
             this.flowLayoutPanel_add_url_str.AutoScroll = true;
             this.flowLayoutPanel_add_url_str.Location = new System.Drawing.Point(8, 8);
-            this.flowLayoutPanel_add_url_str.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel_add_url_str.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel_add_url_str.Name = "flowLayoutPanel_add_url_str";
             this.flowLayoutPanel_add_url_str.Size = new System.Drawing.Size(658, 200);
             this.flowLayoutPanel_add_url_str.TabIndex = 6;
@@ -401,9 +401,9 @@
             this.tabPage_admin_url_urls_edit.Controls.Add(this.button_admin_url_save_del);
             this.tabPage_admin_url_urls_edit.Controls.Add(this.flowLayoutPanel_admin_url_edit);
             this.tabPage_admin_url_urls_edit.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_admin_url_urls_edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_admin_url_urls_edit.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_admin_url_urls_edit.Name = "tabPage_admin_url_urls_edit";
-            this.tabPage_admin_url_urls_edit.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_admin_url_urls_edit.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage_admin_url_urls_edit.Size = new System.Drawing.Size(674, 267);
             this.tabPage_admin_url_urls_edit.TabIndex = 1;
             this.tabPage_admin_url_urls_edit.Text = "Edit/Delete";
@@ -412,7 +412,7 @@
             // button_admin_url_save_del
             // 
             this.button_admin_url_save_del.Location = new System.Drawing.Point(548, 215);
-            this.button_admin_url_save_del.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_admin_url_save_del.Margin = new System.Windows.Forms.Padding(4);
             this.button_admin_url_save_del.Name = "button_admin_url_save_del";
             this.button_admin_url_save_del.Size = new System.Drawing.Size(105, 29);
             this.button_admin_url_save_del.TabIndex = 14;
@@ -424,7 +424,7 @@
             // 
             this.flowLayoutPanel_admin_url_edit.AutoScroll = true;
             this.flowLayoutPanel_admin_url_edit.Location = new System.Drawing.Point(8, 8);
-            this.flowLayoutPanel_admin_url_edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel_admin_url_edit.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel_admin_url_edit.Name = "flowLayoutPanel_admin_url_edit";
             this.flowLayoutPanel_admin_url_edit.Size = new System.Drawing.Size(645, 200);
             this.flowLayoutPanel_admin_url_edit.TabIndex = 13;
@@ -442,9 +442,9 @@
             this.groupBox_select_model.Controls.Add(this.btn_get_model_from_database);
             this.groupBox_select_model.Controls.Add(this.numericUpDown_admin_url_url_to_add);
             this.groupBox_select_model.Location = new System.Drawing.Point(8, 8);
-            this.groupBox_select_model.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_select_model.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_select_model.Name = "groupBox_select_model";
-            this.groupBox_select_model.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_select_model.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_select_model.Size = new System.Drawing.Size(690, 125);
             this.groupBox_select_model.TabIndex = 4;
             this.groupBox_select_model.TabStop = false;
@@ -453,7 +453,7 @@
             // button_admin_url_refresh
             // 
             this.button_admin_url_refresh.Location = new System.Drawing.Point(455, 82);
-            this.button_admin_url_refresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_admin_url_refresh.Margin = new System.Windows.Forms.Padding(4);
             this.button_admin_url_refresh.Name = "button_admin_url_refresh";
             this.button_admin_url_refresh.Size = new System.Drawing.Size(94, 29);
             this.button_admin_url_refresh.TabIndex = 11;
@@ -496,7 +496,7 @@
             this.comboBox_admin_url_chipset.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_admin_url_chipset.FormattingEnabled = true;
             this.comboBox_admin_url_chipset.Location = new System.Drawing.Point(124, 51);
-            this.comboBox_admin_url_chipset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_admin_url_chipset.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_admin_url_chipset.Name = "comboBox_admin_url_chipset";
             this.comboBox_admin_url_chipset.Size = new System.Drawing.Size(298, 24);
             this.comboBox_admin_url_chipset.TabIndex = 6;
@@ -507,7 +507,7 @@
             this.comboBox_admin_url_vendor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_admin_url_vendor.FormattingEnabled = true;
             this.comboBox_admin_url_vendor.Location = new System.Drawing.Point(124, 20);
-            this.comboBox_admin_url_vendor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_admin_url_vendor.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_admin_url_vendor.Name = "comboBox_admin_url_vendor";
             this.comboBox_admin_url_vendor.Size = new System.Drawing.Size(298, 24);
             this.comboBox_admin_url_vendor.TabIndex = 5;
@@ -528,7 +528,7 @@
             this.comboBox_select_model.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_select_model.FormattingEnabled = true;
             this.comboBox_select_model.Location = new System.Drawing.Point(124, 82);
-            this.comboBox_select_model.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_select_model.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_select_model.Name = "comboBox_select_model";
             this.comboBox_select_model.Size = new System.Drawing.Size(298, 24);
             this.comboBox_select_model.TabIndex = 1;
@@ -537,7 +537,7 @@
             // btn_get_model_from_database
             // 
             this.btn_get_model_from_database.Location = new System.Drawing.Point(589, 82);
-            this.btn_get_model_from_database.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_get_model_from_database.Margin = new System.Windows.Forms.Padding(4);
             this.btn_get_model_from_database.Name = "btn_get_model_from_database";
             this.btn_get_model_from_database.Size = new System.Drawing.Size(94, 29);
             this.btn_get_model_from_database.TabIndex = 3;
@@ -548,7 +548,7 @@
             // numericUpDown_admin_url_url_to_add
             // 
             this.numericUpDown_admin_url_url_to_add.Location = new System.Drawing.Point(589, 41);
-            this.numericUpDown_admin_url_url_to_add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown_admin_url_url_to_add.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_admin_url_url_to_add.Maximum = new decimal(new int[] {
             10,
             0,
@@ -571,7 +571,7 @@
             // btn_add_url
             // 
             this.btn_add_url.Location = new System.Drawing.Point(608, 558);
-            this.btn_add_url.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_add_url.Margin = new System.Windows.Forms.Padding(4);
             this.btn_add_url.Name = "btn_add_url";
             this.btn_add_url.Size = new System.Drawing.Size(94, 29);
             this.btn_add_url.TabIndex = 2;
@@ -583,9 +583,9 @@
             this.tabPage_admin_model.Controls.Add(this.groupBox4);
             this.tabPage_admin_model.Controls.Add(this.groupBox3);
             this.tabPage_admin_model.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_admin_model.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_admin_model.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_admin_model.Name = "tabPage_admin_model";
-            this.tabPage_admin_model.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_admin_model.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage_admin_model.Size = new System.Drawing.Size(707, 467);
             this.tabPage_admin_model.TabIndex = 1;
             this.tabPage_admin_model.Text = "Model";
@@ -605,9 +605,9 @@
             this.groupBox4.Controls.Add(this.groupBox2);
             this.groupBox4.Controls.Add(this.btn_delete_model);
             this.groupBox4.Location = new System.Drawing.Point(352, 8);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(345, 449);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
@@ -616,7 +616,7 @@
             // button_admin_model_edit_search
             // 
             this.button_admin_model_edit_search.Location = new System.Drawing.Point(15, 286);
-            this.button_admin_model_edit_search.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_admin_model_edit_search.Margin = new System.Windows.Forms.Padding(4);
             this.button_admin_model_edit_search.Name = "button_admin_model_edit_search";
             this.button_admin_model_edit_search.Size = new System.Drawing.Size(106, 29);
             this.button_admin_model_edit_search.TabIndex = 18;
@@ -628,7 +628,7 @@
             // 
             this.checkBox_admin_model_emptyurl.AutoSize = true;
             this.checkBox_admin_model_emptyurl.Location = new System.Drawing.Point(12, 19);
-            this.checkBox_admin_model_emptyurl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_admin_model_emptyurl.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_admin_model_emptyurl.Name = "checkBox_admin_model_emptyurl";
             this.checkBox_admin_model_emptyurl.Size = new System.Drawing.Size(97, 20);
             this.checkBox_admin_model_emptyurl.TabIndex = 17;
@@ -640,9 +640,9 @@
             // 
             this.groupBox_admin_model_edit_vendor_select.Controls.Add(this.comboBox_admin_model_edit);
             this.groupBox_admin_model_edit_vendor_select.Location = new System.Drawing.Point(8, 48);
-            this.groupBox_admin_model_edit_vendor_select.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_admin_model_edit_vendor_select.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_admin_model_edit_vendor_select.Name = "groupBox_admin_model_edit_vendor_select";
-            this.groupBox_admin_model_edit_vendor_select.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_admin_model_edit_vendor_select.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_admin_model_edit_vendor_select.Size = new System.Drawing.Size(321, 50);
             this.groupBox_admin_model_edit_vendor_select.TabIndex = 16;
             this.groupBox_admin_model_edit_vendor_select.TabStop = false;
@@ -653,7 +653,7 @@
             this.comboBox_admin_model_edit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_admin_model_edit.FormattingEnabled = true;
             this.comboBox_admin_model_edit.Location = new System.Drawing.Point(8, 16);
-            this.comboBox_admin_model_edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_admin_model_edit.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_admin_model_edit.Name = "comboBox_admin_model_edit";
             this.comboBox_admin_model_edit.Size = new System.Drawing.Size(305, 24);
             this.comboBox_admin_model_edit.TabIndex = 15;
@@ -662,7 +662,7 @@
             // button_goto_url
             // 
             this.button_goto_url.Location = new System.Drawing.Point(15, 412);
-            this.button_goto_url.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_goto_url.Margin = new System.Windows.Forms.Padding(4);
             this.button_goto_url.Name = "button_goto_url";
             this.button_goto_url.Size = new System.Drawing.Size(94, 29);
             this.button_goto_url.TabIndex = 14;
@@ -673,7 +673,7 @@
             // pull_link_ddg
             // 
             this.pull_link_ddg.Location = new System.Drawing.Point(130, 412);
-            this.pull_link_ddg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pull_link_ddg.Margin = new System.Windows.Forms.Padding(4);
             this.pull_link_ddg.Name = "pull_link_ddg";
             this.pull_link_ddg.Size = new System.Drawing.Size(94, 29);
             this.pull_link_ddg.TabIndex = 13;
@@ -684,7 +684,7 @@
             // button_admin_model_copy
             // 
             this.button_admin_model_copy.Location = new System.Drawing.Point(130, 286);
-            this.button_admin_model_copy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_admin_model_copy.Margin = new System.Windows.Forms.Padding(4);
             this.button_admin_model_copy.Name = "button_admin_model_copy";
             this.button_admin_model_copy.Size = new System.Drawing.Size(94, 29);
             this.button_admin_model_copy.TabIndex = 12;
@@ -705,7 +705,7 @@
             // button_save_model_url
             // 
             this.button_save_model_url.Location = new System.Drawing.Point(244, 412);
-            this.button_save_model_url.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_save_model_url.Margin = new System.Windows.Forms.Padding(4);
             this.button_save_model_url.Name = "button_save_model_url";
             this.button_save_model_url.Size = new System.Drawing.Size(94, 29);
             this.button_save_model_url.TabIndex = 10;
@@ -717,9 +717,9 @@
             // 
             this.groupBox5.Controls.Add(this.textBox_admin_model_url);
             this.groupBox5.Location = new System.Drawing.Point(8, 342);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox5.Size = new System.Drawing.Size(332, 62);
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
@@ -728,7 +728,7 @@
             // textBox_admin_model_url
             // 
             this.textBox_admin_model_url.Location = new System.Drawing.Point(8, 24);
-            this.textBox_admin_model_url.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_admin_model_url.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_admin_model_url.Name = "textBox_admin_model_url";
             this.textBox_admin_model_url.Size = new System.Drawing.Size(322, 22);
             this.textBox_admin_model_url.TabIndex = 3;
@@ -737,9 +737,9 @@
             // 
             this.groupBox2.Controls.Add(this.comboBox_admin_model_delete);
             this.groupBox2.Location = new System.Drawing.Point(5, 102);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(330, 59);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
@@ -750,7 +750,7 @@
             this.comboBox_admin_model_delete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_admin_model_delete.FormattingEnabled = true;
             this.comboBox_admin_model_delete.Location = new System.Drawing.Point(8, 24);
-            this.comboBox_admin_model_delete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_admin_model_delete.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_admin_model_delete.Name = "comboBox_admin_model_delete";
             this.comboBox_admin_model_delete.Size = new System.Drawing.Size(314, 24);
             this.comboBox_admin_model_delete.Sorted = true;
@@ -760,7 +760,7 @@
             // btn_delete_model
             // 
             this.btn_delete_model.Location = new System.Drawing.Point(244, 169);
-            this.btn_delete_model.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_delete_model.Margin = new System.Windows.Forms.Padding(4);
             this.btn_delete_model.Name = "btn_delete_model";
             this.btn_delete_model.Size = new System.Drawing.Size(94, 29);
             this.btn_delete_model.TabIndex = 8;
@@ -776,9 +776,9 @@
             this.groupBox3.Controls.Add(this.btn_add_model);
             this.groupBox3.Controls.Add(this.groupBox_model_bios_url);
             this.groupBox3.Location = new System.Drawing.Point(4, 8);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(341, 449);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
@@ -788,9 +788,9 @@
             // 
             this.groupBox_chipset_select.Controls.Add(this.comboBox_select_chipset);
             this.groupBox_chipset_select.Location = new System.Drawing.Point(8, 24);
-            this.groupBox_chipset_select.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_chipset_select.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_chipset_select.Name = "groupBox_chipset_select";
-            this.groupBox_chipset_select.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_chipset_select.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_chipset_select.Size = new System.Drawing.Size(175, 59);
             this.groupBox_chipset_select.TabIndex = 4;
             this.groupBox_chipset_select.TabStop = false;
@@ -801,7 +801,7 @@
             this.comboBox_select_chipset.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_select_chipset.FormattingEnabled = true;
             this.comboBox_select_chipset.Location = new System.Drawing.Point(8, 24);
-            this.comboBox_select_chipset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_select_chipset.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_select_chipset.Name = "comboBox_select_chipset";
             this.comboBox_select_chipset.Size = new System.Drawing.Size(159, 24);
             this.comboBox_select_chipset.Sorted = true;
@@ -812,9 +812,9 @@
             this.groupBox_vendor_select.Controls.Add(this.groupBox1);
             this.groupBox_vendor_select.Controls.Add(this.comboBox_select_vendor);
             this.groupBox_vendor_select.Location = new System.Drawing.Point(8, 90);
-            this.groupBox_vendor_select.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_vendor_select.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_vendor_select.Name = "groupBox_vendor_select";
-            this.groupBox_vendor_select.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_vendor_select.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_vendor_select.Size = new System.Drawing.Size(175, 59);
             this.groupBox_vendor_select.TabIndex = 5;
             this.groupBox_vendor_select.TabStop = false;
@@ -824,9 +824,9 @@
             // 
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Location = new System.Drawing.Point(8, 58);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(331, 62);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
@@ -835,7 +835,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(8, 24);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(316, 22);
             this.textBox1.TabIndex = 3;
@@ -845,7 +845,7 @@
             this.comboBox_select_vendor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_select_vendor.FormattingEnabled = true;
             this.comboBox_select_vendor.Location = new System.Drawing.Point(8, 24);
-            this.comboBox_select_vendor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_select_vendor.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_select_vendor.Name = "comboBox_select_vendor";
             this.comboBox_select_vendor.Size = new System.Drawing.Size(159, 24);
             this.comboBox_select_vendor.TabIndex = 2;
@@ -854,9 +854,9 @@
             // 
             this.groupBox_model_name.Controls.Add(this.textBox_admin_model_sku);
             this.groupBox_model_name.Location = new System.Drawing.Point(5, 156);
-            this.groupBox_model_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_model_name.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_model_name.Name = "groupBox_model_name";
-            this.groupBox_model_name.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_model_name.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_model_name.Size = new System.Drawing.Size(325, 62);
             this.groupBox_model_name.TabIndex = 7;
             this.groupBox_model_name.TabStop = false;
@@ -866,7 +866,7 @@
             // 
             this.textBox_admin_model_sku.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_admin_model_sku.Location = new System.Drawing.Point(8, 24);
-            this.textBox_admin_model_sku.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_admin_model_sku.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_admin_model_sku.Name = "textBox_admin_model_sku";
             this.textBox_admin_model_sku.Size = new System.Drawing.Size(295, 22);
             this.textBox_admin_model_sku.TabIndex = 3;
@@ -874,7 +874,7 @@
             // btn_add_model
             // 
             this.btn_add_model.Location = new System.Drawing.Point(240, 412);
-            this.btn_add_model.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_add_model.Margin = new System.Windows.Forms.Padding(4);
             this.btn_add_model.Name = "btn_add_model";
             this.btn_add_model.Size = new System.Drawing.Size(94, 29);
             this.btn_add_model.TabIndex = 0;
@@ -886,9 +886,9 @@
             // 
             this.groupBox_model_bios_url.Controls.Add(this.textBox_model_bios_url);
             this.groupBox_model_bios_url.Location = new System.Drawing.Point(5, 226);
-            this.groupBox_model_bios_url.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_model_bios_url.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_model_bios_url.Name = "groupBox_model_bios_url";
-            this.groupBox_model_bios_url.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_model_bios_url.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_model_bios_url.Size = new System.Drawing.Size(325, 62);
             this.groupBox_model_bios_url.TabIndex = 6;
             this.groupBox_model_bios_url.TabStop = false;
@@ -898,7 +898,7 @@
             // 
             this.textBox_model_bios_url.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.textBox_model_bios_url.Location = new System.Drawing.Point(8, 24);
-            this.textBox_model_bios_url.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_model_bios_url.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_model_bios_url.Name = "textBox_model_bios_url";
             this.textBox_model_bios_url.Size = new System.Drawing.Size(295, 22);
             this.textBox_model_bios_url.TabIndex = 3;
@@ -908,9 +908,9 @@
             this.tabPage_admin_vendor.Controls.Add(this.groupBox_edit_existing);
             this.tabPage_admin_vendor.Controls.Add(this.groupBox_add_vendor);
             this.tabPage_admin_vendor.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_admin_vendor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_admin_vendor.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_admin_vendor.Name = "tabPage_admin_vendor";
-            this.tabPage_admin_vendor.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_admin_vendor.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage_admin_vendor.Size = new System.Drawing.Size(707, 467);
             this.tabPage_admin_vendor.TabIndex = 2;
             this.tabPage_admin_vendor.Text = "Vendor";
@@ -926,9 +926,9 @@
             this.groupBox_edit_existing.Controls.Add(this.btn_save_edits);
             this.groupBox_edit_existing.Controls.Add(this.comboBox_select_vendor_to_edit);
             this.groupBox_edit_existing.Location = new System.Drawing.Point(9, 211);
-            this.groupBox_edit_existing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_edit_existing.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_edit_existing.Name = "groupBox_edit_existing";
-            this.groupBox_edit_existing.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_edit_existing.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_edit_existing.Size = new System.Drawing.Size(689, 251);
             this.groupBox_edit_existing.TabIndex = 3;
             this.groupBox_edit_existing.TabStop = false;
@@ -937,7 +937,7 @@
             // button_admin_vendor_del
             // 
             this.button_admin_vendor_del.Location = new System.Drawing.Point(466, 215);
-            this.button_admin_vendor_del.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_admin_vendor_del.Margin = new System.Windows.Forms.Padding(4);
             this.button_admin_vendor_del.Name = "button_admin_vendor_del";
             this.button_admin_vendor_del.Size = new System.Drawing.Size(104, 29);
             this.button_admin_vendor_del.TabIndex = 10;
@@ -948,9 +948,9 @@
             // 
             this.groupBox10.Controls.Add(this.textBox_admin_vendor_addon_edit);
             this.groupBox10.Location = new System.Drawing.Point(301, 125);
-            this.groupBox10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox10.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox10.Size = new System.Drawing.Size(269, 60);
             this.groupBox10.TabIndex = 9;
             this.groupBox10.TabStop = false;
@@ -959,7 +959,7 @@
             // textBox_admin_vendor_addon_edit
             // 
             this.textBox_admin_vendor_addon_edit.Location = new System.Drawing.Point(8, 24);
-            this.textBox_admin_vendor_addon_edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_admin_vendor_addon_edit.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_admin_vendor_addon_edit.Name = "textBox_admin_vendor_addon_edit";
             this.textBox_admin_vendor_addon_edit.Size = new System.Drawing.Size(253, 22);
             this.textBox_admin_vendor_addon_edit.TabIndex = 4;
@@ -968,9 +968,9 @@
             // 
             this.groupBox_admin_vendor_edit_base.Controls.Add(this.textBox_admin_vendor_base_edit);
             this.groupBox_admin_vendor_edit_base.Location = new System.Drawing.Point(230, 58);
-            this.groupBox_admin_vendor_edit_base.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_admin_vendor_edit_base.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_admin_vendor_edit_base.Name = "groupBox_admin_vendor_edit_base";
-            this.groupBox_admin_vendor_edit_base.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_admin_vendor_edit_base.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_admin_vendor_edit_base.Size = new System.Drawing.Size(269, 60);
             this.groupBox_admin_vendor_edit_base.TabIndex = 8;
             this.groupBox_admin_vendor_edit_base.TabStop = false;
@@ -979,7 +979,7 @@
             // textBox_admin_vendor_base_edit
             // 
             this.textBox_admin_vendor_base_edit.Location = new System.Drawing.Point(8, 24);
-            this.textBox_admin_vendor_base_edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_admin_vendor_base_edit.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_admin_vendor_base_edit.Name = "textBox_admin_vendor_base_edit";
             this.textBox_admin_vendor_base_edit.Size = new System.Drawing.Size(253, 22);
             this.textBox_admin_vendor_base_edit.TabIndex = 4;
@@ -988,9 +988,9 @@
             // 
             this.groupBox8.Controls.Add(this.textBox_admin_vendor_sort_edit);
             this.groupBox8.Location = new System.Drawing.Point(8, 125);
-            this.groupBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox8.Size = new System.Drawing.Size(269, 60);
             this.groupBox8.TabIndex = 7;
             this.groupBox8.TabStop = false;
@@ -999,7 +999,7 @@
             // textBox_admin_vendor_sort_edit
             // 
             this.textBox_admin_vendor_sort_edit.Location = new System.Drawing.Point(8, 24);
-            this.textBox_admin_vendor_sort_edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_admin_vendor_sort_edit.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_admin_vendor_sort_edit.Name = "textBox_admin_vendor_sort_edit";
             this.textBox_admin_vendor_sort_edit.Size = new System.Drawing.Size(253, 22);
             this.textBox_admin_vendor_sort_edit.TabIndex = 4;
@@ -1008,9 +1008,9 @@
             // 
             this.groupBox6.Controls.Add(this.textBox_admin_vendor_name);
             this.groupBox6.Location = new System.Drawing.Point(8, 58);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox6.Size = new System.Drawing.Size(201, 60);
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
@@ -1019,7 +1019,7 @@
             // textBox_admin_vendor_name
             // 
             this.textBox_admin_vendor_name.Location = new System.Drawing.Point(8, 24);
-            this.textBox_admin_vendor_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_admin_vendor_name.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_admin_vendor_name.Name = "textBox_admin_vendor_name";
             this.textBox_admin_vendor_name.Size = new System.Drawing.Size(183, 22);
             this.textBox_admin_vendor_name.TabIndex = 3;
@@ -1027,7 +1027,7 @@
             // btn_save_edits
             // 
             this.btn_save_edits.Location = new System.Drawing.Point(578, 215);
-            this.btn_save_edits.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_save_edits.Margin = new System.Windows.Forms.Padding(4);
             this.btn_save_edits.Name = "btn_save_edits";
             this.btn_save_edits.Size = new System.Drawing.Size(104, 29);
             this.btn_save_edits.TabIndex = 1;
@@ -1040,7 +1040,7 @@
             this.comboBox_select_vendor_to_edit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_select_vendor_to_edit.FormattingEnabled = true;
             this.comboBox_select_vendor_to_edit.Location = new System.Drawing.Point(8, 24);
-            this.comboBox_select_vendor_to_edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_select_vendor_to_edit.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_select_vendor_to_edit.Name = "comboBox_select_vendor_to_edit";
             this.comboBox_select_vendor_to_edit.Size = new System.Drawing.Size(150, 24);
             this.comboBox_select_vendor_to_edit.TabIndex = 1;
@@ -1055,9 +1055,9 @@
             this.groupBox_add_vendor.Controls.Add(this.groupBox_admin_vendor_vendor_name);
             this.groupBox_add_vendor.Controls.Add(this.btn_add_vendor);
             this.groupBox_add_vendor.Location = new System.Drawing.Point(9, 9);
-            this.groupBox_add_vendor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_add_vendor.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_add_vendor.Name = "groupBox_add_vendor";
-            this.groupBox_add_vendor.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_add_vendor.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_add_vendor.Size = new System.Drawing.Size(689, 195);
             this.groupBox_add_vendor.TabIndex = 2;
             this.groupBox_add_vendor.TabStop = false;
@@ -1066,7 +1066,7 @@
             // button_add_vendor
             // 
             this.button_add_vendor.Location = new System.Drawing.Point(578, 159);
-            this.button_add_vendor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_add_vendor.Margin = new System.Windows.Forms.Padding(4);
             this.button_add_vendor.Name = "button_add_vendor";
             this.button_add_vendor.Size = new System.Drawing.Size(104, 29);
             this.button_add_vendor.TabIndex = 10;
@@ -1078,9 +1078,9 @@
             // 
             this.groupBox9.Controls.Add(this.textBox_admin_vendor_addon_add);
             this.groupBox9.Location = new System.Drawing.Point(301, 91);
-            this.groupBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox9.Size = new System.Drawing.Size(269, 60);
             this.groupBox9.TabIndex = 8;
             this.groupBox9.TabStop = false;
@@ -1089,7 +1089,7 @@
             // textBox_admin_vendor_addon_add
             // 
             this.textBox_admin_vendor_addon_add.Location = new System.Drawing.Point(8, 24);
-            this.textBox_admin_vendor_addon_add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_admin_vendor_addon_add.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_admin_vendor_addon_add.Name = "textBox_admin_vendor_addon_add";
             this.textBox_admin_vendor_addon_add.Size = new System.Drawing.Size(253, 22);
             this.textBox_admin_vendor_addon_add.TabIndex = 4;
@@ -1098,9 +1098,9 @@
             // 
             this.groupBox_admin_vendor_add_base.Controls.Add(this.textBox_admin_vendor_base_add);
             this.groupBox_admin_vendor_add_base.Location = new System.Drawing.Point(230, 24);
-            this.groupBox_admin_vendor_add_base.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_admin_vendor_add_base.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_admin_vendor_add_base.Name = "groupBox_admin_vendor_add_base";
-            this.groupBox_admin_vendor_add_base.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_admin_vendor_add_base.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_admin_vendor_add_base.Size = new System.Drawing.Size(269, 60);
             this.groupBox_admin_vendor_add_base.TabIndex = 7;
             this.groupBox_admin_vendor_add_base.TabStop = false;
@@ -1109,7 +1109,7 @@
             // textBox_admin_vendor_base_add
             // 
             this.textBox_admin_vendor_base_add.Location = new System.Drawing.Point(8, 24);
-            this.textBox_admin_vendor_base_add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_admin_vendor_base_add.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_admin_vendor_base_add.Name = "textBox_admin_vendor_base_add";
             this.textBox_admin_vendor_base_add.Size = new System.Drawing.Size(253, 22);
             this.textBox_admin_vendor_base_add.TabIndex = 4;
@@ -1118,9 +1118,9 @@
             // 
             this.groupBox7.Controls.Add(this.textBox_admin_vendor_sort_add);
             this.groupBox7.Location = new System.Drawing.Point(8, 91);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox7.Size = new System.Drawing.Size(269, 60);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
@@ -1129,7 +1129,7 @@
             // textBox_admin_vendor_sort_add
             // 
             this.textBox_admin_vendor_sort_add.Location = new System.Drawing.Point(8, 24);
-            this.textBox_admin_vendor_sort_add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_admin_vendor_sort_add.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_admin_vendor_sort_add.Name = "textBox_admin_vendor_sort_add";
             this.textBox_admin_vendor_sort_add.Size = new System.Drawing.Size(253, 22);
             this.textBox_admin_vendor_sort_add.TabIndex = 4;
@@ -1138,9 +1138,9 @@
             // 
             this.groupBox_admin_vendor_vendor_name.Controls.Add(this.textBox_admin_vendor_name_add);
             this.groupBox_admin_vendor_vendor_name.Location = new System.Drawing.Point(8, 24);
-            this.groupBox_admin_vendor_vendor_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_admin_vendor_vendor_name.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_admin_vendor_vendor_name.Name = "groupBox_admin_vendor_vendor_name";
-            this.groupBox_admin_vendor_vendor_name.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_admin_vendor_vendor_name.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_admin_vendor_vendor_name.Size = new System.Drawing.Size(201, 60);
             this.groupBox_admin_vendor_vendor_name.TabIndex = 5;
             this.groupBox_admin_vendor_vendor_name.TabStop = false;
@@ -1149,7 +1149,7 @@
             // textBox_admin_vendor_name_add
             // 
             this.textBox_admin_vendor_name_add.Location = new System.Drawing.Point(8, 24);
-            this.textBox_admin_vendor_name_add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_admin_vendor_name_add.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_admin_vendor_name_add.Name = "textBox_admin_vendor_name_add";
             this.textBox_admin_vendor_name_add.Size = new System.Drawing.Size(183, 22);
             this.textBox_admin_vendor_name_add.TabIndex = 4;
@@ -1157,7 +1157,7 @@
             // btn_add_vendor
             // 
             this.btn_add_vendor.Location = new System.Drawing.Point(588, 256);
-            this.btn_add_vendor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_add_vendor.Margin = new System.Windows.Forms.Padding(4);
             this.btn_add_vendor.Name = "btn_add_vendor";
             this.btn_add_vendor.Size = new System.Drawing.Size(94, 29);
             this.btn_add_vendor.TabIndex = 0;
@@ -1169,9 +1169,9 @@
             this.tabPage_chipset_add.Controls.Add(this.groupBox_remove_chipset);
             this.tabPage_chipset_add.Controls.Add(this.groupBox_add_shipset);
             this.tabPage_chipset_add.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_chipset_add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_chipset_add.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_chipset_add.Name = "tabPage_chipset_add";
-            this.tabPage_chipset_add.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_chipset_add.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage_chipset_add.Size = new System.Drawing.Size(707, 467);
             this.tabPage_chipset_add.TabIndex = 3;
             this.tabPage_chipset_add.Text = "Chipset";
@@ -1182,9 +1182,9 @@
             this.groupBox_remove_chipset.Controls.Add(this.comboBox_select_chipset_to_remove);
             this.groupBox_remove_chipset.Controls.Add(this.button_remvoe_chipset);
             this.groupBox_remove_chipset.Location = new System.Drawing.Point(365, 8);
-            this.groupBox_remove_chipset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_remove_chipset.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_remove_chipset.Name = "groupBox_remove_chipset";
-            this.groupBox_remove_chipset.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_remove_chipset.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_remove_chipset.Size = new System.Drawing.Size(332, 211);
             this.groupBox_remove_chipset.TabIndex = 8;
             this.groupBox_remove_chipset.TabStop = false;
@@ -1195,7 +1195,7 @@
             this.comboBox_select_chipset_to_remove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_select_chipset_to_remove.FormattingEnabled = true;
             this.comboBox_select_chipset_to_remove.Location = new System.Drawing.Point(50, 86);
-            this.comboBox_select_chipset_to_remove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_select_chipset_to_remove.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_select_chipset_to_remove.Name = "comboBox_select_chipset_to_remove";
             this.comboBox_select_chipset_to_remove.Size = new System.Drawing.Size(234, 24);
             this.comboBox_select_chipset_to_remove.Sorted = true;
@@ -1204,7 +1204,7 @@
             // button_remvoe_chipset
             // 
             this.button_remvoe_chipset.Location = new System.Drawing.Point(231, 175);
-            this.button_remvoe_chipset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_remvoe_chipset.Margin = new System.Windows.Forms.Padding(4);
             this.button_remvoe_chipset.Name = "button_remvoe_chipset";
             this.button_remvoe_chipset.Size = new System.Drawing.Size(94, 29);
             this.button_remvoe_chipset.TabIndex = 5;
@@ -1220,9 +1220,9 @@
             this.groupBox_add_shipset.Controls.Add(this.label_admin_chispset_vendor);
             this.groupBox_add_shipset.Controls.Add(this.label_admin_chipset_name);
             this.groupBox_add_shipset.Location = new System.Drawing.Point(8, 8);
-            this.groupBox_add_shipset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_add_shipset.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_add_shipset.Name = "groupBox_add_shipset";
-            this.groupBox_add_shipset.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_add_shipset.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_add_shipset.Size = new System.Drawing.Size(336, 211);
             this.groupBox_add_shipset.TabIndex = 7;
             this.groupBox_add_shipset.TabStop = false;
@@ -1231,7 +1231,7 @@
             // btn_add_chipset
             // 
             this.btn_add_chipset.Location = new System.Drawing.Point(235, 175);
-            this.btn_add_chipset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_add_chipset.Margin = new System.Windows.Forms.Padding(4);
             this.btn_add_chipset.Name = "btn_add_chipset";
             this.btn_add_chipset.Size = new System.Drawing.Size(94, 29);
             this.btn_add_chipset.TabIndex = 0;
@@ -1244,7 +1244,7 @@
             this.comboBox_admin_chipset_vendor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_admin_chipset_vendor.FormattingEnabled = true;
             this.comboBox_admin_chipset_vendor.Location = new System.Drawing.Point(8, 106);
-            this.comboBox_admin_chipset_vendor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_admin_chipset_vendor.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_admin_chipset_vendor.Name = "comboBox_admin_chipset_vendor";
             this.comboBox_admin_chipset_vendor.Size = new System.Drawing.Size(320, 24);
             this.comboBox_admin_chipset_vendor.TabIndex = 2;
@@ -1252,7 +1252,7 @@
             // textBox_admin_chipset_name
             // 
             this.textBox_admin_chipset_name.Location = new System.Drawing.Point(8, 40);
-            this.textBox_admin_chipset_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_admin_chipset_name.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_admin_chipset_name.Name = "textBox_admin_chipset_name";
             this.textBox_admin_chipset_name.Size = new System.Drawing.Size(320, 22);
             this.textBox_admin_chipset_name.TabIndex = 1;
@@ -1284,9 +1284,9 @@
             this.tabPage_Current_Run.Controls.Add(this.grpBox_current_progress);
             this.tabPage_Current_Run.Controls.Add(this.grpBox_Overall_progress);
             this.tabPage_Current_Run.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_Current_Run.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_Current_Run.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_Current_Run.Name = "tabPage_Current_Run";
-            this.tabPage_Current_Run.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_Current_Run.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage_Current_Run.Size = new System.Drawing.Size(726, 642);
             this.tabPage_Current_Run.TabIndex = 1;
             this.tabPage_Current_Run.Text = "Current Run";
@@ -1296,9 +1296,9 @@
             // 
             this.grpBox_log_history.Controls.Add(this.textBox_log_running);
             this.grpBox_log_history.Location = new System.Drawing.Point(284, 4);
-            this.grpBox_log_history.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_log_history.Margin = new System.Windows.Forms.Padding(4);
             this.grpBox_log_history.Name = "grpBox_log_history";
-            this.grpBox_log_history.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_log_history.Padding = new System.Windows.Forms.Padding(4);
             this.grpBox_log_history.Size = new System.Drawing.Size(430, 430);
             this.grpBox_log_history.TabIndex = 7;
             this.grpBox_log_history.TabStop = false;
@@ -1307,7 +1307,7 @@
             // textBox_log_running
             // 
             this.textBox_log_running.Location = new System.Drawing.Point(8, 19);
-            this.textBox_log_running.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_log_running.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_log_running.Multiline = true;
             this.textBox_log_running.Name = "textBox_log_running";
             this.textBox_log_running.ReadOnly = true;
@@ -1319,9 +1319,9 @@
             // 
             this.grpBox_current_run.Controls.Add(this.textBox_current_UEFI_info);
             this.grpBox_current_run.Location = new System.Drawing.Point(4, 4);
-            this.grpBox_current_run.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_current_run.Margin = new System.Windows.Forms.Padding(4);
             this.grpBox_current_run.Name = "grpBox_current_run";
-            this.grpBox_current_run.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_current_run.Padding = new System.Windows.Forms.Padding(4);
             this.grpBox_current_run.Size = new System.Drawing.Size(271, 430);
             this.grpBox_current_run.TabIndex = 6;
             this.grpBox_current_run.TabStop = false;
@@ -1330,7 +1330,7 @@
             // textBox_current_UEFI_info
             // 
             this.textBox_current_UEFI_info.Location = new System.Drawing.Point(8, 24);
-            this.textBox_current_UEFI_info.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_current_UEFI_info.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_current_UEFI_info.Multiline = true;
             this.textBox_current_UEFI_info.Name = "textBox_current_UEFI_info";
             this.textBox_current_UEFI_info.ReadOnly = true;
@@ -1342,9 +1342,9 @@
             this.grpBox_current_progress.Controls.Add(this.label_current_point);
             this.grpBox_current_progress.Controls.Add(this.progressBar_current_progress);
             this.grpBox_current_progress.Location = new System.Drawing.Point(4, 441);
-            this.grpBox_current_progress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_current_progress.Margin = new System.Windows.Forms.Padding(4);
             this.grpBox_current_progress.Name = "grpBox_current_progress";
-            this.grpBox_current_progress.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_current_progress.Padding = new System.Windows.Forms.Padding(4);
             this.grpBox_current_progress.Size = new System.Drawing.Size(716, 91);
             this.grpBox_current_progress.TabIndex = 3;
             this.grpBox_current_progress.TabStop = false;
@@ -1363,7 +1363,7 @@
             // progressBar_current_progress
             // 
             this.progressBar_current_progress.Location = new System.Drawing.Point(12, 45);
-            this.progressBar_current_progress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar_current_progress.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar_current_progress.Name = "progressBar_current_progress";
             this.progressBar_current_progress.Size = new System.Drawing.Size(675, 29);
             this.progressBar_current_progress.TabIndex = 1;
@@ -1373,9 +1373,9 @@
             this.grpBox_Overall_progress.Controls.Add(this.label_current_progress_fraction);
             this.grpBox_Overall_progress.Controls.Add(this.progressBar_overall_progress);
             this.grpBox_Overall_progress.Location = new System.Drawing.Point(4, 540);
-            this.grpBox_Overall_progress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_Overall_progress.Margin = new System.Windows.Forms.Padding(4);
             this.grpBox_Overall_progress.Name = "grpBox_Overall_progress";
-            this.grpBox_Overall_progress.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_Overall_progress.Padding = new System.Windows.Forms.Padding(4);
             this.grpBox_Overall_progress.Size = new System.Drawing.Size(716, 91);
             this.grpBox_Overall_progress.TabIndex = 2;
             this.grpBox_Overall_progress.TabStop = false;
@@ -1394,7 +1394,7 @@
             // progressBar_overall_progress
             // 
             this.progressBar_overall_progress.Location = new System.Drawing.Point(12, 45);
-            this.progressBar_overall_progress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar_overall_progress.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar_overall_progress.Name = "progressBar_overall_progress";
             this.progressBar_overall_progress.Size = new System.Drawing.Size(675, 29);
             this.progressBar_overall_progress.TabIndex = 1;
@@ -1412,9 +1412,9 @@
             this.tabPage_config.Controls.Add(this.btn_clear_config);
             this.tabPage_config.Controls.Add(this.grpBox_Intructions);
             this.tabPage_config.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_config.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_config.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_config.Name = "tabPage_config";
-            this.tabPage_config.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_config.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage_config.Size = new System.Drawing.Size(726, 642);
             this.tabPage_config.TabIndex = 0;
             this.tabPage_config.Text = "Configurator";
@@ -1423,7 +1423,7 @@
             // button_save_config
             // 
             this.button_save_config.Location = new System.Drawing.Point(206, 602);
-            this.button_save_config.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_save_config.Margin = new System.Windows.Forms.Padding(4);
             this.button_save_config.Name = "button_save_config";
             this.button_save_config.Size = new System.Drawing.Size(94, 29);
             this.button_save_config.TabIndex = 15;
@@ -1434,7 +1434,7 @@
             // button_load_config
             // 
             this.button_load_config.Location = new System.Drawing.Point(105, 602);
-            this.button_load_config.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_load_config.Margin = new System.Windows.Forms.Padding(4);
             this.button_load_config.Name = "button_load_config";
             this.button_load_config.Size = new System.Drawing.Size(94, 29);
             this.button_load_config.TabIndex = 14;
@@ -1446,9 +1446,9 @@
             // 
             this.groupBox_what_to_get.Controls.Add(this.comboBox_what_to_get);
             this.groupBox_what_to_get.Location = new System.Drawing.Point(471, 331);
-            this.groupBox_what_to_get.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_what_to_get.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_what_to_get.Name = "groupBox_what_to_get";
-            this.groupBox_what_to_get.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_what_to_get.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_what_to_get.Size = new System.Drawing.Size(250, 64);
             this.groupBox_what_to_get.TabIndex = 13;
             this.groupBox_what_to_get.TabStop = false;
@@ -1459,7 +1459,7 @@
             this.comboBox_what_to_get.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_what_to_get.FormattingEnabled = true;
             this.comboBox_what_to_get.Location = new System.Drawing.Point(8, 24);
-            this.comboBox_what_to_get.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_what_to_get.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_what_to_get.Name = "comboBox_what_to_get";
             this.comboBox_what_to_get.Size = new System.Drawing.Size(226, 24);
             this.comboBox_what_to_get.TabIndex = 12;
@@ -1467,7 +1467,7 @@
             // textBox_log_config
             // 
             this.textBox_log_config.Location = new System.Drawing.Point(9, 498);
-            this.textBox_log_config.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_log_config.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_log_config.Multiline = true;
             this.textBox_log_config.Name = "textBox_log_config";
             this.textBox_log_config.ReadOnly = true;
@@ -1480,9 +1480,9 @@
             this.grpBox_vendor.Controls.Add(this.checkBox_all_vendors);
             this.grpBox_vendor.Controls.Add(this.listbox_vendor);
             this.grpBox_vendor.Location = new System.Drawing.Point(470, 4);
-            this.grpBox_vendor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_vendor.Margin = new System.Windows.Forms.Padding(4);
             this.grpBox_vendor.Name = "grpBox_vendor";
-            this.grpBox_vendor.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_vendor.Padding = new System.Windows.Forms.Padding(4);
             this.grpBox_vendor.Size = new System.Drawing.Size(244, 319);
             this.grpBox_vendor.TabIndex = 8;
             this.grpBox_vendor.TabStop = false;
@@ -1492,7 +1492,7 @@
             // 
             this.checkBox_all_vendors.AutoSize = true;
             this.checkBox_all_vendors.Location = new System.Drawing.Point(9, 278);
-            this.checkBox_all_vendors.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_all_vendors.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_all_vendors.Name = "checkBox_all_vendors";
             this.checkBox_all_vendors.Size = new System.Drawing.Size(85, 20);
             this.checkBox_all_vendors.TabIndex = 6;
@@ -1504,7 +1504,7 @@
             // 
             this.listbox_vendor.FormattingEnabled = true;
             this.listbox_vendor.Location = new System.Drawing.Point(8, 21);
-            this.listbox_vendor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listbox_vendor.Margin = new System.Windows.Forms.Padding(4);
             this.listbox_vendor.Name = "listbox_vendor";
             this.listbox_vendor.Size = new System.Drawing.Size(228, 225);
             this.listbox_vendor.TabIndex = 5;
@@ -1514,9 +1514,9 @@
             this.grpBox_Chipsets.Controls.Add(this.grpBox_chipset_intel);
             this.grpBox_Chipsets.Controls.Add(this.grpBox_chipset_amd);
             this.grpBox_Chipsets.Location = new System.Drawing.Point(0, 4);
-            this.grpBox_Chipsets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_Chipsets.Margin = new System.Windows.Forms.Padding(4);
             this.grpBox_Chipsets.Name = "grpBox_Chipsets";
-            this.grpBox_Chipsets.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_Chipsets.Padding = new System.Windows.Forms.Padding(4);
             this.grpBox_Chipsets.Size = new System.Drawing.Size(462, 485);
             this.grpBox_Chipsets.TabIndex = 7;
             this.grpBox_Chipsets.TabStop = false;
@@ -1527,9 +1527,9 @@
             this.grpBox_chipset_intel.Controls.Add(this.checkBox_vendor_select_all);
             this.grpBox_chipset_intel.Controls.Add(this.listbox_INTEL_chipset);
             this.grpBox_chipset_intel.Location = new System.Drawing.Point(246, 21);
-            this.grpBox_chipset_intel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_chipset_intel.Margin = new System.Windows.Forms.Padding(4);
             this.grpBox_chipset_intel.Name = "grpBox_chipset_intel";
-            this.grpBox_chipset_intel.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_chipset_intel.Padding = new System.Windows.Forms.Padding(4);
             this.grpBox_chipset_intel.Size = new System.Drawing.Size(209, 456);
             this.grpBox_chipset_intel.TabIndex = 4;
             this.grpBox_chipset_intel.TabStop = false;
@@ -1539,7 +1539,7 @@
             // 
             this.checkBox_vendor_select_all.AutoSize = true;
             this.checkBox_vendor_select_all.Location = new System.Drawing.Point(8, 424);
-            this.checkBox_vendor_select_all.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_vendor_select_all.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_vendor_select_all.Name = "checkBox_vendor_select_all";
             this.checkBox_vendor_select_all.Size = new System.Drawing.Size(85, 20);
             this.checkBox_vendor_select_all.TabIndex = 5;
@@ -1551,7 +1551,7 @@
             // 
             this.listbox_INTEL_chipset.FormattingEnabled = true;
             this.listbox_INTEL_chipset.Location = new System.Drawing.Point(8, 18);
-            this.listbox_INTEL_chipset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listbox_INTEL_chipset.Margin = new System.Windows.Forms.Padding(4);
             this.listbox_INTEL_chipset.Name = "listbox_INTEL_chipset";
             this.listbox_INTEL_chipset.Size = new System.Drawing.Size(189, 378);
             this.listbox_INTEL_chipset.TabIndex = 4;
@@ -1561,9 +1561,9 @@
             this.grpBox_chipset_amd.Controls.Add(this.checkBox_AMD_select_all);
             this.grpBox_chipset_amd.Controls.Add(this.listbox_AMD_chipset);
             this.grpBox_chipset_amd.Location = new System.Drawing.Point(24, 21);
-            this.grpBox_chipset_amd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_chipset_amd.Margin = new System.Windows.Forms.Padding(4);
             this.grpBox_chipset_amd.Name = "grpBox_chipset_amd";
-            this.grpBox_chipset_amd.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_chipset_amd.Padding = new System.Windows.Forms.Padding(4);
             this.grpBox_chipset_amd.Size = new System.Drawing.Size(201, 456);
             this.grpBox_chipset_amd.TabIndex = 0;
             this.grpBox_chipset_amd.TabStop = false;
@@ -1573,7 +1573,7 @@
             // 
             this.checkBox_AMD_select_all.AutoSize = true;
             this.checkBox_AMD_select_all.Location = new System.Drawing.Point(8, 422);
-            this.checkBox_AMD_select_all.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_AMD_select_all.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_AMD_select_all.Name = "checkBox_AMD_select_all";
             this.checkBox_AMD_select_all.Size = new System.Drawing.Size(85, 20);
             this.checkBox_AMD_select_all.TabIndex = 4;
@@ -1585,7 +1585,7 @@
             // 
             this.listbox_AMD_chipset.FormattingEnabled = true;
             this.listbox_AMD_chipset.Location = new System.Drawing.Point(8, 16);
-            this.listbox_AMD_chipset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listbox_AMD_chipset.Margin = new System.Windows.Forms.Padding(4);
             this.listbox_AMD_chipset.Name = "listbox_AMD_chipset";
             this.listbox_AMD_chipset.Size = new System.Drawing.Size(189, 378);
             this.listbox_AMD_chipset.TabIndex = 3;
@@ -1593,7 +1593,7 @@
             // btn_select_all
             // 
             this.btn_select_all.Location = new System.Drawing.Point(470, 602);
-            this.btn_select_all.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_select_all.Margin = new System.Windows.Forms.Padding(4);
             this.btn_select_all.Name = "btn_select_all";
             this.btn_select_all.Size = new System.Drawing.Size(94, 29);
             this.btn_select_all.TabIndex = 2;
@@ -1604,7 +1604,7 @@
             // btn_run
             // 
             this.btn_run.Location = new System.Drawing.Point(620, 602);
-            this.btn_run.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_run.Margin = new System.Windows.Forms.Padding(4);
             this.btn_run.Name = "btn_run";
             this.btn_run.Size = new System.Drawing.Size(94, 29);
             this.btn_run.TabIndex = 1;
@@ -1615,7 +1615,7 @@
             // btn_clear_config
             // 
             this.btn_clear_config.Location = new System.Drawing.Point(4, 602);
-            this.btn_clear_config.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_clear_config.Margin = new System.Windows.Forms.Padding(4);
             this.btn_clear_config.Name = "btn_clear_config";
             this.btn_clear_config.Size = new System.Drawing.Size(94, 29);
             this.btn_clear_config.TabIndex = 0;
@@ -1627,9 +1627,9 @@
             // 
             this.grpBox_Intructions.Controls.Add(this.textBox_instructions);
             this.grpBox_Intructions.Location = new System.Drawing.Point(470, 402);
-            this.grpBox_Intructions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_Intructions.Margin = new System.Windows.Forms.Padding(4);
             this.grpBox_Intructions.Name = "grpBox_Intructions";
-            this.grpBox_Intructions.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox_Intructions.Padding = new System.Windows.Forms.Padding(4);
             this.grpBox_Intructions.Size = new System.Drawing.Size(244, 192);
             this.grpBox_Intructions.TabIndex = 9;
             this.grpBox_Intructions.TabStop = false;
@@ -1639,7 +1639,7 @@
             // 
             this.textBox_instructions.AcceptsReturn = true;
             this.textBox_instructions.Location = new System.Drawing.Point(9, 25);
-            this.textBox_instructions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_instructions.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_instructions.Multiline = true;
             this.textBox_instructions.Name = "textBox_instructions";
             this.textBox_instructions.ReadOnly = true;
@@ -1653,7 +1653,7 @@
             this.tab_control.Controls.Add(this.tabPage_Current_Run);
             this.tab_control.Controls.Add(this.tabPage_admin);
             this.tab_control.Location = new System.Drawing.Point(0, -1);
-            this.tab_control.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tab_control.Margin = new System.Windows.Forms.Padding(4);
             this.tab_control.Name = "tab_control";
             this.tab_control.SelectedIndex = 0;
             this.tab_control.Size = new System.Drawing.Size(734, 671);
@@ -1668,7 +1668,7 @@
             this.Controls.Add(this.statusStrip_err_or_cwd);
             this.Controls.Add(this.tab_control);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(748, 737);
             this.MinimumSize = new System.Drawing.Size(748, 737);
             this.Name = "BIOSUP_GUI";

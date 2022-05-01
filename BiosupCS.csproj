@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>BIOSUP_ICO2.ico</ApplicationIcon>
+    <ApplicationIcon>assets\BIOSUP_ICO2.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>BiosupCS.BIOSUP_Program</StartupObject>
@@ -193,7 +193,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BIOSUP_ICO2.ico" />
+    <Content Include="assets\BIOSUP_ICO2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

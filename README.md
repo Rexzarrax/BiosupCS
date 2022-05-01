@@ -8,7 +8,7 @@ Biosup is a program designed to automate the sourcing and downloading of BIOS/UE
 
 Biosup DOES NOT install the bios for you.
 
-![Biosup UI](./resource/Biosup_gui.png)
+![Biosup UI](./assets/Biosup_gui.png)
 
 # Installation #
 
