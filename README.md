@@ -18,8 +18,8 @@ As this program is portable, No installation needed.
 **Note, it is recommended to run this on USB flash storage generally for easy transfer to the PC needing a update.
 
 Hardware: 
--System with internet connection 
--USB flash drive with at least 8GB of storage(16GB recommended)
+- System with internet connection 
+- USB flash drive with at least 8GB of storage(16GB recommended)
 
 
 # Credits #
