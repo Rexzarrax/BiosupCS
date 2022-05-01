@@ -42,7 +42,6 @@ namespace BiosupCS
                 List_amd_chipsets = insert_values(lines[0]);
                 List_vendors = insert_values(lines[2]);
 
-
                 Str_option = lines[3];
             }
             catch

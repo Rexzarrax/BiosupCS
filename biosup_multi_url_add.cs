@@ -51,7 +51,8 @@ namespace BiosupCS
             {
                 btn_admin_url_remove_url.Enabled = false;
             }
-            else
+
+            if (!checkBox_multi_del.Checked)
             {
                 btn_admin_url_remove_url.Enabled = true;
             }

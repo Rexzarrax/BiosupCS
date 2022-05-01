@@ -15,14 +15,15 @@ namespace BiosupCS
 
         public BIOSUP_SQL(String str_connection)
         {
-            SQLConn = new MySqlConnection(str_connection);
             try
             {
+                SQLConn = new MySqlConnection(str_connection);
                 SQLConn.Open();
                 Console.WriteLine(SQLConn.ServerVersion.ToString());
             }
             catch
             {
+                MessageBox.Show("Could not connect to SQL DB", "Error");
                 throw new Exception("Database Connection Error");
             }
         }
