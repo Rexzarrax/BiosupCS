@@ -7,6 +7,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace BiosupCS
 {
@@ -69,15 +70,21 @@ namespace BiosupCS
             toolStripStatusLabel_cwd.Text = "CWD: " + str_working_dir;
             textBox_log_config.AppendText("CWD: " + str_working_dir + "\n");
 
+            string[] lines = new String[1] { "nope" };
 
-            if (!File.Exists(str_working_dir + "key.txt"))
+            if (File.Exists(str_working_dir + "key.txt")){
+                lines = File.ReadAllLines(str_working_dir + "key.txt", Encoding.UTF8);
+            }   
+
+            if (lines[0] != "asussisforallofus")
             {
                 tab_control.TabPages.Remove(tabPage_admin);
             }
                 
             try
             {
-                Console.WriteLine("Attempting to clear UI");
+                Console.WriteLine("Attempting to clear UI\n\r");
+                textBox_admin_log.AppendText("Clearing UI...\n\r");
                 textBox_current_UEFI_info.Text = "";
                 listbox_vendor.Items.Clear();
                 listbox_AMD_chipset.Items.Clear();
@@ -92,7 +99,6 @@ namespace BiosupCS
                 comboBox_select_vendor_to_edit.Items.Clear();
                 comboBox_what_to_get.Items.Clear();
 
-                textBox_admin_log.AppendText("Clearing UI...");
                 comboBox_admin_model_edit.Items.Clear();
                 comboBox_admin_chipset_vendor.Items.Clear();
                 comboBox_admin_model_delete.Items.Clear();
@@ -645,7 +651,8 @@ namespace BiosupCS
                 String str_model_to_remove = comboBox_admin_model_delete.Text;
                 String str_query = "DELETE FROM motherboard_data WHERE model_name ='" + str_model_to_remove + "'";
                 Console.WriteLine(str_query);
-                Execute_query_SET(sender, e, str_query, str_model_to_remove);
+                Execute_query_SET(sender, e, str_query, str_model_to_remove); // is broken, need to del stuff on other tables first
+
             }
         }
 
